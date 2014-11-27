@@ -1,11 +1,12 @@
 @charset "utf-8";
-.infinite_scroll{position: relative;}
-.infinite_scroll .infinite_container{position: relative;}
-.infinite_scroll .infinite_container .infinite_data{position: absolute; top: 0; white-space: nowrap; width: 846px;}
-.infinite_scroll .infinite_container .infinite_data ul{list-style:none;margin:0;padding:0;vertical-align: middle; display:block;}
-.infinite_scroll .infinite_container .infinite_data ul li{list-style:none;margin:0;padding:0 0 0 5px;vertical-align: middle; display:block;}
-.infinite_scroll textarea{position: absolute; width: 0; height: 0; left: -9999px; }
+.simple_grid {position: relative;}
+.simple_grid .infinite_container{position: relative;}
+.simple_grid .infinite_container .infinite_data{position: absolute; top: 0; white-space: nowrap; width: 846px;}
+.simple_grid .infinite_container .infinite_data ul{list-style:none;margin:0;padding:0;vertical-align: middle; display:block;}
+.simple_grid .infinite_container .infinite_data ul li{list-style:none;margin:0;padding:0 0 0 5px;vertical-align: middle; display:block;}
+.simple_grid textarea{position: absolute; width: 0; height: 0; left: -9999px; }
 
-.infinite_scroll .infinite_virtial_scrollbar{overflow-y: scroll; overflow-x: hidden; position: absolute; top: 0; right: 0; display: block;}
-.infinite_scroll .infinite_virtial_scrollbar .infinite_content{width: 1px; display: block; height: 183000px; background: transparent;}
-.infinite_scroll .infinite_selection_layer{display:none;position:absolute;top:0;left:1px;width:0;height:0;border:dotted 1px red;background:orange;opacity:0.2;filter:alpha(opacity=10)}
+.simple_grid .infinite_virtial_scrollbar{overflow-y: scroll; overflow-x: hidden; position: absolute; top: 0; right: 0; display: block;}
+.simple_grid .infinite_virtial_scrollbar .infinite_content{width: 1px; display: block; height: 183000px; background: transparent;}
+.simple_grid .infinite_selection_layer{display:none;position:absolute;top:0;left:1px;width:0;height:0;border:dotted 1px red;background:orange;opacity:0.2;filter:alpha(opacity=10)}
+.simple_grid td{background-color: #ffffff;}

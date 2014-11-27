@@ -20,7 +20,7 @@
      */
     ne.Component.SimpleGrid = ne.util.defineClass(Base.View, {
         scrollBarSize: 17,
-        className: 'infinite_scroll',
+        className: 'simple_grid',
         eventHandler: {
             'mousedown' : '_onMouseDown',
             'focus' : '_onFocus'
@@ -36,8 +36,8 @@
                     scrollX: true,
                     scrollY: true,
                     freeze: true,    //Data Prepend 시 현재  scroll 된 위치를 유지할 것인지 여부
-
-                    keyEventBubble: false  //key 입력시 이벤트 버블링 할지 여부
+                    keyEventBubble: false,  //key 입력시 이벤트 버블링 할지 여부
+                    columnList: []
                 };
 
             this.__instance[id] = this;
@@ -87,11 +87,11 @@
          * @private
          */
         _initializeView: function() {
-            this.view.container = this.createView(ContainerView, {
+            this.view.container = this.createView(Container, {
                 grid: this,
                 model: this.model
             });
-            this.view.keyboard = this.createView(KeyboardView, {
+            this.view.keyboard = this.createView(Keyboard, {
                 grid: this,
                 model: this.model
             });
@@ -119,7 +119,7 @@
         },
         /**
          * selection instance 를 반환한다.
-         * @return {Selection|g.content.selection|*|selection|ContainerView.content.selection|g.selection}
+         * @return {Selection|g.content.selection|*|selection|Container.content.selection|g.selection}
          */
         getSelectionInstance: function() {
             return this.view.container.selection;
@@ -187,7 +187,7 @@
                 .append(this.view.keyboard.render().el);
 
             if (this.option('scrollY')) {
-                this.view.virtualScroll = this.createView(VirtualScrollBarView, {
+                this.view.virtualScroll = this.createView(VirtualScrollBar, {
                     grid: this,
                     model: this.model
                 });

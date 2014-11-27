@@ -1,16 +1,16 @@
-    ne = window.ne || {};
-    ne.Component = ne.Component || {};
+ne = window.ne || {};
+ne.Component = ne.Component || {};
 
-    /**
-     * @fileoverview base component file
-     * @author soonyoung.park@nhnent@nhnent.com (Soonyoung Park)
-     */
+/**
+ * @fileoverview 기본 클래스 파일
+ * @author soonyoung.park@nhnent@nhnent.com (Soonyoung Park)
+ */
 
     /**
      * Base Class
-     * @constructor
+     * @constructor Base
      */
-    var Base = ne.util.defineClass({
+    var Base = ne.util.defineClass(/**@lends Base.prototype */{
         init: function(options) {
             if (options && options.grid) {
                 this.setOwnProperties({
@@ -58,9 +58,9 @@
 
     /**
      * View base class
-     * @constructor
+     * @constructor Base.View
      */
-    Base.View = ne.util.defineClass(Base, {
+    Base.View = ne.util.defineClass(Base, /**@lends Base.View.prototype */{
         tagName: 'div',
         className: '',
         eventHandler: {},
@@ -167,3 +167,15 @@
             this.$el.empty().remove();
         }
     });
+
+    var Util = {
+        template: function(template, mapper) {
+            template.replace(/<%=[^%]+%>/g, '');
+            var replaced = template.replace(/<%=([^%]+)%>/g, function callback(matchedString, name, index, fullString) {
+                return mapper[name] || '';
+            });
+            console.log(template);
+            console.log(replaced, mapper);
+            return replaced;
+        }
+    };

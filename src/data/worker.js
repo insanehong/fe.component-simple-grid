@@ -1,8 +1,12 @@
-    /**
-     * Collection job Worker
-     * @constructor
-     */
-    var Worker = ne.util.defineClass(Base, {
+/**
+ * @fileoverview 큐를 이용한 Job Worker
+ * @author soonyoung.park@nhnent@nhnent.com (Soonyoung Park)
+ */
+/**
+ * Collection job Worker
+ * @constructor Worker
+ */
+var Worker = ne.util.defineClass(Base, /**@lends Worker.prototype */{
         init: function() {
             Base.prototype.init.apply(this, arguments);
             this.setOwnProperties({

@@ -1,8 +1,12 @@
-    /**
-     * 원본 데이터 collection
-     * @constructor
-     */
-    var Collection = ne.util.defineClass(Base, {
+/**
+ * @fileoverview 원본데이터 콜렉션 클래스
+ * @author soonyoung.park@nhnent@nhnent.com (Soonyoung Park)
+ */
+/**
+ * 원본 데이터 collection
+ * @constructor Collection
+ */
+var Collection = ne.util.defineClass(Base, /**@lends Collection.prototype */{
         init: function() {
             Base.prototype.init.apply(this, arguments);
             this.setOwnProperties({

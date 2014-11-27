@@ -1,8 +1,12 @@
     /**
-     * View 에서 참조하여 rendering 하도록, 원본 데이터를 가공한 render model
-     * @constructor
+     * @fileoverview 원본 Data를 한번 가공하여 View 에서 사용할 수 있는 데이터 구조를 담고 있는 클래스 모음
+     * @author soonyoung.park@nhnent@nhnent.com (Soonyoung Park)
      */
-    var Model = ne.util.defineClass(Base, {
+    /**
+     * View 에서 참조하여 rendering 하도록, 원본 데이터를 가공한 render model
+     * @constructor Model
+     */
+    var Model = ne.util.defineClass(Base, /**@lends Model.prototype */{
         init: function(attributes) {
             Base.prototype.init.apply(this, arguments);
             this._initializeVariables();

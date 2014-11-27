@@ -3,8 +3,22 @@ var infinite = new ne.Component.SimpleGrid({
     lineHeight : 20,
     displayCount : 15,
 //    scrollX : false,
-    scrollFix : true
-}).setList(dummy.real);
+    scrollFix : true,
+    columnList: [
+        'column1',
+        'column2',
+        'column3',
+        'column4',
+        'column5'
+    ]
+});
+
+$.ajax({
+    url: 'http://10.77.34.122/webstorm/Application-Grid/test/php/temp_dummy.php',
+    dataType: 'json'
+}).done(function(data) {
+    infinite.setList(data);
+});
 
 $('#append').on('click', function(){
     infinite.append(dummy.append);
@@ -35,14 +49,14 @@ $('#run').on('click', function(){
 //    infinite.prepend(dummy.prepend);
 //},100);
 var count = 0;
-setInterval(function(){
-    var strings = [],
-        string = 'Test string';
-    strings.push((++count) + string);
-    strings.push((++count) + string);
-    strings = strings.reverse();
-    infinite.prepend(strings);
-}, 500);
+//setInterval(function(){
+//    var strings = [],
+//        string = 'Test string';
+//    strings.push((++count) + string);
+//    strings.push((++count) + string);
+//    strings = strings.reverse();
+//    infinite.prepend(strings);
+//}, 500);
 //setTimeout(function(){
 //    infinite.prepend(dummy.prepend.slice(100, 200));
 //}, 2000);
