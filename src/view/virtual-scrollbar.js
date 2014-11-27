@@ -67,6 +67,8 @@
             if (key === 'scrollTop') {
                 this.isScrollHandlerFocused = false;
                 this._onScrollTopChange(value);
+            } else if (key === 'headerHeight') {
+                this.$el.css('top', value + 'px');
             } else {
                 this._setContentHeight();
             }

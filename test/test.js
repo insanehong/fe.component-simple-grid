@@ -4,12 +4,32 @@ var infinite = new ne.Component.SimpleGrid({
     displayCount : 15,
 //    scrollX : false,
     scrollFix : true,
-    columnList: [
-        'column1',
-        'column2',
-        'column3',
-        'column4',
-        'column5'
+    columnModelList: [
+        {
+            columnName: 'column1',
+            title: '컬럼1',
+            width: 100
+        },
+        {
+            columnName: 'column2',
+            title: '컬럼1',
+            width: 100
+        },
+        {
+            columnName: 'column3',
+            title: '컬럼3',
+            width: 100
+        },
+        {
+            columnName: 'column4',
+            title: '컬럼4',
+            width: 100
+        },
+        {
+            columnName: 'column5',
+            title: '컬럼5',
+            width: 100
+        }
     ]
 });
 

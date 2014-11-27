@@ -84,13 +84,14 @@
                 model: this.model
             });
 
-            this.content = this.createView(Content, {
+            this.body = this.createView(Body, {
                 grid: this.grid,
                 selection: this.selection,
                 model: this.model
             });
+
             this.$el.empty()
-                .append(this.content.render().el)
+                .append(this.body.render().el)
                 .append(this.selection.render().el);
 
             this._attachHandler();

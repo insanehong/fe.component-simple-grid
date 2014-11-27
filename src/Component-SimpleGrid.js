@@ -47,6 +47,8 @@
                 id: id,
                 model: null,
                 view: {
+                    header: null,
+                    spacer: null,
                     container: null,
                     virtualScroll: null,
                     keyboard: null
@@ -92,6 +94,14 @@
                 model: this.model
             });
             this.view.keyboard = this.createView(Keyboard, {
+                grid: this,
+                model: this.model
+            });
+            this.view.header = this.createView(Header, {
+                grid: this,
+                model: this.model
+            });
+            this.view.spacer = this.createView(Spacer, {
                 grid: this,
                 model: this.model
             });
@@ -183,6 +193,8 @@
                 instanceId: this.id
             });
             this.$el.empty()
+                .append(this.view.header.render().el)
+                .append(this.view.spacer.render().el)
                 .append(this.view.container.render().el)
                 .append(this.view.keyboard.render().el);
 
@@ -206,6 +218,7 @@
             this.model.set({
                 offsetTop: offset.top,
                 offsetLeft: offset.left,
+                headerHeight: this.view.header.$el.outerHeight(),
                 containerWidth: this.view.container.$el.width(),
                 containerHeight: this.view.container.$el.height()
             });

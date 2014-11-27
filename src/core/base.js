@@ -92,31 +92,33 @@ ne.Component = ne.Component || {};
         },
         /**
          * 이벤트 핸들러를 attach 또는 detach 한다.
-         * @param {jQuery} $target      이벤트 핸들러의 대상 $target
+         * @param {jQuery} [$target     ] 이벤트 핸들러의 대상 $target
          * @param {boolean} isAttach    attach 할 지 여부
          * @private
          */
         _dispatchHandler: function($target, isAttach) {
             $target = $target || this.$el;
-            ne.util.forEach(this._eventHandler, function(handler, name) {
-                var tmp = name.split(' '),
-                    eventName = tmp[0],
-                    selector = tmp[1] || '';
+            if ($target.length) {
+                ne.util.forEach(this._eventHandler, function (handler, name) {
+                    var tmp = name.split(' '),
+                        eventName = tmp[0],
+                        selector = tmp[1] || '';
 
-                if (selector) {
-                    $target = $target.find(selector);
-                }
+                    if (selector) {
+                        $target = $target.find(selector);
+                    }
 
-                $target.off(eventName);
+                    $target.off(eventName);
 
-                if (isAttach) {
-                    $target.on(eventName, handler);
-                }
-            }, this);
+                    if (isAttach) {
+                        $target.on(eventName, handler);
+                    }
+                }, this);
+            }
         },
         /**
          * event 를 attach 한다.
-         * @param {jQuery} $target
+         * @param {jQuery} [$target]
          * @private
          */
         _attachHandler: function($target) {
@@ -125,7 +127,7 @@ ne.Component = ne.Component || {};
         },
         /**
          * event 를 detach 한다.
-         * @param {jQuery} $target
+         * @param {jQuery} [$target]
          * @private
          */
         _detachHandler: function($target) {
@@ -134,7 +136,7 @@ ne.Component = ne.Component || {};
         },
          /**
          * create view
-         * @param {class} constructor
+         * @param {function} constructor
          * @param {object} params
          * @return {object} instance
          */
@@ -152,7 +154,7 @@ ne.Component = ne.Component || {};
          * destroyChildren
          */
         destroyChildren: function() {
-            if (this.__viewList instanceof Array) {
+            if (ne.util.isArray(this.__viewList)) {
                 while (this.__viewList.length !== 0) {
                     this.__viewList.pop().destroy();
                 }
@@ -167,15 +169,31 @@ ne.Component = ne.Component || {};
             this.$el.empty().remove();
         }
     });
-
+    /**
+     * Utility 메서드 모음
+     * @type {{template: Function}}
+     */
     var Util = {
+        /**
+         * template 문자열을 치환하는 메서드
+         * @param {String} template String
+         * @param {Object} mapper
+         * @return {String}
+         * @example
+         var template = '<div width="<%=width%>" height="<%=height%>">';
+         Util.template(template, {
+            width: 100,
+            height: 200
+         });
+
+         ->
+         '<div width="100" height="200">';
+         */
         template: function(template, mapper) {
             template.replace(/<%=[^%]+%>/g, '');
             var replaced = template.replace(/<%=([^%]+)%>/g, function callback(matchedString, name, index, fullString) {
                 return mapper[name] || '';
             });
-            console.log(template);
-            console.log(replaced, mapper);
             return replaced;
         }
     };
