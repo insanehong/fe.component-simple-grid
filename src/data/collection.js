@@ -124,14 +124,18 @@ var Collection = ne.util.defineClass(Base, /**@lends Collection.prototype */{
             if (!(obj && obj.id !== undefined)) {
                 return -1;
             } else {
+
                 ne.util.forEachArray(this.list, function(data, i) {
                     if (data && data.id == obj.id) {
+                        console.log(this.list, data.id, i);
                         index = i;
                         return false;
                     }
-                });
+                }, this);
+                console.log('beforeReturn', index);
                 return index;
             }
+
         },
         /**
          * collection 에 data Array 를  append 한다.

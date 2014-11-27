@@ -11,7 +11,8 @@
             'mousedown' : '_onMouseDown',
             'selectstart' : '_onSelectStart'
         },
-        className: 'infinite_data',
+        className: 'infinite_body',
+        style: 'position: absolute; top: 0; white-space: nowrap;',
         init: function(attributes) {
             Base.View.prototype.init.apply(this, arguments);
             this.setOwnProperties({
@@ -209,7 +210,8 @@
                 html = '',
                 tbody = '',
                 height = this.model.lineHeight - 1,
-                col = '';
+                col = '',
+                color = this.grid.option('color');
 
 
             ne.util.forEachArray(columnModelList, function(columnName) {
@@ -233,6 +235,8 @@
             });
 
             this.$el.html(html);
+            this.$el.find('table').css('background', color['border']);
+            this.$el.find('td').css('background', color['td']);
             this.model.set('width', Math.max(this._getMaxBodyWidth(), this.model.width));
             this.selection.draw();
             this._attachHandler();

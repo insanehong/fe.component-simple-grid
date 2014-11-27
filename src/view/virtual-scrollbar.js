@@ -11,6 +11,7 @@
         eventHandler: {
             'scroll' : '_onScroll'
         },
+        style: 'overflow-y: scroll; overflow-x: hidden; position: absolute; top: 0; right: 0; display: block;',
         init: function(attributes) {
             Base.View.prototype.init.apply(this, arguments);
             this.model.on({
@@ -95,12 +96,15 @@
          */
         render: function() {
             this._detachHandler();
-            var $content = $('<div></div>').addClass('infinite_content');
+            var content = this.createView(VirtualScrollBar.Content, {
+                grid: this.grid
+            });
+
             this.$el.css({
                 'height' : this.grid.option('scrollX') ? this.model.height + this.grid.scrollBarSize : this.model.height
             });
             this.$el.empty();
-            this.$el.html($content);
+            this.$el.html(content.render().el);
             this._setContentHeight();
             this._attachHandler();
             return this;
@@ -129,5 +133,19 @@
          */
         _getContentHeight: function() {
             return this.$el.find('.infinite_content').height();
+        }
+    });
+    /**
+     * VirtualScrollBar.Content
+     * @constructor VirtualScrollBar.Content
+     */
+    VirtualScrollBar.Content = ne.util.defineClass(Base.View, /**@lends VirtualScrollBar.Content.prototype */{
+        className: 'infinite_content',
+        style: 'width: 1px; display: block; background: transparent;',
+        init: function(attributes) {
+            Base.View.prototype.init.apply(this, arguments);
+        },
+        render: function() {
+            return this;
         }
     });

@@ -11,6 +11,7 @@
             'mousedown' : '_onMouseDown'
         },
         className: 'infinite_selection_layer',
+        style: 'display:none;position:absolute;top:0;left:1px;width:0;height:0;border:dotted 1px red;background:orange;opacity:0.2;filter:alpha(opacity=10)',
         init: function(attributes) {
             Base.View.prototype.init.apply(this, arguments);
             this.grid.view.keyboard.on({
@@ -41,7 +42,7 @@
         _onModelChange: function(changeEvent) {
             var key = changeEvent.key,
                 value = changeEvent.value;
-            if (key === 'top') {
+            if (key === 'headerHeight' || key === 'top') {
                 this.draw();
             } else if (key === 'width') {
                 this.$el.width(value - 3);
@@ -102,12 +103,18 @@
         getSelectionData: function() {
             var range = this.getSelectionRangeIndex(),
                 collectionList = this.model.collection.list.slice(range[0], range[1] + 1),
-                list = [];
+                columnModelList = this.grid.option('columnModelList'),
+                rowStringList = [];
 
             ne.util.forEachArray(collectionList, function(collection) {
-                list.push(collection.data);
+                var columnStringList = [];
+                ne.util.forEachArray(columnModelList, function(columnModel) {
+                    var columnName = columnModel['columnName'];
+                    columnStringList.push(collection.data[columnName]);
+                });
+                rowStringList.push(columnStringList.join('\t'));
             });
-            return list;
+            return rowStringList;
         },
         /**
          * 전체 selection 한다.
@@ -145,13 +152,13 @@
          * @return {{x: number, y: number}}
          */
         overflowStatus: function(pageX, pageY) {
-            var containerPosY = pageY - this.model.offsetTop,
+            var containerPosY = pageY - this.model.offsetTop - this.model.headerHeight,
                 containerPosX = pageX - this.model.offsetLeft,
                 status = {
                     x: 0,
                     y: 0
                 };
-            if (containerPosY > this.model.height) {
+            if (containerPosY > this.model.height + this.model.headerHeight) {
                 status.y = 1;
             }else if (containerPosY < 0) {
                 status.y = -1;
@@ -172,7 +179,7 @@
          * @return {*}
          */
         getSelectionKey: function(pageX, pageY) {
-            var containerPosY = pageY - this.model.offsetTop,
+            var containerPosY = pageY - this.model.offsetTop - this.model.headerHeight,
                 dataPosY = this.model.scrollTop + containerPosY,
                 status = this.overflowStatus(pageX, pageY),
                 idx;
@@ -227,10 +234,14 @@
          * @return {Selection}
          */
         render: function() {
-            this._detachHandler();
+            var color = this.grid.option('color'),
+                opacity = this.grid.option('opacity');
 
+            this._detachHandler();
             this.$el.css({
-                width: '100%'
+                width: '100%',
+                background: color['selection'],
+                opacity: opacity
             });
             this.draw();
 

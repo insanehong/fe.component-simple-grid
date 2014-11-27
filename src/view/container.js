@@ -11,6 +11,7 @@
         eventHandler: {
             'scroll' : '_onScroll'
         },
+        style: 'position: relative;',
         init: function(attributes) {
             Base.View.prototype.init.apply(this, arguments);
 

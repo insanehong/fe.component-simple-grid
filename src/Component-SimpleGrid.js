@@ -25,7 +25,7 @@
             'mousedown' : '_onMouseDown',
             'focus' : '_onFocus'
         },
-
+        style: 'position: relative;',
         init: function(options) {
             Base.View.prototype.init.apply(this, arguments);
 
@@ -37,11 +37,20 @@
                     scrollY: true,
                     freeze: true,    //Data Prepend 시 현재  scroll 된 위치를 유지할 것인지 여부
                     keyEventBubble: false,  //key 입력시 이벤트 버블링 할지 여부
-                    columnList: []
+                    columnList: [],
+                    color: {
+                        border: '#EFEFEF',
+                        td: '#FFFFFF',
+                        th: '#F8F8F8',
+                        selection: 'blue'
+                    },
+                    opacity: '0.2'
+
+
                 };
 
             this.__instance[id] = this;
-            options = $.extend(defaultOptions, options);
+            options = $.extend(true, defaultOptions, options);
 
             this.setOwnProperties({
                 id: id,

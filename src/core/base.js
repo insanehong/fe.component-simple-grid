@@ -64,6 +64,7 @@ ne.Component = ne.Component || {};
         tagName: 'div',
         className: '',
         eventHandler: {},
+        style: '',
         init: function(attributes) {
             Base.prototype.init.apply(this, arguments);
 
@@ -89,6 +90,16 @@ ne.Component = ne.Component || {};
                 $el: $el,
                 el: $el[0]
             });
+            this._initializeStyle();
+        },
+        /**
+         * style 이 설정되어있다면 default style 을 적용한다.
+         * @private
+         */
+        _initializeStyle: function() {
+            if (this.style) {
+                this.$el.attr('style', this.style);
+            }
         },
         /**
          * 이벤트 핸들러를 attach 또는 detach 한다.
@@ -195,5 +206,34 @@ ne.Component = ne.Component || {};
                 return mapper[name] || '';
             });
             return replaced;
+        },
+        /**
+         * 행 개수와 한 행당 높이를 인자로 받아 테이블 body 의 전체 높이를 구한다.
+         * @param {number} rowCount
+         * @param {number} rowHeight
+         * @return {*}
+         */
+        getHeight: function(rowCount, rowHeight) {
+            return rowCount === 0 ? rowCount : rowCount * (rowHeight + 1) + 1;
+        },
+        /**
+         *Table 의 높이와 행당 높이를 인자로 받아, table 에서 보여줄 수 있는 행 개수를 반환한다.
+         *
+         * @param {number} height
+         * @param {number} rowHeight
+         * @return {number}
+         */
+        getDisplayRowCount: function(height, rowHeight) {
+            return Math.ceil((height - 1) / (rowHeight + 1));
+        },
+        /**
+         * Table 의 height 와 행 개수를 인자로 받아, 한 행당 높이를 구한다.
+         *
+         * @param {number} rowCount
+         * @param {number} height
+         * @return {number}
+         */
+        getRowHeight: function(rowCount, height) {
+            return rowCount === 0 ? 0 : Math.floor(((height - 1) / rowCount)) - 1;
         }
     };

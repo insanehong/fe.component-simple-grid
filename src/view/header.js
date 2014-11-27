@@ -12,6 +12,7 @@ var Header = ne.util.defineClass(Base.View, /**@lends Header.prototype */{
     className: 'infinite_header',
     init: function (attributes) {
         Base.View.prototype.init.apply(this, arguments);
+        this.model.on('change', this._onModelChange, this);
     },
     _template: {
         main: '<table width="100%" border="0" cellspacing="1" cellpadding="0" bgcolor="#EFEFEF">' +
@@ -25,16 +26,24 @@ var Header = ne.util.defineClass(Base.View, /**@lends Header.prototype */{
         '<col style="width: ' +
         '<%=width%>px">'
     },
+    _onModelChange: function(changeEvent) {
+        var key = changeEvent.key,
+            value = changeEvent.value;
+        if (key === 'top') {
+            this.$el.css('top', value + 'px');
+        } else if (key === 'width') {
+            this.$el.width(value);
+        }
+    },
     render: function() {
         this._detachHandler();
         this.destroyChildren();
 
-        var list = this.model.list,
-            columnModelList = this.grid.option('columnModelList'),
-            html = '',
+        var columnModelList = this.grid.option('columnModelList'),
             tbody = '',
-            height = this.model.lineHeight - 1,
-            col = '';
+            height = this.model.lineHeight,
+            col = '',
+            color = this.grid.option('color');
 
         ne.util.forEachArray(columnModelList, function() {
             col += '<col>' +
@@ -56,6 +65,8 @@ var Header = ne.util.defineClass(Base.View, /**@lends Header.prototype */{
         });
 
         this.$el.html(html);
+        this.$el.find('table').css('background', color['border']);
+        this.$el.find('th').css('background', color['th']);
         this._attachHandler();
         return this;
     }
