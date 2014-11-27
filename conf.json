@@ -1,17 +1,52 @@
 {
     "source": {
-        "include": ["src/"],
+        "include": [
+            "src/core/base.js",
+            "src/data/collection.js",
+            "src/data/worker.js",
+            "src/model/model.js",
+            "src/view/container.js",
+            "src/view/content.js",
+            "src/view/selection.js",
+            "src/view/virtual-scrollbar.js",
+            "src/Component-InfiniteScroll.js",
+            "README.md"
+        ],
         "exclude": [],
         "includePattern": ".+\\.js(doc)?$",
         "excludePattern": "(^|\\/|\\\\)_"
     },
     "plugins": ["plugins/markdown"],
+    "templates": {
+        "cleverLinks": true,
+        "monospaceLinks": true,
+        "default": {
+            "outputSourceFiles" : true
+        },
+        "applicationName": "Component-InfiniteScroll",
+        "disqus": "",
+        "googleAnalytics": "",
+        "openGraph": {
+            "title": "",
+            "type": "website",
+            "image": "",
+            "site_name": "",
+            "url": ""
+        },
+        "meta": {
+            "title": "",
+            "description": "",
+            "keyword": ""
+        },
+        "linenums": false
+    },
     "markdown": {
         "parser": "gfm",
         "hardwrap": true
     },
     "opts": {
         "recurse": true,
-        "private": true
+        "private": true,
+        "destination": "doc"
     }
 }
