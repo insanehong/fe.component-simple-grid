@@ -17,6 +17,7 @@
             this.on({
                 'change' : this._onChange
             }, this);
+            this._calculateColumnWidthList();
         },
         /**
          * 변수를 초기화한다.
@@ -87,6 +88,9 @@
                     this._refresh();
                     break;
                 case 'append':
+                    this._refresh();
+                    break;
+                case 'remove':
                     this._refresh();
                     break;
                 default :
@@ -240,7 +244,7 @@
                 columnWidthList = [],
                 defaultColumnWidth = this.grid.option('defaultColumnWidth'),
                 sum = 0,
-                frameWidth = this.width,
+                frameWidth = this.containerWidth,
                 diff;
 
             ne.util.forEachArray(columnModelList, function(columnModel, index) {
@@ -248,7 +252,7 @@
                 columnWidthList.push(width);
                 sum += width;
             }, this);
-
+            console.log(sum, frameWidth);
             diff = frameWidth - sum;
 
             if (diff > 0) {

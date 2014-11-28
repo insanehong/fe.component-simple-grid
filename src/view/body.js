@@ -9,7 +9,8 @@
     var Body = ne.util.defineClass(Base.View, /**@lends Body.prototype */{
         eventHandler: {
             'mousedown': '_onMouseDown',
-            'selectstart': '_onSelectStart'
+            'selectstart': '_onSelectStart',
+            'click': '_onClick'
         },
         className: 'infinite_body',
         style: 'position: absolute; top: 0; white-space: nowrap;',
@@ -35,14 +36,11 @@
                 'columnname="<%=columnName%>" ' +
                 'style="' +
                 'text-align:<%=align%>;' +
+                'overflow:hidden;' +
                 '"' +
                 '>' +
                 '<%=content%>' +
-                '</td>',
-            col: '' +
-                '<col ' +
-                'width="<%=width%>"' +
-                '>'
+                '</td>'
         },
         init: function(attributes) {
             Base.View.prototype.init.apply(this, arguments);
@@ -84,15 +82,7 @@
             }
         },
         _onClick: function(clickEvent) {
-
-        },
-        /**
-         * mouseDown
-         * @param {event} mouseDownEvent
-         * @private
-         */
-        _onMouseDown: function(mouseDownEvent) {
-            var $target = $(mouseDownEvent.target),
+            var $target = $(clickEvent.target),
                 columnName = $target.closest('td').attr('columnname'),
                 rowKey = $target.closest('tr').attr('key'),
                 customEvent = {
@@ -100,21 +90,64 @@
                     rowKey: rowKey,
                     columnName: columnName
                 };
+            console.log('click');
+            this.fire('click', customEvent);
+        },
+        /**
+         * mouseDown
+         * @param {event} mouseDownEvent
+         * @private
+         */
+        _onMouseDown: function(mouseDownEvent) {
+            this._setMousePos(mouseDownEvent);
 
-            if (this.invoke('mousedown', customEvent)) {
-                mouseDownEvent.preventDefault();
-                this._setMousePos(mouseDownEvent);
-                if (mouseDownEvent.shiftKey) {
-                    if (this.selection.getSelectionRange()[0] === -1) {
-                        this._startSelection(mouseDownEvent.pageX, mouseDownEvent.pageY);
-                    }else {
-                        this._updateSelection();
-                    }
-                }else {
+            this.setOwnProperties({
+                startPageX: mouseDownEvent.pageX,
+                startPageY: mouseDownEvent.pageY
+            });
+
+            if (mouseDownEvent.shiftKey) {
+                if (this.selection.getSelectionRange()[0] === -1) {
                     this._startSelection(mouseDownEvent.pageX, mouseDownEvent.pageY);
+                }else {
+                    this._updateSelection();
                 }
+            } else {
+                this.selection.stopSelection();
+                this._stopSelection();
+                this.attachMouseEvent();
             }
-
+        },
+        attachMouseEvent: function() {
+            $(document).on('mousemove', $.proxy(this._onMouseMove, this));
+            $(document).on('mouseup', $.proxy(this._onMouseUp, this));
+        },
+        detachMouseEvent: function() {
+            $(document).off('mousemove', $.proxy(this._onMouseMove, this));
+            $(document).off('mouseup', $.proxy(this._onMouseUp, this));
+        },
+        _onMouseMove: function(mouseMoveEvent) {
+            if( this._getDistance(mouseMoveEvent) > 10) {
+                console.log('over distance');
+                this.detachMouseEvent();
+                this._startSelection(this.startPageX, this.startPageY);
+            }
+        },
+        _onMouseUp: function(mouseUpEvent) {
+            this.detachMouseEvent();
+        },
+        /**
+         * mousedown 이 일어난 지점부터의 거리를 구한다.
+         * @param {event} mouseMoveEvent
+         * @return {number|*}
+         * @private
+         */
+        _getDistance: function(mouseMoveEvent) {
+            var pageX = mouseMoveEvent.pageX,
+                pageY = mouseMoveEvent.pageY,
+                x = Math.abs(this.startPageX - pageX),
+                y = Math.abs(this.startPageY - pageY);
+            return Math.round(Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2)));
         },
         /**
          * selection start 시 영역 선택하지 않도록 prevent default
@@ -227,7 +260,8 @@
         _changeColumnWidth: function(columnWidthList) {
             var $colList = this.$el.find('colgroup').find('col');
             ne.util.forEachArray(columnWidthList, function(width, index) {
-                $colList.eq(index).width(width);
+                console.log($colList.eq(index).length);
+                $colList.eq(index).css('width', width + 'px');
             }, this);
         },
         /**
@@ -250,30 +284,35 @@
                 columnModelList = this.grid.option('columnModelList'),
                 html,
                 height = this.model.rowHeight,
+                columnWidthList = this.model.columnWidthList,
                 col = '',
                 color = this.grid.option('color'),
-                trList = [];;
+                trList = [];
 
-
-            ne.util.forEachArray(columnModelList, function(columnModel) {
-                var width = columnModel.width || '';
-                col += Util.template(this._template.col, {
-                    width: width
-                });
+            ne.util.forEachArray(columnWidthList, function(width, index) {
+                col += '<col style="width:'+ width + 'px"></col>';
             }, this);
 
             ne.util.forEachArray(list, function(item) {
                 var tdList = [];
                 ne.util.forEachArray(columnModelList, function(columnModel) {
                     var td,
-                        columnName = columnModel['columnName'];
+                        columnName = columnModel['columnName'],
+                        content;
+
+                    if (ne.util.isFunction(columnModel.formatter)) {
+                        content = columnModel.formatter(item.data[columnName], item.data);
+                    } else {
+                        content = item.data[columnName];
+                    }
                     td = Util.template(this._template.td, {
                         columnName: columnName,
                         align: columnModel['align'],
-                        content: item.data[columnName]
+                        content: content
                     });
                     tdList.push(td);
                 }, this);
+
                 trList.push(Util.template(this._template.tr, {
                     height: height,
                     key: item.id,

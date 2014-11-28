@@ -186,8 +186,20 @@ var Collection = ne.util.defineClass(Base, /**@lends Collection.prototype */{
                 prepended: list
             });
         },
-        remove: function(key) {
+        remove: function(id) {
+            this.worker.enqueue(this._remove, arguments, this);
+        },
+        _remove: function(id) {
+            var index = this.indexOf(this.get(id));
 
+            this.map[id] = undefined;
+            delete this.map[id];
+
+            this.list.splice(index, 1);
+            this.invoke('change', {
+                type: 'remove',
+                list: this.list
+            });
         },
         /**
          * collection 을 초기화한다.

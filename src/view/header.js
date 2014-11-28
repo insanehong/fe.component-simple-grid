@@ -26,11 +26,7 @@ var Header = ne.util.defineClass(Base.View, /**@lends Header.prototype */{
         '<tbody>' +
         '<%=tbody%>' +
         '</tbody>' +
-        '</div>',
-        col: '' +
-        '<col ' +
-        'width="<%=width%>"' +
-        '>'
+        '</div>'
     },
     _onModelChange: function(changeEvent) {
         var key = changeEvent.key,
@@ -61,15 +57,12 @@ var Header = ne.util.defineClass(Base.View, /**@lends Header.prototype */{
         var columnModelList = this.grid.option('columnModelList'),
             tbody = '',
             html,
-            height = this.model.rowHeight,
+            height = this.model.headerHeight,
             col = '',
             color = this.grid.option('color');
 
         ne.util.forEachArray(columnModelList, function(columnModel) {
-            var width = columnModel.width || '';
-            col += Util.template(this._template.col, {
-                width: width
-            });
+            col += '<col></col>';
         }, this);
 
 
