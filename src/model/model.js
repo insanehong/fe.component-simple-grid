@@ -29,11 +29,12 @@
                 offsetLeft: 0,
                 width: 0,
                 height: 0,
+                headerHeight: this.grid.option('headerHeight'),
                 containerHeight: 0,
                 containerWidth: 0,
                 stopChangeEvent: false,
                 freeze: false,
-                lineHeight: this.grid.option('lineHeight') || 0,
+                rowHeight: this.grid.option('rowHeight') || 0,
                 scrollTop: 0,
                 scrollLeft: 0,
                 maxScrollTop: 0,
@@ -53,15 +54,15 @@
             this.set({
                 stopChangeEvent: false,
                 freeze: false,
-                lineHeight: this.grid.option('lineHeight') || 0,
+                headerHeight: this.grid.option('headerHeight'),
+                rowHeight: this.grid.option('rowHeight') || 0,
                 scrollTop: 0,
                 scrollLeft: 0,
                 maxScrollTop: 0,
                 startIdx: 0,
                 endIdx: 0,
                 top: 0,
-                list: [],
-                width: this.containerWidth - this.grid.scrollBarSize
+                list: []
             });
         },
         /**
@@ -127,10 +128,12 @@
                 case 'scrollLeft':
                     this._onScrollLeftChange(value);
                     break;
-                case 'lineHeight':
+                case 'rowHeight':
                 case 'containerHeight':
                     this.collection.maxLength = this._getMaxCollectionLength();
                     break;
+                case 'containerWidth':
+                    this._calculateColumnWidthList();
             }
         },
         /**
@@ -166,7 +169,7 @@
         _getMaxCollectionLength: function() {
             if (ne.util.browser.msie) {
                 //1533917 is the max height of IE (66692*23 + 1)
-                return Math.floor(1533900 / this.lineHeight);
+                return Math.floor(1533900 / (this.rowHeight + 1));
             } else {
                 return 0;
             }
@@ -176,7 +179,7 @@
          * @return {number}
          */
         getMaxScrollTop: function() {
-            var maxScrollTop = this.lineHeight * (this.collection.length) - this.containerHeight;
+            var maxScrollTop = Util.getHeight(this.collection.length, this.rowHeight) - this.containerHeight;
             if (this.grid.option('scrollX')) {
                 maxScrollTop += this.grid.scrollBarSize;
             }
@@ -211,7 +214,7 @@
          * @private
          */
         _setHeight: function() {
-            var height = this.grid.option('lineHeight') * this.grid.option('displayCount');
+            var height = Util.getHeight(this.grid.option('displayCount'), this.grid.option('rowHeight'));
             this.set('height', height);
         },
         /**
@@ -231,6 +234,34 @@
 
             this.invoke('refresh');
         },
+
+        _calculateColumnWidthList: function() {
+            var columnModelList = this.grid.option('columnModelList'),
+                columnWidthList = [],
+                defaultColumnWidth = this.grid.option('defaultColumnWidth'),
+                sum = 0,
+                frameWidth = this.width,
+                diff;
+
+            ne.util.forEachArray(columnModelList, function(columnModel, index) {
+                var width = ne.util.isUndefined(columnModel['width']) ? defaultColumnWidth : columnModel['width'];
+                columnWidthList.push(width);
+                sum += width;
+            }, this);
+
+            diff = frameWidth - sum;
+
+            if (diff > 0) {
+                columnWidthList[columnWidthList.length - 1] += diff;
+            } else {
+                frameWidth += Math.abs(diff);
+            }
+
+            this.set({
+                width: frameWidth,
+                columnWidthList: columnWidthList
+            });
+        },
         /**
          * 인자로 넘어온 list 데이터가 화면에 출력되었을 때 높이를 계산한다.
          * @param {Array} list
@@ -238,7 +269,7 @@
          * @private
          */
         _getDataHeight: function(list) {
-            return list.length * this.lineHeight;
+            return Util.getHeight(list.length, this.rowHeight);
         },
         /**
          * 옵션값에 scroll fix 가 설정되어 있다면, scroll fix 한다.
@@ -260,13 +291,18 @@
         _getRenderingData: function() {
             var top,
                 scrollTop = this.scrollTop,
-                lineHeight = this.lineHeight,
+                rowHeight = this.rowHeight,
                 displayCount = this.grid.option('displayCount'),
-                startIdx = Math.max(0, Math.ceil(scrollTop / lineHeight) - this.hiddenLineCount),
+                startIdx = Math.max(0, Math.ceil(scrollTop / (rowHeight + 1)) - this.hiddenLineCount),
                 endIdx = Math.min(this.collection.length,
                     Math.floor(startIdx + this.hiddenLineCount + displayCount + this.hiddenLineCount));
 
-            top = (startIdx === 0) ? 0 : startIdx * this.lineHeight;
+            top = (startIdx === 0) ? 0 : Util.getHeight(startIdx, rowHeight) - 1;
+            console.log({
+                top: top,
+                startIdx: startIdx,
+                endIdx: endIdx
+            });
             return {
                 top: top,
                 startIdx: startIdx,
@@ -280,14 +316,14 @@
          */
         _isRenderable: function() {
              var scrollTop = this.scrollTop,
-                lineHeight = this.lineHeight,
+                rowHeight = this.rowHeight,
                 height = this.height,
                 displayCount = this.grid.option('displayCount'),
-                lineCount = this.collection.length,
-                displayStartIdx = Math.max(0, Math.ceil(scrollTop / (lineHeight))),
-                displayEndIdx = Math.min(lineCount - 1, Math.floor((scrollTop + height) / (lineHeight))),
+                rowCount = this.collection.length,
+                displayStartIdx = Math.max(0, Math.ceil(scrollTop / (rowHeight + 1))),
+                displayEndIdx = Math.min(rowCount - 1, Math.floor((scrollTop + height) / (rowHeight + 1))),
                 startIdx = Math.max(0, this.startIdx),
-                endIdx = Math.min(lineCount, this.endIdx);
+                endIdx = Math.min(rowCount, this.endIdx);
 
             //시작 지점이 임계점 이하로 올라갈 경우 return true
             if (startIdx !== 0) {
@@ -297,7 +333,7 @@
             }
 
             //마지막 지점이 임계점 이하로 내려갔을 경우 return true
-           if (endIdx !== lineCount) {
+           if (endIdx !== rowCount) {
                 if (endIdx - this.criticalPoint < displayEndIdx) {
                     return true;
                 }

@@ -1,11 +1,11 @@
     /**
-     * Infinite Scroll
+     * Simple Grid
      * @constructor
      * @example
-     //Infinite Scroll 인스턴스 생성
-        var infinite = new ne.Component.SimpleGrid({
+     //Simple Grid 인스턴스 생성
+        var simpleGrid = new ne.Component.SimpleGrid({
             $el : $('#infiniteScroll'),    //무한 스크롤을 생성할 div jQuery 엘리먼트
-            lineHeight : 20,    //한 행의 높이에 (default : 20)
+            rowHeight : 20,    //한 행의 높이에 (default : 20)
             displayCount : 15,    //화면에 보여질 line 갯수 (default : 15)
             scrollX : true,        //가로 스크롤 여부    (default : true)
             scrollY : true,        //세로 스크롤 여부    (default : true)
@@ -25,24 +25,39 @@
             'mousedown' : '_onMouseDown',
             'focus' : '_onFocus'
         },
-        style: 'position: relative;',
+        /**
+         *  @param {Object} options 옵션 객체
+         *      @param {jQuery} options.$el root 엘리먼트
+         *      @param {number} [options.rowHeight=20] 한 행의 높이
+         *      @param {number} [options.displayCount=15] 한 화면에 보여질 행 개수
+         *      @param {boolean} [options.scrollX=true] 가로 스크롤
+         *      @param {boolean} [options.scrollY=true] 세로 스크롤
+         *      @param {boolean} [options.scrollFix=true] prepend 로 데이터 추가 시 현재 scroll 영역 유지 여부
+         *      @param {object} [options.columnModelList=[]] 컬럼모델 정보
+         *          @param {string} [options.columnModelList[].columnName] data field 명
+         *          @param {string} [options.columnModelList[].title] Header 영역에 표시될 컬럼 이름
+         *          @param {string} [options.columnModelList[].width] 해당 컬럼의 너비
+         * @returns {ne.Component.SimpleGrid}
+         */
         init: function(options) {
             Base.View.prototype.init.apply(this, arguments);
 
             var id = this.getUniqueKey(),
                 defaultOptions = {
-                    lineHeight: 20,    //line 당 pixel
+                    rowHeight: 20,    //line 당 pixel
                     displayCount: 10,  //영역에 보여줄 line 갯수
+                    headerHeight: 30,
                     scrollX: true,
                     scrollY: true,
                     freeze: true,    //Data Prepend 시 현재  scroll 된 위치를 유지할 것인지 여부
                     keyEventBubble: false,  //key 입력시 이벤트 버블링 할지 여부
                     columnList: [],
+                    defaultColumnWidth: 50,
                     color: {
                         border: '#EFEFEF',
                         td: '#FFFFFF',
                         th: '#F8F8F8',
-                        selection: 'blue'
+                        selection: 'orange'
                     },
                     opacity: '0.2'
 
@@ -68,8 +83,13 @@
             this._initializeModel();
             this._initializeView();
             this.render();
-
+            this._initializeCustomEvent();
             return this;
+        },
+        _initializeCustomEvent: function() {
+            this.view.container.body.on('mousedown', function(customEvent) {
+                return this.invoke('mousedown', customEvent);
+            }, this);
         },
         /**
          * 스크롤 영역 focus 되었을 때
@@ -200,6 +220,8 @@
             this._detachHandler();
             this.$el.attr({
                 instanceId: this.id
+            }).css({
+                position: 'relative'
             });
             this.$el.empty()
                 .append(this.view.header.render().el)
@@ -215,7 +237,6 @@
                 this.$el.append(this.view.virtualScroll.render().el);
             }
             this.updateLayoutData();
-
             this._attachHandler();
             return this;
         },
@@ -227,7 +248,6 @@
             this.model.set({
                 offsetTop: offset.top,
                 offsetLeft: offset.left,
-                headerHeight: this.view.header.$el.outerHeight(),
                 containerWidth: this.view.container.$el.width(),
                 containerHeight: this.view.container.$el.height()
             });

@@ -25,9 +25,9 @@ describe('model 테스트', function() {
             ne.util.browser.msie = false;
             expect(model._getMaxCollectionLength()).toBe(0);
         });
-        it('IE 일 경우 lineHeight 로 나눈 값을 반환한다.', function() {
+        it('IE 일 경우 rowHeight 로 나눈 값을 반환한다.', function() {
             ne.util.browser.msie = true;
-            model.lineHeight = 20;
+            model.rowHeight = 20;
             expect(model._getMaxCollectionLength()).toBe(76695);
         });
     });
@@ -55,9 +55,9 @@ describe('model 테스트', function() {
             expect(model._getMaxCollectionLength).not.toHaveBeenCalled();
             expect(model._onScrollTopChange).not.toHaveBeenCalled();
         });
-        it('lineHeight 변경의 경우 _getMaxCollectionLength 를 호출한다.', function() {
+        it('rowHeight 변경의 경우 _getMaxCollectionLength 를 호출한다.', function() {
             model._onChange({
-                key: 'lineHeight',
+                key: 'rowHeight',
                 value: 40
             });
             expect(model._getMaxCollectionLength).toHaveBeenCalled();
@@ -140,7 +140,7 @@ describe('model 테스트', function() {
     describe('_doFreeze', function() {
         beforeEach(function() {
             model.freeze = true;
-            model.lineHeight = 20;
+            model.rowHeight = 20;
             model.collection.set([1, 2, 3, 4]);
         });
         it('추가된 데이터와 관계없이 현재 scroll 위치를 유지하기 위해 maxScrollTop 과 scrollTop 값을 적절히 잘 설정한다.', function() {

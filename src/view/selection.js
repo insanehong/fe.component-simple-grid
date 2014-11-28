@@ -179,18 +179,24 @@
          * @return {*}
          */
         getSelectionKey: function(pageX, pageY) {
-            var containerPosY = pageY - this.model.offsetTop - this.model.headerHeight,
-                dataPosY = this.model.scrollTop + containerPosY,
+            var model = this.model,
+                scrollTop = model.scrollTop,
+                rowHeight = model.rowHeight,
+                offsetTop = model.offsetTop,
+                height = model.height,
+                headerHeight = model.headerHeight,
+                containerPosY = pageY - offsetTop - headerHeight,
+                dataPosY = scrollTop + containerPosY,
                 status = this.overflowStatus(pageX, pageY),
                 idx;
             if (status.y > 0) {
-                dataPosY = this.model.scrollTop + this.model.height - 1;
+                dataPosY = scrollTop + height - 1;
             }else if (status.y < 0) {
-                dataPosY = this.model.scrollTop + 1;
+                dataPosY = scrollTop + 1;
             }
 
-            idx = Math.min(Math.max(0, Math.floor(dataPosY / this.model.lineHeight)), this.model.collection.length - 1);
-            return this.model.collection.at(idx) && this.model.collection.at(idx).id;
+            idx = Math.min(Math.max(0, Math.floor(dataPosY / (rowHeight + 1))), model.collection.length - 1);
+            return model.collection.at(idx) && model.collection.at(idx).id;
         },
         /**
          * 현재 정보를 가지고 selection 영역을 표시한다.
@@ -199,15 +205,17 @@
             if (this.isShown && (this.rangeKey[0] !== -1 && this.rangeKey[1] !== -1)) {
                 var start = this.model.collection.indexOf(this.model.collection.get(this.rangeKey[0])),
                     end = this.model.collection.indexOf(this.model.collection.get(this.rangeKey[1])),
+                    totalRowCount = this.model.collection.length,
                     startIdx = Math.min(start, end),
                     endIdx = Math.max(start, end),
-                    top = startIdx * this.model.lineHeight,
-                    height = ((endIdx - startIdx) + 1) * this.model.lineHeight,
+                    top = Util.getHeight(startIdx, this.model.rowHeight),
+                    height = Util.getHeight(((endIdx - startIdx) + 1), this.model.rowHeight),
                     fixedTop, fixedDifference, fixedHeight,
                     display = 'block';
 
                 fixedTop = Math.max(this.model.scrollTop - 10, top) - 1;
                 fixedDifference = fixedTop - top;
+                if (endIdx === totalRowCount) { }
                 fixedHeight = Math.min(this.model.height + 10, height - fixedDifference) - 2;
 
                 if (fixedHeight <= 0) {

@@ -127,12 +127,10 @@ var Collection = ne.util.defineClass(Base, /**@lends Collection.prototype */{
 
                 ne.util.forEachArray(this.list, function(data, i) {
                     if (data && data.id == obj.id) {
-                        console.log(this.list, data.id, i);
                         index = i;
                         return false;
                     }
                 }, this);
-                console.log('beforeReturn', index);
                 return index;
             }
 
@@ -187,6 +185,9 @@ var Collection = ne.util.defineClass(Base, /**@lends Collection.prototype */{
                 list: this.list,
                 prepended: list
             });
+        },
+        remove: function(key) {
+
         },
         /**
          * collection 을 초기화한다.

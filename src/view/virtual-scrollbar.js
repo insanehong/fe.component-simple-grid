@@ -101,7 +101,8 @@
             });
 
             this.$el.css({
-                'height' : this.grid.option('scrollX') ? this.model.height + this.grid.scrollBarSize : this.model.height
+                height : this.grid.option('scrollX') ? this.model.height + this.grid.scrollBarSize : this.model.height,
+                top: this.grid.option('headerHeight') + 1
             });
             this.$el.empty();
             this.$el.html(content.render().el);
@@ -114,9 +115,9 @@
          * @private
          */
         _setContentHeight: function() {
-            var lineHeight = this.grid.option('lineHeight'),
-                lineCount = this.model.collection.length,
-                height = lineHeight * lineCount,
+            var rowHeight = this.grid.option('rowHeight'),
+                rowCount = this.model.collection.length,
+                height = Util.getHeight(rowCount, rowHeight) + 1,
                 maxTop;
 
             if (this.grid.option('scrollX')) {

@@ -1,38 +1,41 @@
 var infinite = new ne.Component.SimpleGrid({
     $el : $('#simpleGrid'),
-    lineHeight : 20,
-    displayCount : 15,
-//    scrollX : false,
+    rowHeight : 30,
+    displayCount : 10,
+    scrollX : true,
     scrollFix : true,
     columnModelList: [
         {
             columnName: 'column1',
             title: '컬럼1',
-            width: 100
+            width: 300,
+            align: 'center'
         },
         {
             columnName: 'column2',
             title: '컬럼1',
-            width: 100
+            width: 400
         },
         {
             columnName: 'column3',
             title: '컬럼3',
-            width: 100
+            width: 500
         },
         {
             columnName: 'column4',
             title: '컬럼4',
-            width: 100
+            width: 600
         },
         {
             columnName: 'column5',
             title: '컬럼5',
-            width: 100
+            width: 700
         }
     ]
 });
-
+infinite.on('mousedown', function(customEvent) {
+    console.log(customEvent);
+});
 $.ajax({
     url: 'http://10.77.34.122/webstorm/Application-Grid/test/php/temp_dummy.php',
     dataType: 'json'

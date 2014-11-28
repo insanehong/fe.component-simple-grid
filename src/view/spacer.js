@@ -12,26 +12,18 @@ var Spacer = ne.util.defineClass(Base.View, /**@lends Spacer.prototype */{
     style: 'display: block;	position: absolute;	top: 0;	right: 0; width: 16px;',
     init: function (attributes) {
         Base.View.prototype.init.apply(this, arguments);
-        this.model.on({
-            'change' : this._onModelChange
-        }, this);
-    },
-    _onModelChange: function(changeEvent) {
-        var key = changeEvent.key,
-            value = changeEvent.value;
 
-        if (key === 'headerHeight') {
-            value -= 2;
-            this.$el.css('height', value + 'px');
-        }
     },
+
     render: function() {
-        var color = this.grid.option('color');
+        var color = this.grid.option('color'),
+            height = this.grid.option('headerHeight');
         this._detachHandler();
         this.destroyChildren();
         this.$el.css({
             background: color['th'],
-            border: 'solid 1px ' + color['border']
+            border: 'solid 1px ' + color['border'],
+            height: height + 'px'
         });
         this._attachHandler();
         return this;

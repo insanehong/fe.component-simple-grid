@@ -8,11 +8,42 @@
      */
     var Body = ne.util.defineClass(Base.View, /**@lends Body.prototype */{
         eventHandler: {
-            'mousedown' : '_onMouseDown',
-            'selectstart' : '_onSelectStart'
+            'mousedown': '_onMouseDown',
+            'selectstart': '_onSelectStart'
         },
         className: 'infinite_body',
         style: 'position: absolute; top: 0; white-space: nowrap;',
+        _template: {
+            main: '<table width="100%" border="0" cellspacing="1" cellpadding="0" bgcolor="#EFEFEF">' +
+                '<colgroup>' +
+                '<%=col%>' +
+                '</colgroup>' +
+                '<tbody>' +
+                '<%=tbody%>' +
+                '</tbody>',
+            tr: '<tr ' +
+                'key="' +
+                '<%=key%>' +
+                '"' +
+                'style="' +
+                'height:<%=height%>px' +
+                '"' +
+                '>' +
+                '<%=content%>' +
+                '</tr>',
+            td: '<td ' +
+                'columnname="<%=columnName%>" ' +
+                'style="' +
+                'text-align:<%=align%>;' +
+                '"' +
+                '>' +
+                '<%=content%>' +
+                '</td>',
+            col: '' +
+                '<col ' +
+                'width="<%=width%>"' +
+                '>'
+        },
         init: function(attributes) {
             Base.View.prototype.init.apply(this, arguments);
             this.setOwnProperties({
@@ -52,23 +83,38 @@
                 this.selection.draw();
             }
         },
+        _onClick: function(clickEvent) {
+
+        },
         /**
          * mouseDown
          * @param {event} mouseDownEvent
          * @private
          */
         _onMouseDown: function(mouseDownEvent) {
-            mouseDownEvent.preventDefault();
-            this._setMousePos(mouseDownEvent);
-            if (mouseDownEvent.shiftKey) {
-                if (this.selection.getSelectionRange()[0] === -1) {
-                    this._startSelection(mouseDownEvent.pageX, mouseDownEvent.pageY);
+            var $target = $(mouseDownEvent.target),
+                columnName = $target.closest('td').attr('columnname'),
+                rowKey = $target.closest('tr').attr('key'),
+                customEvent = {
+                    $target: $target,
+                    rowKey: rowKey,
+                    columnName: columnName
+                };
+
+            if (this.invoke('mousedown', customEvent)) {
+                mouseDownEvent.preventDefault();
+                this._setMousePos(mouseDownEvent);
+                if (mouseDownEvent.shiftKey) {
+                    if (this.selection.getSelectionRange()[0] === -1) {
+                        this._startSelection(mouseDownEvent.pageX, mouseDownEvent.pageY);
+                    }else {
+                        this._updateSelection();
+                    }
                 }else {
-                    this._updateSelection();
+                    this._startSelection(mouseDownEvent.pageX, mouseDownEvent.pageY);
                 }
-            }else {
-                this._startSelection(mouseDownEvent.pageX, mouseDownEvent.pageY);
             }
+
         },
         /**
          * selection start 시 영역 선택하지 않도록 prevent default
@@ -174,7 +220,15 @@
                 this.$el.css('top', value + 'px');
             } else if (key === 'width') {
                 this.$el.width(value);
+            } else if (key === 'columnWidthList') {
+                this._changeColumnWidth(value);
             }
+        },
+        _changeColumnWidth: function(columnWidthList) {
+            var $colList = this.$el.find('colgroup').find('col');
+            ne.util.forEachArray(columnWidthList, function(width, index) {
+                $colList.eq(index).width(width);
+            }, this);
         },
         /**
          * model 의 refresh 이벤트가 발생했을 때 이벤트 핸들러
@@ -183,19 +237,6 @@
         _onRefresh: function() {
             this.render();
         },
-        _template: {
-            main: '<table width="100%" border="0" cellspacing="1" cellpadding="0" bgcolor="#EFEFEF">' +
-            '<colgroup>' +
-            '<%=col%>' +
-            '</colgroup>' +
-            '<tbody>' +
-            '<%=tbody%>' +
-            '</tbody>',
-            col: '' +
-            '<col style="width: ' +
-            '<%=width%>px">'
-        },
-
 
         /**
          * 랜더링 한다.
@@ -207,54 +248,64 @@
 
             var list = this.model.list,
                 columnModelList = this.grid.option('columnModelList'),
-                html = '',
-                tbody = '',
-                height = this.model.lineHeight - 1,
+                html,
+                height = this.model.rowHeight,
                 col = '',
-                color = this.grid.option('color');
+                color = this.grid.option('color'),
+                trList = [];;
 
 
-            ne.util.forEachArray(columnModelList, function(columnName) {
-                col += '<col>' +
-                '</col>';
+            ne.util.forEachArray(columnModelList, function(columnModel) {
+                var width = columnModel.width || '';
+                col += Util.template(this._template.col, {
+                    width: width
+                });
             }, this);
-
 
             ne.util.forEachArray(list, function(item) {
-                tbody += '<tr style="height:' + height + 'px" key="' + item.id + '">';
+                var tdList = [];
                 ne.util.forEachArray(columnModelList, function(columnModel) {
-                    var columnName = columnModel['columnName']
-                    tbody += '<td columnname="' + columnName + '">' + item.data[columnName] + '</td>';
-                });
-                tbody += '</tr>';
+                    var td,
+                        columnName = columnModel['columnName'];
+                    td = Util.template(this._template.td, {
+                        columnName: columnName,
+                        align: columnModel['align'],
+                        content: item.data[columnName]
+                    });
+                    tdList.push(td);
+                }, this);
+                trList.push(Util.template(this._template.tr, {
+                    height: height,
+                    key: item.id,
+                    content: tdList.join('')
+                }));
             }, this);
-
             html = Util.template(this._template.main, {
                 col: col,
-                tbody: tbody
+                tbody: trList.join('')
             });
 
             this.$el.html(html);
             this.$el.find('table').css('background', color['border']);
             this.$el.find('td').css('background', color['td']);
-            this.model.set('width', Math.max(this._getMaxBodyWidth(), this.model.width));
+            //this.model.set('width', Math.max(this._getMaxBodyWidth(), this.model.width));
             this.selection.draw();
             this._attachHandler();
             return this;
-        },
-        /**
-         * size 를 정하기 위해 max content width 를 구한다.
-         * @return {number}
-         * @private
-         */
-        _getMaxBodyWidth: function() {
-            var $spanList = this.$el.find('span'),
-                widthList = [];
-
-            ne.util.forEachArray($spanList, function(item, index) {
-                widthList.push($spanList.eq(index).width());
-            });
-
-            return Math.max.apply(Math, widthList);
         }
+        ///**
+        // * size 를 정하기 위해 max content width 를 구한다.
+        // * @return {number}
+        // * @private
+        // */
+        //_getMaxBodyWidth: function() {
+        //    var $spanList = this.$el.find('span'),
+        //        widthList = [];
+        //
+        //    ne.util.forEachArray($spanList, function(item, index) {
+        //        widthList.push($spanList.eq(index).width());
+        //    });
+        //
+        //    return Math.max.apply(Math, widthList);
+        //}
     });
