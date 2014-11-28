@@ -32,7 +32,7 @@ var Header = ne.util.defineClass(Base.View, /**@lends Header.prototype */{
         var key = changeEvent.key,
             value = changeEvent.value;
         if (key === 'width') {
-            this.$el.find('.header:first').width(value);
+            this._setContainerWidth(value);
         } else if( key === 'scrollLeft') {
             this.$el[0].scrollLeft = value;
         } else if (key === 'columnWidthList') {
@@ -80,9 +80,18 @@ var Header = ne.util.defineClass(Base.View, /**@lends Header.prototype */{
         });
 
         this.$el.html(html);
+        this._setContainerWidth(this.model.width);
         this.$el.find('table').css('background', color['border']);
         this.$el.find('th').css('background', color['th']);
         this._attachHandler();
         return this;
+    },
+    _setContainerWidth: function(width) {
+        if (width === 0) {
+            width = '100%';
+        } else {
+            width = width + 'px';
+        }
+        this.$el.find('.header:first').css('width', width);
     }
 });

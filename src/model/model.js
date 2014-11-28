@@ -244,7 +244,7 @@
                 columnWidthList = [],
                 defaultColumnWidth = this.grid.option('defaultColumnWidth'),
                 sum = 0,
-                frameWidth = this.containerWidth,
+                frameWidth = this.containerWidth - this.grid.scrollBarSize,
                 diff;
 
             ne.util.forEachArray(columnModelList, function(columnModel, index) {
@@ -252,15 +252,12 @@
                 columnWidthList.push(width);
                 sum += width;
             }, this);
-            console.log(sum, frameWidth);
             diff = frameWidth - sum;
-
             if (diff > 0) {
                 columnWidthList[columnWidthList.length - 1] += diff;
             } else {
                 frameWidth += Math.abs(diff);
             }
-
             this.set({
                 width: frameWidth,
                 columnWidthList: columnWidthList
@@ -302,11 +299,7 @@
                     Math.floor(startIdx + this.hiddenLineCount + displayCount + this.hiddenLineCount));
 
             top = (startIdx === 0) ? 0 : Util.getHeight(startIdx, rowHeight) - 1;
-            console.log({
-                top: top,
-                startIdx: startIdx,
-                endIdx: endIdx
-            });
+
             return {
                 top: top,
                 startIdx: startIdx,

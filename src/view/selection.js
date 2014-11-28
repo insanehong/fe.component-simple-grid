@@ -8,7 +8,7 @@
      */
     var Selection = ne.util.defineClass(Base.View, /**@lends Selection.prototype */{
         eventHandler: {
-            'mousedown' : '_onMouseDown'
+            'mousedown': '_onMouseDown'
         },
         className: 'infinite_selection_layer',
         style: 'display:none;position:absolute;top:0;left:1px;width:0;height:0;border:dotted 1px red;background:orange;opacity:0.2;filter:alpha(opacity=10)',
@@ -24,14 +24,107 @@
                 rangeKey: [-1, -1],
                 isShown: false
             });
+            this.setOwnProperties({
+                selectionHandler: {
+                    'mousemove' : $.proxy(this._onMouseMove, this),
+                    'mouseup' : $.proxy(this._onMouseUp, this),
+                    'selectstart' : $.proxy(this._onSelectStart, this)
+                },
+                timeoutForUpdateSelection: 0,
+                startPageX: 0,
+                startPageY: 0,
+                mousePos: {
+                    pageX: 0,
+                    pageY: 0
+                }
+            });
+        },
+        attachMouseEvent: function(mouseEvent) {
+            this.setOwnProperties({
+                startPageX: mouseEvent.pageX,
+                startPageY: mouseEvent.pageY
+            });
+            this._setMousePos(mouseEvent);
+            $(document).on('mousemove', this.selectionHandler.mousemove);
+            $(document).on('mouseup', this.selectionHandler.mouseup);
+            $(document).on('selectstart', this.selectionHandler.selectstart);
+        },
+        detachMouseEvent: function() {
+            $(document).off('mousemove', this.selectionHandler.mousemove);
+            $(document).off('mouseup', this.selectionHandler.mouseup);
+            $(document).off('selectstart', this.selectionHandler.selectstart);
+        },
+        _onMouseDown: function(mouseDownEvent) {
+            this.attachMouseEvent(mouseDownEvent);
+            if (mouseDownEvent.shiftKey) {
+                if(!this.hasSelection()) {
+                    this.startSelection();
+                }
+                this.updateSelection();
+            } else {
+                this.stopSelection();
+            }
+        },
+        _onMouseMove: function(mouseMoveEvent) {
+            var pos, key;
+            this._setMousePos(mouseMoveEvent);
+            if (this.hasSelection()) {
+                clearTimeout(this.timeoutForUpdateSelection);
+                this.timeoutForUpdateSelection = setTimeout($.proxy(this._scrollOnSelection, this), 0);
+                this.updateSelection();
+            } else if (this._getDistance(mouseMoveEvent) > 10) {
+                this.startSelection();
+            }
+        },
+        _onMouseUp: function(mouseUpEvent) {
+            this.detachMouseEvent();
         },
         /**
-         * mousedown 이벤트 핸들러
-         * @param {event} mouseDownEvent
+         * selection start 시 영역 선택하지 않도록 prevent default
+         * @param {event} selectStartEvent
+         * @return {boolean}
          * @private
          */
-        _onMouseDown: function(mouseDownEvent) {
-            this.invoke('mousedown', mouseDownEvent);
+        _onSelectStart: function(selectStartEvent) {
+            /* istanbul ignore next: selectStartEvent 확인 불가 */
+            selectStartEvent.preventDefault();
+            return false;
+        },
+        /**
+         * selection 시 mouse pointer 가 영역을 벗어났을 시 자동 scroll
+         * @private
+         */
+        _scrollOnSelection: function() {
+            if (this.hasSelection()) {
+                var status = this.overflowStatus(this.mousePos.pageX, this.mousePos.pageY);
+                if (status.y > 0) {
+                    this.model.set('scrollTop', this.model.scrollTop + 40);
+                }else if (status.y < 0) {
+                    this.model.set('scrollTop', this.model.scrollTop - 40);
+                }
+                if (status.x > 0) {
+                    this.model.set('scrollLeft', this.model.scrollLeft + 40);
+                }else if (status.x < 0) {
+                    this.model.set('scrollLeft', this.model.scrollLeft - 40);
+                }
+            }
+        },
+        /**
+         * mousedown 이 일어난 지점부터의 거리를 구한다.
+         * @param {event} mouseMoveEvent
+         * @return {number|*}
+         * @private
+         */
+        _getDistance: function(mouseMoveEvent) {
+            var pageX = mouseMoveEvent.pageX,
+                pageY = mouseMoveEvent.pageY,
+                x = Math.abs(this.startPageX - pageX),
+                y = Math.abs(this.startPageY - pageY);
+            return Math.round(Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2)));
+        },
+        _setMousePos: function(mouseEvent) {
+            this.mousePos.pageX = mouseEvent.pageX;
+            this.mousePos.pageY = mouseEvent.pageY;
         },
         /**
          * model 값이 변경되었을때 view 에 반영한다.
@@ -69,6 +162,13 @@
             return [startIdx, endIdx];
         },
         /**
+         * selection 데이터가 존재하는지 확인한다.
+         * @return {boolean}
+         */
+        hasSelection: function() {
+            return !(this.rangeKey[0] === -1);
+        },
+        /**
          * selection 된 영역의 length 를 반환한다.
          * @return {number}
          */
@@ -78,9 +178,10 @@
         },
         /**
          * selection 을 시작한다.
-         * @param {number} key
+         * @param {number} [key]
          */
         startSelection: function(key) {
+            key = ne.util.isUndefined(key) ? this.getKey(this.mousePos.pageX, this.mousePos.pageY) : key;
             if (key !== -1) {
                 this.rangeKey[0] = key;
                 this.updateSelection(key);
@@ -88,9 +189,10 @@
         },
         /**
          * selection 영역을 update 한다.
-         * @param {number} key
+         * @param {number} [key]
          */
         updateSelection: function(key) {
+            key = ne.util.isUndefined(key) ? this.getKey(this.mousePos.pageX, this.mousePos.pageY) : key;
             if (key !== -1) {
                 this.rangeKey[1] = key;
                 this.show();
@@ -178,7 +280,7 @@
          * @param {number} pageY
          * @return {*}
          */
-        getSelectionKey: function(pageX, pageY) {
+        getKey: function(pageX, pageY) {
             var model = this.model,
                 scrollTop = model.scrollTop,
                 rowHeight = model.rowHeight,
@@ -211,6 +313,7 @@
                     top = Util.getHeight(startIdx, this.model.rowHeight),
                     height = Util.getHeight(((endIdx - startIdx) + 1), this.model.rowHeight),
                     fixedTop, fixedDifference, fixedHeight,
+                    width = this.model.width - 3,
                     display = 'block';
 
                 fixedTop = Math.max(this.model.scrollTop - 10, top) - 1;
@@ -223,7 +326,9 @@
                 }
 
                 //크기 줄이기 위해 보정
+
                 this.$el.css({
+                    width: width + 'px',
                     top: fixedTop + 'px',
                     height: fixedHeight + 'px',
                     display: display

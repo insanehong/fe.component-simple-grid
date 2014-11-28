@@ -62,6 +62,7 @@
                     keyEventBubble: false,  //key 입력시 이벤트 버블링 할지 여부
                     columnList: [],
                     defaultColumnWidth: 50,
+                    useSelection: false,
                     color: {
                         border: '#EFEFEF',
                         th: '#F8F8F8',
