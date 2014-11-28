@@ -39,21 +39,35 @@
                 }
             });
         },
+        /**
+         * 마우스 이벤트 핸들러를 attach 한다.
+         * @param mouseEvent    마우스 이벤트 핸들러
+         */
         attachMouseEvent: function(mouseEvent) {
-            this.setOwnProperties({
-                startPageX: mouseEvent.pageX,
-                startPageY: mouseEvent.pageY
-            });
-            this._setMousePos(mouseEvent);
-            $(document).on('mousemove', this.selectionHandler.mousemove);
-            $(document).on('mouseup', this.selectionHandler.mouseup);
-            $(document).on('selectstart', this.selectionHandler.selectstart);
+            if (this.grid.option('useSelection')) {
+                this.setOwnProperties({
+                    startPageX: mouseEvent.pageX,
+                    startPageY: mouseEvent.pageY
+                });
+                this._setMousePos(mouseEvent);
+                $(document).on('mousemove', this.selectionHandler.mousemove);
+                $(document).on('mouseup', this.selectionHandler.mouseup);
+                $(document).on('selectstart', this.selectionHandler.selectstart);
+            }
         },
+        /**
+         * 마우스 이벤트 핸들러를 detach 한다.
+         */
         detachMouseEvent: function() {
             $(document).off('mousemove', this.selectionHandler.mousemove);
             $(document).off('mouseup', this.selectionHandler.mouseup);
             $(document).off('selectstart', this.selectionHandler.selectstart);
         },
+        /**
+         * Mouse down 이벤트 핸들러
+         * @param mouseDownEvent    마우스 이벤트 핸들러
+         * @private
+         */
         _onMouseDown: function(mouseDownEvent) {
             this.attachMouseEvent(mouseDownEvent);
             if (mouseDownEvent.shiftKey) {
@@ -65,6 +79,11 @@
                 this.stopSelection();
             }
         },
+        /**
+         * Mouse move 이벤트 핸들러
+         * @param mouseMoveEvent    마우스 이벤트 핸들러
+         * @private
+         */
         _onMouseMove: function(mouseMoveEvent) {
             var pos, key;
             this._setMousePos(mouseMoveEvent);
@@ -76,12 +95,17 @@
                 this.startSelection();
             }
         },
+        /**
+         * MouseUp 이벤트 핸들러
+         * @param mouseUpEvent  마우스 이벤트 핸들러
+         * @private
+         */
         _onMouseUp: function(mouseUpEvent) {
             this.detachMouseEvent();
         },
         /**
          * selection start 시 영역 선택하지 않도록 prevent default
-         * @param {event} selectStartEvent
+         * @param {event} selectStartEvent  이벤트 핸들러
          * @return {boolean}
          * @private
          */
@@ -91,7 +115,7 @@
             return false;
         },
         /**
-         * selection 시 mouse pointer 가 영역을 벗어났을 시 자동 scroll
+         * selection 시 mouse pointer 가 영역을 벗어났을 시 자동 scroll 한다.
          * @private
          */
         _scrollOnSelection: function() {
@@ -110,9 +134,9 @@
             }
         },
         /**
-         * mousedown 이 일어난 지점부터의 거리를 구한다.
-         * @param {event} mouseMoveEvent
-         * @return {number|*}
+         * mousedown 이 처음 일어난 지점부터의 거리를 구한다.
+         * @param {event} mouseMoveEvent    마우스 이벤트
+         * @return {number} 피타고라스 정리를 이용한 거리.
          * @private
          */
         _getDistance: function(mouseMoveEvent) {
@@ -122,6 +146,11 @@
                 y = Math.abs(this.startPageY - pageY);
             return Math.round(Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2)));
         },
+        /**
+         * 내부 변수로 mouse position 을 저장한다.
+         * @param mouseEvent    마우스 이벤트
+         * @private
+         */
         _setMousePos: function(mouseEvent) {
             this.mousePos.pageX = mouseEvent.pageX;
             this.mousePos.pageY = mouseEvent.pageY;
@@ -129,7 +158,7 @@
         /**
          * model 값이 변경되었을때 view 에 반영한다.
          *
-         * @param {object} changeEvent
+         * @param {{key:number, value: value}} changeEvent  Change 이벤트
          * @private
          */
         _onModelChange: function(changeEvent) {
@@ -181,10 +210,12 @@
          * @param {number} [key]
          */
         startSelection: function(key) {
-            key = ne.util.isUndefined(key) ? this.getKey(this.mousePos.pageX, this.mousePos.pageY) : key;
-            if (key !== -1) {
-                this.rangeKey[0] = key;
-                this.updateSelection(key);
+            if (this.grid.option('useSelection')) {
+                key = ne.util.isUndefined(key) ? this.getKey(this.mousePos.pageX, this.mousePos.pageY) : key;
+                if (key !== -1) {
+                    this.rangeKey[0] = key;
+                    this.updateSelection(key);
+                }
             }
         },
         /**
@@ -192,10 +223,12 @@
          * @param {number} [key]
          */
         updateSelection: function(key) {
-            key = ne.util.isUndefined(key) ? this.getKey(this.mousePos.pageX, this.mousePos.pageY) : key;
-            if (key !== -1) {
-                this.rangeKey[1] = key;
-                this.show();
+            if (this.grid.option('useSelection')) {
+                key = ne.util.isUndefined(key) ? this.getKey(this.mousePos.pageX, this.mousePos.pageY) : key;
+                if (key !== -1) {
+                    this.rangeKey[1] = key;
+                    this.show();
+                }
             }
         },
         /**

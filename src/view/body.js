@@ -14,7 +14,9 @@
         className: 'infinite_body',
         style: 'position: absolute; top: 0; white-space: nowrap;',
         _template: {
-            main: '<table width="100%" border="0" cellspacing="1" cellpadding="0" bgcolor="#EFEFEF">' +
+            table: '<table width="100%" border="0" cellspacing="1" cellpadding="0" bgcolor="' +
+                '<%=color%>' +
+                '">' +
                 '<colgroup>' +
                 '<%=col%>' +
                 '</colgroup>' +
@@ -26,7 +28,8 @@
                 '<%=key%>' +
                 '"' +
                 'style="' +
-                'height:<%=height%>px' +
+                'height:<%=height%>px;' +
+                'background:<%=color%>;' +
                 '"' +
                 '>' +
                 '<%=content%>' +
@@ -36,7 +39,8 @@
                 'style="' +
                 'text-align:<%=align%>;' +
                 'overflow:hidden;' +
-                '"' +
+                '" ' +
+                '<%=attributes%>' +
                 '>' +
                 '<%=content%>' +
                 '</td>'
@@ -48,6 +52,10 @@
                     selection: attributes.selection
                 });
             }
+
+            this.grid.focusModel.on('select', this.select, this);
+            this.grid.focusModel.on('unselect', this.unselect, this);
+
             this.model.on({
                 'change' : this._onModelChange,
                 'refresh' : this._onRefresh
@@ -56,6 +64,16 @@
             this.grid.view.container.on({
                 'scroll' : this._onScroll
             }, this);
+        },
+        select: function(key, selectMap) {
+            var $tr = this.$el.find('tr[key="' + key + '"]');
+
+            $tr.length && $tr.css('background', '').addClass('selected');
+        },
+        unselect: function(key, selectMap) {
+            var $tr = this.$el.find('tr[key="' + key + '"]'),
+                color = this.grid.option('color');
+            $tr.length && $tr.removeClass('selected').css('background', color['td']);
         },
         /**
          * scroll event handler
@@ -75,6 +93,8 @@
                     rowKey: rowKey,
                     columnName: columnName
                 };
+
+
             this.fire('click', customEvent);
         },
         /**
@@ -83,6 +103,11 @@
          * @private
          */
         _onMouseDown: function(mouseDownEvent) {
+            var $target = $(mouseDownEvent.target),
+                rowKey = $target.closest('tr').attr('key');
+
+            this.grid.focusModel.select(rowKey);
+
             if (this.selection) {
                 this.selection.attachMouseEvent(mouseDownEvent);
                 if (mouseDownEvent.shiftKey) {
@@ -141,6 +166,7 @@
                 columnWidthList = this.model.columnWidthList,
                 col = '',
                 color = this.grid.option('color'),
+                selectList = this.grid.focusModel.getSelectList(),
                 trList = [];
 
             ne.util.forEachArray(columnWidthList, function(width, index) {
@@ -148,39 +174,51 @@
             }, this);
 
             ne.util.forEachArray(list, function(item) {
-                var tdList = [];
-                ne.util.forEachArray(columnModelList, function(columnModel) {
-                    var td,
-                        columnName = columnModel['columnName'],
-                        content;
-
-                    if (ne.util.isFunction(columnModel.formatter)) {
-                        content = columnModel.formatter(item.data[columnName], item.data);
-                    } else {
-                        content = item.data[columnName];
-                    }
-                    td = Util.template(this._template.td, {
-                        columnName: columnName,
-                        align: columnModel['align'],
-                        content: content
-                    });
-                    tdList.push(td);
-                }, this);
+                    var tdList = [],
+                        colSpanBy = item.data['_colSpanBy'],
+                        length = columnModelList.length,
+                        attributes = ne.util.isExisty(colSpanBy) ? 'colspan="' +length+ '"' : '';
+                    ne.util.forEachArray(columnModelList, function (columnModel) {
+                        var td,
+                            columnName = columnModel['columnName'],
+                            content;
+                        if (!ne.util.isExisty(colSpanBy) || colSpanBy === columnName) {
+                            if (ne.util.isFunction(columnModel.formatter)) {
+                                content = columnModel.formatter(item.data[columnName], item.data);
+                            } else {
+                                content = item.data[columnName];
+                            }
+                            td = Util.template(this._template.td, {
+                                columnName: columnName,
+                                align: columnModel['align'],
+                                content: content,
+                                attributes: attributes
+                            });
+                            tdList.push(td);
+                        }
+                    }, this);
 
                 trList.push(Util.template(this._template.tr, {
+                    color: color['td'],
                     height: height,
                     key: item.id,
                     content: tdList.join('')
                 }));
             }, this);
-            html = Util.template(this._template.main, {
+
+            html = Util.template(this._template.table, {
+                color: color['border'],
                 col: col,
                 tbody: trList.join('')
             });
             this.$el.html(html);
             this._setContainerWidth(this.model.width);
-            this.$el.find('table').css('background', color['border']);
-            this.$el.find('tr').css('background', color['td']);
+
+
+            ne.util.forEachArray(selectList, function(key) {
+                this.select(key);
+            }, this);
+
             this.selection && this.selection.draw();
             this._attachHandler();
             return this;

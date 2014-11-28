@@ -60,7 +60,8 @@
                     scrollY: true,
                     freeze: true,    //Data Prepend 시 현재  scroll 된 위치를 유지할 것인지 여부
                     keyEventBubble: false,  //key 입력시 이벤트 버블링 할지 여부
-                    columnList: [],
+                    keyColumnName: null,
+                    columnModelList: [],
                     defaultColumnWidth: 50,
                     useSelection: false,
                     color: {
@@ -78,6 +79,7 @@
             this.setOwnProperties({
                 id: id,
                 model: null,
+                focusModel: null,
                 view: {
                     header: null,
                     spacer: null,
@@ -118,6 +120,9 @@
          */
         _initializeModel: function() {
             this.model = new Model({
+                grid: this
+            });
+            this.focusModel = new Focus({
                 grid: this
             });
         },

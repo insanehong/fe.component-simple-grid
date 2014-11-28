@@ -117,7 +117,7 @@
         _setContentHeight: function() {
             var rowHeight = this.grid.option('rowHeight'),
                 rowCount = this.model.collection.length,
-                height = Util.getHeight(rowCount, rowHeight) + 1,
+                height = Util.getHeight(rowCount, rowHeight),
                 maxTop;
 
             if (this.grid.option('scrollX')) {

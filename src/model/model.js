@@ -25,7 +25,7 @@
          */
         _initializeVariables: function() {
             this.setOwnProperties({
-                collection: new Collection(),          //원본 데이터 collection
+                collection: new Collection({grid: this.grid}),          //원본 데이터 collection
                 offsetTop: 0,
                 offsetLeft: 0,
                 width: 0,
