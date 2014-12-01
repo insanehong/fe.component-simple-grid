@@ -102,7 +102,7 @@
                     keyColumnName: null,
                     columnModelList: [],
                     defaultColumnWidth: 50,
-                    useSelection: true,
+                    useSelection: false,
                     color: {
                         border: '#EFEFEF',
                         th: '#F8F8F8',
