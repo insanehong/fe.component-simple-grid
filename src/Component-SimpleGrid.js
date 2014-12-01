@@ -30,15 +30,16 @@
          *      @param {jQuery} options.$el root 엘리먼트
          *      @param {number} [options.rowHeight=20] 한 행의 높이
          *      @param {number} [options.displayCount=15] 한 화면에 보여질 행 개수
-         *      @param {boolean} [options.scrollX=true] 가로 스크롤
-         *      @param {boolean} [options.scrollY=true] 세로 스크롤
-         *      @param {boolean} [options.scrollFix=true] prepend 로 데이터 추가 시 현재 scroll 영역 유지 여부
+         *      @param {boolean} [options.scrollX=true] 가로 스크롤 사용 여부
+         *      @param {boolean} [options.scrollY=true] 세로 스크롤 사용 여부
+         *      @param {boolean} [options.scrollFix=true] prepend 로 데이터 추가 시 현재 scroll 위치 유지 여부
          *      @param {object} [options.color] 색상 정보
          *          @param {string} [options.color.border='#EFEFEF']  태두리 색상
          *          @param {string} [options.color.th='#F8F8F8']  테이블 헤더 색상
          *          @param {string} [options.color.td='#FFFFFF']  테이블 바디 색상
          *          @param {string} [options.color.selection='orange']  선택영역 색상
          *      @param {object} [options.opacity=0.2] 선택 영역 레이어 투명도
+         *      @param {object} [options.border=1] 테이블 border 두께
          *      @param {object} [options.defaultColumnWidth=50] 값을 지정하지 않았을 때 설정될 기본 column 너비
          *      @param {object} [options.columnModelList=[]] 컬럼모델 정보
          *          @param {string} [options.columnModelList.columnName] data field 명
