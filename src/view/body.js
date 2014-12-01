@@ -65,18 +65,28 @@
                 'scroll' : this._onScroll
             }, this);
         },
+        /**
+         * 디자인 클래스를 unselect 한다.
+         * @param {(Number|String)} key select 된 해당 row 의 key
+         * @param {Object} [selectMap] focusModel 에서 이벤트 발생시 전달되는 selectMap 오브젝트
+         */
         select: function(key, selectMap) {
             var $tr = this.$el.find('tr[key="' + key + '"]');
 
             $tr.length && $tr.css('background', '').addClass('selected');
         },
+        /**
+         * 디자인 클래스 unselect 한다.
+         * @param {(Number|String)} key unselect 된 해당 row 의 key
+         * @param {Object} [selectMap] focusModel 에서 이벤트 발생시 전달되는 selectMap 오브젝트
+         */
         unselect: function(key, selectMap) {
             var $tr = this.$el.find('tr[key="' + key + '"]'),
                 color = this.grid.option('color');
             $tr.length && $tr.removeClass('selected').css('background', color['td']);
         },
         /**
-         * scroll event handler
+         * 스크롤 이벤트 핸들러
          * @private
          */
         _onScroll: function() {
@@ -84,6 +94,11 @@
                 this.selection.draw();
             }
         },
+        /**
+         * click 이벤트 핸들러
+         * @param {event} clickEvent 클릭이벤트
+         * @private
+         */
         _onClick: function(clickEvent) {
             var $target = $(clickEvent.target),
                 columnName = $target.closest('td').attr('columnname'),
@@ -98,32 +113,33 @@
             this.fire('click', customEvent);
         },
         /**
-         * mouseDown
-         * @param {event} mouseDownEvent
+         * mouseDown 이벤트 핸들러
+         * @param {event} mouseDownEvent 마우스다운 이벤트
          * @private
          */
         _onMouseDown: function(mouseDownEvent) {
             var $target = $(mouseDownEvent.target),
-                rowKey = $target.closest('tr').attr('key');
+                rowKey = $target.closest('tr').attr('key'),
+                selection = this.selection;
 
             this.grid.focusModel.select(rowKey);
 
-            if (this.selection) {
-                this.selection.attachMouseEvent(mouseDownEvent);
+            if (selection) {
+                selection.attachMouseEvent(mouseDownEvent);
                 if (mouseDownEvent.shiftKey) {
-                    if (!this.selection.hasSelection()) {
-                        this.selection.startSelection();
+                    if (!selection.hasSelection()) {
+                        selection.startSelection();
                     }
-                    this.selection.updateSelection();
+                    selection.updateSelection();
                 } else {
-                    this.selection.stopSelection();
+                    selection.stopSelection();
                 }
             }
         },
         /**
          * model 값이 변경되었을때 view 에 반영한다.
          *
-         * @param {object} changeEvent
+         * @param {{key: key, value: value}} changeEvent model 에서 전달하는 change 이벤트
          * @private
          */
         _onModelChange: function(changeEvent) {
@@ -137,6 +153,12 @@
                 this._changeColumnWidth(value);
             }
         },
+        /**
+         * Model Change 이벤트 핸들러로부터 columnWidthList 를 전달받아, 현재 table의
+         * 각 열의 높이를 조정한다.
+         * @param {Array} columnWidthList 컬럼 너비 리스트
+         * @private
+         */
         _changeColumnWidth: function(columnWidthList) {
             var $colList = this.$el.find('colgroup').find('col');
             ne.util.forEachArray(columnWidthList, function(width, index) {
@@ -150,53 +172,58 @@
         _onRefresh: function() {
             this.render();
         },
-
         /**
-         * 랜더링 한다.
-         * @return {Body}
+         * <colgroup> 내 들어갈 마크업 문자열을 생성한다.
+         * @param {Array} columnWidthList   컬럼 너비 정보 리스트
+         * @return {string} 마크업 문자열
+         * @private
          */
-        render: function() {
-            this._detachHandler();
-            this.destroyChildren();
-
-            var list = this.model.list,
-                columnModelList = this.grid.option('columnModelList'),
-                html,
-                height = this.model.rowHeight,
-                columnWidthList = this.model.columnWidthList,
-                col = '',
-                color = this.grid.option('color'),
-                selectList = this.grid.focusModel.getSelectList(),
-                trList = [];
-
+        _getColGroupMarkup: function(columnWidthList) {
+            var col = '';
             ne.util.forEachArray(columnWidthList, function(width, index) {
                 col += '<col style="width:'+ width + 'px"></col>';
             }, this);
+            return col;
+        },
+        /**
+         * <tbody> 내 들어갈 마크업 문자열을 생성한다.
+         * @return {string} 생성된 마크업 문자열
+         * @private
+         */
+        _getTbodyMarkup: function() {
+            var list = this.model.list,
+                columnModelList = this.grid.option('columnModelList'),
+                color = this.grid.option('color'),
+                trList = [];
 
+            //각 tr의 마크업을 생성한다.
             ne.util.forEachArray(list, function(item) {
-                    var tdList = [],
-                        colSpanBy = item.data['_colSpanBy'],
-                        length = columnModelList.length,
-                        attributes = ne.util.isExisty(colSpanBy) ? 'colspan="' +length+ '"' : '';
-                    ne.util.forEachArray(columnModelList, function (columnModel) {
-                        var td,
-                            columnName = columnModel['columnName'],
-                            content;
-                        if (!ne.util.isExisty(colSpanBy) || colSpanBy === columnName) {
-                            if (ne.util.isFunction(columnModel.formatter)) {
-                                content = columnModel.formatter(item.data[columnName], item.data);
-                            } else {
-                                content = item.data[columnName];
-                            }
-                            td = Util.template(this._template.td, {
-                                columnName: columnName,
-                                align: columnModel['align'],
-                                content: content,
-                                attributes: attributes
-                            });
-                            tdList.push(td);
+                var tdList = [],
+                    height = this.model.rowHeight,
+                    colSpanBy = item.data['_colSpanBy'],
+                    length = columnModelList.length,
+                    attributes = ne.util.isExisty(colSpanBy) ? 'colspan="' +length+ '"' : '';
+                //각 TD의 마크업을 생성한다.
+                ne.util.forEachArray(columnModelList, function (columnModel) {
+                    var td,
+                        columnName = columnModel['columnName'],
+                        content;
+                    //Colspan 이 있으면 해당하는 TD의 마크업만 생성하고, 없다면 전체 TD 마크업을 생성한다.
+                    if (!ne.util.isExisty(colSpanBy) || colSpanBy === columnName) {
+                        if (ne.util.isFunction(columnModel.formatter)) {
+                            content = columnModel.formatter(item.data[columnName], item.data);
+                        } else {
+                            content = item.data[columnName];
                         }
-                    }, this);
+                        td = Util.template(this._template.td, {
+                            columnName: columnName,
+                            align: columnModel['align'],
+                            content: content,
+                            attributes: attributes
+                        });
+                        tdList.push(td);
+                    }
+                }, this);
 
                 trList.push(Util.template(this._template.tr, {
                     color: color['td'],
@@ -205,16 +232,27 @@
                     content: tdList.join('')
                 }));
             }, this);
+            return trList.join('');
+        },
+        /**
+         * 랜더링 한다.
+         * @return {Body}
+         */
+        render: function() {
+            this._detachHandler();
+            this.destroyChildren();
 
-            html = Util.template(this._template.table, {
+            var columnWidthList = this.model.columnWidthList,
+                color = this.grid.option('color'),
+                selectList = this.grid.focusModel.getSelectList();
+
+            this.$el.html(Util.template(this._template.table, {
                 color: color['border'],
-                col: col,
-                tbody: trList.join('')
-            });
-            this.$el.html(html);
+                col: this._getColGroupMarkup(columnWidthList),
+                tbody: this._getTbodyMarkup()
+            }));
+
             this._setContainerWidth(this.model.width);
-
-
             ne.util.forEachArray(selectList, function(key) {
                 this.select(key);
             }, this);
@@ -223,6 +261,11 @@
             this._attachHandler();
             return this;
         },
+        /**
+         * Container 의 width 를 설정한다.
+         * @param {Number} width 너비값
+         * @private
+         */
         _setContainerWidth: function(width) {
             if (width === 0) {
                 width = '100%';

@@ -41,14 +41,14 @@ var Collection = ne.util.defineClass(Base, /**@lends Collection.prototype */{
         },
         /**
          * collection 값을 설정한다.
-         * @param {Array} list
+         * @param {Array} list  콜랙션 list
          */
         set: function(list) {
             this.worker.enqueue(this._set, arguments, this);
         },
         /**
          * set enqueue 할 내부 함수
-         * @param {Array} list
+         * @param {Array} list  콜랙션 list
          * @private
          */
         _set: function(list) {
@@ -64,8 +64,8 @@ var Collection = ne.util.defineClass(Base, /**@lends Collection.prototype */{
         },
         /**
          * 사용하지 않는 Map 을 제거한다.
-         * @param {number} start
-         * @param {number} end
+         * @param {number} start    제거 시작 index
+         * @param {number} end      제거 끝 index
          * @private
          */
         _removeMap: function(start, end) {
@@ -77,13 +77,6 @@ var Collection = ne.util.defineClass(Base, /**@lends Collection.prototype */{
                 delete this.map[id];
             }
         },
-        _getId: function(data) {
-            var keyColumnName = this.grid.option('keyColumnName'),
-                id = keyColumnName && !ne.util.isUndefined(data[keyColumnName]) ?
-                    data[keyColumnName] :
-                    this.idx++;
-            return id;
-        },
         /**
          * 배열을 collection 에 맞는 형태로 가공하여 map 에 저장하고, 가공된 배열을 반환한다.
          * @param {Array} list
@@ -92,12 +85,16 @@ var Collection = ne.util.defineClass(Base, /**@lends Collection.prototype */{
          */
         _getFormattedList: function(list) {
             var obj,
+                id,
                 keyColumnName = this.grid.option('keyColumnName'),
-                formattedList = [];
+                formattedList = [],
+                hasKeyColumn = !!keyColumnName;
 
             ne.util.forEachArray(list, function(data) {
+                id = hasKeyColumn ? data[keyColumnName] : this.idx++;
                 obj = {
-                    id: this._getId(data),
+                    //id: this._getId(data),
+                    id: id,
                     data: data
                 };
                 formattedList.push(obj);

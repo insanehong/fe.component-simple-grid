@@ -20,7 +20,7 @@
             this._calculateColumnWidthList();
         },
         /**
-         * 변수를 초기화한다.
+         * 인스턴스 생성시 변수를 초기화한다.
          * @private
          */
         _initializeVariables: function() {
@@ -48,7 +48,7 @@
             });
         },
         /**
-         * 변수를 리셋 한다.
+         * clear 시 변수를 리셋 한다.
          * @private
          */
         _resetVariables: function() {
@@ -68,7 +68,7 @@
         },
         /**
          * 원본 데이터 collection 이 변경 되었을 경우 이벤트 핸들러
-         * @param {event} changeEvent
+         * @param {Object} changeEvent Collection 에서 발생한 Change 이벤트
          * @private
          */
         _onCollectionChange: function(changeEvent) {
@@ -105,7 +105,7 @@
         },
         /**
          * 한번에 여러 change event 를 발생한다.
-         * @param {object} dataSets
+         * @param {object} dataSets 이벤트 데이터 Key-Value 데이터 쌍
          * @private
          */
         _fireChangeEvents: function(dataSets) {
@@ -118,7 +118,7 @@
         },
         /**
          * 자기 스스로에 대한 onChange 이벤트 핸들러
-         * @param {event} changeEvent
+         * @param {{key: key, value: value}} changeEvent 자기 자신이 발생하는 Change 이벤트 핸들러
          * @private
          */
         _onChange: function(changeEvent) {
@@ -142,7 +142,7 @@
         },
         /**
          * scrollLeft 값이 변경되었을 때 scrollLeft 값 관련 처리
-         * @param {number} value
+         * @param {number} value 변경된 scrollLeft 값
          * @private
          */
         _onScrollLeftChange: function(value) {
@@ -152,7 +152,7 @@
         },
         /**
          * scrollTop 이 변경되었을 때 rendering 관련 처리
-         * @param {number} value
+         * @param {number} value 변경된 scrollTop 값
          * @private
          */
         _onScrollTopChange: function(value) {
@@ -179,8 +179,8 @@
             }
         },
         /**
-         * max grid top 값을 반환한다.
-         * @return {number}
+         * maxScrollTop 값을 계산하여 반환한다.
+         * @return {number} maxScrollTop 값
          */
         getMaxScrollTop: function() {
             var maxScrollTop = Util.getHeight(this.collection.length, this.rowHeight) - this.containerHeight;
@@ -191,12 +191,12 @@
         },
         /**
          * 값을 설정한다.
-         * @param {number|string} key
-         * @param {*} value
-         * @param {object} [options]
+         * @param {*} key   키값. Object 형태로 들어올 경우, {key1: value1, key2: value2} 와 같이 다수의 키값을 설정할 수 있다.
+         * @param {*} [value] 키에 할당할 값. 첫번째 파라미터에 Object 타입으로 인자를 넘겨주었을 경우 무시된다.
+         * @param {{silent: boolean}} [options] silent 값이 true 일 경우 이벤트를 발생하지 않는다.
          */
         set: function(key, value, options) {
-            if (typeof key === 'object') {
+            if (ne.util.isObject(key)) {
                 ne.util.forEach(key, function(val, key) {
                     this.set(key, val, value);
                 }, this);
@@ -238,7 +238,10 @@
 
             this.invoke('refresh');
         },
-
+        /**
+         * columnWidthList 를 계산하여 저장한다.
+         * @private
+         */
         _calculateColumnWidthList: function() {
             var columnModelList = this.grid.option('columnModelList'),
                 columnWidthList = [],
@@ -265,8 +268,8 @@
         },
         /**
          * 인자로 넘어온 list 데이터가 화면에 출력되었을 때 높이를 계산한다.
-         * @param {Array} list
-         * @return {number}
+         * @param {Array} list  인자로 넘어온 list 데이터
+         * @return {number} 계산된 높이값
          * @private
          */
         _getDataHeight: function(list) {
@@ -274,7 +277,7 @@
         },
         /**
          * 옵션값에 scroll fix 가 설정되어 있다면, scroll fix 한다.
-         * @param {Array} list
+         * @param {Array} list  scrollFix 를 위한 높이 계산 시 사용될 prepend 된 data의 list
          * @private
          */
         _doFreeze: function(list) {
@@ -308,7 +311,7 @@
         },
         /**
          * grid 되었을 시 숨겨진 행의 개수가 critical point 보다 적게 남아있는지를 확인하여 rendering 할지 여부를 결정한다.
-         * @return {boolean}
+         * @return {boolean}    랜더링 여부
          * @private
          */
         _isRenderable: function() {

@@ -34,7 +34,7 @@
         /**
          * scroll event handler
          *  - scroll top 과 scroll left 를 동기화 한다.
-         * @param {event} scrollEvent
+         * @param {event} scrollEvent 스크롤 이벤트
          * @private
          */
         _onScroll: function(scrollEvent) {
@@ -57,7 +57,7 @@
         /**
          * model 값이 변경되었을때 view 에 반영한다.
          *
-         * @param {object} changeEvent
+         * @param {{key: key, value: value}} changeEvent model 에서 전달하는 change 이벤트
          * @private
          */
         _onModelChange: function(changeEvent) {

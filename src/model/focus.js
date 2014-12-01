@@ -7,13 +7,22 @@
      * @constructor Focus
      */
     var Focus = ne.util.defineClass(Base, /**@lends Focus.prototype */{
-        init: function(attributes) {
+        /**
+         * 초기화
+         * @param {Object} options
+         *      @param {Boolean} [options.isMultiple=false] 다중 선택할지 여부
+         */
+        init: function(options) {
             Base.prototype.init.apply(this, arguments);
             this.setOwnProperties({
                 selectMap: {},
-                isMultiple: attributes.isMultiple || false
+                isMultiple: options.isMultiple || false
             });
         },
+        /**
+         * 선택된 영역의 list 를 반환한다.
+         * @return {Array}  선택 영역의 list
+         */
         getSelectList: function() {
             var selectList = [];
             ne.util.forEach(this.selectMap, function(val, key) {
@@ -21,6 +30,10 @@
             }, this);
             return selectList;
         },
+        /**
+         * 행을 선택한다.
+         * @param {(Number|String)} key 해당하는 row의 키값
+         */
         select: function(key) {
             if (!this.isMultiple) {
                 ne.util.forEach(this.selectMap, function(value, key) {
@@ -31,12 +44,18 @@
             this.fire('select', key, this.selectMap);
         },
         /**
-         *
+         * 행을 선택 해제한다.
          * @param {(String|Number)} [key] 지정되지 않았다면 모든 select 를 초기화한다.
          */
         unselect: function(key) {
-            this.selectMap[key] = null;
-            delete this.selectMap[key];
-            this.fire('unselect', key, this.selectMap);
+            if (ne.util.isUndefined(key)) {
+                ne.util.forEach(this.selectMap, function(val, key) {
+                    this.unselect(key);
+                }, this);
+            } else {
+                this.selectMap[key] = null;
+                delete this.selectMap[key];
+                this.fire('unselect', key, this.selectMap);
+            }
         }
     });

@@ -23,7 +23,7 @@
             });
         },
         /**
-         * mousedown event handler
+         * 마우스다운 event handler
          * @private
          */
         _onMouseDown: function() {
@@ -48,7 +48,7 @@
         },
         /**
          * scroll event handler
-         * @param {event} scrollEvent
+         * @param {event} scrollEvent 스크롤 이벤트
          * @private
          */
         _onScroll: function(scrollEvent) {
@@ -59,7 +59,7 @@
         /**
          * model 값이 변경되었을때 view 에 반영한다.
          *
-         * @param {object} changeEvent
+         * @param {{key: key, value: value}} changeEvent model 에서 전달하는 change 이벤트
          * @private
          */
         _onModelChange: function(changeEvent) {
@@ -76,7 +76,7 @@
         },
         /**
          * scrollTop 값을 동기화한다.
-         * @param {number} scrollTop
+         * @param {number} scrollTop    scrollTop 값
          * @private
          */
         _onScrollTopChange: function(scrollTop) {
@@ -84,7 +84,7 @@
         },
         /**
          * 현재 랜더링을 기준으로 max scroll top 을 확인한다.
-         * @return {number}
+         * @return {number} 계산된 max scroll top 값
          * @private
          */
         _getMaxScrollTop: function() {
@@ -111,7 +111,7 @@
             return this;
         },
         /**
-         * virtual scroll bar 의 높이를 계산하여 지정한다..
+         * virtual scroll bar 의 높이를 계산하여 지정한다.
          * @private
          */
         _setContentHeight: function() {
@@ -129,7 +129,7 @@
         },
         /**
          * 가상 스크롤바의 content 영역의 높이를 가져온다.
-         * @return {number}
+         * @return {number} content 의 height 값
          * @private
          */
         _getContentHeight: function() {

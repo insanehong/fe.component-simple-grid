@@ -41,7 +41,7 @@
         },
         /**
          * 마우스 이벤트 핸들러를 attach 한다.
-         * @param mouseEvent    마우스 이벤트 핸들러
+         * @param {event} mouseEvent    마우스 이벤트 핸들러
          */
         attachMouseEvent: function(mouseEvent) {
             if (this.grid.option('useSelection')) {
@@ -65,7 +65,7 @@
         },
         /**
          * Mouse down 이벤트 핸들러
-         * @param mouseDownEvent    마우스 이벤트 핸들러
+         * @param {event} mouseDownEvent    마우스 이벤트 핸들러
          * @private
          */
         _onMouseDown: function(mouseDownEvent) {
@@ -81,7 +81,7 @@
         },
         /**
          * Mouse move 이벤트 핸들러
-         * @param mouseMoveEvent    마우스 이벤트 핸들러
+         * @param {event} mouseMoveEvent    마우스 이벤트 핸들러
          * @private
          */
         _onMouseMove: function(mouseMoveEvent) {
@@ -97,7 +97,7 @@
         },
         /**
          * MouseUp 이벤트 핸들러
-         * @param mouseUpEvent  마우스 이벤트 핸들러
+         * @param {event} mouseUpEvent  마우스 이벤트 핸들러
          * @private
          */
         _onMouseUp: function(mouseUpEvent) {
@@ -148,7 +148,7 @@
         },
         /**
          * 내부 변수로 mouse position 을 저장한다.
-         * @param mouseEvent    마우스 이벤트
+         * @param {event} mouseEvent    마우스 이벤트
          * @private
          */
         _setMousePos: function(mouseEvent) {
@@ -207,7 +207,7 @@
         },
         /**
          * selection 을 시작한다.
-         * @param {number} [key]
+         * @param {number} [key]    시작할 row 의 key
          */
         startSelection: function(key) {
             if (this.grid.option('useSelection')) {
@@ -220,7 +220,7 @@
         },
         /**
          * selection 영역을 update 한다.
-         * @param {number} [key]
+         * @param {number} [key] 업데이트 된 row 의 key
          */
         updateSelection: function(key) {
             if (this.grid.option('useSelection')) {
@@ -260,7 +260,7 @@
             this.draw();
         },
         /**
-         * seleciton 을 중지한다.
+         * selection 을 중지한다.
          */
         stopSelection: function() {
             this.rangeKey = [-1, -1];
@@ -282,9 +282,9 @@
         },
         /**
          * 마우스 포지션이 container 영역을 벗어났는지 확인한다.
-         * @param {number} pageX
-         * @param {number} pageY
-         * @return {{x: number, y: number}}
+         * @param {number} pageX    마우스 x좌표
+         * @param {number} pageY    마우스 y 좌표
+         * @return {{x: number, y: number}} x 또는 y 가 0보다 클 경우 + 방향으로 overflow. 작을경우 - 방향으로 overflow
          */
         overflowStatus: function(pageX, pageY) {
             var containerPosY = pageY - this.model.offsetTop - this.model.headerHeight,
@@ -307,11 +307,11 @@
             return status;
         },
         /**
-         * 마우스 포지션에 해당하는 selection key 를 얻어온다.
+         * 마우스 포지션에 해당하는 row 의 key 를 얻어온다.
          *
-         * @param {number} pageX
-         * @param {number} pageY
-         * @return {*}
+         * @param {number} pageX    마우스 x좌표
+         * @param {number} pageY    마우스 y좌표
+         * @return {(String|Number)} 해당 위치의 키값
          */
         getKey: function(pageX, pageY) {
             var model = this.model,

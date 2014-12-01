@@ -38,7 +38,7 @@
         },
         /**
          * focus event handler
-         * @param {event} focusEvent
+         * @param {event} focusEvent focus 이벤트
          * @private
          */
         _onFocus: function(focusEvent) {
@@ -46,8 +46,7 @@
         },
         /**
          * blur event handler
-         * @param {event} blurEvent
-         * @private
+         * @param {event} blurEvent blur 이벤트
          */
         _onBlur: function(blurEvent) {
             this.model.collection.unlock();
@@ -55,7 +54,7 @@
         },
         /**
          * keyUp event handler
-         * @param {event} keyUpEvent
+         * @param {event} keyUpEvent keyup 이벤트
          * @private
          */
         _onKeyUp: function(keyUpEvent) {
@@ -63,7 +62,7 @@
         },
         /**
          * keyDown 시 이벤트 핸들러
-         * @param {event} keyDownEvent
+         * @param {event} keyDownEvent keydown 이벤트
          * @private
          */
         _onKeyDown: function(keyDownEvent) {
@@ -147,8 +146,8 @@
         },
         /**
          * 세로 스크롤 한다.
-         * @param {number} pixel
-         * @param {boolean} [isPercentage]
+         * @param {number} pixel    이동할 픽셀값
+         * @param {boolean} [isPercentage=false] 퍼센티지로 계산할지 여부
          */
         scrollVertical: function(pixel, isPercentage) {
             pixel = isPercentage ? Math.floor(this.model.height * (pixel / 100)) : pixel;
@@ -157,7 +156,7 @@
         },
         /**
          * 가로 스크롤 한다.
-         * @param {number} pixel
+         * @param {number} pixel 이동할 픽셀값
          */
         scrollHorizontal: function(pixel) {
             var scrollLeft = Math.max(0, this.model.scrollLeft + pixel);

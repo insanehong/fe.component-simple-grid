@@ -70,6 +70,7 @@
                         td: '#FFFFFF',
                         selection: 'orange'
                     },
+                    border: 1,
                     opacity: '0.2'
                 };
 
