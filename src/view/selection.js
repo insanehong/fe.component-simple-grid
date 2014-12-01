@@ -338,13 +338,14 @@
          */
         draw: function() {
             if (this.isShown && (this.rangeKey[0] !== -1 && this.rangeKey[1] !== -1)) {
-                var start = this.model.collection.indexOf(this.model.collection.get(this.rangeKey[0])),
+                var border = this.grid.option('border'),
+                    start = this.model.collection.indexOf(this.model.collection.get(this.rangeKey[0])),
                     end = this.model.collection.indexOf(this.model.collection.get(this.rangeKey[1])),
                     totalRowCount = this.model.collection.length,
                     startIdx = Math.min(start, end),
                     endIdx = Math.max(start, end),
-                    top = Util.getHeight(startIdx, this.model.rowHeight),
-                    height = Util.getHeight(((endIdx - startIdx) + 1), this.model.rowHeight),
+                    top = Util.getHeight(startIdx, this.model.rowHeight, border),
+                    height = Util.getHeight(((endIdx - startIdx) + 1), this.model.rowHeight, border),
                     fixedTop, fixedDifference, fixedHeight,
                     width = this.model.width - 3,
                     display = 'block';

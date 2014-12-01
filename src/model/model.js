@@ -171,9 +171,10 @@
          * @private
          */
         _getMaxCollectionLength: function() {
+            var border = this.grid.option('border');
             if (ne.util.browser.msie) {
                 //1533917 is the max height of IE (66692*23 + 1)
-                return Math.floor(1533900 / (this.rowHeight + 1));
+                return Math.floor(1533900 / (this.rowHeight + border));
             } else {
                 return 0;
             }
@@ -183,10 +184,13 @@
          * @return {number} maxScrollTop 값
          */
         getMaxScrollTop: function() {
-            var maxScrollTop = Util.getHeight(this.collection.length, this.rowHeight) - this.containerHeight;
+            var border = this.grid.option('border'),
+                maxScrollTop = Util.getHeight(this.collection.length, this.rowHeight, border) - this.containerHeight;
+
             if (this.grid.option('scrollX')) {
                 maxScrollTop += this.grid.scrollBarSize;
             }
+
             return Math.max(maxScrollTop, 0);
         },
         /**
@@ -294,14 +298,15 @@
          */
         _getRenderingData: function() {
             var top,
+                border = this.grid.option('border'),
                 scrollTop = this.scrollTop,
                 rowHeight = this.rowHeight,
                 displayCount = this.grid.option('displayCount'),
-                startIdx = Math.max(0, Math.ceil(scrollTop / (rowHeight + 1)) - this.hiddenLineCount),
+                startIdx = Math.max(0, Math.ceil(scrollTop / (rowHeight + border)) - this.hiddenLineCount),
                 endIdx = Math.min(this.collection.length,
                     Math.floor(startIdx + this.hiddenLineCount + displayCount + this.hiddenLineCount));
 
-            top = (startIdx === 0) ? 0 : Util.getHeight(startIdx, rowHeight) - 1;
+            top = (startIdx === 0) ? 0 : Util.getHeight(startIdx, rowHeight, border) - border;
 
             return {
                 top: top,
@@ -315,15 +320,16 @@
          * @private
          */
         _isRenderable: function() {
-             var scrollTop = this.scrollTop,
-                rowHeight = this.rowHeight,
-                height = this.height,
-                displayCount = this.grid.option('displayCount'),
-                rowCount = this.collection.length,
-                displayStartIdx = Math.max(0, Math.ceil(scrollTop / (rowHeight + 1))),
-                displayEndIdx = Math.min(rowCount - 1, Math.floor((scrollTop + height) / (rowHeight + 1))),
-                startIdx = Math.max(0, this.startIdx),
-                endIdx = Math.min(rowCount, this.endIdx);
+             var border = this.grid.option('border'),
+                 scrollTop = this.scrollTop,
+                 rowHeight = this.rowHeight,
+                 height = this.height,
+                 displayCount = this.grid.option('displayCount'),
+                 rowCount = this.collection.length,
+                 displayStartIdx = Math.max(0, Math.ceil(scrollTop / (rowHeight + border))),
+                 displayEndIdx = Math.min(rowCount - 1, Math.floor((scrollTop + height) / (rowHeight + border))),
+                 startIdx = Math.max(0, this.startIdx),
+                 endIdx = Math.min(rowCount, this.endIdx);
 
             //시작 지점이 임계점 이하로 올라갈 경우 return true
             if (startIdx !== 0) {

@@ -19,7 +19,9 @@ var Header = ne.util.defineClass(Base.View, /**@lends Header.prototype */{
     _template: {
         table: '' +
         '<div class="header">' +
-        '<table width="100%" border="0" cellspacing="1" cellpadding="0" bgcolor="#EFEFEF">' +
+        '<table width="100%" border="0" cellpadding="0" cellspacing="' +
+        '<%=border%>' +
+        '">' +
         '<colgroup>' +
         '<%=col%>' +
         '</colgroup>' +
@@ -77,6 +79,7 @@ var Header = ne.util.defineClass(Base.View, /**@lends Header.prototype */{
         this.destroyChildren();
 
         var columnModelList = this.grid.option('columnModelList'),
+            border = this.grid.option('border'),
             tbody = '',
             html,
             height = this.model.headerHeight,
@@ -94,6 +97,7 @@ var Header = ne.util.defineClass(Base.View, /**@lends Header.prototype */{
         tbody += '</tr>';
 
         html = Util.template(this._template.table, {
+            border: border,
             col: col,
             tbody: tbody
         });
@@ -102,6 +106,11 @@ var Header = ne.util.defineClass(Base.View, /**@lends Header.prototype */{
         this._setContainerWidth(this.model.width);
         this.$el.find('table').css('background', color['border']);
         this.$el.find('th').css('background', color['th']);
+
+        if (border === 0) {
+            this.$el.css('border', 'solid 1px ' + color['border']);
+            this.$el.css('border-bottom', '0px');
+        }
         this._attachHandler();
         return this;
     },

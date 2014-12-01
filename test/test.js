@@ -84,6 +84,7 @@ var infinite2 = new ne.Component.SimpleGrid({
         td: '#FFFFFF',
         selection: 'blue'
     },
+    border: 0,
     opacity: '0.5',
     columnModelList: [
         {

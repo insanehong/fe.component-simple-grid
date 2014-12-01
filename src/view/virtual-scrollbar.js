@@ -96,13 +96,17 @@
          */
         render: function() {
             this._detachHandler();
-            var content = this.createView(VirtualScrollBar.Content, {
-                grid: this.grid
-            });
+            var right = (this.grid.option('border') === 0) ? 1 : 0,
+                content = this.createView(VirtualScrollBar.Content, {
+                    grid: this.grid
+                }),
+                border = this.grid.option('border');
+
 
             this.$el.css({
                 height : this.grid.option('scrollX') ? this.model.height + this.grid.scrollBarSize : this.model.height,
-                top: this.grid.option('headerHeight') + 2
+                top: this.grid.option('headerHeight') + ((border * 2) || 2),
+                right: right
             });
             this.$el.empty();
             this.$el.html(content.render().el);
@@ -115,14 +119,16 @@
          * @private
          */
         _setContentHeight: function() {
-            var rowHeight = this.grid.option('rowHeight'),
+            var border = this.grid.option('border'),
+                rowHeight = this.grid.option('rowHeight'),
                 rowCount = this.model.collection.length,
-                height = Util.getHeight(rowCount, rowHeight),
+                height = Util.getHeight(rowCount, rowHeight, border),
                 maxTop;
 
             if (this.grid.option('scrollX')) {
                 height += this.grid.scrollBarSize;
             }
+
             this.$el.find('.infinite_content').height(height);
             maxTop = this.model.getMaxScrollTop();
             this.model.set('maxScrollTop', maxTop);

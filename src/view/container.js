@@ -25,11 +25,18 @@
          * @private
          */
         _initializeCss: function() {
+            var color = this.grid.option('color')['border'],
+                border = this.grid.option('border');
+
             this.$el.css({
                 'overflow-x' : this.grid.option('scrollX') ? 'scroll' : 'hidden',
                 'overflow-y' : this.grid.option('scrollY') ? 'scroll' : 'hidden',
                 'height' : this.grid.option('scrollX') ? this.model.height + this.grid.scrollBarSize : this.model.height
             });
+            if (border === 0) {
+                this.$el.css('border', 'solid 1px ' + color);
+            }
+
         },
         /**
          * scroll event handler

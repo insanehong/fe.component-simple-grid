@@ -14,7 +14,11 @@
         className: 'infinite_body',
         style: 'position: absolute; top: 0; white-space: nowrap;',
         _template: {
-            table: '<table width="100%" border="0" cellspacing="1" cellpadding="0" bgcolor="' +
+            table: '<table width="100%" border="0" cellpadding="0" ' +
+                'cellspacing="' +
+                '<%=border%>' +
+                '" ' +
+                'bgcolor="' +
                 '<%=color%>' +
                 '">' +
                 '<colgroup>' +
@@ -180,7 +184,7 @@
          */
         _getColGroupMarkup: function(columnWidthList) {
             var col = '';
-            ne.util.forEachArray(columnWidthList, function(width, index) {
+            ne.util.forEachArray(columnWidthList, function(width) {
                 col += '<col style="width:'+ width + 'px"></col>';
             }, this);
             return col;
@@ -244,9 +248,11 @@
 
             var columnWidthList = this.model.columnWidthList,
                 color = this.grid.option('color'),
+                border = this.grid.option('border'),
                 selectList = this.grid.focusModel.getSelectList();
 
             this.$el.html(Util.template(this._template.table, {
+                border: border,
                 color: color['border'],
                 col: this._getColGroupMarkup(columnWidthList),
                 tbody: this._getTbodyMarkup()

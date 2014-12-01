@@ -16,18 +16,27 @@ var Spacer = ne.util.defineClass(Base.View, /**@lends Spacer.prototype */{
     },
     /**
      * 렌더링 한다.
-     * @return {Spacer}
+     * @returns {Spacer}
      */
     render: function() {
         var color = this.grid.option('color'),
-            height = this.grid.option('headerHeight');
+            height = this.grid.option('headerHeight'),
+            border =  this.grid.option('border'),
+            top = border ? 0 : 1,
+            right = border ? 0 : 1,
+            width = 17 - border,
+            css = {
+                top: top + 'px',
+                right: right + 'px',
+                background: color['th'],
+                height: height + 'px',
+                width: width + 'px',
+                border: 'solid ' + border + 'px ' + color['border']
+            };
+
         this._detachHandler();
         this.destroyChildren();
-        this.$el.css({
-            background: color['th'],
-            border: 'solid 1px ' + color['border'],
-            height: height + 'px'
-        });
+        this.$el.css(css);
         this._attachHandler();
         return this;
     }

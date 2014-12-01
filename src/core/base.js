@@ -203,7 +203,7 @@ ne.Component = ne.Component || {};
         template: function(template, mapper) {
             template.replace(/<%=[^%]+%>/g, '');
             var replaced = template.replace(/<%=([^%]+)%>/g, function callback(matchedString, name, index, fullString) {
-                return mapper[name] || '';
+                return ne.util.isUndefined(mapper[name]) ? '' : mapper[name].toString();
             });
             return replaced;
         },
@@ -211,10 +211,12 @@ ne.Component = ne.Component || {};
          * 행 개수와 한 행당 높이를 인자로 받아 테이블 body 의 전체 높이를 구한다.
          * @param {number} rowCount
          * @param {number} rowHeight
-         * @return {*}
+         * @param {number} border
+         * @return {number}
          */
-        getHeight: function(rowCount, rowHeight) {
-            return rowCount === 0 ? rowCount : rowCount * (rowHeight + 1) + 1;
+        getHeight: function(rowCount, rowHeight, border) {
+            border = ne.util.isUndefined(border) ? 1  : border;
+            return rowCount === 0 ? rowCount : rowCount * (rowHeight + border) + border;
         },
         /**
          *Table 의 높이와 행당 높이를 인자로 받아, table 에서 보여줄 수 있는 행 개수를 반환한다.
