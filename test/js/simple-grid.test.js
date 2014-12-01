@@ -11,12 +11,10 @@ describe('view.virtual-scrollbar', function() {
     }
     var simpleGrid,
         selection,
-        virtual,
         $empty;
     beforeEach(function () {
         jasmine.clock().install();
         jasmine.getFixtures().fixturesPath = 'base/';
-
         loadFixtures('test/fixtures/empty.html');
 
         $empty = $('#empty');
@@ -55,52 +53,66 @@ describe('view.virtual-scrollbar', function() {
             ]
         });
         simpleGrid.setList([{"column1":"0_0","column2":"0_1","column3":"0_2","column4":"0_3","column5":"0_4"},{"column1":"1_0","column2":"1_1","column3":"1_2","column4":"1_3","column5":"1_4"},{"column1":"2_0","column2":"2_1","column3":"2_2","column4":"2_3","column5":"2_4"},{"column1":"3_0","column2":"3_1","column3":"3_2","column4":"3_3","column5":"3_4"},{"column1":"4_0","column2":"4_1","column3":"4_2","column4":"4_3","column5":"4_4"},{"column1":"5_0","column2":"5_1","column3":"5_2","column4":"5_3","column5":"5_4"},{"column1":"6_0","column2":"6_1","column3":"6_2","column4":"6_3","column5":"6_4"},{"column1":"7_0","column2":"7_1","column3":"7_2","column4":"7_3","column5":"7_4"},{"column1":"8_0","column2":"8_1","column3":"8_2","column4":"8_3","column5":"8_4"},{"column1":"9_0","column2":"9_1","column3":"9_2","column4":"9_3","column5":"9_4"},{"column1":"10_0","column2":"10_1","column3":"10_2","column4":"10_3","column5":"10_4"}]);
-        virtual = simpleGrid.view.virtualScroll;
-        selection = simpleGrid.view.container.body.selection;
+        selection = simpleGrid.view.container.selection;
     });
     afterEach(function() {
         simpleGrid && simpleGrid.destroy();
         simpleGrid = null;
         jasmine.clock().uninstall();
     });
+    describe('focus', function() {
+        beforeEach(function() {
+            selection.show = jasmine.createSpy('show');
+        });
+        it('focus 되면 seleciton 의 show 를 호출한다.', function() {
+            simpleGrid.focus();
+            expect(selection.show).toHaveBeenCalled();
+        });
+    });
     describe('_onMouseDown', function() {
-        it('lock 을 한다.', function() {
-            virtual._onMouseDown();
-            expect(simpleGrid.model.collection.worker.locked).toBe(true);
-        });
-        it('handlerFocused 플래그를 설정한다.', function() {
-            virtual._onMouseDown();
-            expect(virtual.isScrollHandlerFocused).toBe(true);
-        });
-        it('1초 이후 lock 이 풀린다.', function() {
-            virtual._onMouseDown();
-            expect(virtual.isScrollHandlerFocused).toBe(true);
-            jasmine.clock().tick(1001);
-            expect(virtual.isScrollHandlerFocused).toBe(false);
-            expect(simpleGrid.model.collection.worker.locked).toBe(false);
+        it('mousedown 이벤트가 발생하면, collection 을 lock 하고, layoutdata 를 업데이트 한다.', function() {
+            simpleGrid.model.collection.lock = jasmine.createSpy('lock');
+            simpleGrid.updateLayoutData = jasmine.createSpy('layout');
+            simpleGrid.focus = jasmine.createSpy('focus');
+            simpleGrid._onMouseDown();
+            expect(simpleGrid.model.collection.lock).toHaveBeenCalled();
+            expect(simpleGrid.updateLayoutData).toHaveBeenCalled();
+            expect(simpleGrid.focus).not.toHaveBeenCalled();
+            jasmine.clock().tick(10);
+            expect(simpleGrid.focus).toHaveBeenCalled();
         });
     });
-    describe('_onModelChange', function() {
-        it('scrollTop 값이 변경된다면, virtual scroll 의 실제 엘리먼트 값을 변경한다', function() {
-            virtual._onModelChange({
-                'key': 'scrollTop',
-                'value': 20
-            });
-            expect(virtual.el.scrollTop).toBe(20);
+    describe('_onMouseUp', function() {
+        it('mouseup 이벤트가 발생하면 collection 을 unlock 한다.', function() {
+            var unlock = simpleGrid.model.collection.unlock = jasmine.createSpy('unlock');
+            simpleGrid._onMouseUp();
+            expect(unlock).toHaveBeenCalled();
         });
     });
-    describe('_getMaxScrollTop', function() {
-        it('현재 랜더링 기준으로 scrollTop 의 한계를 구한다.', function() {
-            expect(virtual._getMaxScrollTop()).toBe(21);
+    describe('getList', function() {
+        it('현재 설정된 list 를 반환한다.', function() {
+            var list = simpleGrid.getList();
+            expect(list.length).toBe(11);
         });
     });
-    describe('_onScroll', function() {
-        it('isScrollHandlerFocused 를 true 로 변경한다.', function() {
-            virtual._onScroll({
-                target: $('<div>')
-            });
-            expect(virtual.isScrollHandlerFocused).toBe(true);
+    describe('append', function() {
+        it('model 의 collection 의 append 를 호출한다..', function() {
+            var append = simpleGrid.model.collection.append = jasmine.createSpy('append');
+            simpleGrid.append([1, 2, 3, 4]);
+            expect(append).toHaveBeenCalled();
         });
-
+    });
+    describe('prepend', function() {
+        it('model 의 collection 의 prepend 를 호출한다..', function() {
+            var prepend = simpleGrid.model.collection.prepend = jasmine.createSpy('prepend');
+            simpleGrid.prepend([1, 2, 3, 4]);
+            expect(prepend).toHaveBeenCalled();
+        });
+    });
+    describe('option', function() {
+        it('인자를 두개 넘기면 set 으로, 한개 넘기면 get 으로 동작한다.', function() {
+            simpleGrid.option('testVal', 1);
+            expect(simpleGrid.option('testVal')).toBe(1);
+        });
     });
 });

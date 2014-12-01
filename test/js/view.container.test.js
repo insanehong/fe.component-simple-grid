@@ -1,60 +1,90 @@
 'use strict';
 describe('view.container', function() {
-    var infinite,
+    var simpleGrid,
         container,
         $empty;
     beforeEach(function() {
         jasmine.getFixtures().fixturesPath = 'base/';
-        jasmine.getStyleFixtures().fixturesPath = 'base/';
 
         loadFixtures('test/fixtures/empty.html');
-        loadStyleFixtures('src/css/Component-SimpleGrid.css');
 
         $empty = $('#empty');
-        infinite = new ne.Component.SimpleGrid({
-            $el: $empty
+        simpleGrid = new ne.Component.SimpleGrid({
+            $el: $empty,
+            columnModelList: [
+                {
+                    columnName: 'column1',
+                    title: '컬럼1',
+                    width: 100,
+                    align: 'center',
+                    formatter: function(value, rowData) {
+                        return '<input type="button" class="test_click" value="' + value + '"/>';
+                    }
+                },
+                {
+                    columnName: 'column2',
+                    title: '컬럼1',
+                    width: 200
+                },
+                {
+                    columnName: 'column3',
+                    title: '컬럼3',
+                    width: 300
+                },
+                {
+                    columnName: 'column4',
+                    title: '컬럼4',
+                    width: 400
+                },
+                {
+                    columnName: 'column5',
+                    title: '컬럼5',
+                    width: 90
+                }
+            ]
+
         });
-        container = infinite.view.container;
+        container = simpleGrid.view.container;
     });
 
     describe('_initializeCss', function() {
         beforeEach(function() {
-            infinite.destroy();
+            simpleGrid.destroy();
         });
         describe('css를 옵션값에 맞추어 잘 설정하는지 확인한다.', function() {
             it('scroll 값이 true 라면 스크롤을 보인다', function() {
-                infinite = new ne.Component.SimpleGrid({
+                simpleGrid = new ne.Component.SimpleGrid({
                     $el: $empty,
                     scrollX: true,
                     scrollY: true
                 });
-                container = infinite.view.container;
+                container = simpleGrid.view.container;
                 expect(container.$el.css('overflow-x')).toBe('scroll');
                 expect(container.$el.css('overflow-y')).toBe('scroll');
             });
             it('scroll 값이 false 라면 스크롤을 감춘다', function() {
-                infinite = new ne.Component.SimpleGrid({
+                simpleGrid = new ne.Component.SimpleGrid({
                     $el: $empty,
                     scrollX: false,
                     scrollY: false
                 });
-                container = infinite.view.container;
+                container = simpleGrid.view.container;
                 expect(container.$el.css('overflow-x')).toBe('hidden');
                 expect(container.$el.css('overflow-y')).toBe('hidden');
             });
             it('scrollX 값에 따라 height 을 조금더 조정한다.', function() {
-                infinite = new ne.Component.SimpleGrid({
+                simpleGrid = new ne.Component.SimpleGrid({
                     $el: $empty,
                     scrollX: false
                 });
-                container = infinite.view.container;
-                expect(container.$el.height()).toBe(200);
-                infinite = new ne.Component.SimpleGrid({
+                container = simpleGrid.view.container;
+                expect(container.$el.height()).toBe(211);
+                simpleGrid = new ne.Component.SimpleGrid({
                     $el: $empty,
                     scrollX: true
                 });
-                container = infinite.view.container;
-                expect(container.$el.height()).toBe(217);
+                container = simpleGrid.view.container;
+                expect(container.$el.height()).toBe(228);
             });
         });
     });
@@ -62,21 +92,7 @@ describe('view.container', function() {
         var changeEvent;
         beforeEach(function() {
             jasmine.clock().install();
-            infinite.setList([
-                'This sentence is very very very very very very ' +
-                'very very very very very very ' +
-                'very very very very very very ' +
-                'very very very very very very ' +
-                'very very very very very very ' +
-                'very very very very very very ' +
-                'very very very very very very ' +
-                'very very very very very very ' +
-                'very very very very very very ' +
-                'very very very very very very ' +
-                'very very very very very very ' +
-                'very very very very very very ' +
-                'very very very very very very long, the longest sentence in the world',
-                1, 2, 3, 4, 5, 6, 7 ,8 ,9, 10, 11, 12, 13, 14, 15]);
+            simpleGrid.setList([{"column1":"0_0","column2":"0_1","column3":"0_2","column4":"0_3","column5":"0_4"},{"column1":"1_0","column2":"1_1","column3":"1_2","column4":"1_3","column5":"1_4"},{"column1":"2_0","column2":"2_1","column3":"2_2","column4":"2_3","column5":"2_4"},{"column1":"3_0","column2":"3_1","column3":"3_2","column4":"3_3","column5":"3_4"},{"column1":"4_0","column2":"4_1","column3":"4_2","column4":"4_3","column5":"4_4"},{"column1":"5_0","column2":"5_1","column3":"5_2","column4":"5_3","column5":"5_4"},{"column1":"6_0","column2":"6_1","column3":"6_2","column4":"6_3","column5":"6_4"},{"column1":"7_0","column2":"7_1","column3":"7_2","column4":"7_3","column5":"7_4"},{"column1":"8_0","column2":"8_1","column3":"8_2","column4":"8_3","column5":"8_4"},{"column1":"9_0","column2":"9_1","column3":"9_2","column4":"9_3","column5":"9_4"},{"column1":"10_0","column2":"10_1","column3":"10_2","column4":"10_3","column5":"10_4"}]);
         });
         afterEach(function() {
             jasmine.clock().uninstall();

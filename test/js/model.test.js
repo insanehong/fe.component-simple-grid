@@ -7,7 +7,42 @@ describe('model 테스트', function() {
             option: function(key) {
                 return this.options[key];
             },
-            options: {}
+            options: {
+                border: 1,
+                columnModelList: [
+                    {
+                        columnName: 'column1',
+                        title: '컬럼1',
+                        width: 70,
+                        align: 'center',
+                        formatter: function(value, rowData) {
+                            return '<input type="button" class="test_click" value="' + value + '"/>';
+                        }
+                    },
+                    {
+                        columnName: 'column2',
+                        title: '컬럼1',
+                        width: 60
+                    },
+                    {
+                        columnName: 'column3',
+                        title: '컬럼3',
+                        width: 70
+                    },
+                    {
+                        columnName: 'column4',
+                        title: '컬럼4',
+                        width: 80
+                    },
+                    {
+                        columnName: 'column5',
+                        title: '컬럼5',
+                        width: 90
+                    }
+                ],
+                rowHeight: 20,
+                headerHeight: 50
+            }
         };
         model = new Model({
             grid: grid
@@ -28,7 +63,7 @@ describe('model 테스트', function() {
         it('IE 일 경우 rowHeight 로 나눈 값을 반환한다.', function() {
             ne.util.browser.msie = true;
             model.rowHeight = 20;
-            expect(model._getMaxCollectionLength()).toBe(76695);
+            expect(model._getMaxCollectionLength()).toBe(73042);
         });
     });
     describe('_onChange', function() {
@@ -145,8 +180,8 @@ describe('model 테스트', function() {
         });
         it('추가된 데이터와 관계없이 현재 scroll 위치를 유지하기 위해 maxScrollTop 과 scrollTop 값을 적절히 잘 설정한다.', function() {
             model._doFreeze([1, 2]);
-            expect(model.maxScrollTop).toBe(80);
-            expect(model.scrollTop).toBe(40);
+            expect(model.maxScrollTop).toBe(85);
+            expect(model.scrollTop).toBe(43);
         });
     });
 });
