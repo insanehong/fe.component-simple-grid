@@ -25,6 +25,7 @@ describe('view.keyboard', function() {
         $empty = $('#empty');
         simpleGrid = new ne.Component.SimpleGrid({
             $el: $empty,
+            useSelection: true,
             columnModelList: [
                 {
                     columnName: 'column1',
