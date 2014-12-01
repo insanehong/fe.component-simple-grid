@@ -69,13 +69,6 @@
          *      @param {boolean} [options.scrollX=true] 가로 스크롤 사용 여부
          *      @param {boolean} [options.scrollY=true] 세로 스크롤 사용 여부
          *      @param {boolean} [options.scrollFix=true] prepend 로 데이터 추가 시 현재 scroll 위치 유지 여부
-         *      @param {object} [options.color] 색상 정보
-         *          @param {string} [options.color.border='#EFEFEF']  태두리 색상
-         *          @param {string} [options.color.th='#F8F8F8']  테이블 헤더 색상
-         *          @param {string} [options.color.td='#FFFFFF']  테이블 바디 색상
-         *          @param {string} [options.color.selection='orange']  선택영역 색상
-         *      @param {object} [options.opacity=0.2] 선택 영역 레이어 투명도
-         *      @param {object} [options.border=1] 테이블 border 두께
          *      @param {object} [options.defaultColumnWidth=50] 컬럼 모델에 너비 값을 지정하지 않았을 때 설정될 기본 column 너비
          *      @param {object} [options.keyColumnName=null] 행의 key 값으로 사용될 필드명. 값을 지정하지 않을경우 내부에서 자동으로 값을 생성한다.
          *      @param {object} [options.columnModelList=[]] 컬럼모델 정보
@@ -85,6 +78,13 @@
          *          @param {string} [options.columnModelList.align] 해당 컬럼의 정렬기준
          *          @param {function} [options.columnModelList.formatter] 데이터를 화면에 표시할 때 값의 포맷팅 처리를 하기 위한 함수.
          *          값을 출력하기 전에 formatter 함수에 해당 컬럼의 값을 전달하고 해당 함수가 리턴한 값을 화면 상에 표시한다.
+         *      @param {object} [options.opacity=0.2] 선택 영역 레이어 투명도
+         *      @param {object} [options.border=1] 테이블 border 두께
+         *      @param {object} [options.color] 색상 정보
+         *          @param {string} [options.color.border='#EFEFEF']  태두리 색상
+         *          @param {string} [options.color.th='#F8F8F8']  테이블 헤더 색상
+         *          @param {string} [options.color.td='#FFFFFF']  테이블 바디 색상
+         *          @param {string} [options.color.selection='orange']  선택영역 색상
          * @return {ne.Component.SimpleGrid}
          */
         init: function(options) {
