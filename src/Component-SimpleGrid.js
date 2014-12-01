@@ -18,7 +18,7 @@
         //infinite.clear();                    //데이터 초기화
         //var dataList = infinite.getList();    //배열 형태로 현재 data 를 가져온다.
      */
-    ne.Component.SimpleGrid = ne.util.defineClass(Base.View, {
+    ne.Component.SimpleGrid = ne.util.defineClass(Base.View, /**@lends ne.Component.SimpleGrid.prototype */{
         scrollBarSize: 17,
         className: 'simple_grid',
         eventHandler: {
@@ -41,12 +41,13 @@
          *      @param {object} [options.opacity=0.2] 선택 영역 레이어 투명도
          *      @param {object} [options.defaultColumnWidth=50] 값을 지정하지 않았을 때 설정될 기본 column 너비
          *      @param {object} [options.columnModelList=[]] 컬럼모델 정보
-         *          @param {string} [options.columnModelList[].columnName] data field 명
-         *          @param {string} [options.columnModelList[].title] Header 영역에 표시될 컬럼 이름
-         *          @param {string} [options.columnModelList[].width] 해당 컬럼의 너비
-         *          @param {string} [options.columnModelList[].width] 해당 컬럼의 정렬기준
-         *          @param {function} [options.columnModelList[].formatter] 데이터를 화면에 표시할 때 값의 포맷팅 처리를 하기 위한 함수로, 값을 출력하기 전에 formatter 함수에 해당 컬럼의 값을 전달하고 해당 함수가 리턴한 값을 화면 상에 표시한다.
-         * @returns {ne.Component.SimpleGrid}
+         *          @param {string} [options.columnModelList.columnName] data field 명
+         *          @param {string} [options.columnModelList.title] Header 영역에 표시될 컬럼 이름
+         *          @param {string} [options.columnModelList.width] 해당 컬럼의 너비
+         *          @param {string} [options.columnModelList.width] 해당 컬럼의 정렬기준
+         *          @param {function} [options.columnModelList.formatter] 데이터를 화면에 표시할 때 값의 포맷팅 처리를 하기 위한 함수.
+         *          값을 출력하기 전에 formatter 함수에 해당 컬럼의 값을 전달하고 해당 함수가 리턴한 값을 화면 상에 표시한다.
+         * @return {ne.Component.SimpleGrid}
          */
         init: function(options) {
             Base.View.prototype.init.apply(this, arguments);
@@ -97,20 +98,24 @@
             this._initializeCustomEvent();
             return this;
         },
+        /**
+         * 커스텀 이벤트를 초기화 한다.
+         * @private
+         */
         _initializeCustomEvent: function() {
             this.view.container.body.on('click', function(customEvent) {
                 return this.invoke('click', customEvent);
             }, this);
         },
         /**
-         * 스크롤 영역 focus 되었을 때
+         * 스크롤 영역 focus 되었을 때 select 를 수행하는 핸들러
          */
         focus: function() {
             this.view.keyboard.$el.focus().select();
             //this.view.container.selection.show();
         },
         /**
-         * 스크롤 영역 blur 시
+         * 스크롤 영역 blur 시 select 해제 하는 핸들러
          */
         blur: function() {
             this.view.container.selection.hide();
@@ -172,7 +177,7 @@
         },
         /**
          * selection instance 를 반환한다.
-         * @return {Selection|g.content.selection|*|selection|Container.content.selection|g.selection}
+         * @return {Object}
          */
         getSelectionInstance: function() {
             return this.view.container.selection;
@@ -181,7 +186,7 @@
          * scroll content 에 노출될 data list 를 저장한다.
          *
          * @param {array} list
-         * @return {window.ne.Component.SimpleGrid}
+         * @return {ne.Component.SimpleGrid}
          */
         setList: function(list) {
             this.clear();
@@ -196,7 +201,7 @@
          * scroll content 에 노출될 data list 를 append 한다.
          *
          * @param {array} list
-         * @return {window.ne.Component.SimpleGrid}
+         * @return {ne.Component.SimpleGrid}
          */
         append: function(list) {
             this.model.collection.append(list);
@@ -206,7 +211,7 @@
          * scroll content 에 노출될 data list 를 prepend 한다.
          *
          * @param {array} list
-         * @return {window.ne.Component.SimpleGrid}
+         * @return {ne.Component.SimpleGrid}
          */
         prepend: function(list) {
             this.model.collection.prepend(list);
@@ -215,7 +220,7 @@
         /**
          * 노출된 데이터를 전부 초기화 한다.
          *
-         * @return {window.ne.Component.SimpleGrid}
+         * @return {ne.Component.SimpleGrid}
          */
         clear: function() {
             this.model.collection.clear();
@@ -231,7 +236,7 @@
         /**
          * 스크롤을 랜더링한다.
          *
-         * @return {window.ne.Component.SimpleGrid}
+         * @return {ne.Component.SimpleGrid}
          */
         render: function() {
             this.destroyChildren();
@@ -286,13 +291,10 @@
             }
         }
     });
-    /**
-     * SimpleGrid instance container
-     * @type {{}}
-     */
+    /* istanbul ignore next*/
     ne.Component.SimpleGrid.prototype.__instance = {};
     /**
-     *
+     * id 에 해당하는 인스턴스를 반환한다.
      * @param {number} id
      * @return {object}
      */

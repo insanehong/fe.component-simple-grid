@@ -11,7 +11,8 @@
             'mousedown': '_onMouseDown'
         },
         className: 'infinite_selection_layer',
-        style: 'display:none;position:absolute;top:0;left:1px;width:0;height:0;border:dotted 1px red;background:orange;opacity:0.2;filter:alpha(opacity=10)',
+        style: 'display:none;position:absolute;top:0;left:1px;width:0;height:0;border:dotted 1px red;' +
+        'background:orange;opacity:0.2;filter:alpha(opacity=10)',
         init: function(attributes) {
             Base.View.prototype.init.apply(this, arguments);
             this.grid.view.keyboard.on({
@@ -70,15 +71,16 @@
          */
         _onMouseDown: function(mouseDownEvent) {
             var pageX = mouseDownEvent.pageX,
-                pageY = mouseDownEvent.pageY;
+                pageY = mouseDownEvent.pageY,
+                key = this.getKey(pageX, pageY);
 
             this.attachMouseEvent(mouseDownEvent);
-            this.grid.focusModel.select(this.getKey(pageX, pageY));
+            this.grid.focusModel.select(key);
             if (mouseDownEvent.shiftKey) {
-                if(!this.hasSelection()) {
-                    this.startSelection();
+                if (!this.hasSelection()) {
+                    this.startSelection(key);
                 }
-                this.updateSelection();
+                this.updateSelection(key);
             } else {
                 this.stopSelection();
             }
@@ -399,5 +401,14 @@
 
             this._attachHandler();
             return this;
+        },
+        /**
+         * 소멸자
+         */
+        destroy: function() {
+            this.detachMouseEvent();
+            this.destroyChildren();
+            this._detachHandler(this.$el);
+            this.$el.empty().remove();
         }
     });

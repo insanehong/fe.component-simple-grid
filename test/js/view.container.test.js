@@ -114,4 +114,18 @@ describe('view.container', function() {
             expect(container.el.scrollLeft).toBe(10);
         });
     });
+    describe('_onScroll', function() {
+        beforeEach(function() {
+            simpleGrid.setList([{"column1":"0_0","column2":"0_1","column3":"0_2","column4":"0_3","column5":"0_4"},{"column1":"1_0","column2":"1_1","column3":"1_2","column4":"1_3","column5":"1_4"},{"column1":"2_0","column2":"2_1","column3":"2_2","column4":"2_3","column5":"2_4"},{"column1":"3_0","column2":"3_1","column3":"3_2","column4":"3_3","column5":"3_4"},{"column1":"4_0","column2":"4_1","column3":"4_2","column4":"4_3","column5":"4_4"},{"column1":"5_0","column2":"5_1","column3":"5_2","column4":"5_3","column5":"5_4"},{"column1":"6_0","column2":"6_1","column3":"6_2","column4":"6_3","column5":"6_4"},{"column1":"7_0","column2":"7_1","column3":"7_2","column4":"7_3","column5":"7_4"},{"column1":"8_0","column2":"8_1","column3":"8_2","column4":"8_3","column5":"8_4"},{"column1":"9_0","column2":"9_1","column3":"9_2","column4":"9_3","column5":"9_4"},{"column1":"10_0","column2":"10_1","column3":"10_2","column4":"10_3","column5":"10_4"}]);
+        });
+        it('Firefox 에서 휠돌릴때 미세하게 스크롤될 경우, 스크롤 보정값이 잘 동작하는지 확인한다.', function() {
+            container._onScroll({
+                target: {
+                    scrollTop: 2
+                }
+            });
+            expect(container.model.scrollTop).toBe(21);
+        });
+
+    });
 });

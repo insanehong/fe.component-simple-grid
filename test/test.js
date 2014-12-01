@@ -3,7 +3,7 @@ var infinite1 = new ne.Component.SimpleGrid({
     rowHeight: 25,    //line 당 pixel
     displayCount: 20,  //영역에 보여줄 line 갯수
     headerHeight: 30,
-    scrollX: false,
+    scrollX: true,
     scrollY: true,
     freeze: true,    //Data Prepend 시 현재  scroll 된 위치를 유지할 것인지 여부
     keyEventBubble: false,  //key 입력시 이벤트 버블링 할지 여부
@@ -73,7 +73,7 @@ var infinite2 = new ne.Component.SimpleGrid({
     rowHeight: 25,    //line 당 pixel
     displayCount: 20,  //영역에 보여줄 line 갯수
     headerHeight: 30,
-    scrollX: true,
+    scrollX: false,
     scrollY: true,
     keyEventBubble: false,  //key 입력시 이벤트 버블링 할지 여부
     defaultColumnWidth: 50,
@@ -122,7 +122,6 @@ var infinite2 = new ne.Component.SimpleGrid({
 
 
 infinite2.on('click', function(customEvent) {
-    console.log(customEvent);
     if (customEvent.$target.hasClass('test_click')) {
         alert('remove: ' + customEvent.$target.val());
         infinite2.remove(customEvent.rowKey);

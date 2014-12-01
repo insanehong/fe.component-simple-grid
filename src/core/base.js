@@ -215,7 +215,7 @@ ne.Component = ne.Component || {};
          * @return {number}
          */
         getHeight: function(rowCount, rowHeight, border) {
-            border = ne.util.isUndefined(border) ? 1  : border;
+            border = ne.util.isUndefined(border) ? 1 : border;
             return rowCount === 0 ? rowCount : rowCount * (rowHeight + border) + border;
         },
         /**

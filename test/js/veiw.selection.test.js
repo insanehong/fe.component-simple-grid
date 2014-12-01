@@ -10,12 +10,13 @@ describe('view.selection', function() {
 
         $empty = $('#empty');
         simpleGrid = new ne.Component.SimpleGrid({
+            useSelection: true,
             $el: $empty,
             columnModelList: [
                 {
                     columnName: 'column1',
                     title: '컬럼1',
-                    width: 70,
+                    width: 700,
                     align: 'center',
                     formatter: function(value, rowData) {
                         return '<input type="button" class="test_click" value="' + value + '"/>';
@@ -24,7 +25,7 @@ describe('view.selection', function() {
                 {
                     columnName: 'column2',
                     title: '컬럼1',
-                    width: 60
+                    width: 630
                 },
                 {
                     columnName: 'column3',
@@ -43,7 +44,7 @@ describe('view.selection', function() {
                 }
             ]
         });
-        simpleGrid.setList([{"column1":"0_0","column2":"0_1","column3":"0_2","column4":"0_3","column5":"0_4"},{"column1":"1_0","column2":"1_1","column3":"1_2","column4":"1_3","column5":"1_4"},{"column1":"2_0","column2":"2_1","column3":"2_2","column4":"2_3","column5":"2_4"},{"column1":"3_0","column2":"3_1","column3":"3_2","column4":"3_3","column5":"3_4"},{"column1":"4_0","column2":"4_1","column3":"4_2","column4":"4_3","column5":"4_4"},{"column1":"5_0","column2":"5_1","column3":"5_2","column4":"5_3","column5":"5_4"},{"column1":"6_0","column2":"6_1","column3":"6_2","column4":"6_3","column5":"6_4"},{"column1":"7_0","column2":"7_1","column3":"7_2","column4":"7_3","column5":"7_4"},{"column1":"8_0","column2":"8_1","column3":"8_2","column4":"8_3","column5":"8_4"},{"column1":"9_0","column2":"9_1","column3":"9_2","column4":"9_3","column5":"9_4"},{"column1":"10_0","column2":"10_1","column3":"10_2","column4":"10_3","column5":"10_4"}]);
+        simpleGrid.setList([{"column1":"0_0","column2":"0_1","column3":"0_2","column4":"0_3","column5":"0_4"},{"column1":"1_0","column2":"1_1","column3":"1_2","column4":"1_3","column5":"1_4"},{"column1":"2_0","column2":"2_1","column3":"2_2","column4":"2_3","column5":"2_4"},{"column1":"3_0","column2":"3_1","column3":"3_2","column4":"3_3","column5":"3_4"},{"column1":"4_0","column2":"4_1","column3":"4_2","column4":"4_3","column5":"4_4"},{"column1":"5_0","column2":"5_1","column3":"5_2","column4":"5_3","column5":"5_4"},{"column1":"6_0","column2":"6_1","column3":"6_2","column4":"6_3","column5":"6_4"},{"column1":"7_0","column2":"7_1","column3":"7_2","column4":"7_3","column5":"7_4"},{"column1":"8_0","column2":"8_1","column3":"8_2","column4":"8_3","column5":"8_4"},{"column1":"9_0","column2":"9_1","column3":"9_2","column4":"9_3","column5":"9_4"},{"column1":"10_0","column2":"10_1","column3":"10_2","column4":"10_3","column5":"10_4"},{"column1":"0_0","column2":"0_1","column3":"0_2","column4":"0_3","column5":"0_4"},{"column1":"1_0","column2":"1_1","column3":"1_2","column4":"1_3","column5":"1_4"},{"column1":"2_0","column2":"2_1","column3":"2_2","column4":"2_3","column5":"2_4"},{"column1":"3_0","column2":"3_1","column3":"3_2","column4":"3_3","column5":"3_4"},{"column1":"4_0","column2":"4_1","column3":"4_2","column4":"4_3","column5":"4_4"},{"column1":"5_0","column2":"5_1","column3":"5_2","column4":"5_3","column5":"5_4"},{"column1":"6_0","column2":"6_1","column3":"6_2","column4":"6_3","column5":"6_4"},{"column1":"7_0","column2":"7_1","column3":"7_2","column4":"7_3","column5":"7_4"},{"column1":"8_0","column2":"8_1","column3":"8_2","column4":"8_3","column5":"8_4"},{"column1":"9_0","column2":"9_1","column3":"9_2","column4":"9_3","column5":"9_4"},{"column1":"10_0","column2":"10_1","column3":"10_2","column4":"10_3","column5":"10_4"},{"column1":"0_0","column2":"0_1","column3":"0_2","column4":"0_3","column5":"0_4"},{"column1":"1_0","column2":"1_1","column3":"1_2","column4":"1_3","column5":"1_4"},{"column1":"2_0","column2":"2_1","column3":"2_2","column4":"2_3","column5":"2_4"},{"column1":"3_0","column2":"3_1","column3":"3_2","column4":"3_3","column5":"3_4"},{"column1":"4_0","column2":"4_1","column3":"4_2","column4":"4_3","column5":"4_4"},{"column1":"5_0","column2":"5_1","column3":"5_2","column4":"5_3","column5":"5_4"},{"column1":"6_0","column2":"6_1","column3":"6_2","column4":"6_3","column5":"6_4"},{"column1":"7_0","column2":"7_1","column3":"7_2","column4":"7_3","column5":"7_4"},{"column1":"8_0","column2":"8_1","column3":"8_2","column4":"8_3","column5":"8_4"},{"column1":"9_0","column2":"9_1","column3":"9_2","column4":"9_3","column5":"9_4"},{"column1":"10_0","column2":"10_1","column3":"10_2","column4":"10_3","column5":"10_4"}]);
         selection = simpleGrid.view.container.body.selection;
     });
     afterEach(function() {
@@ -133,7 +134,79 @@ describe('view.selection', function() {
             selection.updateSelection(10);
         });
         it('key 로 저장된 selection range 를 index 로 변환하여 반환한다.', function() {
-            expect(selection.getSelectionRangeIndex()).toEqual([0, 12]);
+            expect(selection.getSelectionRangeIndex()).toEqual([12, 13]);
         });
+    });
+    describe('attachMouseEvent', function() {
+        it('초기 마우스 포지션이 잘 바인딩 되는지 확인한다.', function() {
+            selection.attachMouseEvent({
+                pageX: 10,
+                pageY: 20
+            });
+            expect(selection.startPageX).toBe(10);
+            expect(selection.startPageY).toBe(20);
+        });
+    });
+    describe('_onMouseDown', function() {
+        it('focusModel 의 select 를 호출하는지 확인한다.', function() {
+            selection.grid.focusModel.select = jasmine.createSpy('select');
+            selection._onMouseDown({
+                pageX: 10,
+                pageY: 20
+            });
+            expect(selection.grid.focusModel.select).toHaveBeenCalled();
+        });
+        it('shift 키와 함께 눌렸을 경우 startSelection 을 호출한다.', function() {
+            selection.grid.focusModel.select = jasmine.createSpy('select');
+            selection._onMouseDown({
+                pageX: 10,
+                pageY: 20,
+                shiftKey: true
+            });
+            expect(selection.grid.focusModel.select).toHaveBeenCalled();
+        });
+    });
+    describe('_onMouseUp', function() {
+        it('detachMouseEvent 를 호출하는지 확인한다.', function() {
+            selection.detachMouseEvent = jasmine.createSpy('detachMouseEvent');
+            selection._onMouseUp();
+            expect(selection.detachMouseEvent).toHaveBeenCalled();
+        });
+    });
+    describe('_scrollOnSelection', function() {
+
+        describe('overflow 상태에 따라 스크롤 값을 조정하는지 확인한다.', function() {
+            beforeEach(function() {
+                selection.startSelection(1);
+            });
+            it('pageY 가 overflow -', function() {
+                selection.model.scrollTop = 300;
+                selection.mousePos.pageX = 0;
+                selection.mousePos.pageY = 0;
+                selection._scrollOnSelection();
+                expect(selection.model.scrollTop).toBe(260);
+                selection._scrollOnSelection();
+                expect(selection.model.scrollTop).toBe(220);
+            });
+            it('pageY 가 overflow +', function() {
+                selection.mousePos.pageX = 0;
+                selection.mousePos.pageY = 500;
+                selection._scrollOnSelection();
+                expect(selection.model.scrollTop).toBe(40);
+            });
+            it('pageX 가 overflow -', function() {
+                selection.model.scrollLeft = 300;
+                selection.mousePos.pageX = 0;
+                selection._scrollOnSelection();
+                expect(selection.model.scrollLeft).toBe(260);
+            });
+            it('pageX 가 overflow +', function() {
+                selection.model.scrollLeft = 300;
+                selection.mousePos.pageX = 1500;
+                selection._scrollOnSelection();
+                expect(selection.model.scrollLeft).toBe(340);
+            });
+        });
+
     });
 });

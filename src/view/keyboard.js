@@ -4,7 +4,7 @@
  */
     /**
      * Keyboard
-     * @constructor KeyboardView
+     * @constructor Keyboard
      */
     var Keyboard = ne.util.defineClass(Base.View, /**@lends Keyboard.prototype */{
         keyMap: {
@@ -47,6 +47,7 @@
         /**
          * blur event handler
          * @param {event} blurEvent blur 이벤트
+         * @private
          */
         _onBlur: function(blurEvent) {
             this.model.collection.unlock();
@@ -69,9 +70,7 @@
             var scrollTop,
                 keyIdentified = true,
                 keyCode = keyDownEvent.which ? keyDownEvent.which : keyDownEvent.keyCode;
-    
             this.model.collection.lock();
-    
             switch (keyCode) {
                 case this.keyMap.SHIFT:
                     break;
@@ -118,7 +117,6 @@
                     keyIdentified = false;
                     break;
             }
-    
             if (keyIdentified && !this.grid.option('keyEventBubble')) {
                 keyDownEvent.stopPropagation();
             }
