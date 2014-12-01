@@ -60,14 +60,6 @@ infinite1.on('click', function(customEvent) {
 
 
 
-
-
-
-
-
-
-
-
 var infinite2 = new ne.Component.SimpleGrid({
     $el: $('#simpleGrid2'),
     rowHeight: 25,    //line 당 pixel
@@ -77,7 +69,7 @@ var infinite2 = new ne.Component.SimpleGrid({
     scrollY: true,
     keyEventBubble: false,  //key 입력시 이벤트 버블링 할지 여부
     defaultColumnWidth: 50,
-    keyColumnName: 'column1',
+    //keyColumnName: 'column1',
     color: {
         border: 'red',
         th: 'yellow',
@@ -117,6 +109,40 @@ var infinite2 = new ne.Component.SimpleGrid({
             width: 90
         }
     ]
+});
+$('#append').on('click', function() {
+    infinite2.append([{
+        'column1': 'append',
+        'column2': 'append',
+        'column3': 'append',
+        'column4': 'append',
+        'column5': 'append'
+    },{
+            'column1': 'append',
+            'column2': 'append',
+            'column3': 'append',
+            'column4': 'append',
+            'column5': 'append'
+    }]);
+});
+$('#prepend').on('click', function() {
+    infinite2.prepend([{
+        'column1': 'prepend',
+        'column2': 'prepend',
+        'column3': 'prepend',
+        'column4': 'prepend',
+        'column5': 'prepend'
+    },{
+        'column1': 'prepend',
+        'column2': 'prepend',
+        'column3': 'prepend',
+        'column4': 'prepend',
+        'column5': 'prepend'
+    }]);
+});
+
+$('#clear').on('click', function() {
+    infinite2.clear();
 });
 
 

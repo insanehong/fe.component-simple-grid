@@ -278,7 +278,8 @@
          * @private
          */
         _getDataHeight: function(list) {
-            return Util.getHeight(list.length, this.rowHeight);
+            var border = this.grid.option('border');
+            return Util.getHeight(list.length, this.rowHeight, border);
         },
         /**
          * 옵션값에 scroll fix 가 설정되어 있다면, scroll fix 한다.
