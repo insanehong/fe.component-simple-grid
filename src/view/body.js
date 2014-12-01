@@ -127,7 +127,6 @@
                 selection = this.selection;
 
             this.grid.focusModel.select(rowKey);
-
             if (selection) {
                 selection.attachMouseEvent(mouseDownEvent);
                 if (mouseDownEvent.shiftKey) {

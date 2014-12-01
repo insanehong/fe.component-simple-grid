@@ -19,9 +19,10 @@ var Spacer = ne.util.defineClass(Base.View, /**@lends Spacer.prototype */{
      * @returns {Spacer}
      */
     render: function() {
-        var color = this.grid.option('color'),
-            height = this.grid.option('headerHeight'),
-            border =  this.grid.option('border'),
+        var grid = this.grid,
+            color = grid.option('color'),
+            height = grid.option('headerHeight'),
+            border = grid.option('border'),
             top = border ? 0 : 1,
             right = border ? 0 : 1,
             width = 17 - border,

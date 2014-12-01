@@ -69,7 +69,11 @@
          * @private
          */
         _onMouseDown: function(mouseDownEvent) {
+            var pageX = mouseDownEvent.pageX,
+                pageY = mouseDownEvent.pageY;
+
             this.attachMouseEvent(mouseDownEvent);
+            this.grid.focusModel.select(this.getKey(pageX, pageY));
             if (mouseDownEvent.shiftKey) {
                 if(!this.hasSelection()) {
                     this.startSelection();
@@ -92,7 +96,7 @@
                 this.timeoutForUpdateSelection = setTimeout($.proxy(this._scrollOnSelection, this), 0);
                 this.updateSelection();
             } else if (this._getDistance(mouseMoveEvent) > 10) {
-                this.startSelection();
+                this.startSelection(this.getKey(this.startPageX, this.startPageY));
             }
         },
         /**
@@ -319,6 +323,7 @@
                 rowHeight = model.rowHeight,
                 offsetTop = model.offsetTop,
                 height = model.height,
+                border = this.grid.option('border'),
                 headerHeight = model.headerHeight,
                 containerPosY = pageY - offsetTop - headerHeight,
                 dataPosY = scrollTop + containerPosY,
@@ -330,7 +335,7 @@
                 dataPosY = scrollTop + 1;
             }
 
-            idx = Math.min(Math.max(0, Math.floor(dataPosY / (rowHeight + 1))), model.collection.length - 1);
+            idx = Math.min(Math.max(0, Math.floor(dataPosY / (rowHeight + border))), model.collection.length - 1);
             return model.collection.at(idx) && model.collection.at(idx).id;
         },
         /**
@@ -344,7 +349,7 @@
                     totalRowCount = this.model.collection.length,
                     startIdx = Math.min(start, end),
                     endIdx = Math.max(start, end),
-                    top = Util.getHeight(startIdx, this.model.rowHeight, border),
+                    top = Util.getHeight(startIdx, this.model.rowHeight, border) - border,
                     height = Util.getHeight(((endIdx - startIdx) + 1), this.model.rowHeight, border),
                     fixedTop, fixedDifference, fixedHeight,
                     width = this.model.width - 3,
