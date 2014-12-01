@@ -90,7 +90,7 @@ var infinite2 = new ne.Component.SimpleGrid({
         },
         {
             columnName: 'column2',
-            title: '컬럼1',
+            title: '컬럼2',
             width: 60
         },
         {

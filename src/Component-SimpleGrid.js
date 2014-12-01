@@ -4,19 +4,55 @@
      * @example
      //Simple Grid 인스턴스 생성
         var simpleGrid = new ne.Component.SimpleGrid({
-            $el : $('#infiniteScroll'),    //무한 스크롤을 생성할 div jQuery 엘리먼트
-            rowHeight : 20,    //한 행의 높이에 (default : 20)
-            displayCount : 15,    //화면에 보여질 line 갯수 (default : 15)
-            scrollX : true,        //가로 스크롤 여부    (default : true)
-            scrollY : true,        //세로 스크롤 여부    (default : true)
-            scrollFix : true    //prepend 로 데이터 추가 시 현재 scroll 영역 유지 여부 (default : true)
+            $el: $('#simpleGrid2'),
+            rowHeight: 25,    //line 당 pixel
+            displayCount: 20,  //영역에 보여줄 line 갯수
+            headerHeight: 30,
+            scrollX: false,
+            scrollY: true,
+            keyEventBubble: false,  //key 입력시 이벤트 버블링 할지 여부
+            defaultColumnWidth: 50,
+            //keyColumnName: 'column1',
+            color: {
+                border: 'red',
+                th: 'yellow',
+                td: '#FFFFFF',
+                selection: 'blue'
+            },
+            border: 0,
+            opacity: '0.5',
+            columnModelList: [
+                {
+                    columnName: 'column1',
+                    title: '컬럼1',
+                    width: 70,
+                    align: 'center',
+                    formatter: function(value, rowData) {
+                        return '<input type="button" class="test_click" value="' + value + '"/>';
+                    }
+                },
+                {
+                    columnName: 'column2',
+                    title: '컬럼2',
+                    width: 60
+                },
+                {
+                    columnName: 'column3',
+                    title: '컬럼3',
+                    width: 70
+                },
+                {
+                    columnName: 'column4',
+                    title: '컬럼4',
+                    width: 80
+                },
+                {
+                    columnName: 'column5',
+                    title: '컬럼5',
+                    width: 90
+                }
+            ]
         });
-        infinite.setList(dummy.real);    //배열을 인자로 데이터 설정
-
-        //infinite.append(dummy.append);    //배열을 인자로 하여 데이터 append
-        //infinite.prepend(dummy.append);    //배열을 인자로 하여 데이터 prepend
-        //infinite.clear();                    //데이터 초기화
-        //var dataList = infinite.getList();    //배열 형태로 현재 data 를 가져온다.
      */
     ne.Component.SimpleGrid = ne.util.defineClass(Base.View, /**@lends ne.Component.SimpleGrid.prototype */{
         scrollBarSize: 17,
@@ -40,12 +76,13 @@
          *          @param {string} [options.color.selection='orange']  선택영역 색상
          *      @param {object} [options.opacity=0.2] 선택 영역 레이어 투명도
          *      @param {object} [options.border=1] 테이블 border 두께
-         *      @param {object} [options.defaultColumnWidth=50] 값을 지정하지 않았을 때 설정될 기본 column 너비
+         *      @param {object} [options.defaultColumnWidth=50] 컬럼 모델에 너비 값을 지정하지 않았을 때 설정될 기본 column 너비
+         *      @param {object} [options.keyColumnName=null] 행의 key 값으로 사용될 필드명. 값을 지정하지 않을경우 내부에서 자동으로 값을 생성한다.
          *      @param {object} [options.columnModelList=[]] 컬럼모델 정보
          *          @param {string} [options.columnModelList.columnName] data field 명
          *          @param {string} [options.columnModelList.title] Header 영역에 표시될 컬럼 이름
          *          @param {string} [options.columnModelList.width] 해당 컬럼의 너비
-         *          @param {string} [options.columnModelList.width] 해당 컬럼의 정렬기준
+         *          @param {string} [options.columnModelList.align] 해당 컬럼의 정렬기준
          *          @param {function} [options.columnModelList.formatter] 데이터를 화면에 표시할 때 값의 포맷팅 처리를 하기 위한 함수.
          *          값을 출력하기 전에 formatter 함수에 해당 컬럼의 값을 전달하고 해당 함수가 리턴한 값을 화면 상에 표시한다.
          * @return {ne.Component.SimpleGrid}
@@ -188,12 +225,34 @@
          *
          * @param {array} list
          * @return {ne.Component.SimpleGrid}
+         * @example
+         simpleGrid.setList([
+            {
+                column1: 1,
+                column2: 2,
+                column3: 3,
+                column4: 4,
+                column5: 5
+            },
+            {
+                column1: 1,
+                column2: 2,
+                column3: 3,
+                column4: 4,
+                column5: 5
+            }
+         ]);
          */
         setList: function(list) {
             this.clear();
             this.model.collection.set(list);
             return this;
         },
+        /**
+         * id 에 해당하는 row 를 삭제한다.
+         * @param {(number|string)} id 삭제할 키값
+         * @returns {ne.Component.SimpleGrid}
+         */
         remove: function(id) {
             this.model.collection.remove(id);
             return this;
