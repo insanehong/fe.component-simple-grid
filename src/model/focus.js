@@ -16,7 +16,7 @@
             Base.prototype.init.apply(this, arguments);
             this.setOwnProperties({
                 selectMap: {},
-                isMultiple: options.isMultiple || false
+                isMultiple: options && options.isMultiple || false
             });
         },
         /**

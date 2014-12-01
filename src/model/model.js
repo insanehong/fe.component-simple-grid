@@ -172,6 +172,7 @@
          */
         _getMaxCollectionLength: function() {
             var border = this.grid.option('border');
+
             if (ne.util.browser.msie) {
                 //1533917 is the max height of IE (66692*23 + 1)
                 return Math.floor(1533900 / (this.rowHeight + border));
