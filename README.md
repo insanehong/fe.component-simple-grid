@@ -35,5 +35,4 @@ http://fetech.nhnent.com/svnrun/fetech/components/SimpleGrid/release/Component-S
 http://fetech.nhnent.com/svnrun/fetech/components/SimpleGrid/doc/index.html
 
 ## 적용된 페이지
-* 터치미 logcat 
-  * http://touchme.toast.com/agent/
+
