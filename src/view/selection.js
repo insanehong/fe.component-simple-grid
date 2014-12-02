@@ -128,14 +128,14 @@
             if (this.hasSelection()) {
                 var status = this.overflowStatus(this.mousePos.pageX, this.mousePos.pageY);
                 if (status.y > 0) {
-                    this.model.set('scrollTop', this.model.scrollTop + 40);
-                }else if (status.y < 0) {
-                    this.model.set('scrollTop', this.model.scrollTop - 40);
+                    this.model.set('scrollTop', this.model.scrollTop + this.grid.scrollScale);
+                } else if (status.y < 0) {
+                    this.model.set('scrollTop', this.model.scrollTop - this.grid.scrollScale);
                 }
                 if (status.x > 0) {
-                    this.model.set('scrollLeft', this.model.scrollLeft + 40);
-                }else if (status.x < 0) {
-                    this.model.set('scrollLeft', this.model.scrollLeft - 40);
+                    this.model.set('scrollLeft', this.model.scrollLeft + this.grid.scrollScale);
+                } else if (status.x < 0) {
+                    this.model.set('scrollLeft', this.model.scrollLeft - this.grid.scrollScale);
                 }
             }
         },
@@ -188,9 +188,10 @@
          * @return {Array}
          */
         getSelectionRangeIndex: function() {
-            var range = [
-                    this.model.collection.indexOf(this.model.collection.get(this.rangeKey[0])),
-                    this.model.collection.indexOf(this.model.collection.get(this.rangeKey[1]))
+            var collection = this.model.collection,
+                range = [
+                   collection.indexOf(collection.get(this.rangeKey[0])),
+                   collection.indexOf(collection.get(this.rangeKey[1]))
                 ],
                 startIdx = Math.min.apply(Math, range),
                 endIdx = Math.max.apply(Math, range);
@@ -301,13 +302,13 @@
                 };
             if (containerPosY > this.model.height + this.model.headerHeight) {
                 status.y = 1;
-            }else if (containerPosY < 0) {
+            } else if (containerPosY < 0) {
                 status.y = -1;
             }
 
             if (containerPosX > this.model.containerWidth) {
                 status.x = 1;
-            }else if (containerPosX < 0) {
+            } else if (containerPosX < 0) {
                 status.x = -1;
             }
             return status;
@@ -333,7 +334,7 @@
                 idx;
             if (status.y > 0) {
                 dataPosY = scrollTop + height - 1;
-            }else if (status.y < 0) {
+            } else if (status.y < 0) {
                 dataPosY = scrollTop + 1;
             }
 
@@ -345,10 +346,11 @@
          */
         draw: function() {
             if (this.isShown && (this.rangeKey[0] !== -1 && this.rangeKey[1] !== -1)) {
-                var border = this.grid.option('border'),
-                    start = this.model.collection.indexOf(this.model.collection.get(this.rangeKey[0])),
-                    end = this.model.collection.indexOf(this.model.collection.get(this.rangeKey[1])),
-                    totalRowCount = this.model.collection.length,
+                var collection = this.model.collection,
+                    border = this.grid.option('border'),
+                    start = collection.indexOf(collection.get(this.rangeKey[0])),
+                    end = collection.indexOf(collection.get(this.rangeKey[1])),
+                    totalRowCount = collection.length,
                     startIdx = Math.min(start, end),
                     endIdx = Math.max(start, end),
                     top = Util.getHeight(startIdx, this.model.rowHeight, border) - border,
@@ -374,7 +376,7 @@
                     height: fixedHeight + 'px',
                     display: display
                 });
-            }else {
+            } else {
                 this.$el.css({
                     display: 'none'
                 });

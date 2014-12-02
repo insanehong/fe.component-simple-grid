@@ -79,22 +79,22 @@
                 case this.keyMap.META:
                     break;
                 case this.keyMap.UP_ARROW:
-                    this.scrollVertical(-40);
+                    this.scrollVertical(-this.grid.scrollScale);
                     break;
                 case this.keyMap.DOWN_ARROW:
-                    this.scrollVertical(+40);
+                    this.scrollVertical(this.grid.scrollScale);
                     break;
                 case this.keyMap.LEFT_ARROW:
-                    this.scrollHorizontal(-40);
+                    this.scrollHorizontal(-this.grid.scrollScale);
                     break;
                 case this.keyMap.RIGHT_ARROW:
-                    this.scrollHorizontal(+40);
+                    this.scrollHorizontal(this.grid.scrollScale);
                     break;
                 case this.keyMap.PAGE_UP:
-                    this.scrollVertical(-90, true);
+                    this.scrollVertical(-this.grid.scrollScalePerPage, true);
                     break;
                 case this.keyMap.PAGE_DOWN:
-                    this.scrollVertical(+90, true);
+                    this.scrollVertical(this.grid.scrollScalePerPage, true);
                     break;
                 case this.keyMap.HOME:
                     this.model.set('scrollTop', 0);
@@ -132,10 +132,10 @@
             if (window.clipboardData) {
                 if (window.clipboardData.setData('Text', text)) {
                     this.$el.select();
-                }else {
+                } else {
                     this.$el.val('').select();
                 }
-            }else {
+            } else {
                 this.$el.val(text).select();
             }
             this.timeoutIdForKeyDown = setTimeout($.proxy(function() {

@@ -56,6 +56,8 @@
      */
     ne.Component.SimpleGrid = ne.util.defineClass(Base.View, /**@lends ne.Component.SimpleGrid.prototype */{
         scrollBarSize: 17,
+        scrollScale: 40,
+        scrollScalePerPage: 90,
         className: 'simple_grid',
         eventHandler: {
             'mousedown' : '_onMouseDown',
@@ -345,7 +347,7 @@
         option: function(key, value) {
             if (value === undefined) {
                 return this.options[key];
-            }else {
+            } else {
                 this.options[key] = value;
                 return this;
             }
