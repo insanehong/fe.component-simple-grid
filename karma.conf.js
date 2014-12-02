@@ -88,7 +88,6 @@ module.exports = function(config) {
 
             // fixtures
             {pattern: 'test/fixtures/*.html', watched: true, served: true, included: false},
-            {pattern: 'src/css/*.css', watched: true, served: true, included: false},
 
             // files to test
             {pattern: 'test/js/*.test.js', watched: true, served: true, included: true}
