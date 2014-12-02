@@ -47,10 +47,10 @@
         _onScroll: function(scrollEvent) {
             var difference = Math.abs(this.model.scrollTop - scrollEvent.target.scrollTop);
             //FF 에서의 스크롤 문제 해결
-            if (difference < 10 && difference !== 0) {
+            if (difference < 10 && difference > 0) {
                 if (this.model.scrollTop > scrollEvent.target.scrollTop) {
                     scrollEvent.target.scrollTop -= 80;
-                }else {
+                } else {
                     scrollEvent.target.scrollTop += 80;
                 }
             }

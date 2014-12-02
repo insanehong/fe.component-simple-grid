@@ -49,6 +49,10 @@
                 '<%=content%>' +
                 '</td>'
         },
+        /**
+         * 생성자 함수
+         * @param {object} attributes
+         */
         init: function(attributes) {
             Base.View.prototype.init.apply(this, arguments);
             if (this.grid.option('useSelection')) {

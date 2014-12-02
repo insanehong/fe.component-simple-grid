@@ -24,11 +24,7 @@
          * @return {Array}  선택 영역의 list
          */
         getSelectList: function() {
-            var selectList = [];
-            ne.util.forEach(this.selectMap, function(val, key) {
-                selectList.push(key);
-            }, this);
-            return selectList;
+            return ne.util.keys(this.selectMap);
         },
         /**
          * 행을 선택한다.

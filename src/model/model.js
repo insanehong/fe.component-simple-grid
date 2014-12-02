@@ -158,9 +158,9 @@
         _onScrollTopChange: function(value) {
             if (this.maxScrollTop < value) {
                 this.set('scrollTop', this.maxScrollTop, {silent: true});
-            }else if (value < 0) {
+            } else if (value < 0) {
                 this.set('scrollTop', 0, {silent: true});
-            }else {
+            } else {
                 if (this._isRenderable()) {
                     this._refresh();
                 }
@@ -205,7 +205,7 @@
                 ne.util.forEach(key, function(val, key) {
                     this.set(key, val, value);
                 }, this);
-            }else {
+            } else {
                 if (this[key] != value) {
                     this[key] = value;
 

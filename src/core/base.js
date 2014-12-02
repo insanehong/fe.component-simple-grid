@@ -85,7 +85,7 @@ ne.Component = ne.Component || {};
                 });
             }
             this.setOwnProperties({
-                __viewList: [],
+                _viewList: [],
                 _eventHandler: eventHandler,
                 $el: $el,
                 el: $el[0]
@@ -153,21 +153,21 @@ ne.Component = ne.Component || {};
          */
         createView: function(constructor, params) {
             var instance = new constructor(params);
-            if (!this.hasOwnProperty('__viewList')) {
+            if (!this.hasOwnProperty('_viewList')) {
                 this.setOwnProperties({
-                    __viewList: []
+                    _viewList: []
                 });
             }
-            this.__viewList.push(instance);
+            this._viewList.push(instance);
             return instance;
         },
         /**
          * destroyChildren
          */
         destroyChildren: function() {
-            if (ne.util.isArray(this.__viewList)) {
-                while (this.__viewList.length !== 0) {
-                    this.__viewList.pop().destroy();
+            if (ne.util.isArray(this._viewList)) {
+                while (this._viewList.length !== 0) {
+                    this._viewList.pop().destroy();
                 }
             }
         },
@@ -202,7 +202,7 @@ ne.Component = ne.Component || {};
          */
         template: function(template, mapper) {
             template.replace(/<%=[^%]+%>/g, '');
-            var replaced = template.replace(/<%=([^%]+)%>/g, function callback(matchedString, name, index, fullString) {
+            var replaced = template.replace(/<%=([^%]+)%>/g, function(matchedString, name, index, fullString) {
                 return ne.util.isUndefined(mapper[name]) ? '' : mapper[name].toString();
             });
             return replaced;
