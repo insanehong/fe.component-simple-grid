@@ -11,12 +11,12 @@ var Spacer = ne.util.defineClass(Base.View, /**@lends Spacer.prototype */{
     eventHandler: {},
     className: 'infinite_spacer',
     style: 'display: block;	position: absolute;	top: 0;	right: 0; width: 16px;',
-    init: function (attributes) {
+    init: function(attributes) {
         Base.View.prototype.init.apply(this, arguments);
     },
     /**
      * 렌더링 한다.
-     * @returns {Spacer}
+     * @return {Spacer}
      */
     render: function() {
         var grid = this.grid,

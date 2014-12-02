@@ -184,7 +184,7 @@
         _getColGroupMarkup: function(columnWidthList) {
             var col = '';
             ne.util.forEachArray(columnWidthList, function(width) {
-                col += '<col style="width:'+ width + 'px"></col>';
+                col += '<col style="width:' + width + 'px"></col>';
             }, this);
             return col;
         },
@@ -205,9 +205,9 @@
                     height = this.model.rowHeight,
                     colSpanBy = item.data['_colSpanBy'],
                     length = columnModelList.length,
-                    attributes = ne.util.isExisty(colSpanBy) ? 'colspan="' +length+ '"' : '';
+                    attributes = ne.util.isExisty(colSpanBy) ? 'colspan="' + length + '"' : '';
                 //각 TD의 마크업을 생성한다.
-                ne.util.forEachArray(columnModelList, function (columnModel) {
+                ne.util.forEachArray(columnModelList, function(columnModel) {
                     var td,
                         columnName = columnModel['columnName'],
                         content;

@@ -12,7 +12,7 @@ var Header = ne.util.defineClass(Base.View, /**@lends Header.prototype */{
     },
     className: 'infinite_header_container',
     style: 'overflow:hidden',
-    init: function (attributes) {
+    init: function (attributes){
         Base.View.prototype.init.apply(this, arguments);
         this.model.on('change', this._onModelChange, this);
     },
@@ -41,7 +41,7 @@ var Header = ne.util.defineClass(Base.View, /**@lends Header.prototype */{
             value = changeEvent.value;
         if (key === 'width') {
             this._setContainerWidth(value);
-        } else if( key === 'scrollLeft') {
+        } else if (key === 'scrollLeft') {
             this.$el[0].scrollLeft = value;
         } else if (key === 'columnWidthList') {
             this._changeColumnWidth(value);
