@@ -55,9 +55,21 @@
         });
      */
     ne.Component.SimpleGrid = ne.util.defineClass(Base.View, /**@lends ne.Component.SimpleGrid.prototype */{
+        /**
+         * 스크롤바 사이즈
+         * @type {Number}
+         */
         scrollBarSize: 17,
-        scrollScale: 40,
-        scrollScalePerPage: 90,
+        /**
+         * 방향키 스크롤 시 입력당 이동 단위 pixel
+         * @type {Number}
+         */
+        scrollingScale: 40,
+        /**
+         * page up/ down 스크롤 시 입력당 이동 단위 %
+         * @type {Number}
+         */
+        scrollingScalePerPage: 90,
         className: 'simple_grid',
         eventHandler: {
             'mousedown' : '_onMouseDown',

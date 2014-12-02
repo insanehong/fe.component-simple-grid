@@ -79,22 +79,22 @@
                 case this.keyMap.META:
                     break;
                 case this.keyMap.UP_ARROW:
-                    this.scrollVertical(-this.grid.scrollScale);
+                    this.scrollVertical(-this.grid.scrollingScale);
                     break;
                 case this.keyMap.DOWN_ARROW:
-                    this.scrollVertical(this.grid.scrollScale);
+                    this.scrollVertical(this.grid.scrollingScale);
                     break;
                 case this.keyMap.LEFT_ARROW:
-                    this.scrollHorizontal(-this.grid.scrollScale);
+                    this.scrollHorizontal(-this.grid.scrollingScale);
                     break;
                 case this.keyMap.RIGHT_ARROW:
-                    this.scrollHorizontal(this.grid.scrollScale);
+                    this.scrollHorizontal(this.grid.scrollingScale);
                     break;
                 case this.keyMap.PAGE_UP:
-                    this.scrollVertical(-this.grid.scrollScalePerPage, true);
+                    this.scrollVertical(-this.grid.scrollingScalePerPage, true);
                     break;
                 case this.keyMap.PAGE_DOWN:
-                    this.scrollVertical(this.grid.scrollScalePerPage, true);
+                    this.scrollVertical(this.grid.scrollingScalePerPage, true);
                     break;
                 case this.keyMap.HOME:
                     this.model.set('scrollTop', 0);

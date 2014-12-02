@@ -128,14 +128,14 @@
             if (this.hasSelection()) {
                 var status = this.overflowStatus(this.mousePos.pageX, this.mousePos.pageY);
                 if (status.y > 0) {
-                    this.model.set('scrollTop', this.model.scrollTop + this.grid.scrollScale);
+                    this.model.set('scrollTop', this.model.scrollTop + this.grid.scrollingScale);
                 } else if (status.y < 0) {
-                    this.model.set('scrollTop', this.model.scrollTop - this.grid.scrollScale);
+                    this.model.set('scrollTop', this.model.scrollTop - this.grid.scrollingScale);
                 }
                 if (status.x > 0) {
-                    this.model.set('scrollLeft', this.model.scrollLeft + this.grid.scrollScale);
+                    this.model.set('scrollLeft', this.model.scrollLeft + this.grid.scrollingScale);
                 } else if (status.x < 0) {
-                    this.model.set('scrollLeft', this.model.scrollLeft - this.grid.scrollScale);
+                    this.model.set('scrollLeft', this.model.scrollLeft - this.grid.scrollingScale);
                 }
             }
         },
