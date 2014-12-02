@@ -251,7 +251,7 @@
         /**
          * id 에 해당하는 row 를 삭제한다.
          * @param {(number|string)} id 삭제할 키값
-         * @returns {ne.Component.SimpleGrid}
+         * @return {ne.Component.SimpleGrid}
          */
         remove: function(id) {
             this.model.collection.remove(id);

@@ -110,7 +110,7 @@ ne.Component = ne.Component || {};
         _dispatchHandler: function($target, isAttach) {
             $target = $target || this.$el;
             if ($target.length) {
-                ne.util.forEach(this._eventHandler, function (handler, name) {
+                ne.util.forEach(this._eventHandler, function(handler, name) {
                     var tmp = name.split(' '),
                         eventName = tmp[0],
                         selector = tmp[1] || '';
