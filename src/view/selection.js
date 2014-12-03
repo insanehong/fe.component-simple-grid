@@ -91,7 +91,6 @@
          * @private
          */
         _onMouseMove: function(mouseMoveEvent) {
-            var pos, key;
             this._setMousePos(mouseMoveEvent);
             if (this.hasSelection()) {
                 clearTimeout(this.timeoutForUpdateSelection);
