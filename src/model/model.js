@@ -12,10 +12,10 @@
             this._initializeVariables();
             this._setHeight();
             this.collection.on({
-                'change' : this._onCollectionChange
+                'change': this._onCollectionChange
             }, this);
             this.on({
-                'change' : this._onChange
+                'change': this._onChange
             }, this);
             this._calculateColumnWidthList();
         },

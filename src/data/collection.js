@@ -58,8 +58,8 @@ var Collection = ne.util.defineClass(Base, /**@lends Collection.prototype */{
                 this.list = this.list.slice(this.list.length - this.maxLength, this.list.length);
             }
             this.invoke('change', {
-                'type' : 'set',
-                'list' : list
+                'type': 'set',
+                'list': list
             });
         },
         /**

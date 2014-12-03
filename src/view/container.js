@@ -9,14 +9,14 @@
     var Container = ne.util.defineClass(Base.View, /**@lends Container.prototype */{
         className: 'infinite_container',
         eventHandler: {
-            'scroll' : '_onScroll'
+            'scroll': '_onScroll'
         },
         style: 'position: relative;',
         init: function(attributes) {
             Base.View.prototype.init.apply(this, arguments);
 
             this.model.on({
-                'change' : this._onModelChange
+                'change': this._onModelChange
             }, this);
             this._initializeCss();
         },
@@ -29,9 +29,9 @@
                 border = this.grid.option('border');
 
             this.$el.css({
-                'overflow-x' : this.grid.option('scrollX') ? 'scroll' : 'hidden',
-                'overflow-y' : this.grid.option('scrollY') ? 'scroll' : 'hidden',
-                'height' : this.grid.option('scrollX') ? this.model.height + this.grid.scrollBarSize : this.model.height
+                'overflow-x': this.grid.option('scrollX') ? 'scroll' : 'hidden',
+                'overflow-y': this.grid.option('scrollY') ? 'scroll' : 'hidden',
+                'height': this.grid.option('scrollX') ? this.model.height + this.grid.scrollBarSize : this.model.height
             });
             if (border === 0) {
                 this.$el.css('border', 'solid 1px ' + color);
@@ -56,7 +56,7 @@
             }
             this.model.set({
                 'scrollTop': scrollEvent.target.scrollTop,
-                'scrollLeft' : scrollEvent.target.scrollLeft
+                'scrollLeft': scrollEvent.target.scrollLeft
             });
             this.invoke('scroll', scrollEvent);
 

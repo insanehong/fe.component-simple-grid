@@ -77,8 +77,8 @@
         ieMaxHeight: 1533917,
         className: 'simple_grid',
         eventHandler: {
-            'mousedown' : '_onMouseDown',
-            'focus' : '_onFocus'
+            'mousedown': '_onMouseDown',
+            'focus': '_onFocus'
         },
         /**
          *  @param {Object} options 옵션 객체

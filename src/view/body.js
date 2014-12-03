@@ -65,12 +65,12 @@
             this.grid.focusModel.on('unselect', this.unselect, this);
 
             this.model.on({
-                'change' : this._onModelChange,
-                'refresh' : this._onRefresh
+                'change': this._onModelChange,
+                'refresh': this._onRefresh
             }, this);
 
             this.grid.view.container.on({
-                'scroll' : this._onScroll
+                'scroll': this._onScroll
             }, this);
         },
         /**

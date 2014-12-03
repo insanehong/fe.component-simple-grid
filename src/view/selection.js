@@ -16,10 +16,10 @@
         init: function(attributes) {
             Base.View.prototype.init.apply(this, arguments);
             this.grid.view.keyboard.on({
-                'blur' : this.stopSelection
+                'blur': this.stopSelection
             }, this);
             this.model.on({
-                'change' : this._onModelChange
+                'change': this._onModelChange
             }, this);
             this.setOwnProperties({
                 rangeKey: [-1, -1],
@@ -27,9 +27,9 @@
             });
             this.setOwnProperties({
                 selectionHandler: {
-                    'mousemove' : $.proxy(this._onMouseMove, this),
-                    'mouseup' : $.proxy(this._onMouseUp, this),
-                    'selectstart' : $.proxy(this._onSelectStart, this)
+                    'mousemove': $.proxy(this._onMouseMove, this),
+                    'mouseup': $.proxy(this._onMouseUp, this),
+                    'selectstart': $.proxy(this._onSelectStart, this)
                 },
                 timeoutForUpdateSelection: 0,
                 startPageX: 0,

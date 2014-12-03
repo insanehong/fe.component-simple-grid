@@ -8,25 +8,25 @@
      */
     var Keyboard = ne.util.defineClass(Base.View, /**@lends Keyboard.prototype */{
         keyMap: {
-            'PAGE_UP' : 33,
-            'PAGE_DOWN' : 34,
-            'LEFT_ARROW' : 37,
-            'UP_ARROW' : 38,
-            'RIGHT_ARROW' : 39,
-            'DOWN_ARROW' : 40,
-            'HOME' : 36,
-            'END' : 35,
-            'CHAR_A' : 65,
-            'CHAR_C' : 67,
-            'CTRL' : 17,
-            'META' : 91,
-            'SHIFT' : 16
+            'PAGE_UP': 33,
+            'PAGE_DOWN': 34,
+            'LEFT_ARROW': 37,
+            'UP_ARROW': 38,
+            'RIGHT_ARROW': 39,
+            'DOWN_ARROW': 40,
+            'HOME': 36,
+            'END': 35,
+            'CHAR_A': 65,
+            'CHAR_C': 67,
+            'CTRL': 17,
+            'META': 91,
+            'SHIFT': 16
         },
         eventHandler: {
-            'keydown' : '_onKeyDown',
-            'keyup' : '_onKeyUp',
-            'blur' : '_onBlur',
-            'focus' : '_onFocus'
+            'keydown': '_onKeyDown',
+            'keyup': '_onKeyUp',
+            'blur': '_onBlur',
+            'focus': '_onFocus'
         },
         tagName: 'textarea',
         style: 'position: absolute; width: 0; height: 0; top:0, left: -9999px;',

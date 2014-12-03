@@ -9,7 +9,7 @@
     var VirtualScrollBar = ne.util.defineClass(Base.View, /**@lends VirtualScrollBar.prototype */{
         className: 'infinite_virtial_scrollbar',
         eventHandler: {
-            'scroll' : '_onScroll'
+            'scroll': '_onScroll'
         },
         style: 'overflow-y: scroll; overflow-x: hidden; position: absolute; top: 0; right: 0; display: block;',
         init: function(attributes) {
