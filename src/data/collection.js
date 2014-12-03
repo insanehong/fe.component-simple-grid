@@ -131,7 +131,7 @@ var Collection = ne.util.defineClass(Base, /**@lends Collection.prototype */{
             } else {
 
                 ne.util.forEachArray(this.list, function(data, i) {
-                    if (data && data.id == obj.id) {
+                    if (data && data.id.toString() === obj.id.toString()) {
                         index = i;
                         return false;
                     }
