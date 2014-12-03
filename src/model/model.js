@@ -133,11 +133,14 @@
                     this._onScrollLeftChange(value);
                     break;
                 case 'rowHeight':
+                    this.collection.maxLength = this._getMaxCollectionLength();
+                    break;
                 case 'containerHeight':
                     this.collection.maxLength = this._getMaxCollectionLength();
                     break;
                 case 'containerWidth':
                     this._calculateColumnWidthList();
+                    break;
             }
         },
         /**
@@ -175,7 +178,7 @@
 
             if (ne.util.browser.msie) {
                 //1533917 is the max height of IE (66692*23 + 1)
-                return Math.floor(1533900 / (this.rowHeight + border));
+                return Math.floor(this.grid.ieMaxHeight / (this.rowHeight + border));
             } else {
                 return 0;
             }

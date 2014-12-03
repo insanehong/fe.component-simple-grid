@@ -70,6 +70,11 @@
          * @type {Number}
          */
         scrollingScalePerPage: 90,
+        /**
+         * 1533917 is the max height of IE (66692*23 + 1)
+         * @type {Number}
+         */
+        ieMaxHeight: 1533917,
         className: 'simple_grid',
         eventHandler: {
             'mousedown' : '_onMouseDown',
