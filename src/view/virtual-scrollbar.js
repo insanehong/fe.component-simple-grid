@@ -100,12 +100,17 @@
                 content = this.createView(VirtualScrollBar.Content, {
                     grid: this.grid
                 }),
-                border = this.grid.option('border');
-
+                border = this.grid.option('border'),
+                top;
+            if (this.grid.option('hasHeader')) {
+                top = this.grid.option('headerHeight') + ((border * 2) || 2);
+            } else {
+                top = 1;
+            }
 
             this.$el.css({
                 height: this.grid.option('scrollX') ? this.model.height + this.grid.scrollBarSize : this.model.height,
-                top: this.grid.option('headerHeight') + ((border * 2) || 2),
+                top: top,
                 right: right
             });
             this.$el.empty();

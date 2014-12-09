@@ -121,7 +121,8 @@
                     keyColumnName: null,
                     columnModelList: [],
                     defaultColumnWidth: 50,
-                    useSelection: false,
+                    useSelection: true,
+                    hasHeader: true,
                     color: {
                         border: '#EFEFEF',
                         th: '#F8F8F8',
@@ -149,6 +150,9 @@
                 options: options,
                 timeoutIdForBlur: 0
             });
+            if (!this.option('hasHeader')) {
+                this.option('headerHeight', 0);
+            }
             this._initializeModel();
             this._initializeView();
             this.render();
@@ -325,9 +329,13 @@
             }).css({
                 position: 'relative'
             });
-            this.$el.empty()
-                .append(this.view.header.render().el)
-                .append(this.view.spacer.render().el)
+            this.$el.empty();
+
+            if (this.option('hasHeader')) {
+                this.$el.append(this.view.header.render().el);
+            }
+
+            this.$el.append(this.view.spacer.render().el)
                 .append(this.view.container.render().el)
                 .append(this.view.keyboard.render().el);
 

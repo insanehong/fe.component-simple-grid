@@ -256,18 +256,21 @@
 
             this.$el.html(Util.template(this._template.table, {
                 border: border,
-                color: color['border'],
+                color: border ? color['border'] : '',
                 col: this._getColGroupMarkup(columnWidthList),
                 tbody: this._getTbodyMarkup()
             }));
 
-            this._setContainerWidth(this.model.width);
+            this._setContainerWidth(Math.ceil(this.model.width));
             ne.util.forEachArray(selectList, function(key) {
                 this.select(key);
             }, this);
 
-            this.selection && this.selection.draw();
+            if (this.selection) {
+                this.selection.draw();
+            }
             this._attachHandler();
+
             return this;
         },
         /**

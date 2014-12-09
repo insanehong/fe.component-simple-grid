@@ -62,13 +62,15 @@ infinite1.on('click', function(customEvent) {
 
 var infinite2 = new ne.Component.SimpleGrid({
     $el: $('#simpleGrid2'),
-    rowHeight: 25,    //line 당 pixel
+    rowHeight: 30,    //line 당 pixel
     displayCount: 20,  //영역에 보여줄 line 갯수
     headerHeight: 30,
-    scrollX: false,
+    scrollX: true,
     scrollY: true,
     keyEventBubble: false,  //key 입력시 이벤트 버블링 할지 여부
     defaultColumnWidth: 50,
+    useSelection: true,
+    hasHeader: false,
     //keyColumnName: 'column1',
     color: {
         border: 'red',
