@@ -1,6 +1,7 @@
 var infinite1 = new ne.Component.SimpleGrid({
     $el: $('#simpleGrid'),
     rowHeight: 25,    //line 당 pixel
+    height: 100,
     displayCount: 20,  //영역에 보여줄 line 갯수
     headerHeight: 30,
     scrollX: true,

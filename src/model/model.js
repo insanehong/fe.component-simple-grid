@@ -226,7 +226,14 @@
          * @private
          */
         _setHeight: function() {
-            var height = Util.getHeight(this.grid.option('displayCount'), this.grid.option('rowHeight'), this.grid.option('border'));
+            var height;
+
+            if (ne.util.isExisty(this.grid.option('height'))) {
+                height = this.grid.option('height');
+            } else {
+                height = Util.getHeight(this.grid.option('displayCount'), this.grid.option('rowHeight'), this.grid.option('border'));
+            }
+
             this.set('height', height);
         },
         /**

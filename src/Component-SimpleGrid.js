@@ -83,7 +83,11 @@
         /**
          *  @param {Object} options 옵션 객체
          *      @param {jQuery} options.$el root 엘리먼트
-         *      @param {number} [options.rowHeight=20] 한 행의 높이
+         *      @param {number} [options.headerHeight=30]  header 영역의 높이값
+         *      @param {number} [options.hasHeader=true] header 를 노출할지 여부.
+         *      @param {number} [options.height]    grid 의 높이값. displayCount 보다 우선한다.
+         *      @param {number} [options.useSelection=true]    selection 기능을 사용할 지 여부
+         *      @param {number} [options.rowHeight=20] 한 행의 높이값. height 가 설정될 경우 무시된다.
          *      @param {number} [options.displayCount=15] 한 화면에 보여질 행 개수
          *      @param {boolean} [options.scrollX=true] 가로 스크롤 사용 여부
          *      @param {boolean} [options.scrollY=true] 세로 스크롤 사용 여부
@@ -206,14 +210,16 @@
                 grid: this,
                 model: this.model
             });
-            this.view.header = this.createView(Header, {
-                grid: this,
-                model: this.model
-            });
-            this.view.spacer = this.createView(Spacer, {
-                grid: this,
-                model: this.model
-            });
+            if (this.option('hasHeader')) {
+                this.view.header = this.createView(Header, {
+                    grid: this,
+                    model: this.model
+                });
+                this.view.spacer = this.createView(Spacer, {
+                    grid: this,
+                    model: this.model
+                });
+            }
         },
         /**
          * mousedown event handler
@@ -332,11 +338,11 @@
             this.$el.empty();
 
             if (this.option('hasHeader')) {
-                this.$el.append(this.view.header.render().el);
+                this.$el.append(this.view.header.render().el)
+                    .append(this.view.spacer.render().el);
             }
 
-            this.$el.append(this.view.spacer.render().el)
-                .append(this.view.container.render().el)
+            this.$el.append(this.view.container.render().el)
                 .append(this.view.keyboard.render().el);
 
             if (this.option('scrollY')) {
