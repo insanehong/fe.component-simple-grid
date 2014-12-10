@@ -32,9 +32,6 @@
         style: 'position: absolute; width: 0; height: 0; top:0, left: -9999px;',
         init: function(attributes) {
             Base.View.prototype.init.apply(this, arguments);
-            this.setOwnProperties({
-                timeoutIdForKeyDown: 0
-            });
         },
         /**
          * focus event handler
@@ -128,7 +125,6 @@
         _keyDownForCopy: function() {
             /* istanbul ignore next: select, focus 검증할 수 없음 */
             var text = this.grid.getSelectionInstance().getSelectionData().join('\n');
-            clearTimeout(this.timeoutIdForKeyDown);
             if (window.clipboardData) {
                 if (window.clipboardData.setData('Text', text)) {
                     this.$el.select();
@@ -138,9 +134,6 @@
             } else {
                 this.$el.val(text).select();
             }
-            this.timeoutIdForKeyDown = setTimeout($.proxy(function() {
-                this.$el.val('');
-            }, this), 0);
         },
         /**
          * 세로 스크롤 한다.
