@@ -93,7 +93,7 @@
          *      @param {boolean} [options.scrollY=true] 세로 스크롤 사용 여부
          *      @param {boolean} [options.scrollFix=true] prepend 로 데이터 추가 시 현재 scroll 위치 유지 여부
          *      @param {object} [options.defaultColumnWidth=50] 컬럼 모델에 너비 값을 지정하지 않았을 때 설정될 기본 column 너비
-         *      @param {object} [options.keyColumnName=null] 행의 key 값으로 사용될 필드명. 값을 지정하지 않을경우 내부에서 자동으로 값을 생성한다.
+         *      @param {object} [options.idAttribute=null] 행의 key 값으로 사용될 필드명. 값을 지정하지 않을경우 내부에서 자동으로 값을 생성한다.
          *      @param {object} [options.columnModelList=[]] 컬럼모델 정보
          *          @param {string} [options.columnModelList.columnName] data field 명
          *          @param {string} [options.columnModelList.title] Header 영역에 표시될 컬럼 이름
@@ -122,7 +122,7 @@
                     scrollY: true,
                     freeze: true,    //Data Prepend 시 현재  scroll 된 위치를 유지할 것인지 여부
                     keyEventBubble: false,  //key 입력시 이벤트 버블링 할지 여부
-                    keyColumnName: null,
+                    idAttribute: null,
                     columnModelList: [],
                     defaultColumnWidth: 50,
                     useSelection: true,

@@ -86,12 +86,12 @@ var Collection = ne.util.defineClass(Base, /**@lends Collection.prototype */{
         _getFormattedList: function(list) {
             var obj,
                 id,
-                keyColumnName = this.grid.option('keyColumnName'),
+                idAttribute = this.grid.option('idAttribute'),
                 formattedList = [],
-                hasKeyColumn = !!keyColumnName;
+                hasIdAttribute = !!idAttribute;
 
             ne.util.forEachArray(list, function(data) {
-                id = hasKeyColumn ? data[keyColumnName] : this.idx++;
+                id = hasIdAttribute ? data[idAttribute] : this.idx++;
                 obj = {
                     //id: this._getId(data),
                     id: id,
