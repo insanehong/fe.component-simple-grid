@@ -250,8 +250,15 @@
             ne.util.forEachArray(collectionList, function(collection) {
                 var columnStringList = [];
                 ne.util.forEachArray(columnModelList, function(columnModel) {
-                    var columnName = columnModel['columnName'];
-                    columnStringList.push(collection.data[columnName]);
+                    var columnName = columnModel['columnName'],
+                        data = collection.data,
+                        value;
+                    if (ne.util.isFunction(columnModel.formatter)) {
+                        value = columnModel.formatter(data[columnName], data);
+                    } else {
+                        value = data[columnName];
+                    }
+                    columnStringList.push(value);
                 });
                 rowStringList.push(columnStringList.join('\t'));
             });
