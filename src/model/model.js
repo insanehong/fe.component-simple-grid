@@ -267,6 +267,10 @@
 
             ne.util.forEachArray(columnModelList, function(columnModel, index) {
                 var width = ne.util.isUndefined(columnModel['width']) ? defaultColumnWidth : columnModel['width'];
+                if (ne.util.isString(width) && width.indexOf('%')) {
+                    width = width.replace('%', '');
+                    width = Math.floor(frameWidth * (width / 100));
+                }
                 columnWidthList.push(width);
                 sum += width;
             }, this);

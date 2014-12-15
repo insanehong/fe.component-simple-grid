@@ -83,6 +83,10 @@
         /**
          *  @param {Object} options 옵션 객체
          *      @param {jQuery} options.$el root 엘리먼트
+         *      @param {object} options.className
+         *          @param {string} [options.className.table]   table 의 className 정의
+         *          @param {string} [options.className.tr]  tr의 className 정의
+         *          @param {string} [options.className.td]  td의 className 정의
          *      @param {number} [options.headerHeight=30]  header 영역의 높이값
          *      @param {number} [options.hasHeader=true] header 를 노출할지 여부.
          *      @param {number} [options.height]    grid 의 높이값. displayCount 보다 우선한다.
@@ -97,7 +101,7 @@
          *      @param {object} [options.columnModelList=[]] 컬럼모델 정보
          *          @param {string} [options.columnModelList.columnName] data field 명
          *          @param {string} [options.columnModelList.title] Header 영역에 표시될 컬럼 이름
-         *          @param {string} [options.columnModelList.width] 해당 컬럼의 너비
+         *          @param {(number|string)} [options.columnModelList.width] 해당 컬럼의 너비. %로 지정할 수 있음
          *          @param {string} [options.columnModelList.align] 해당 컬럼의 정렬기준
          *          @param {function} [options.columnModelList.formatter] 데이터를 화면에 표시할 때 값의 포맷팅 처리를 하기 위한 함수.
          *          값을 출력하기 전에 formatter 함수에 해당 컬럼의 값을 전달하고 해당 함수가 리턴한 값을 화면 상에 표시한다.
@@ -127,6 +131,11 @@
                     defaultColumnWidth: 50,
                     useSelection: true,
                     hasHeader: true,
+                    className: {
+                        table: '',
+                        tr: '',
+                        td: ''
+                    },
                     color: {
                         border: '#EFEFEF',
                         th: '#F8F8F8',

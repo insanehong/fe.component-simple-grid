@@ -20,7 +20,11 @@
                 '" ' +
                 'bgcolor="' +
                 '<%=color%>' +
-                '">' +
+                '" ' +
+                'class="' +
+                '<%=className%>' +
+                '" ' +
+                '>' +
                 '<colgroup>' +
                 '<%=col%>' +
                 '</colgroup>' +
@@ -30,11 +34,14 @@
             tr: '<tr ' +
                 'key="' +
                 '<%=key%>' +
-                '"' +
+                '" ' +
                 'style="' +
                 'height:<%=height%>px;' +
                 'background:<%=color%>;' +
-                '"' +
+                '" ' +
+                'class="' +
+                '<%=className%>' +
+                '" ' +
                 '>' +
                 '<%=content%>' +
                 '</tr>',
@@ -43,6 +50,9 @@
                 'style="' +
                 'text-align:<%=align%>;' +
                 'overflow:hidden;' +
+                '" ' +
+                'class="' +
+                '<%=className%>' +
                 '" ' +
                 '<%=attributes%>' +
                 '>' +
@@ -201,7 +211,8 @@
             var list = this.model.list,
                 columnModelList = this.grid.option('columnModelList'),
                 color = this.grid.option('color'),
-                trList = [];
+                trList = [],
+                className = this.grid.option('className');
 
             //각 tr의 마크업을 생성한다.
             ne.util.forEachArray(list, function(item) {
@@ -223,6 +234,7 @@
                             content = item.data[columnName];
                         }
                         td = Util.template(this._template.td, {
+                            className: className.td,
                             columnName: columnName,
                             align: columnModel['align'],
                             content: content,
@@ -233,6 +245,7 @@
                 }, this);
 
                 trList.push(Util.template(this._template.tr, {
+                    className: className.tr,
                     color: color['td'],
                     height: height,
                     key: item.id,
@@ -252,9 +265,11 @@
             var columnWidthList = this.model.columnWidthList,
                 color = this.grid.option('color'),
                 border = this.grid.option('border'),
-                selectList = this.grid.focusModel.getSelectList();
+                selectList = this.grid.focusModel.getSelectList(),
+                className = this.grid.option('className');
 
             this.$el.html(Util.template(this._template.table, {
+                className: className.table,
                 border: border,
                 color: border ? color['border'] : '',
                 col: this._getColGroupMarkup(columnWidthList),
