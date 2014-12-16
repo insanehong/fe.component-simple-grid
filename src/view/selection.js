@@ -258,7 +258,7 @@
                     } else {
                         value = data[columnName];
                     }
-                    columnStringList.push(value);
+                    columnStringList.push(Util.stripTags(value));
                 });
                 rowStringList.push(columnStringList.join('\t'));
             });

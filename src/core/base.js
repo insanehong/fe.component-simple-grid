@@ -237,5 +237,24 @@ ne.Component = ne.Component || {};
          */
         getRowHeight: function(rowCount, height) {
             return rowCount === 0 ? 0 : Math.floor(((height - 1) / rowCount)) - 1;
+        },
+        /**
+         * Grid 에서 필요한 형태로 HTML tag 를 제거한다.
+         * @param {string} htmlString   html 마크업 문자열
+         * @return {String} HTML tag 에 해당하는 부분을 제거한 문자열
+         */
+        stripTags: function(htmlString) {
+            var matchResult;
+            htmlString = htmlString.replace(/[\n\r\t]/g, '');
+            if (ne.util.hasEncodableString(htmlString)) {
+                if (/<img/i.test(htmlString)) {
+                    matchResult = htmlString.match(/<img[^>]*\ssrc=[\"']?([^>\"']+)[\"']?[^>]*>/i);
+                    htmlString = matchResult ? matchResult[1] : '';
+                } else {
+                    htmlString = htmlString.replace(/<button.*?<\/button>/gi, '');
+                }
+                htmlString = $.trim(ne.util.decodeHTMLEntity(htmlString.replace(/<\/?(?:h[1-5]|[a-z]+(?:\:[a-z]+)?)[^>]*>/ig, '')));
+            }
+            return htmlString;
         }
     };
