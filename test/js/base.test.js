@@ -135,14 +135,14 @@ describe('Base 테스트', function() {
         });
         describe('view 생성, 삭제', function() {
 
-            it('createView() 로 자식 view 를 생성하고 __viewList 에 저장한다.', function() {
+            it('createView() 로 자식 view 를 생성하고 _viewList 에 저장한다.', function() {
                 var view = new Base.View(),
                     childView1 = view.createView(Base.View, {grid: 'grid'}),
                     childView2 = view.createView(Base.View, {grid: 'grid'});
 
-                expect(view.__viewList[0]).toEqual(childView1);
-                expect(view.__viewList[1]).toEqual(childView2);
-                expect(view.__viewList.length).toBe(2);
+                expect(view._viewList[0]).toEqual(childView1);
+                expect(view._viewList[1]).toEqual(childView2);
+                expect(view._viewList.length).toBe(2);
             });
             it('destroyChildren() 로 등록된 자식 view 들을 제거한다.', function() {
                 var view = new Base.View({
@@ -155,12 +155,12 @@ describe('Base 테스트', function() {
                     grandChildView3 = childView1.createView(Base.View, {grid: 'grid'});
 
                 view.destroyChildren();
-                expect(view.__viewList.length).toBe(0);
-                expect(childView1.__viewList.length).toBe(0);
-                expect(childView2.__viewList.length).toBe(0);
-                expect(grandChildView1.__viewList.length).toBe(0);
-                expect(grandChildView2.__viewList.length).toBe(0);
-                expect(grandChildView3.__viewList.length).toBe(0);
+                expect(view._viewList.length).toBe(0);
+                expect(childView1._viewList.length).toBe(0);
+                expect(childView2._viewList.length).toBe(0);
+                expect(grandChildView1._viewList.length).toBe(0);
+                expect(grandChildView2._viewList.length).toBe(0);
+                expect(grandChildView3._viewList.length).toBe(0);
             });
         });
     });

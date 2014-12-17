@@ -1,52 +1,161 @@
     /**
-     * Infinite Scroll
+     * Simple Grid
      * @constructor
      * @example
-     //Infinite Scroll 인스턴스 생성
-        var infinite = new ne.Component.SimpleGrid({
-            $el : $('#infiniteScroll'),    //무한 스크롤을 생성할 div jQuery 엘리먼트
-            lineHeight : 20,    //한 행의 높이에 (default : 20)
-            displayCount : 15,    //화면에 보여질 line 갯수 (default : 15)
-            scrollX : true,        //가로 스크롤 여부    (default : true)
-            scrollY : true,        //세로 스크롤 여부    (default : true)
-            scrollFix : true    //prepend 로 데이터 추가 시 현재 scroll 영역 유지 여부 (default : true)
+     //Simple Grid 인스턴스 생성
+        var simpleGrid = new ne.Component.SimpleGrid({
+            $el: $('#simpleGrid2'),
+            rowHeight: 25,    //line 당 pixel
+            displayCount: 20,  //영역에 보여줄 line 갯수
+            headerHeight: 30,
+            scrollX: false,
+            scrollY: true,
+            keyEventBubble: false,  //key 입력시 이벤트 버블링 할지 여부
+            defaultColumnWidth: 50,
+            //keyColumnName: 'column1',
+            color: {
+                border: 'red',
+                th: 'yellow',
+                td: '#FFFFFF',
+                selection: 'blue'
+            },
+            border: 0,
+            opacity: '0.5',
+            columnModelList: [
+                {
+                    columnName: 'column1',
+                    title: '컬럼1',
+                    width: 70,
+                    align: 'center',
+                    formatter: function(value, rowData) {
+                        return '<input type="button" class="test_click" value="' + value + '"/>';
+                    }
+                },
+                {
+                    columnName: 'column2',
+                    title: '컬럼2',
+                    width: 60
+                },
+                {
+                    columnName: 'column3',
+                    title: '컬럼3',
+                    width: 70
+                },
+                {
+                    columnName: 'column4',
+                    title: '컬럼4',
+                    width: 80
+                },
+                {
+                    columnName: 'column5',
+                    title: '컬럼5',
+                    width: 90
+                }
+            ]
         });
-        infinite.setList(dummy.real);    //배열을 인자로 데이터 설정
-
-        //infinite.append(dummy.append);    //배열을 인자로 하여 데이터 append
-        //infinite.prepend(dummy.append);    //배열을 인자로 하여 데이터 prepend
-        //infinite.clear();                    //데이터 초기화
-        //var dataList = infinite.getList();    //배열 형태로 현재 data 를 가져온다.
      */
-    ne.Component.SimpleGrid = ne.util.defineClass(Base.View, {
+    ne.Component.SimpleGrid = ne.util.defineClass(Base.View, /**@lends ne.Component.SimpleGrid.prototype */{
+        /**
+         * 스크롤바 사이즈
+         * @type {Number}
+         */
         scrollBarSize: 17,
-        className: 'infinite_scroll',
+        /**
+         * 방향키 스크롤 시 입력당 이동 단위 pixel
+         * @type {Number}
+         */
+        scrollingScale: 40,
+        /**
+         * page up/ down 스크롤 시 입력당 이동 단위 %
+         * @type {Number}
+         */
+        scrollingScalePerPage: 90,
+        /**
+         * 1533917 is the max height of IE (66692*23 + 1)
+         * @type {Number}
+         */
+        ieMaxHeight: 1533917,
+        className: 'simple_grid',
         eventHandler: {
-            'mousedown' : '_onMouseDown',
-            'focus' : '_onFocus'
+            'mousedown': '_onMouseDown',
+            'focus': '_onFocus'
         },
-
+        /**
+         *  @param {Object} options 옵션 객체
+         *      @param {jQuery} options.$el root 엘리먼트
+         *      @param {object} options.className
+         *          @param {string} [options.className.table]   table 의 className 정의
+         *          @param {string} [options.className.tr]  tr의 className 정의
+         *          @param {string} [options.className.td]  td의 className 정의
+         *      @param {number} [options.headerHeight=30]  header 영역의 높이값
+         *      @param {number} [options.hasHeader=true] header 를 노출할지 여부.
+         *      @param {number} [options.height]    grid 의 높이값. displayCount 보다 우선한다.
+         *      @param {number} [options.useSelection=true]    selection 기능을 사용할 지 여부
+         *      @param {number} [options.rowHeight=20] 한 행의 높이값. height 가 설정될 경우 무시된다.
+         *      @param {number} [options.displayCount=15] 한 화면에 보여질 행 개수
+         *      @param {boolean} [options.scrollX=true] 가로 스크롤 사용 여부
+         *      @param {boolean} [options.scrollY=true] 세로 스크롤 사용 여부
+         *      @param {boolean} [options.scrollFix=true] prepend 로 데이터 추가 시 현재 scroll 위치 유지 여부
+         *      @param {object} [options.defaultColumnWidth=50] 컬럼 모델에 너비 값을 지정하지 않았을 때 설정될 기본 column 너비
+         *      @param {object} [options.idAttribute=null] 행의 key 값으로 사용될 필드명. 값을 지정하지 않을경우 내부에서 자동으로 값을 생성한다.
+         *      @param {object} [options.columnModelList=[]] 컬럼모델 정보
+         *          @param {string} [options.columnModelList.columnName] data field 명
+         *          @param {string} [options.columnModelList.title] Header 영역에 표시될 컬럼 이름
+         *          @param {(number|string)} [options.columnModelList.width] 해당 컬럼의 너비. %로 지정할 수 있음
+         *          @param {string} [options.columnModelList.align] 해당 컬럼의 정렬기준
+         *          @param {function} [options.columnModelList.formatter] 데이터를 화면에 표시할 때 값의 포맷팅 처리를 하기 위한 함수.
+         *          값을 출력하기 전에 formatter 함수에 해당 컬럼의 값을 전달하고 해당 함수가 리턴한 값을 화면 상에 표시한다.
+         *      @param {object} [options.opacity=0.2] 선택 영역 레이어 투명도
+         *      @param {object} [options.border=1] 테이블 border 두께
+         *      @param {object} [options.color] 색상 정보
+         *          @param {string} [options.color.border='#EFEFEF']  태두리 색상
+         *          @param {string} [options.color.th='#F8F8F8']  테이블 헤더 색상
+         *          @param {string} [options.color.td='#FFFFFF']  테이블 바디 색상
+         *          @param {string} [options.color.selection='orange']  선택영역 색상
+         * @return {ne.Component.SimpleGrid}
+         */
         init: function(options) {
             Base.View.prototype.init.apply(this, arguments);
 
             var id = this.getUniqueKey(),
                 defaultOptions = {
-                    lineHeight: 20,    //line 당 pixel
+                    rowHeight: 20,    //line 당 pixel
                     displayCount: 10,  //영역에 보여줄 line 갯수
+                    headerHeight: 30,
                     scrollX: true,
                     scrollY: true,
                     freeze: true,    //Data Prepend 시 현재  scroll 된 위치를 유지할 것인지 여부
-
-                    keyEventBubble: false  //key 입력시 이벤트 버블링 할지 여부
+                    keyEventBubble: false,  //key 입력시 이벤트 버블링 할지 여부
+                    idAttribute: null,
+                    columnModelList: [],
+                    defaultColumnWidth: 50,
+                    useSelection: true,
+                    hasHeader: true,
+                    className: {
+                        table: '',
+                        tr: '',
+                        td: ''
+                    },
+                    color: {
+                        border: '#EFEFEF',
+                        th: '#F8F8F8',
+                        td: '#FFFFFF',
+                        selection: 'orange'
+                    },
+                    border: 1,
+                    opacity: '0.2'
                 };
 
             this.__instance[id] = this;
-            options = $.extend(defaultOptions, options);
+            options = $.extend(true, defaultOptions, options);
 
             this.setOwnProperties({
                 id: id,
                 model: null,
+                focusModel: null,
                 view: {
+                    header: null,
+                    spacer: null,
                     container: null,
                     virtualScroll: null,
                     keyboard: null
@@ -54,21 +163,33 @@
                 options: options,
                 timeoutIdForBlur: 0
             });
+            if (!this.option('hasHeader')) {
+                this.option('headerHeight', 0);
+            }
             this._initializeModel();
             this._initializeView();
             this.render();
-
+            this._initializeCustomEvent();
             return this;
         },
         /**
-         * 스크롤 영역 focus 되었을 때
+         * 커스텀 이벤트를 초기화 한다.
+         * @private
+         */
+        _initializeCustomEvent: function() {
+            this.view.container.body.on('click', function(customEvent) {
+                return this.invoke('click', customEvent);
+            }, this);
+        },
+        /**
+         * 스크롤 영역 focus 되었을 때 select 를 수행하는 핸들러
          */
         focus: function() {
             this.view.keyboard.$el.focus().select();
-            this.view.container.selection.show();
+            //this.view.container.selection.show();
         },
         /**
-         * 스크롤 영역 blur 시
+         * 스크롤 영역 blur 시 select 해제 하는 핸들러
          */
         blur: function() {
             this.view.container.selection.hide();
@@ -81,20 +202,33 @@
             this.model = new Model({
                 grid: this
             });
+            this.focusModel = new Focus({
+                grid: this
+            });
         },
         /**
          * 내부에서 사용할 view 를 초기화한다.
          * @private
          */
         _initializeView: function() {
-            this.view.container = this.createView(ContainerView, {
+            this.view.container = this.createView(Container, {
                 grid: this,
                 model: this.model
             });
-            this.view.keyboard = this.createView(KeyboardView, {
+            this.view.keyboard = this.createView(Keyboard, {
                 grid: this,
                 model: this.model
             });
+            if (this.option('hasHeader')) {
+                this.view.header = this.createView(Header, {
+                    grid: this,
+                    model: this.model
+                });
+                this.view.spacer = this.createView(Spacer, {
+                    grid: this,
+                    model: this.model
+                });
+            }
         },
         /**
          * mousedown event handler
@@ -119,7 +253,7 @@
         },
         /**
          * selection instance 를 반환한다.
-         * @return {Selection|g.content.selection|*|selection|ContainerView.content.selection|g.selection}
+         * @return {Object}
          */
         getSelectionInstance: function() {
             return this.view.container.selection;
@@ -128,7 +262,24 @@
          * scroll content 에 노출될 data list 를 저장한다.
          *
          * @param {array} list
-         * @return {window.ne.Component.SimpleGrid}
+         * @return {ne.Component.SimpleGrid}
+         * @example
+         simpleGrid.setList([
+            {
+                column1: 1,
+                column2: 2,
+                column3: 3,
+                column4: 4,
+                column5: 5
+            },
+            {
+                column1: 1,
+                column2: 2,
+                column3: 3,
+                column4: 4,
+                column5: 5
+            }
+         ]);
          */
         setList: function(list) {
             this.clear();
@@ -136,10 +287,19 @@
             return this;
         },
         /**
+         * id 에 해당하는 row 를 삭제한다.
+         * @param {(number|string)} id 삭제할 키값
+         * @return {ne.Component.SimpleGrid}
+         */
+        remove: function(id) {
+            this.model.collection.remove(id);
+            return this;
+        },
+        /**
          * scroll content 에 노출될 data list 를 append 한다.
          *
          * @param {array} list
-         * @return {window.ne.Component.SimpleGrid}
+         * @return {ne.Component.SimpleGrid}
          */
         append: function(list) {
             this.model.collection.append(list);
@@ -149,7 +309,7 @@
          * scroll content 에 노출될 data list 를 prepend 한다.
          *
          * @param {array} list
-         * @return {window.ne.Component.SimpleGrid}
+         * @return {ne.Component.SimpleGrid}
          */
         prepend: function(list) {
             this.model.collection.prepend(list);
@@ -158,7 +318,7 @@
         /**
          * 노출된 데이터를 전부 초기화 한다.
          *
-         * @return {window.ne.Component.SimpleGrid}
+         * @return {ne.Component.SimpleGrid}
          */
         clear: function() {
             this.model.collection.clear();
@@ -174,27 +334,34 @@
         /**
          * 스크롤을 랜더링한다.
          *
-         * @return {window.ne.Component.SimpleGrid}
+         * @return {ne.Component.SimpleGrid}
          */
         render: function() {
             this.destroyChildren();
             this._detachHandler();
             this.$el.attr({
                 instanceId: this.id
+            }).css({
+                position: 'relative'
             });
-            this.$el.empty()
-                .append(this.view.container.render().el)
+            this.$el.empty();
+
+            if (this.option('hasHeader')) {
+                this.$el.append(this.view.header.render().el)
+                    .append(this.view.spacer.render().el);
+            }
+
+            this.$el.append(this.view.container.render().el)
                 .append(this.view.keyboard.render().el);
 
             if (this.option('scrollY')) {
-                this.view.virtualScroll = this.createView(VirtualScrollBarView, {
+                this.view.virtualScroll = this.createView(VirtualScrollBar, {
                     grid: this,
                     model: this.model
                 });
                 this.$el.append(this.view.virtualScroll.render().el);
             }
             this.updateLayoutData();
-
             this._attachHandler();
             return this;
         },
@@ -220,19 +387,16 @@
         option: function(key, value) {
             if (value === undefined) {
                 return this.options[key];
-            }else {
+            } else {
                 this.options[key] = value;
                 return this;
             }
         }
     });
-    /**
-     * SimpleGrid instance container
-     * @type {{}}
-     */
+    /* istanbul ignore next*/
     ne.Component.SimpleGrid.prototype.__instance = {};
     /**
-     *
+     * id 에 해당하는 인스턴스를 반환한다.
      * @param {number} id
      * @return {object}
      */

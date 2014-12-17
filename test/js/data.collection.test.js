@@ -1,8 +1,17 @@
 'use strict';
 describe('data.collection 테스트', function() {
-    var instance;
+    var instance,
+        grid;
     beforeEach(function() {
-        instance = new Collection();
+        grid = {
+            options: {},
+            option: function(name) {
+                return this.options[name];
+            }
+        };
+        instance = new Collection({
+            grid: grid
+        });
     });
     describe('데이터 변경 테스트', function() {
         describe('_getFormattedList', function() {

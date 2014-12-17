@@ -7,7 +7,42 @@ describe('model 테스트', function() {
             option: function(key) {
                 return this.options[key];
             },
-            options: {}
+            options: {
+                border: 1,
+                columnModelList: [
+                    {
+                        columnName: 'column1',
+                        title: '컬럼1',
+                        width: 70,
+                        align: 'center',
+                        formatter: function(value, rowData) {
+                            return '<input type="button" class="test_click" value="' + value + '"/>';
+                        }
+                    },
+                    {
+                        columnName: 'column2',
+                        title: '컬럼1',
+                        width: 60
+                    },
+                    {
+                        columnName: 'column3',
+                        title: '컬럼3',
+                        width: 70
+                    },
+                    {
+                        columnName: 'column4',
+                        title: '컬럼4',
+                        width: 80
+                    },
+                    {
+                        columnName: 'column5',
+                        title: '컬럼5',
+                        width: 90
+                    }
+                ],
+                rowHeight: 20,
+                headerHeight: 50
+            }
         };
         model = new Model({
             grid: grid
@@ -25,10 +60,10 @@ describe('model 테스트', function() {
             ne.util.browser.msie = false;
             expect(model._getMaxCollectionLength()).toBe(0);
         });
-        it('IE 일 경우 lineHeight 로 나눈 값을 반환한다.', function() {
+        it('IE 일 경우 rowHeight 로 나눈 값을 반환한다.', function() {
             ne.util.browser.msie = true;
-            model.lineHeight = 20;
-            expect(model._getMaxCollectionLength()).toBe(76695);
+            model.rowHeight = 20;
+            expect(model._getMaxCollectionLength()).toBe(73042);
         });
     });
     describe('_onChange', function() {
@@ -55,9 +90,9 @@ describe('model 테스트', function() {
             expect(model._getMaxCollectionLength).not.toHaveBeenCalled();
             expect(model._onScrollTopChange).not.toHaveBeenCalled();
         });
-        it('lineHeight 변경의 경우 _getMaxCollectionLength 를 호출한다.', function() {
+        it('rowHeight 변경의 경우 _getMaxCollectionLength 를 호출한다.', function() {
             model._onChange({
-                key: 'lineHeight',
+                key: 'rowHeight',
                 value: 40
             });
             expect(model._getMaxCollectionLength).toHaveBeenCalled();
@@ -140,13 +175,13 @@ describe('model 테스트', function() {
     describe('_doFreeze', function() {
         beforeEach(function() {
             model.freeze = true;
-            model.lineHeight = 20;
+            model.rowHeight = 20;
             model.collection.set([1, 2, 3, 4]);
         });
         it('추가된 데이터와 관계없이 현재 scroll 위치를 유지하기 위해 maxScrollTop 과 scrollTop 값을 적절히 잘 설정한다.', function() {
             model._doFreeze([1, 2]);
-            expect(model.maxScrollTop).toBe(80);
-            expect(model.scrollTop).toBe(40);
+            expect(model.maxScrollTop).toBe(85);
+            expect(model.scrollTop).toBe(43);
         });
     });
 });

@@ -1,8 +1,12 @@
-    /**
-     * 원본 데이터 collection
-     * @constructor
-     */
-    var Collection = ne.util.defineClass(Base, {
+/**
+ * @fileoverview 원본데이터 콜렉션 클래스
+ * @author soonyoung.park@nhnent@nhnent.com (Soonyoung Park)
+ */
+/**
+ * 원본 데이터 collection
+ * @constructor Collection
+ */
+var Collection = ne.util.defineClass(Base, /**@lends Collection.prototype */{
         init: function() {
             Base.prototype.init.apply(this, arguments);
             this.setOwnProperties({
@@ -37,14 +41,14 @@
         },
         /**
          * collection 값을 설정한다.
-         * @param {Array} list
+         * @param {Array} list  콜랙션 list
          */
         set: function(list) {
             this.worker.enqueue(this._set, arguments, this);
         },
         /**
          * set enqueue 할 내부 함수
-         * @param {Array} list
+         * @param {Array} list  콜랙션 list
          * @private
          */
         _set: function(list) {
@@ -54,14 +58,14 @@
                 this.list = this.list.slice(this.list.length - this.maxLength, this.list.length);
             }
             this.invoke('change', {
-                'type' : 'set',
-                'list' : list
+                'type': 'set',
+                'list': list
             });
         },
         /**
          * 사용하지 않는 Map 을 제거한다.
-         * @param {number} start
-         * @param {number} end
+         * @param {number} start    제거 시작 index
+         * @param {number} end      제거 끝 index
          * @private
          */
         _removeMap: function(start, end) {
@@ -81,11 +85,16 @@
          */
         _getFormattedList: function(list) {
             var obj,
-                formattedList = [];
+                id,
+                idAttribute = this.grid.option('idAttribute'),
+                formattedList = [],
+                hasIdAttribute = !!idAttribute;
 
             ne.util.forEachArray(list, function(data) {
+                id = hasIdAttribute ? data[idAttribute] : this.idx++;
                 obj = {
-                    id: this.idx++,
+                    //id: this._getId(data),
+                    id: id,
                     data: data
                 };
                 formattedList.push(obj);
@@ -120,14 +129,16 @@
             if (!(obj && obj.id !== undefined)) {
                 return -1;
             } else {
+
                 ne.util.forEachArray(this.list, function(data, i) {
-                    if (data && data.id == obj.id) {
+                    if (data && data.id.toString() === obj.id.toString()) {
                         index = i;
                         return false;
                     }
-                });
+                }, this);
                 return index;
             }
+
         },
         /**
          * collection 에 data Array 를  append 한다.
@@ -178,6 +189,21 @@
                 type: 'prepend',
                 list: this.list,
                 prepended: list
+            });
+        },
+        remove: function(id) {
+            this.worker.enqueue(this._remove, arguments, this);
+        },
+        _remove: function(id) {
+            var index = this.indexOf(this.get(id));
+
+            this.map[id] = undefined;
+            delete this.map[id];
+
+            this.list.splice(index, 1);
+            this.invoke('change', {
+                type: 'remove',
+                list: this.list
             });
         },
         /**

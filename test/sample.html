@@ -3,36 +3,42 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi=medium-dpi">
 <title>SimpleGrid</title>
-	<link rel="stylesheet" type="text/css" href="../src/css/Component-SimpleGrid.css">
-
 	<script type="text/javascript" src="../lib/jquery/jquery.min.js"></script>
-	<script type="text/javascript" src="../src/external/code-snippet.js"></script>
+	<script type="text/javascript" src="../src/external/common.js"></script>
 	<script type="text/javascript" src="../src/core/base.js"></script>
 	<script type="text/javascript" src="../src/data/worker.js"></script>
 	<script type="text/javascript" src="../src/data/collection.js"></script>
 	<script type="text/javascript" src="../src/model/model.js"></script>
-	<script type="text/javascript" src="../src/view/view.js"></script>
+	<script type="text/javascript" src="../src/model/focus.js"></script>
+	<script type="text/javascript" src="../src/view/container.js"></script>
+	<script type="text/javascript" src="../src/view/header.js"></script>
+	<script type="text/javascript" src="../src/view/spacer.js"></script>
+	<script type="text/javascript" src="../src/view/body.js"></script>
+	<script type="text/javascript" src="../src/view/virtual-scrollbar.js"></script>
+	<script type="text/javascript" src="../src/view/selection.js"></script>
+	<script type="text/javascript" src="../src/view/keyboard.js"></script>
+
 	<script type="text/javascript" src="../src/Component-SimpleGrid.js"></script>
 
 	<script type="text/javascript" src="../data/dummy.js"></script>
-
-
-
+	<style>
+		.selected {background:red}
+	</style>
 <!-- for ie script -->
 </head>
 <body>
-	<div id="simpleGrid" class="test_class" style="width:1024px; top: 3px;">
+<div id="simpleGrid2" class="test_class" style="width:800px;">
+</div>
+	<div id="simpleGrid" class="test_class" style="width:500px;">
 	</div>
 
 	<div>
-		<input type="button" value="prepend 이순신" id="prepend"/>
-		<input type="button" value="append 정수빈" id="append"/>
+		<input type="button" value="prepend" id="prepend"/>
+		<input type="button" value="append" id="append"/>
 		<input type="button" value="clear" id="clear"/>
-		<input type="button" value="data length" id="length"/>
-		<input type="button" value="print data" id="data"/>
 	</div>
 	<div>
-		<textarea id="script_text" style="width:500px;height:200px"></textarea><input type="button" value="run" id="run"/>
+		<textarea id="script_text" style="width:500px;height:200px"></textarea>
 	</div>
 	<div id="result">
 
