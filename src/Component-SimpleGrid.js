@@ -19,6 +19,11 @@
                 td: '#FFFFFF',
                 selection: 'blue'
             },
+            className: {
+                table: 'table_class',
+                tr: 'tr_class',
+                td: 'td_class'
+            },
             border: 0,
             opacity: '0.5',
             columnModelList: [
@@ -83,10 +88,6 @@
         /**
          *  @param {Object} options 옵션 객체
          *      @param {jQuery} options.$el root 엘리먼트
-         *      @param {object} options.className
-         *          @param {string} [options.className.table]   table 의 className 정의
-         *          @param {string} [options.className.tr]  tr의 className 정의
-         *          @param {string} [options.className.td]  td의 className 정의
          *      @param {number} [options.headerHeight=30]  header 영역의 높이값
          *      @param {number} [options.hasHeader=true] header 를 노출할지 여부.
          *      @param {number} [options.height]    grid 의 높이값. displayCount 보다 우선한다.
@@ -112,6 +113,10 @@
          *          @param {string} [options.color.th='#F8F8F8']  테이블 헤더 색상
          *          @param {string} [options.color.td='#FFFFFF']  테이블 바디 색상
          *          @param {string} [options.color.selection='orange']  선택영역 색상
+         *      @param {object} [options.className] table 의 디자인 클래스 정보
+         *          @param {string} [options.className.table]   table 의 className 정의
+         *          @param {string} [options.className.tr]  tr의 className 정의
+         *          @param {string} [options.className.td]  td의 className 정의
          * @return {ne.Component.SimpleGrid}
          */
         init: function(options) {
