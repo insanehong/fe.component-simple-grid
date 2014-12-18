@@ -7,8 +7,9 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm install && grunt"
+    "build": "npm install && grunt",
+    "start": "grunt watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": "",
   "author": "",
