@@ -29,7 +29,7 @@
             'focus': '_onFocus'
         },
         tagName: 'textarea',
-        style: 'position: absolute; width: 0; height: 0; top:0, left: -9999px;',
+        style: 'position: absolute; width: 0; height: 0; top:0; left: -9999px;',
         init: function(attributes) {
             Base.View.prototype.init.apply(this, arguments);
         },
