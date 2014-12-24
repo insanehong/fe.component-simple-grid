@@ -24,6 +24,9 @@
                 'class="' +
                 '<%=className%>' +
                 '" ' +
+                'style="' +
+                'table-layout:fixed' +
+                '"' +
                 '>' +
                 '<colgroup>' +
                 '<%=col%>' +
@@ -49,7 +52,7 @@
                 'columnname="<%=columnName%>" ' +
                 'style="' +
                 'text-align:<%=align%>;' +
-                'overflow:hidden;' +
+                'overflow:hidden;padding:0 10px;*padding:0 10px;border:0;white-space:nowrap;*white-space:pre;' +
                 '" ' +
                 'class="' +
                 '<%=className%>' +
@@ -284,6 +287,14 @@
             if (this.selection) {
                 this.selection.draw();
             }
+
+            var resizeHandler = this.createView(ResizeHandlerContainer, {
+                grid: this.grid,
+                model: this.model,
+                height: this.$el.height()
+            });
+            this.$el.append(resizeHandler.render().el);
+
             this._attachHandler();
 
             return this;

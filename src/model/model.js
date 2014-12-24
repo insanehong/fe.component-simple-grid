@@ -30,6 +30,7 @@
                 offsetLeft: 0,
                 width: 0,
                 height: 0,
+                minimumColumnWidth: this.grid.option('minimumColumnWidth'),
                 headerHeight: this.grid.option('headerHeight'),
                 containerHeight: 0,
                 containerWidth: 0,
@@ -254,26 +255,47 @@
             this.invoke('refresh');
         },
         /**
+         * columnResize 발생 시 index 에 해당하는 컬럼의 width 를 변경하여 반영한다.
+         * @param {Number} index    너비를 변경할 컬럼의 인덱스
+         * @param {Number} width    변경할 너비 pixel값
+         */
+        setColumnWidth: function(index, width) {
+            width = Math.max(width, this.minimumColumnWidth);
+
+            var curColumnWidthList = ne.util.extend([], this.columnWidthList);
+
+            if (!ne.util.isUndefined(curColumnWidthList[index])) {
+                curColumnWidthList[index] = width;
+                this._calculateColumnWidthList(curColumnWidthList);
+            }
+        },
+        /**
          * columnWidthList 를 계산하여 저장한다.
          * @private
          */
-        _calculateColumnWidthList: function() {
+        _calculateColumnWidthList: function(columnWidthList) {
+            columnWidthList = columnWidthList || [];
             var columnModelList = this.grid.option('columnModelList'),
-                columnWidthList = [],
                 defaultColumnWidth = this.grid.option('defaultColumnWidth'),
                 sum = 0,
                 frameWidth = this.containerWidth - this.grid.scrollBarSize,
                 diff;
 
-            ne.util.forEachArray(columnModelList, function(columnModel, index) {
-                var width = ne.util.isUndefined(columnModel['width']) ? defaultColumnWidth : columnModel['width'];
-                if (ne.util.isString(width) && width.indexOf('%')) {
-                    width = width.replace('%', '');
-                    width = Math.floor(frameWidth * (width / 100));
-                }
-                columnWidthList.push(width);
+            if (!columnWidthList.length) {
+                ne.util.forEachArray(columnModelList, function(columnModel, index) {
+                    var width = ne.util.isUndefined(columnModel['width']) ? defaultColumnWidth : columnModel['width'];
+                    if (ne.util.isString(width) && width.indexOf('%')) {
+                        width = width.replace('%', '');
+                        width = Math.floor(frameWidth * (width / 100));
+                    }
+                    columnWidthList.push(width);
+                }, this);
+            }
+
+            ne.util.forEachArray(columnWidthList, function(width) {
                 sum += width;
             }, this);
+
             diff = frameWidth - sum;
             if (diff > 0) {
                 columnWidthList[columnWidthList.length - 1] += diff;

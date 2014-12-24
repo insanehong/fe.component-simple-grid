@@ -21,7 +21,11 @@ var Header = ne.util.defineClass(Base.View, /**@lends Header.prototype */{
         '<div class="header">' +
         '<table width="100%" border="0" cellpadding="0" cellspacing="' +
         '<%=border%>' +
-        '">' +
+        '" ' +
+        'style="' +
+        'table-layout:fixed' +
+        '"' +
+        '>' +
         '<colgroup>' +
         '<%=col%>' +
         '</colgroup>' +
@@ -60,12 +64,13 @@ var Header = ne.util.defineClass(Base.View, /**@lends Header.prototype */{
     },
     /**
      * Model Change 이벤트 핸들러로부터 columnWidthList 를 전달받아, 현재 table의
-     * 각 열의 높이를 조정한다.
+     * 각 열의 너비를 조정한다.
      * @param {Array} columnWidthList 컬럼 너비 리스트
      * @private
      */
     _changeColumnWidth: function(columnWidthList) {
         var $colList = this.$el.find('colgroup').find('col');
+
         ne.util.forEachArray(columnWidthList, function(width, index) {
             $colList.eq(index).width(width);
         }, this);
@@ -92,7 +97,9 @@ var Header = ne.util.defineClass(Base.View, /**@lends Header.prototype */{
 
         tbody += '<tr style="height:' + height + 'px">';
         ne.util.forEachArray(columnModelList, function(columnModel) {
-            tbody += '<th columnname="' + columnModel['columnName'] + '">' + columnModel['title'] + '</th>';
+            tbody += '<th columnname="' + columnModel['columnName'] + '" style="' +
+            'overflow:hidden;white-space:nowrap;*white-space:pre;text-align:center;padding:0;border:0;' +
+            '">' + columnModel['title'] + '</th>';
         });
         tbody += '</tr>';
 
@@ -111,6 +118,13 @@ var Header = ne.util.defineClass(Base.View, /**@lends Header.prototype */{
             this.$el.css('border', 'solid 1px ' + color['border']);
             this.$el.css('border-bottom', '0px');
         }
+        var resizeHandler = this.createView(ResizeHandlerContainer, {
+            grid: this.grid,
+            model: this.model,
+            height: height
+        });
+        this.$el.append(resizeHandler.render().el);
+
         this._attachHandler();
         return this;
     },
@@ -123,6 +137,7 @@ var Header = ne.util.defineClass(Base.View, /**@lends Header.prototype */{
         if (width === 0) {
             width = '100%';
         } else {
+            width += this.grid.scrollBarSize;
             width = width + 'px';
         }
         this.$el.find('.header:first').css('width', width);
