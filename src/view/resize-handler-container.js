@@ -9,7 +9,6 @@
 var ResizeHandlerContainer = ne.util.defineClass(Base.View, /**@lends ResizeHandlerContainer.prototype */{
     className: 'infinite_resize_handler_container',
     eventHandler: {
-        //'scroll': '_onScroll'
         'mousedown .infinite_resize_handler' : '_onMouseDown'
     },
     style: 'position:relative',
@@ -76,21 +75,13 @@ var ResizeHandlerContainer = ne.util.defineClass(Base.View, /**@lends ResizeHand
     _refreshHandlerPosition: function() {
         var columnWidthList = this.model.columnWidthList,
             $resizeHandleList = this.$el.find('.infinite_resize_handler'),
-            lastIndex = columnWidthList.length - 1,
             border = this.grid.option('border'),
             curPos = 0;
 
         ne.util.forEachArray($resizeHandleList, function(item, index) {
-            var $handler = $resizeHandleList.eq(index),
-                width = this.model.width - $handler.width();
-            if (lastIndex === index) {
-
-                $handler.css('left', width + 'px');
-            } else {
+            var $handler = $resizeHandleList.eq(index);
                 curPos += columnWidthList[index] + border;
                 $handler.css('left', (curPos - 3) + 'px');
-            }
-
         }, this);
     },
     /**
@@ -165,7 +156,6 @@ var ResizeHandlerContainer = ne.util.defineClass(Base.View, /**@lends ResizeHand
             .bind('mousemove', $.proxy(this._onMouseMove, this))
             .bind('mouseup', $.proxy(this._onMouseUp, this))
             .css('cursor', 'col-resize');
-
     },
     /**
      * resize stop 세팅
@@ -184,12 +174,12 @@ var ResizeHandlerContainer = ne.util.defineClass(Base.View, /**@lends ResizeHand
     }
 });
 
-
+/**
+ * ResizeHandler
+ * @constructor ResizeHandler
+ */
 var ResizeHandler = ne.util.defineClass(Base.View, /**@lends ResizeHandler.prototype */{
     className: 'infinite_resize_handler',
-    eventHandler: {
-
-    },
     style: 'float:left; position:absolute; height:100%; background:red; opacity:0.3; cursor:col-resize;',
     init: function(attributes) {
         Base.View.prototype.init.apply(this, arguments);
@@ -199,6 +189,10 @@ var ResizeHandler = ne.util.defineClass(Base.View, /**@lends ResizeHandler.proto
             isLast: attributes.isLast
         });
     },
+    /**
+     * 랜더링한다
+     * @returns {ResizeHandler}
+     */
     render: function() {
         this._detachHandler();
         this.destroyChildren();

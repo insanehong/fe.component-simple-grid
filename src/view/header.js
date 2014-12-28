@@ -18,12 +18,12 @@ var Header = ne.util.defineClass(Base.View, /**@lends Header.prototype */{
     },
     _template: {
         table: '' +
-        '<div class="header">' +
+        '<div class="infinite_header">' +
         '<table width="100%" border="0" cellpadding="0" cellspacing="' +
         '<%=border%>' +
         '" ' +
         'style="' +
-        'table-layout:fixed' +
+        'table-layout:fixed;' +
         '"' +
         '>' +
         '<colgroup>' +
@@ -89,7 +89,8 @@ var Header = ne.util.defineClass(Base.View, /**@lends Header.prototype */{
             html,
             height = this.model.headerHeight,
             col = '',
-            color = this.grid.option('color');
+            color = this.grid.option('color'),
+            resizeHandler;
 
         ne.util.forEachArray(columnModelList, function() {
             col += '<col></col>';
@@ -118,13 +119,15 @@ var Header = ne.util.defineClass(Base.View, /**@lends Header.prototype */{
             this.$el.css('border', 'solid 1px ' + color['border']);
             this.$el.css('border-bottom', '0px');
         }
-        var resizeHandler = this.createView(ResizeHandlerContainer, {
-            grid: this.grid,
-            model: this.model,
-            height: height
-        });
-        this.$el.append(resizeHandler.render().el);
-
+        //resize 를 사용한다면 resize handler 를 추가한다.
+        if (this.grid.option('useColumnResize')) {
+            resizeHandler = this.createView(ResizeHandlerContainer, {
+                grid: this.grid,
+                model: this.model,
+                height: height
+            });
+            this.$el.append(resizeHandler.render().el);
+        }
         this._attachHandler();
         return this;
     },
@@ -134,12 +137,17 @@ var Header = ne.util.defineClass(Base.View, /**@lends Header.prototype */{
      * @private
      */
     _setContainerWidth: function(width) {
+        //spacer 만큼 너비를 계산하여 padding 을 설정한다.
+        var padding = this.grid.option('border') * 6 + this.grid.scrollBarSize;
+
         if (width === 0) {
             width = '100%';
         } else {
-            width += this.grid.scrollBarSize;
             width = width + 'px';
         }
-        this.$el.find('.header:first').css('width', width);
+        this.$el.find('.infinite_header:first').css({
+            'width': width,
+            'paddingRight': padding + 'px'
+        });
     }
 });

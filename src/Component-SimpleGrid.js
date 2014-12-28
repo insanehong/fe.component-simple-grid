@@ -92,6 +92,7 @@
          *      @param {number} [options.hasHeader=true] header 를 노출할지 여부.
          *      @param {number} [options.height]    grid 의 높이값. displayCount 보다 우선한다.
          *      @param {number} [options.useSelection=true]    selection 기능을 사용할 지 여부
+         *      @param {number} [options.useColumnResize=true]    열 resize 기능을 사용할 지 여부
          *      @param {number} [options.rowHeight=20] 한 행의 높이값. height 가 설정될 경우 무시된다.
          *      @param {number} [options.displayCount=15] 한 화면에 보여질 행 개수
          *      @param {boolean} [options.scrollX=true] 가로 스크롤 사용 여부
@@ -136,6 +137,7 @@
                     columnModelList: [],
                     defaultColumnWidth: 50,
                     useSelection: true,
+                    useColumnResize: true,
                     hasHeader: true,
                     minimumColumnWidth: 20,
                     className: {

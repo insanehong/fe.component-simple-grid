@@ -269,7 +269,8 @@
                 color = this.grid.option('color'),
                 border = this.grid.option('border'),
                 selectList = this.grid.focusModel.getSelectList(),
-                className = this.grid.option('className');
+                className = this.grid.option('className'),
+                resizeHandler;
 
             this.$el.html(Util.template(this._template.table, {
                 className: className.table,
@@ -288,12 +289,15 @@
                 this.selection.draw();
             }
 
-            var resizeHandler = this.createView(ResizeHandlerContainer, {
-                grid: this.grid,
-                model: this.model,
-                height: this.$el.height()
-            });
-            this.$el.append(resizeHandler.render().el);
+            //resize 를 사용한다면 resize handler 를 추가한다.
+            if (this.grid.option('useColumnResize')) {
+                resizeHandler = this.createView(ResizeHandlerContainer, {
+                    grid: this.grid,
+                    model: this.model,
+                    height: this.$el.height()
+                });
+                this.$el.append(resizeHandler.render().el);
+            }
 
             this._attachHandler();
 
