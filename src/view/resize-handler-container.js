@@ -184,7 +184,7 @@ var ResizeHandlerContainer = ne.util.defineClass(Base.View, /**@lends ResizeHand
  */
 var ResizeHandler = ne.util.defineClass(Base.View, /**@lends ResizeHandler.prototype */{
     className: 'infinite_resize_handler',
-    style: 'float:left; position:absolute; height:100%; background:red; opacity:0.3; cursor:col-resize;',
+    style: 'float:left; position:absolute; height:100%; background:red; opacity:0; cursor:col-resize;',
     init: function(attributes) {
         Base.View.prototype.init.apply(this, arguments);
         this.setOwnProperties({
