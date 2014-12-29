@@ -231,6 +231,9 @@
 
             if (ne.util.isExisty(this.grid.option('height'))) {
                 height = this.grid.option('height');
+                if (this.grid.option('scrollX')) {
+                    height -= this.grid.scrollBarSize;
+                }
             } else {
                 height = Util.getHeight(this.grid.option('displayCount'), this.grid.option('rowHeight'), this.grid.option('border'));
             }
