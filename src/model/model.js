@@ -280,6 +280,7 @@
             columnWidthList = columnWidthList || [];
             var columnModelList = this.grid.option('columnModelList'),
                 defaultColumnWidth = this.grid.option('defaultColumnWidth'),
+                minimumColumnWidth = this.grid.option('minimumColumnWidth'),
                 border = this.grid.option('border'),
                 frameWidth = this.containerWidth - this.grid.scrollBarSize,
                 currentWidth = 0,
@@ -290,7 +291,7 @@
 
             if (!columnWidthList.length) {
                 ne.util.forEachArray(columnModelList, function(columnModel) {
-                    var width = ne.util.isUndefined(columnModel['width']) ? defaultColumnWidth : columnModel['width'];
+                    var width = ne.util.isUndefined(columnModel['width']) ? -1 : Math.max(minimumColumnWidth, columnModel['width']);
                     //% 경우 처리
                     if (ne.util.isString(width) && width.indexOf('%')) {
                         width = width.replace('%', '');
@@ -303,7 +304,7 @@
 
             ne.util.forEachArray(columnWidthList, function(width) {
                 if (width > 0) {
-                    width = Math.max(this.grid.option('minimumColumnWidth'), width);
+                    width = Math.max(minimumColumnWidth, width);
                     currentWidth += width + border;
                 } else {
                     unassignedCount++;
@@ -312,7 +313,7 @@
             currentWidth += border;
 
             remainWidth = frameWidth - currentWidth;
-            unassignedWidth = Math.max(this.grid.option('minimumColumnWidth'), Math.floor(remainWidth / unassignedCount));
+            unassignedWidth = Math.max(minimumColumnWidth, Math.floor(remainWidth / unassignedCount) - border);
 
             //할당되지 않은 column 할당함
             ne.util.forEachArray(columnWidthList, function(width, index) {

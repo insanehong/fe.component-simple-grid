@@ -7,9 +7,6 @@
  * @constructor Header
  */
 var Header = ne.util.defineClass(Base.View, /**@lends Header.prototype */{
-    eventHandler: {
-        'scroll': '_onScroll'
-    },
     className: 'infinite_header_container',
     style: 'overflow:hidden',
     init: function (attributes){
@@ -50,17 +47,6 @@ var Header = ne.util.defineClass(Base.View, /**@lends Header.prototype */{
         } else if (key === 'columnWidthList') {
             this._changeColumnWidth(value);
         }
-    },
-    /**
-     * scroll event handler
-     *  scroll left 를 동기화 한다.
-     * @param {event} scrollEvent 스크롤 이벤트
-     * @private
-     */
-    _onScroll: function(scrollEvent) {
-        this.model.set({
-            scrollLeft: scrollEvent.target.scrollLeft
-        });
     },
     /**
      * Model Change 이벤트 핸들러로부터 columnWidthList 를 전달받아, 현재 table의
