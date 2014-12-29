@@ -325,9 +325,7 @@
 
             remainWidth = frameWidth - currentWidth;
 
-            if (remainWidth > 0) {
-                columnWidthList[columnWidthList.length - 1] += remainWidth;
-            } else {
+            if (remainWidth < 0) {
                 frameWidth += Math.abs(remainWidth);
             }
             this.set({

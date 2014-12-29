@@ -114,6 +114,13 @@ var Header = ne.util.defineClass(Base.View, /**@lends Header.prototype */{
             });
             this.$el.append(resizeHandler.render().el);
         }
+        if (!this.grid.option('hasHeader')) {
+            this.$el.css({
+                height: '0px',
+                width: '0px',
+                border: 0
+            });
+        }
         this._attachHandler();
         return this;
     },

@@ -220,6 +220,14 @@
          * @private
          */
         _initializeView: function() {
+            this.view.header = this.createView(Header, {
+                grid: this,
+                model: this.model
+            });
+            this.view.spacer = this.createView(Spacer, {
+                grid: this,
+                model: this.model
+            });
             this.view.container = this.createView(Container, {
                 grid: this,
                 model: this.model
@@ -228,16 +236,6 @@
                 grid: this,
                 model: this.model
             });
-            if (this.option('hasHeader')) {
-                this.view.header = this.createView(Header, {
-                    grid: this,
-                    model: this.model
-                });
-                this.view.spacer = this.createView(Spacer, {
-                    grid: this,
-                    model: this.model
-                });
-            }
         },
         /**
          * mousedown event handler
@@ -355,10 +353,8 @@
             });
             this.$el.empty();
 
-            if (this.option('hasHeader')) {
-                this.$el.append(this.view.header.render().el)
-                    .append(this.view.spacer.render().el);
-            }
+            this.$el.append(this.view.header.render().el)
+                .append(this.view.spacer.render().el);
 
             this.$el.append(this.view.container.render().el)
                 .append(this.view.keyboard.render().el);

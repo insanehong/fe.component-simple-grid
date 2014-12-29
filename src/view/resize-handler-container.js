@@ -76,12 +76,16 @@ var ResizeHandlerContainer = ne.util.defineClass(Base.View, /**@lends ResizeHand
         var columnWidthList = this.model.columnWidthList,
             $resizeHandleList = this.$el.find('.infinite_resize_handler'),
             border = this.grid.option('border'),
+            lastIndex = columnWidthList.length - 1,
+            $colList = this.grid.view.header.$el.find('th'),
             curPos = 0;
 
         ne.util.forEachArray($resizeHandleList, function(item, index) {
-            var $handler = $resizeHandleList.eq(index);
-                curPos += columnWidthList[index] + border;
-                $handler.css('left', (curPos - 3) + 'px');
+            var width = $colList.eq(index).width() || columnWidthList[index],
+                $handler = $resizeHandleList.eq(index);
+
+            curPos += width + border;
+            $handler.css('left', (curPos - 4) + 'px');
         }, this);
     },
     /**
@@ -180,7 +184,7 @@ var ResizeHandlerContainer = ne.util.defineClass(Base.View, /**@lends ResizeHand
  */
 var ResizeHandler = ne.util.defineClass(Base.View, /**@lends ResizeHandler.prototype */{
     className: 'infinite_resize_handler',
-    style: 'float:left; position:absolute; height:100%; background:red; opacity:0; cursor:col-resize;',
+    style: 'float:left; position:absolute; height:100%; background:red; opacity:0.3; cursor:col-resize;',
     init: function(attributes) {
         Base.View.prototype.init.apply(this, arguments);
         this.setOwnProperties({
