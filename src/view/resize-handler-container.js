@@ -11,7 +11,7 @@ var ResizeHandlerContainer = ne.util.defineClass(Base.View, /**@lends ResizeHand
     eventHandler: {
         'mousedown .infinite_resize_handler' : '_onMouseDown'
     },
-    style: 'position:relative',
+    style: 'position:relative;width:0px;',
     init: function(attributes) {
         Base.View.prototype.init.apply(this, arguments);
         this.setOwnProperties({
