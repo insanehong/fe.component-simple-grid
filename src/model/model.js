@@ -280,30 +280,54 @@
             columnWidthList = columnWidthList || [];
             var columnModelList = this.grid.option('columnModelList'),
                 defaultColumnWidth = this.grid.option('defaultColumnWidth'),
-                sum = 0,
+                border = this.grid.option('border'),
                 frameWidth = this.containerWidth - this.grid.scrollBarSize,
+                currentWidth = 0,
+                unassignedCount = 0,
+                unassignedWidth,
+                remainWidth,
                 diff;
 
             if (!columnWidthList.length) {
-                ne.util.forEachArray(columnModelList, function(columnModel, index) {
+                ne.util.forEachArray(columnModelList, function(columnModel) {
                     var width = ne.util.isUndefined(columnModel['width']) ? defaultColumnWidth : columnModel['width'];
+                    //% 경우 처리
                     if (ne.util.isString(width) && width.indexOf('%')) {
                         width = width.replace('%', '');
                         width = Math.floor(frameWidth * (width / 100));
                     }
+
                     columnWidthList.push(width);
                 }, this);
             }
 
             ne.util.forEachArray(columnWidthList, function(width) {
-                sum += width;
+                if (width > 0) {
+                    width = Math.max(this.grid.option('minimumColumnWidth'), width);
+                    currentWidth += width + border;
+                } else {
+                    unassignedCount++;
+                }
             }, this);
+            currentWidth += border;
 
-            diff = frameWidth - sum;
-            if (diff > 0) {
-                columnWidthList[columnWidthList.length - 1] += diff;
+            remainWidth = frameWidth - currentWidth;
+            unassignedWidth = Math.max(this.grid.option('minimumColumnWidth'), Math.floor(remainWidth / unassignedCount));
+
+            //할당되지 않은 column 할당함
+            ne.util.forEachArray(columnWidthList, function(width, index) {
+                if (width === -1) {
+                    columnWidthList[index] = unassignedWidth;
+                    currentWidth += unassignedWidth + border;
+                }
+            });
+
+            remainWidth = frameWidth - currentWidth;
+
+            if (remainWidth > 0) {
+                columnWidthList[columnWidthList.length - 1] += remainWidth;
             } else {
-                frameWidth += Math.abs(diff);
+                frameWidth += Math.abs(remainWidth);
             }
             this.set({
                 width: frameWidth,
