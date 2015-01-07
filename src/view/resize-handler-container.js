@@ -54,6 +54,7 @@ var ResizeHandlerContainer = ne.util.defineClass(Base.View, /**@lends ResizeHand
 
         ne.util.forEachArray(columnModelList, function(columnModel, index) {
             var handler = this.createView(ResizeHandler, {
+                grid: this.grid,
                 index: index,
                 columnName: columnModel.columnName,
                 isLast: index === length - 1
@@ -184,7 +185,7 @@ var ResizeHandlerContainer = ne.util.defineClass(Base.View, /**@lends ResizeHand
  */
 var ResizeHandler = ne.util.defineClass(Base.View, /**@lends ResizeHandler.prototype */{
     className: 'infinite_resize_handler',
-    style: 'float:left; position:absolute; height:100%; background:red; opacity:0; cursor:col-resize;',
+    style: 'float:left; position:absolute; height:100%; opacity:0; cursor:col-resize;',
     init: function(attributes) {
         Base.View.prototype.init.apply(this, arguments);
         this.setOwnProperties({
@@ -198,6 +199,7 @@ var ResizeHandler = ne.util.defineClass(Base.View, /**@lends ResizeHandler.proto
      * @returns {ResizeHandler}
      */
     render: function() {
+        var color = this.grid.option('color').border;
         this._detachHandler();
         this.destroyChildren();
         this.$el.empty();
@@ -205,6 +207,8 @@ var ResizeHandler = ne.util.defineClass(Base.View, /**@lends ResizeHandler.proto
             'columnindex': this.index,
             'columnname': this.columnName,
             'title': '마우스 드래그를 통해 컬럼의 넓이를 변경할 수 있고,더블클릭을 통해 넓이를 초기화할 수 있습니다.'
+        }).css({
+            'background': color
         });
         if (this.isLast) {
             this.$el.width(3);
