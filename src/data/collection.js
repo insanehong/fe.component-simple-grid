@@ -195,12 +195,15 @@ var Collection = ne.util.defineClass(Base, /**@lends Collection.prototype */{
             this.worker.enqueue(this._remove, arguments, this);
         },
         _remove: function(id) {
-            var index = this.indexOf(this.get(id));
+            var idList = ne.util.isArray(id) ? id : [id];
 
-            this.map[id] = undefined;
-            delete this.map[id];
+            ne.util.forEachArray(idList, function(id) {
+                var index = this.indexOf(this.get(id));
+                this.map[id] = undefined;
+                delete this.map[id];
+                this.list.splice(index, 1);
+            }, this);
 
-            this.list.splice(index, 1);
             this.invoke('change', {
                 type: 'remove',
                 list: this.list

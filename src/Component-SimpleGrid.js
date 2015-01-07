@@ -313,11 +313,12 @@
         },
         /**
          * id 에 해당하는 row 를 삭제한다.
-         * @param {(number|string)} id 삭제할 키값
+         * @param {*} id 삭제할 키값 혹은 키값의 list
          * @return {ne.Component.SimpleGrid}
          */
         remove: function(id) {
-            this.model.collection.remove(id);
+            var idList = ne.util.isArray(id) ? id : [id];
+            this.model.collection.remove(idList);
             return this;
         },
         /**
