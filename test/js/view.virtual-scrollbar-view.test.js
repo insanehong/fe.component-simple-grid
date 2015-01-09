@@ -21,7 +21,7 @@ describe('view.virtual-scrollbar', function() {
             loadFixtures('test/fixtures/empty.html');
             border: 1,
             $empty = $('#empty');
-            simpleGrid = new ne.Component.SimpleGrid({
+            simpleGrid = new ne.component.SimpleGrid({
                 $el: $empty,
                 columnModelList: [
                     {
@@ -113,7 +113,7 @@ describe('view.virtual-scrollbar', function() {
             loadFixtures('test/fixtures/empty.html');
 
             $empty = $('#empty');
-            simpleGrid = new ne.Component.SimpleGrid({
+            simpleGrid = new ne.component.SimpleGrid({
                 $el: $empty,
                 border: 0,
                 columnModelList: [

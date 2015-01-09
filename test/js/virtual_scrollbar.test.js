@@ -13,7 +13,7 @@ describe('가상 스크롤바 테스트', function() {
     it('X 스크롤 존재할 때 Collection 의 list 기준 높이 테스트', function() {
         var rowHeight = 20,
             displayCount = 15,
-            simpleGrid = new ne.Component.SimpleGrid({
+            simpleGrid = new ne.component.SimpleGrid({
                 $el: $('#simpleGrid'),
                 rowHeight: rowHeight,
                 displayCount: displayCount,
@@ -59,7 +59,7 @@ describe('가상 스크롤바 테스트', function() {
     it('X 스크롤 존재하지 않을때 Collection 의 list 기준 높이 테스트', function() {
         var rowHeight = 20,
             displayCount = 15,
-            simpleGrid = new ne.Component.SimpleGrid({
+            simpleGrid = new ne.component.SimpleGrid({
                 $el: $('#simpleGrid'),
                 rowHeight: rowHeight,
                 displayCount: displayCount,

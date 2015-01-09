@@ -3,7 +3,7 @@
      * @constructor
      * @example
      //Simple Grid 인스턴스 생성
-        var simpleGrid = new ne.Component.SimpleGrid({
+        var simpleGrid = new ne.component.SimpleGrid({
             $el: $('#simpleGrid2'),
             rowHeight: 25,    //line 당 pixel
             displayCount: 20,  //영역에 보여줄 line 갯수
@@ -59,7 +59,7 @@
             ]
         });
      */
-    ne.Component.SimpleGrid = ne.util.defineClass(Base.View, /**@lends ne.Component.SimpleGrid.prototype */{
+    ne.component.SimpleGrid = ne.util.defineClass(Base.View, /**@lends ne.component.SimpleGrid.prototype */{
         /**
          * 스크롤바 사이즈
          * @type {Number}
@@ -122,7 +122,7 @@
          *          @param {string} [options.className.table]   table 의 className 정의
          *          @param {string} [options.className.tr]  tr의 className 정의
          *          @param {string} [options.className.td]  td의 className 정의
-         * @return {ne.Component.SimpleGrid}
+         * @return {ne.component.SimpleGrid}
          */
         init: function(options) {
             Base.View.prototype.init.apply(this, arguments);
@@ -197,6 +197,22 @@
                 this.timeoutIdForFade = setTimeout($.proxy(function() {
                     this.$el.find('.infinite_resize_handler').stop().fadeTo(300, 0);
                 }, this), 10);
+            }
+        },
+       /**
+        * webkit 에서 스크롤바 정상 노출되지 않는 현상 수정
+        * @private
+        */
+        _initializeStyleSheet: function() {
+            var styleList = [
+                '.simple_grid {scrollbar-highlight-color:#f2f2f2;scrollbar-shadow-color:#f2f2f2;scrollbar-arrow-color:#8a8a8a;scrollbar-face-color:#d9d9d9;scrollbar-3dlight-color:#f2f2f2;scrollbar-darkshadow-color:#f2f2f2;scrollbar-track-color:#f2f2f2;}',
+                '.simple_grid ::-webkit-scrollbar{-webkit-appearance: none;width:17px;height:17px;background-color:#f2f2f2;border-top:solid 1px #ccc;}',
+                '.simple_grid ::-webkit-scrollbar-thumb{background-color:#d9d9d9;border:5px solid transparent;border-radius:7px;background-clip:content-box;}',
+                '.simple_grid ::-webkit-scrollbar-thumb:hover{background-color: #c1c1c1;}',
+                '.simple_grid ::-webkit-scrollbar-corner{background-color: #f2f2f2;}'
+            ];
+            if (!$('#simple_grid_style').length) {
+                $('html > head').append($('<style id="simple_grid_style">' + styleList.join('\n') + '</style>'));
             }
         },
         /**
@@ -287,7 +303,7 @@
          * scroll content 에 노출될 data list 를 저장한다.
          *
          * @param {array} list
-         * @return {ne.Component.SimpleGrid}
+         * @return {ne.component.SimpleGrid}
          * @example
          simpleGrid.setList([
             {
@@ -314,7 +330,7 @@
         /**
          * id 에 해당하는 row 를 삭제한다.
          * @param {*} id 삭제할 키값 혹은 키값의 list
-         * @return {ne.Component.SimpleGrid}
+         * @return {ne.component.SimpleGrid}
          */
         remove: function(id) {
             var idList = ne.util.isArray(id) ? id : [id];
@@ -325,7 +341,7 @@
          * scroll content 에 노출될 data list 를 append 한다.
          *
          * @param {array} list
-         * @return {ne.Component.SimpleGrid}
+         * @return {ne.component.SimpleGrid}
          */
         append: function(list) {
             this.model.collection.append(list);
@@ -335,7 +351,7 @@
          * scroll content 에 노출될 data list 를 prepend 한다.
          *
          * @param {array} list
-         * @return {ne.Component.SimpleGrid}
+         * @return {ne.component.SimpleGrid}
          */
         prepend: function(list) {
             this.model.collection.prepend(list);
@@ -344,7 +360,7 @@
         /**
          * 노출된 데이터를 전부 초기화 한다.
          *
-         * @return {ne.Component.SimpleGrid}
+         * @return {ne.component.SimpleGrid}
          */
         clear: function() {
             this.model.collection.clear();
@@ -360,7 +376,7 @@
         /**
          * 스크롤을 랜더링한다.
          *
-         * @return {ne.Component.SimpleGrid}
+         * @return {ne.component.SimpleGrid}
          */
         render: function() {
             this.destroyChildren();
@@ -418,12 +434,12 @@
         }
     });
     /* istanbul ignore next*/
-    ne.Component.SimpleGrid.prototype.__instance = {};
+    ne.component.SimpleGrid.prototype.__instance = {};
     /**
      * id 에 해당하는 인스턴스를 반환한다.
      * @param {number} id
      * @return {object}
      */
-    ne.Component.SimpleGrid.getInstanceById = function(id) {
+    ne.component.SimpleGrid.getInstanceById = function(id) {
         return this.__instance[id];
     };

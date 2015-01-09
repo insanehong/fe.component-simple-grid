@@ -6,7 +6,7 @@
 //        jasmine.getStyleFixtures().fixturesPath = 'base/';
 //
 //        loadFixtures('test/fixtures/test.html');
-//        loadStyleFixtures('src/css/Component-SimpleGrid.css');
+//        loadStyleFixtures('src/css/component-SimpleGrid.css');
 //
 //    });
 //    afterEach(function(){
@@ -17,7 +17,7 @@
 //        var height,
 //            rowHeight = 20,
 //            displayCount = 15,
-//            simpleGrid = new ne.Component.SimpleGrid({
+//            simpleGrid = new ne.component.SimpleGrid({
 //                $el: $('#simpleGrid'),
 //                rowHeight: rowHeight,
 //                displayCount: displayCount,
@@ -34,7 +34,7 @@
 //        var height,
 //            rowHeight = 20,
 //            displayCount = 15,
-//            simpleGrid = new ne.Component.SimpleGrid({
+//            simpleGrid = new ne.component.SimpleGrid({
 //                $el: $('#simpleGrid'),
 //                rowHeight: rowHeight,
 //                displayCount: displayCount,

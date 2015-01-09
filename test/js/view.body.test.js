@@ -10,7 +10,7 @@ describe('view.container', function() {
         loadFixtures('test/fixtures/empty.html');
 
         $empty = $('#empty');
-        simpleGrid = new ne.Component.SimpleGrid({
+        simpleGrid = new ne.component.SimpleGrid({
             $el: $empty,
             useSelection: true,
             columnModelList: [

@@ -1,5 +1,5 @@
 ne = window.ne || {};
-ne.Component = ne.Component || {};
+ne.component = ne.component || {};
 
 /**
  * @fileoverview 기본 클래스 파일
