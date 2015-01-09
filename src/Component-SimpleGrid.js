@@ -59,7 +59,7 @@
             ]
         });
      */
-    ne.Component.SimpleGrid = ne.util.defineClass(Base.View, /**@lends ne.Component.SimpleGrid.prototype */{
+    ne.component.SimpleGrid = ne.util.defineClass(Base.View, /**@lends ne.component.SimpleGrid.prototype */{
         /**
          * 스크롤바 사이즈
          * @type {Number}
@@ -171,11 +171,29 @@
             if (!this.option('hasHeader')) {
                 this.option('headerHeight', 0);
             }
+            this._initializeStyleSheet();
             this._initializeModel();
             this._initializeView();
             this.render();
             this._initializeCustomEvent();
             return this;
+        },
+        /**
+         * webkit 에서 스크롤바 정삭 노출되지 않
+         * @private
+         */
+        _initializeStyleSheet: function() {
+            var styleList = [
+                '.simple_grid {scrollbar-highlight-color:#f2f2f2;scrollbar-shadow-color:#f2f2f2;scrollbar-arrow-color:#8a8a8a;scrollbar-face-color:#d9d9d9;scrollbar-3dlight-color:#f2f2f2;scrollbar-darkshadow-color:#f2f2f2;scrollbar-track-color:#f2f2f2;}',
+                '.simple_grid ::-webkit-scrollbar{-webkit-appearance: none;width:17px;height:17px;background-color:#f2f2f2;border-top:solid 1px #ccc;}',
+                '.simple_grid ::-webkit-scrollbar-thumb{background-color:#d9d9d9;border:5px solid transparent;border-radius:7px;background-clip:content-box;}',
+                '.simple_grid ::-webkit-scrollbar-thumb:hover{background-color: #c1c1c1;}',
+                '.simple_grid ::-webkit-scrollbar-corner{background-color: #f2f2f2;}'
+            ];
+            if (!$('#simple_grid_style').length) {
+                $('html > head').append($('<style id="simple_grid_style">' + styleList.join('\n') + '</style>'));
+            }
+
         },
         /**
          * 커스텀 이벤트를 초기화 한다.
@@ -399,12 +417,12 @@
         }
     });
     /* istanbul ignore next*/
-    ne.Component.SimpleGrid.prototype.__instance = {};
+    ne.component.SimpleGrid.prototype.__instance = {};
     /**
      * id 에 해당하는 인스턴스를 반환한다.
      * @param {number} id
      * @return {object}
      */
-    ne.Component.SimpleGrid.getInstanceById = function(id) {
+    ne.component.SimpleGrid.getInstanceById = function(id) {
         return this.__instance[id];
     };

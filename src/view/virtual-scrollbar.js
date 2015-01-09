@@ -109,7 +109,7 @@
             }
 
             this.$el.css({
-                height: this.grid.option('scrollX') ? this.model.height + this.grid.scrollBarSize : this.model.height,
+                height: this.model.height,
                 top: top,
                 right: right
             });
