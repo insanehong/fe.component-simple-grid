@@ -109,7 +109,8 @@
             }
 
             this.$el.css({
-                height: this.grid.option('scrollX') ? this.model.height + this.grid.scrollBarSize : this.model.height,
+                //height: this.grid.option('scrollX') ? this.model.height + this.grid.scrollBarSize : this.model.height,
+                height: this.model.height,
                 top: top,
                 right: right
             });
@@ -129,10 +130,10 @@
                 rowCount = this.model.collection.length,
                 height = Util.getHeight(rowCount, rowHeight, border),
                 maxTop;
-
-            if (this.grid.option('scrollX')) {
-                height += this.grid.scrollBarSize;
-            }
+            //
+            //if (this.grid.option('scrollX')) {
+            //    height += this.grid.scrollBarSize;
+            //}
 
             this.$el.find('.infinite_content').height(height);
             maxTop = this.model.getMaxScrollTop();
