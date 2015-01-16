@@ -175,7 +175,7 @@
          * @private
          */
         _getMaxCollectionLength: function() {
-            var border = this.grid.option('border');
+            var border = +this.grid.option('border') || 0;
 
             if (ne.util.browser.msie) {
                 //1533917 is the max height of IE (66692*23 + 1)
