@@ -185,7 +185,7 @@ describe('view.virtual-scrollbar', function() {
         });
         describe('_getMaxScrollTop', function() {
             it('현재 랜더링 기준으로 scrollTop 의 한계를 구한다.', function() {
-                expect(virtual._getMaxScrollTop()).toBe(229);
+                expect(virtual._getMaxScrollTop()).toBe(240);
             });
         });
         describe('_onScroll', function() {
