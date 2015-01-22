@@ -206,7 +206,7 @@ var ResizeHandler = ne.util.defineClass(Base.View, /**@lends ResizeHandler.proto
         this.$el.attr({
             'columnindex': this.index,
             'columnname': this.columnName,
-            'title': '마우스 드래그를 통해 컬럼의 넓이를 변경할 수 있고,더블클릭을 통해 넓이를 초기화할 수 있습니다.'
+            'title': '마우스 드래그를 통해 컬럼의 넓이를 변경할 수 있습니다.'
         }).css({
             'background': color
         });
