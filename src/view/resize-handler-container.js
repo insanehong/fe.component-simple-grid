@@ -35,8 +35,8 @@ var ResizeHandlerContainer = ne.util.defineClass(Base.View, /**@lends ResizeHand
      * @private
      */
     _onModelChange: function(changeEvent) {
-        var key = changeEvent.key,
-            value = changeEvent.value;
+        var key = changeEvent.key;
+
         if (key === 'columnWidthList') {
             this._refreshHandlerPosition();
         }
@@ -141,7 +141,6 @@ var ResizeHandlerContainer = ne.util.defineClass(Base.View, /**@lends ResizeHand
         var difference = pageX - this.initialOffsetLeft - this.initialLeft;
         return this.initialWidth + difference;
     },
-
 
     /**
      * 현재 mouse move resizing 중인지 상태 flag 반환

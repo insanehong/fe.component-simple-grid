@@ -135,7 +135,6 @@
                     columnName: columnName
                 };
 
-
             this.fire('click', customEvent);
         },
 
