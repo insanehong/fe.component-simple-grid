@@ -14,6 +14,7 @@ var Worker = ne.util.defineClass(Base, /**@lends Worker.prototype */{
                 queue: []
             });
         },
+
         /**
          * worker 에 lock 을 건다.
          * 이 때 job 들은 queue 에 적재되어 unlock 시 한번에 수행된다.
@@ -21,6 +22,7 @@ var Worker = ne.util.defineClass(Base, /**@lends Worker.prototype */{
         lock: function() {
             this.locked = true;
         },
+
         /**
          * lock을 해제하며 queue 에 적재된 job을 수행한다.
          * @param {boolean} skipRunQueue  runQueue 를 수행할지 여부
@@ -31,6 +33,7 @@ var Worker = ne.util.defineClass(Base, /**@lends Worker.prototype */{
             }
             this.locked = false;
         },
+
         /**
          * queue 에 job을 적재한다.
          * @param {Function} job   수행할 작업
@@ -48,6 +51,7 @@ var Worker = ne.util.defineClass(Base, /**@lends Worker.prototype */{
                 job.apply(context, args);
             }
         },
+
         /**
          * dequeue 한다.
          * @return {{job: Function, args: Array, context: context}}
@@ -55,6 +59,7 @@ var Worker = ne.util.defineClass(Base, /**@lends Worker.prototype */{
         dequeue: function() {
             return this.queue.shift();
         },
+
         /**
          * 적재된 queue 의 job 들을 전부 수행 한다.
          */

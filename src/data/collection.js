@@ -20,18 +20,21 @@ var Collection = ne.util.defineClass(Base, /**@lends Collection.prototype */{
 
             this.on('change', this._onChange, this);
         },
+
         /**
          * 사용자 action 이 발생했을 때에 데이터 상태보존을 위해 lock 한다.
          */
         lock: function() {
            this.worker.lock();
         },
+
         /**
          * 사용자 action 이 종료되면 lock 을 해제하고 적재된 명령을 한번에 수행한다.
          */
         unlock: function() {
             this.worker.unlock();
         },
+
         /**
          * 데이터가 set 을 사용하여 변경되었을 때, 이벤트 핸들러
          * @private
@@ -39,6 +42,7 @@ var Collection = ne.util.defineClass(Base, /**@lends Collection.prototype */{
         _onChange: function() {
             this.length = this.list.length;
         },
+
         /**
          * collection 값을 설정한다.
          * @param {Array} list  콜랙션 list
@@ -46,6 +50,7 @@ var Collection = ne.util.defineClass(Base, /**@lends Collection.prototype */{
         set: function(list) {
             this.worker.enqueue(this._set, arguments, this);
         },
+
         /**
          * set enqueue 할 내부 함수
          * @param {Array} list  콜랙션 list
@@ -62,6 +67,7 @@ var Collection = ne.util.defineClass(Base, /**@lends Collection.prototype */{
                 'list': list
             });
         },
+
         /**
          * 사용하지 않는 Map 을 제거한다.
          * @param {number} start    제거 시작 index
@@ -77,6 +83,7 @@ var Collection = ne.util.defineClass(Base, /**@lends Collection.prototype */{
                 delete this.map[id];
             }
         },
+
         /**
          * 배열을 collection 에 맞는 형태로 가공하여 map 에 저장하고, 가공된 배열을 반환한다.
          * @param {Array} list
@@ -103,6 +110,7 @@ var Collection = ne.util.defineClass(Base, /**@lends Collection.prototype */{
             return formattedList;
         },
 
+
         /**
          * 배열에서 index 에 해당하는 데이터를 반환한다.
          * @param {number} index
@@ -111,6 +119,7 @@ var Collection = ne.util.defineClass(Base, /**@lends Collection.prototype */{
         at: function(index) {
             return this.list[index];
         },
+
         /**
          * 맵에서 id 에 해당하는 데이터를 반환한다.
          * @param {(number|string)} id
@@ -119,6 +128,7 @@ var Collection = ne.util.defineClass(Base, /**@lends Collection.prototype */{
         get: function(id) {
             return this.map[id];
         },
+
         /**
          * 데이터를 입력받아 데이터가 존재하는 index 를 반환한다.
          * @param {object} obj
@@ -140,6 +150,7 @@ var Collection = ne.util.defineClass(Base, /**@lends Collection.prototype */{
             }
 
         },
+
         /**
          * collection 에 data Array 를  append 한다.
          * @param {Array} list
@@ -147,6 +158,7 @@ var Collection = ne.util.defineClass(Base, /**@lends Collection.prototype */{
         append: function(list) {
             this.worker.enqueue(this._append, arguments, this);
         },
+
         /**
          * append enqueue 할 내부 함수
          * @param {Array} list
@@ -165,6 +177,7 @@ var Collection = ne.util.defineClass(Base, /**@lends Collection.prototype */{
                 appended: list
             });
         },
+
         /**
          * collection 에 data Array 를  prepend 한다.
          * @param {Array} list
@@ -172,6 +185,7 @@ var Collection = ne.util.defineClass(Base, /**@lends Collection.prototype */{
         prepend: function(list) {
             this.worker.enqueue(this._prepend, arguments, this);
         },
+
         /**
          * prepend enqueue 할 내부 함수
          * @param {Array} list
@@ -209,12 +223,14 @@ var Collection = ne.util.defineClass(Base, /**@lends Collection.prototype */{
                 list: this.list
             });
         },
+
         /**
          * collection 을 초기화한다.
          */
         clear: function() {
             this.worker.enqueue(this._clear, arguments, this);
         },
+
         /**
          * clear enqueue 할 내부 함수
          * @private

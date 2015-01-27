@@ -19,6 +19,7 @@
             }, this);
             this._calculateColumnWidthList();
         },
+
         /**
          * 인스턴스 생성시 변수를 초기화한다.
          * @private
@@ -48,6 +49,7 @@
                 criticalPoint: 3       //스크롤 시 숨겨진 행의 개수가 criticalPoint 만큼 남았다면 다음 페이지 랜더링을 시도 한다.
             });
         },
+
         /**
          * clear 시 변수를 리셋 한다.
          * @private
@@ -67,6 +69,7 @@
                 list: []
             });
         },
+
         /**
          * 원본 데이터 collection 이 변경 되었을 경우 이벤트 핸들러
          * @param {Object} changeEvent Collection 에서 발생한 Change 이벤트
@@ -104,6 +107,7 @@
                 scrollTop: this.scrollTop
             });
         },
+
         /**
          * 한번에 여러 change event 를 발생한다.
          * @param {object} dataSets 이벤트 데이터 Key-Value 데이터 쌍
@@ -117,6 +121,7 @@
                 });
             }, this);
         },
+
         /**
          * 자기 스스로에 대한 onChange 이벤트 핸들러
          * @param {{key: key, value: value}} changeEvent 자기 자신이 발생하는 Change 이벤트 핸들러
@@ -144,6 +149,7 @@
                     break;
             }
         },
+
         /**
          * scrollLeft 값이 변경되었을 때 scrollLeft 값 관련 처리
          * @param {number} value 변경된 scrollLeft 값
@@ -154,6 +160,7 @@
                 this.set('scrollLeft', 0);
             }
         },
+
         /**
          * scrollTop 이 변경되었을 때 rendering 관련 처리
          * @param {number} value 변경된 scrollTop 값
@@ -170,6 +177,7 @@
                 }
             }
         },
+
         /**
          * IE 에서 div height max 제한으로 인해 maxCollection length 를 반환한다.
          * @private
@@ -184,6 +192,7 @@
                 return 0;
             }
         },
+
         /**
          * maxScrollTop 값을 계산하여 반환한다.
          * @return {number} maxScrollTop 값
@@ -198,6 +207,7 @@
 
             return Math.max(maxScrollTop, 0);
         },
+
         /**
          * 값을 설정한다.
          * @param {*} key   키값. Object 형태로 들어올 경우, {key1: value1, key2: value2} 와 같이 다수의 키값을 설정할 수 있다.
@@ -222,6 +232,7 @@
                 }
             }
         },
+
         /**
          * 높이를 계산하여 설정한다.
          * @private
@@ -240,6 +251,7 @@
 
             this.set('height', height);
         },
+
         /**
          * rendering 시 필요한 데이터를 갱신한다.
          * @private
@@ -257,6 +269,7 @@
 
             this.invoke('refresh');
         },
+
         /**
          * columnResize 발생 시 index 에 해당하는 컬럼의 width 를 변경하여 반영한다.
          * @param {Number} index    너비를 변경할 컬럼의 인덱스
@@ -272,6 +285,7 @@
                 this._calculateColumnWidthList(curColumnWidthList);
             }
         },
+
         /**
          * columnWidthList 를 계산하여 저장한다.
          * @private
@@ -333,6 +347,7 @@
                 columnWidthList: columnWidthList
             });
         },
+
         /**
          * 인자로 넘어온 list 데이터가 화면에 출력되었을 때 높이를 계산한다.
          * @param {Array} list  인자로 넘어온 list 데이터
@@ -343,6 +358,7 @@
             var border = this.grid.option('border');
             return Util.getHeight(list.length, this.rowHeight, border);
         },
+
         /**
          * 옵션값에 scroll fix 가 설정되어 있다면, scroll fix 한다.
          * @param {Array} list  scrollFix 를 위한 높이 계산 시 사용될 prepend 된 data의 list
@@ -355,6 +371,7 @@
                 this.set('scrollTop', this.scrollTop + dataHeight);
             }
         },
+
         /**
          * 렌더링 데이터를 반환한다.
          * @return {{top: number, startIdx: *, endIdx: *}}
@@ -378,6 +395,7 @@
                 endIdx: endIdx
             };
         },
+
         /**
          * grid 되었을 시 숨겨진 행의 개수가 critical point 보다 적게 남아있는지를 확인하여 rendering 할지 여부를 결정한다.
          * @return {boolean}    랜더링 여부

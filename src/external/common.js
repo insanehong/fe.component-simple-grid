@@ -636,6 +636,7 @@
             this._toggle(true, types, fn, context);
         },
 
+
         /**
          * 인스턴스에 등록했던 이벤트 핸들러를 해제할 수 있다.
          * @param {(object|string)=} types 등록 해지를 원하는 이벤트 객체 또는 타입명. 아무 인자도 전달하지 않으면 모든 이벤트를 해제한다.
@@ -659,6 +660,7 @@
 
             this._toggle(false, types, fn, context);
         },
+
 
         /**
          * on, off 메서드의 중복 코드를 줄이기 위해 만든 on토글 메서드
@@ -685,6 +687,7 @@
                 }, this);
             }
         },
+
 
         /**
          * 내부적으로 실제로 이벤트를 등록하는 로직을 담는 메서드.
@@ -733,6 +736,7 @@
             }
         },
 
+
         /**
          * 실제로 구독을 해제하는 메서드
          * @param {(object|string)=} type 등록 해지를 원하는 핸들러명
@@ -775,6 +779,7 @@
                 }
             }
         },
+
 
         /**
          * 이벤트를 발생시키는 메서드
@@ -842,6 +847,7 @@
             return result;
         },
 
+
         /**
          * 이벤트를 발생시키는 메서드
          * @param {string} type 이벤트 타입명
@@ -860,6 +866,7 @@
             return this;
         },
 
+
         /**
          * 이벤트 핸들러 존재 여부 확인
          * @param {string} type 핸들러명
@@ -871,6 +878,7 @@
 
             return existyFunc(events) && (existyFunc(events[type]) || events[type + '_len']);
         },
+
 
         /**
          * 등록된 이벤트 핸들러의 갯수 반환
@@ -896,6 +904,7 @@
 
             return length;
         },
+
 
         /**
          * 단발성 커스텀 이벤트 핸들러 등록 시 사용
@@ -1059,6 +1068,7 @@
         'radio': function(targetElement, formValue) {
             targetElement.checked = (targetElement.value === formValue);
         },
+
         /**
          * radio type 의 input 요소의 값을 설정한다.
          * @param {HTMLElement} targetElement
@@ -1071,6 +1081,7 @@
                 targetElement.checked = (targetElement.value === formValue);
             }
         },
+
         /**
          * select-one type 의 input 요소의 값을 설정한다.
          * @param {HTMLElement} targetElement
@@ -1090,6 +1101,7 @@
             targetElement.selectedIndex = index;
 
         },
+
         /**
          * select-multiple type 의 input 요소의 값을 설정한다.
          * @param {HTMLElement} targetElement
@@ -1108,6 +1120,7 @@
                 this['select-one'].apply(this, arguments);
             }
         },
+
         /**
          * input 요소의 값을 설정하는 default 로직
          * @param {HTMLElement} targetElement

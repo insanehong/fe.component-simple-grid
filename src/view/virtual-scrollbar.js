@@ -22,6 +22,7 @@
                 isScrollHandlerFocused: false
             });
         },
+
         /**
          * 마우스다운 event handler
          * @private
@@ -32,6 +33,7 @@
             this.isScrollHandlerFocused = true;
             this._updateUnlockTimeout();
         },
+
         /**
          * 스크롤 핸들러로 스크롤 했을 때, unlock timer 를 업데이트 한다.
          * @private
@@ -46,6 +48,7 @@
                 }, this), 1000);
             }
         },
+
         /**
          * scroll event handler
          * @param {event} scrollEvent 스크롤 이벤트
@@ -56,6 +59,7 @@
             this._updateUnlockTimeout();
             this.isScrollHandlerFocused = true;
         },
+
         /**
          * model 값이 변경되었을때 view 에 반영한다.
          *
@@ -74,6 +78,7 @@
                 this._setContentHeight();
             }
         },
+
         /**
          * scrollTop 값을 동기화한다.
          * @param {number} scrollTop    scrollTop 값
@@ -82,6 +87,7 @@
         _onScrollTopChange: function(scrollTop) {
             this.el.scrollTop = scrollTop;
         },
+
         /**
          * 현재 랜더링을 기준으로 max scroll top 을 확인한다.
          * @return {number} 계산된 max scroll top 값
@@ -90,6 +96,7 @@
         _getMaxScrollTop: function() {
             return this.$el.find('.infinite_content').height() - this.$el.innerHeight();
         },
+
         /**
          * 렌더링 한다.
          * @return {VirtualScrollBar}
@@ -120,6 +127,7 @@
             this._attachHandler();
             return this;
         },
+
         /**
          * virtual scroll bar 의 높이를 계산하여 지정한다.
          * @private
@@ -139,6 +147,7 @@
             maxTop = this.model.getMaxScrollTop();
             this.model.set('maxScrollTop', maxTop);
         },
+
         /**
          * 가상 스크롤바의 content 영역의 높이를 가져온다.
          * @return {number} content 의 height 값

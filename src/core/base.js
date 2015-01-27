@@ -18,6 +18,7 @@ ne.component = ne.component || {};
                 });
             }
         },
+
         /**
         * Create unique key
         * @return {string}
@@ -28,6 +29,7 @@ ne.component = ne.component || {};
                 uniqueKey = new Date().getTime() + rand;
             return uniqueKey;
         },
+
         /**
          * set own properties
          * @param {object} properties
@@ -40,6 +42,7 @@ ne.component = ne.component || {};
             }, this);
             return this;
         },
+
         /**
          * error 객체를 리턴한다.
          * @param {string} msg
@@ -92,6 +95,7 @@ ne.component = ne.component || {};
             });
             this._initializeStyle();
         },
+
         /**
          * style 이 설정되어있다면 default style 을 적용한다.
          * @private
@@ -101,6 +105,7 @@ ne.component = ne.component || {};
                 this.$el.attr('style', this.style);
             }
         },
+
         /**
          * 이벤트 핸들러를 attach 또는 detach 한다.
          * @param {jQuery} [$target     ] 이벤트 핸들러의 대상 $target
@@ -127,6 +132,7 @@ ne.component = ne.component || {};
                 }, this);
             }
         },
+
         /**
          * event 를 attach 한다.
          * @param {jQuery} [$target]
@@ -136,6 +142,7 @@ ne.component = ne.component || {};
             /* istanbul ignore next: dispatchHandler 에서 테스트 함 */
             this._dispatchHandler($target, true);
         },
+
         /**
          * event 를 detach 한다.
          * @param {jQuery} [$target]
@@ -145,6 +152,7 @@ ne.component = ne.component || {};
             /* istanbul ignore next: dispatchHandler 에서 테스트 함 */
             this._dispatchHandler($target);
         },
+
          /**
          * create view
          * @param {function} constructor
@@ -161,6 +169,7 @@ ne.component = ne.component || {};
             this._viewList.push(instance);
             return instance;
         },
+
         /**
          * destroyChildren
          */
@@ -171,6 +180,7 @@ ne.component = ne.component || {};
                 }
             }
         },
+
         /**
          * destroy
          */
@@ -207,6 +217,7 @@ ne.component = ne.component || {};
             });
             return replaced;
         },
+
         /**
          * 행 개수와 한 행당 높이를 인자로 받아 테이블 body 의 전체 높이를 구한다.
          * @param {number} rowCount
@@ -218,6 +229,7 @@ ne.component = ne.component || {};
             border = ne.util.isUndefined(border) ? 1 : border;
             return rowCount === 0 ? rowCount : rowCount * (rowHeight + border) + border;
         },
+
         /**
          *Table 의 높이와 행당 높이를 인자로 받아, table 에서 보여줄 수 있는 행 개수를 반환한다.
          *
@@ -228,6 +240,7 @@ ne.component = ne.component || {};
         getDisplayRowCount: function(height, rowHeight) {
             return Math.ceil((height - 1) / (rowHeight + 1));
         },
+
         /**
          * Table 의 height 와 행 개수를 인자로 받아, 한 행당 높이를 구한다.
          *
@@ -238,6 +251,7 @@ ne.component = ne.component || {};
         getRowHeight: function(rowCount, height) {
             return rowCount === 0 ? 0 : Math.floor(((height - 1) / rowCount)) - 1;
         },
+
         /**
          * Grid 에서 필요한 형태로 HTML tag 를 제거한다.
          * @param {string} htmlString   html 마크업 문자열

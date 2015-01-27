@@ -40,6 +40,7 @@
                 }
             });
         },
+
         /**
          * 마우스 이벤트 핸들러를 attach 한다.
          * @param {event} mouseEvent    마우스 이벤트 핸들러
@@ -56,6 +57,7 @@
                 $(document).on('selectstart', this.selectionHandler.selectstart);
             }
         },
+
         /**
          * 마우스 이벤트 핸들러를 detach 한다.
          */
@@ -64,6 +66,7 @@
             $(document).off('mouseup', this.selectionHandler.mouseup);
             $(document).off('selectstart', this.selectionHandler.selectstart);
         },
+
         /**
          * Mouse down 이벤트 핸들러
          * @param {event} mouseDownEvent    마우스 이벤트 핸들러
@@ -85,6 +88,7 @@
                 this.stopSelection();
             }
         },
+
         /**
          * Mouse move 이벤트 핸들러
          * @param {event} mouseMoveEvent    마우스 이벤트 핸들러
@@ -100,6 +104,7 @@
                 this.startSelection(this.getKey(this.startPageX, this.startPageY));
             }
         },
+
         /**
          * MouseUp 이벤트 핸들러
          * @param {event} mouseUpEvent  마우스 이벤트 핸들러
@@ -108,6 +113,7 @@
         _onMouseUp: function(mouseUpEvent) {
             this.detachMouseEvent();
         },
+
         /**
          * selection start 시 영역 선택하지 않도록 prevent default
          * @param {event} selectStartEvent  이벤트 핸들러
@@ -119,6 +125,7 @@
             selectStartEvent.preventDefault();
             return false;
         },
+
         /**
          * selection 시 mouse pointer 가 영역을 벗어났을 시 자동 scroll 한다.
          * @private
@@ -138,6 +145,7 @@
                 }
             }
         },
+
         /**
          * mousedown 이 처음 일어난 지점부터의 거리를 구한다.
          * @param {event} mouseMoveEvent    마우스 이벤트
@@ -151,6 +159,7 @@
                 y = Math.abs(this.startPageY - pageY);
             return Math.round(Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2)));
         },
+
         /**
          * 내부 변수로 mouse position 을 저장한다.
          * @param {event} mouseEvent    마우스 이벤트
@@ -160,6 +169,7 @@
             this.mousePos.pageX = mouseEvent.pageX;
             this.mousePos.pageY = mouseEvent.pageY;
         },
+
         /**
          * model 값이 변경되었을때 view 에 반영한다.
          *
@@ -175,6 +185,7 @@
                 this.$el.width(value - 3);
             }
         },
+
         /**
          * selection range 를 반환한다.
          * @return {Array}
@@ -182,6 +193,7 @@
         getSelectionRange: function() {
             return this.rangeKey;
         },
+
         /**
          * selection 된 시작과 끝 영역의 index 를 리턴한다.
          * @return {Array}
@@ -196,6 +208,7 @@
                 endIdx = Math.max.apply(Math, range);
             return [startIdx, endIdx];
         },
+
         /**
          * selection 데이터가 존재하는지 확인한다.
          * @return {boolean}
@@ -203,6 +216,7 @@
         hasSelection: function() {
             return !(this.rangeKey[0] === -1);
         },
+
         /**
          * selection 된 영역의 length 를 반환한다.
          * @return {number}
@@ -211,6 +225,7 @@
             var range = this.getSelectionRangeIndex();
             return (range[1] + 1) - range[0];
         },
+
         /**
          * selection 을 시작한다.
          * @param {number} [key]    시작할 row 의 key
@@ -224,6 +239,7 @@
                 }
             }
         },
+
         /**
          * selection 영역을 update 한다.
          * @param {number} [key] 업데이트 된 row 의 key
@@ -237,6 +253,7 @@
                 }
             }
         },
+
         /**
          * selection data 를 배열 형태로 가져온다.
          * @return {Array}
@@ -264,6 +281,7 @@
             });
             return rowStringList;
         },
+
         /**
          * 전체 selection 한다.
          */
@@ -272,6 +290,7 @@
             this.rangeKey = [collection.at(0).id, collection.at(collection.length - 1).id];
             this.draw();
         },
+
         /**
          * selection 을 중지한다.
          */
@@ -279,6 +298,7 @@
             this.rangeKey = [-1, -1];
             this.draw();
         },
+
         /**
          * selection 영역을 보인다.
          */
@@ -286,6 +306,7 @@
             this.isShown = true;
             this.draw();
         },
+
         /**
          * selection 영역을 감춘다.
          */
@@ -293,6 +314,7 @@
             this.isShown = false;
             this.draw();
         },
+
         /**
          * 마우스 포지션이 container 영역을 벗어났는지 확인한다.
          * @param {number} pageX    마우스 x좌표
@@ -319,6 +341,7 @@
             }
             return status;
         },
+
         /**
          * 마우스 포지션에 해당하는 row 의 key 를 얻어온다.
          *
@@ -347,6 +370,7 @@
             idx = Math.min(Math.max(0, Math.floor(dataPosY / (rowHeight + border))), model.collection.length - 1);
             return model.collection.at(idx) && model.collection.at(idx).id;
         },
+
         /**
          * 현재 정보를 가지고 selection 영역을 표시한다.
          */
@@ -391,6 +415,7 @@
                 }
             }
         },
+
         /**
          * 랜더링한다.
          * @return {Selection}
@@ -410,6 +435,7 @@
             this._attachHandler();
             return this;
         },
+
         /**
          * 소멸자
          */

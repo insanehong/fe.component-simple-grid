@@ -20,6 +20,7 @@
             }, this);
             this._initializeCss();
         },
+
         /**
          * option 값에 맞춰 css 스타일을 지정한다.
          * @private
@@ -38,6 +39,7 @@
             }
 
         },
+
         /**
          * scroll event handler
          *  - scroll top 과 scroll left 를 동기화 한다.
@@ -61,6 +63,7 @@
             this.invoke('scroll', scrollEvent);
 
         },
+
         /**
          * model 값이 변경되었을때 view 에 반영한다.
          *
@@ -79,6 +82,7 @@
                 }
             }
         },
+
         /**
          * 랜더링 한다.
          * @return {Container}

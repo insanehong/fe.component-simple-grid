@@ -31,6 +31,7 @@ var Header = ne.util.defineClass(Base.View, /**@lends Header.prototype */{
         '</tbody>' +
         '</div>'
     },
+
     /**
      * model 값이 변경되었을때 view 에 반영한다.
      *
@@ -48,6 +49,7 @@ var Header = ne.util.defineClass(Base.View, /**@lends Header.prototype */{
             this._changeColumnWidth(value);
         }
     },
+
     /**
      * Model Change 이벤트 핸들러로부터 columnWidthList 를 전달받아, 현재 table의
      * 각 열의 너비를 조정한다.
@@ -61,6 +63,7 @@ var Header = ne.util.defineClass(Base.View, /**@lends Header.prototype */{
             $colList.eq(index).width(width);
         }, this);
     },
+
     /**
      * 랜더링 한다.
      * @return {Header}
@@ -124,6 +127,7 @@ var Header = ne.util.defineClass(Base.View, /**@lends Header.prototype */{
         this._attachHandler();
         return this;
     },
+
     /**
      * Model 의 변경된 width 값을 받아 container 의 width 를 결정한다.
      * @param {(Number|String)} width 너비값

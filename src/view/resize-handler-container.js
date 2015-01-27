@@ -27,6 +27,7 @@ var ResizeHandlerContainer = ne.util.defineClass(Base.View, /**@lends ResizeHand
         this.height = attributes.height;
         this.model.on('change', this._onModelChange, this);
     },
+
     /**
      * model 값이 변경되었을때 view 에 반영한다.
      *
@@ -40,6 +41,7 @@ var ResizeHandlerContainer = ne.util.defineClass(Base.View, /**@lends ResizeHand
             this._refreshHandlerPosition();
         }
     },
+
     /**
      * 렌더링 한다.
      * @return {ResizeHandlerContainer}
@@ -69,6 +71,7 @@ var ResizeHandlerContainer = ne.util.defineClass(Base.View, /**@lends ResizeHand
         this._refreshHandlerPosition();
         return this;
     },
+
     /**
      * 생성된 핸들러의 위치를 설정한다.
      * @private
@@ -77,7 +80,6 @@ var ResizeHandlerContainer = ne.util.defineClass(Base.View, /**@lends ResizeHand
         var columnWidthList = this.model.columnWidthList,
             $resizeHandleList = this.$el.find('.infinite_resize_handler'),
             border = this.grid.option('border'),
-            lastIndex = columnWidthList.length - 1,
             $colList = this.grid.view.header.$el.find('th'),
             curPos = 0;
 
@@ -89,6 +91,7 @@ var ResizeHandlerContainer = ne.util.defineClass(Base.View, /**@lends ResizeHand
             $handler.css('left', (curPos - 4) + 'px');
         }, this);
     },
+
     /**
      * mousedown 이벤트 핸들러
      * @param {event} mouseDownEvent    마우스 이벤트 객체
@@ -99,6 +102,7 @@ var ResizeHandlerContainer = ne.util.defineClass(Base.View, /**@lends ResizeHand
         this.grid.option('useSelection', false);
         this._startResizing(mouseDownEvent);
     },
+
     /**
      * mouseup 이벤트 핸들러
      * @private
@@ -107,6 +111,7 @@ var ResizeHandlerContainer = ne.util.defineClass(Base.View, /**@lends ResizeHand
         this.grid.option('useSelection', this.useSelectionStatus);
         this._stopResizing();
     },
+
     /**
      * mousemove 이벤트 핸들러
      * @param {event} mouseMoveEvent    마우스 이벤트 객체
@@ -125,6 +130,7 @@ var ResizeHandlerContainer = ne.util.defineClass(Base.View, /**@lends ResizeHand
             this.model.setColumnWidth(index, width);
         }
     },
+
     /**
      * 너비를 계산한다.
      * @param {number} pageX    마우스의 x 좌표
@@ -135,6 +141,8 @@ var ResizeHandlerContainer = ne.util.defineClass(Base.View, /**@lends ResizeHand
         var difference = pageX - this.initialOffsetLeft - this.initialLeft;
         return this.initialWidth + difference;
     },
+
+
     /**
      * 현재 mouse move resizing 중인지 상태 flag 반환
      * @return {boolean}    현재 resize 중인지 여부
@@ -143,6 +151,7 @@ var ResizeHandlerContainer = ne.util.defineClass(Base.View, /**@lends ResizeHand
     _isResizing: function() {
         return !!this.isResizing;
     },
+
     /**
      * resize start 세팅
      * @param {event} mouseDownEvent 마우스 이벤트
@@ -162,6 +171,7 @@ var ResizeHandlerContainer = ne.util.defineClass(Base.View, /**@lends ResizeHand
             .bind('mouseup', $.proxy(this._onMouseUp, this))
             .css('cursor', 'col-resize');
     },
+
     /**
      * resize stop 세팅
      * @private
@@ -194,6 +204,7 @@ var ResizeHandler = ne.util.defineClass(Base.View, /**@lends ResizeHandler.proto
             isLast: attributes.isLast
         });
     },
+
     /**
      * 랜더링한다
      * @returns {ResizeHandler}

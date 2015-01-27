@@ -65,16 +65,19 @@
          * @type {Number}
          */
         scrollBarSize: 17,
+
         /**
          * 방향키 스크롤 시 입력당 이동 단위 pixel
          * @type {Number}
          */
         scrollingScale: 40,
+
         /**
          * page up/ down 스크롤 시 입력당 이동 단위 %
          * @type {Number}
          */
         scrollingScalePerPage: 90,
+
         /**
          * 1533917 is the max height of IE (66692*23 + 1)
          * @type {Number}
@@ -87,6 +90,7 @@
             'mousedown': '_onMouseDown',
             'focus': '_onFocus'
         },
+
         /**
          *  @param {Object} options 옵션 객체
          *      @param {jQuery} options.$el root 엘리먼트
@@ -200,6 +204,7 @@
                 }, this), 10);
             }
         },
+
        /**
         * webkit 에서 스크롤바 정상 노출되지 않는 현상 수정
         * @private
@@ -220,6 +225,7 @@
            //     $('html > head').append($('<style id="simple_grid_style">' + styleList.join('\n') + '</style>'));
            //}
         },
+
         /**
          * 커스텀 이벤트를 초기화 한다.
          * @private
@@ -229,6 +235,7 @@
                 return this.invoke('click', customEvent);
             }, this);
         },
+
         /**
          * 스크롤 영역 focus 되었을 때 select 를 수행하는 핸들러
          */
@@ -236,12 +243,14 @@
             this.view.keyboard.$el.focus().select();
             //this.view.container.selection.show();
         },
+
         /**
          * 스크롤 영역 blur 시 select 해제 하는 핸들러
          */
         blur: function() {
             this.view.container.selection.hide();
         },
+
         /**
          * view 에서 참조할 모델을 초기화한다.
          * @private
@@ -254,6 +263,7 @@
                 grid: this
             });
         },
+
         /**
          * 내부에서 사용할 view 를 초기화한다.
          * @private
@@ -276,6 +286,7 @@
                 model: this.model
             });
         },
+
         /**
          * mousedown event handler
          * @private
@@ -289,6 +300,7 @@
                 this.focus();
             }, this), 0);
         },
+
         /**
          * mouseup event handler
          * @private
@@ -297,6 +309,7 @@
             this.model.collection.unlock();
             $(document).off('mouseup', $.proxy(this._onMouseUp, this));
         },
+
         /**
          * selection instance 를 반환한다.
          * @return {Object}
@@ -304,6 +317,7 @@
         getSelectionInstance: function() {
             return this.view.container.selection;
         },
+
         /**
          * scroll content 에 노출될 data list 를 저장한다.
          *
@@ -332,6 +346,7 @@
             this.model.collection.set(list);
             return this;
         },
+
         /**
          * id 에 해당하는 row 를 삭제한다.
          * @param {*} id 삭제할 키값 혹은 키값의 list
@@ -342,6 +357,7 @@
             this.model.collection.remove(idList);
             return this;
         },
+
         /**
          * scroll content 에 노출될 data list 를 append 한다.
          *
@@ -352,6 +368,7 @@
             this.model.collection.append(list);
             return this;
         },
+
         /**
          * scroll content 에 노출될 data list 를 prepend 한다.
          *
@@ -362,6 +379,7 @@
             this.model.collection.prepend(list);
             return this;
         },
+
         /**
          * 노출된 데이터를 전부 초기화 한다.
          *
@@ -371,6 +389,7 @@
             this.model.collection.clear();
             return this;
         },
+
         /**
          * 현재 저장된 데이터 정보를 가져온다.
          * @return {list|*|Collection.list}
@@ -378,6 +397,7 @@
         getList: function() {
             return this.model.collection.list;
         },
+
         /**
          * 스크롤을 랜더링한다.
          *
@@ -410,6 +430,7 @@
             this._attachHandler();
             return this;
         },
+
         /**
          * model 의 layout 관련 데이터를 갱신한다.
          */
@@ -422,6 +443,7 @@
                 containerHeight: this.view.container.$el.height()
             });
         },
+
         /**
          * 설정된 옵션값을 가져오거나 변경한다..
          *

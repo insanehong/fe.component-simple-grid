@@ -19,6 +19,7 @@
                 isMultiple: options && options.isMultiple || false
             });
         },
+
         /**
          * 선택된 영역의 list 를 반환한다.
          * @return {Array}  선택 영역의 list
@@ -26,6 +27,7 @@
         getSelectList: function() {
             return ne.util.keys(this.selectMap);
         },
+
         /**
          * 행을 선택한다.
          * @param {(Number|String)} key 해당하는 row의 키값
@@ -39,6 +41,7 @@
             this.selectMap[key] = true;
             this.fire('select', key, this.selectMap);
         },
+
         /**
          * 행을 선택 해제한다.
          * @param {(String|Number)} [key] 지정되지 않았다면 모든 select 를 초기화한다.

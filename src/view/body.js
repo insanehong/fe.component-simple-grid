@@ -62,6 +62,7 @@
                 '<%=content%>' +
                 '</td>'
         },
+
         /**
          * 생성자 함수
          * @param {object} attributes
@@ -86,6 +87,7 @@
                 'scroll': this._onScroll
             }, this);
         },
+
         /**
          * 디자인 클래스를 unselect 한다.
          * @param {(Number|String)} key select 된 해당 row 의 key
@@ -96,6 +98,7 @@
 
             $tr.length && $tr.css('background', '').addClass('selected');
         },
+
         /**
          * 디자인 클래스 unselect 한다.
          * @param {(Number|String)} key unselect 된 해당 row 의 key
@@ -106,6 +109,7 @@
                 color = this.grid.option('color');
             $tr.length && $tr.removeClass('selected').css('background', color['td']);
         },
+
         /**
          * 스크롤 이벤트 핸들러
          * @private
@@ -115,6 +119,7 @@
                 this.selection.draw();
             }
         },
+
         /**
          * click 이벤트 핸들러
          * @param {event} clickEvent 클릭이벤트
@@ -133,6 +138,7 @@
 
             this.fire('click', customEvent);
         },
+
         /**
          * mouseDown 이벤트 핸들러
          * @param {event} mouseDownEvent 마우스다운 이벤트
@@ -156,6 +162,7 @@
                 }
             }
         },
+
         /**
          * model 값이 변경되었을때 view 에 반영한다.
          *
@@ -173,6 +180,7 @@
                 this._changeColumnWidth(value);
             }
         },
+
         /**
          * Model Change 이벤트 핸들러로부터 columnWidthList 를 전달받아, 현재 table의
          * 각 열의 높이를 조정한다.
@@ -185,6 +193,7 @@
                 $colList.eq(index).css('width', width + 'px');
             }, this);
         },
+
         /**
          * model 의 refresh 이벤트가 발생했을 때 이벤트 핸들러
          * @private
@@ -192,6 +201,7 @@
         _onRefresh: function() {
             this.render();
         },
+
         /**
          * <colgroup> 내 들어갈 마크업 문자열을 생성한다.
          * @param {Array} columnWidthList   컬럼 너비 정보 리스트
@@ -205,6 +215,7 @@
             }, this);
             return col;
         },
+
         /**
          * <tbody> 내 들어갈 마크업 문자열을 생성한다.
          * @return {string} 생성된 마크업 문자열
@@ -257,6 +268,7 @@
             }, this);
             return trList.join('');
         },
+
         /**
          * 랜더링 한다.
          * @return {Body}
@@ -303,6 +315,7 @@
 
             return this;
         },
+
         /**
          * Container 의 width 를 설정한다.
          * @param {Number} width 너비값

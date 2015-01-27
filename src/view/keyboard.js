@@ -33,6 +33,7 @@
         init: function(attributes) {
             Base.View.prototype.init.apply(this, arguments);
         },
+
         /**
          * focus event handler
          * @param {event} focusEvent focus 이벤트
@@ -41,6 +42,7 @@
         _onFocus: function(focusEvent) {
             this.grid.getSelectionInstance().show();
         },
+
         /**
          * blur event handler
          * @param {event} blurEvent blur 이벤트
@@ -50,6 +52,7 @@
             this.model.collection.unlock();
             this.grid.blur();
         },
+
         /**
          * keyUp event handler
          * @param {event} keyUpEvent keyup 이벤트
@@ -58,6 +61,7 @@
         _onKeyUp: function(keyUpEvent) {
             this.model.collection.unlock();
         },
+
         /**
          * keyDown 시 이벤트 핸들러
          * @param {event} keyDownEvent keydown 이벤트
@@ -118,6 +122,7 @@
                 keyDownEvent.stopPropagation();
             }
         },
+
         /**
          * copy를 위한 keydown event 가 발생했을 경우 데이터를 clipboard 에 설정한다.
          * @private
@@ -135,6 +140,7 @@
                 this.$el.val(text).select();
             }
         },
+
         /**
          * 세로 스크롤 한다.
          * @param {number} pixel    이동할 픽셀값
@@ -145,6 +151,7 @@
             var scrollTop = Math.max(0, this.model.scrollTop + pixel);
             this.model.set('scrollTop', scrollTop);
         },
+
         /**
          * 가로 스크롤 한다.
          * @param {number} pixel 이동할 픽셀값
@@ -153,6 +160,7 @@
             var scrollLeft = Math.max(0, this.model.scrollLeft + pixel);
             this.model.set('scrollLeft', scrollLeft);
         },
+
         /**
          * 랜더링 한다.
          * @return {Keyboard}

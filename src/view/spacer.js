@@ -14,6 +14,7 @@ var Spacer = ne.util.defineClass(Base.View, /**@lends Spacer.prototype */{
     init: function(attributes) {
         Base.View.prototype.init.apply(this, arguments);
     },
+
     /**
      * 렌더링 한다.
      * @return {Spacer}
