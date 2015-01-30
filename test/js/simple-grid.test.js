@@ -109,13 +109,13 @@ describe('view.virtual-scrollbar', function() {
             expect(prepend).toHaveBeenCalled();
         });
     });
-    //describe('remove', function() {
-    //    it('model 의 collection 의 remove 를 호출한다.', function() {
-    //        var prepend = simpleGrid.model.collection.prepend = jasmine.createSpy('prepend');
-    //        simpleGrid.prepend([1, 2, 3, 4]);
-    //        expect(prepend).toHaveBeenCalled();
-    //    });
-    //});
+    describe('remove', function() {
+        it('model 의 collection 의 remove 를 호출한다.', function() {
+            var remove = simpleGrid.model.collection.remove = jasmine.createSpy('remove');
+            simpleGrid.remove([1, 2, 3, 4]);
+            expect(remove).toHaveBeenCalled();
+        });
+    });
 
 
     describe('option', function() {
