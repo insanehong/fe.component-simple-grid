@@ -96,7 +96,7 @@ describe('view.virtual-scrollbar', function() {
         });
     });
     describe('append', function() {
-        it('model 의 collection 의 append 를 호출한다..', function() {
+        it('model 의 collection 의 append 를 호출한다.', function() {
             var append = simpleGrid.model.collection.append = jasmine.createSpy('append');
             simpleGrid.append([1, 2, 3, 4]);
             expect(append).toHaveBeenCalled();
@@ -109,6 +109,15 @@ describe('view.virtual-scrollbar', function() {
             expect(prepend).toHaveBeenCalled();
         });
     });
+    //describe('remove', function() {
+    //    it('model 의 collection 의 remove 를 호출한다.', function() {
+    //        var prepend = simpleGrid.model.collection.prepend = jasmine.createSpy('prepend');
+    //        simpleGrid.prepend([1, 2, 3, 4]);
+    //        expect(prepend).toHaveBeenCalled();
+    //    });
+    //});
+
+
     describe('option', function() {
         it('인자를 두개 넘기면 set 으로, 한개 넘기면 get 으로 동작한다.', function() {
             simpleGrid.option('testVal', 1);
