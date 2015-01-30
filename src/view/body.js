@@ -70,11 +70,16 @@
          */
         init: function(attributes) {
             Base.View.prototype.init.apply(this, arguments);
+
             if (this.grid.option('useSelection')) {
                 this.setOwnProperties({
                     selection: attributes.selection
                 });
             }
+
+            this.setOwnProperties({
+                resizeHandler: null
+            });
 
             this.grid.focusModel.on('select', this.select, this);
             this.grid.focusModel.on('unselect', this.unselect, this);
@@ -303,12 +308,12 @@
 
             //resize 를 사용한다면 resize handler 를 추가한다.
             if (this.grid.option('useColumnResize')) {
-                resizeHandler = this.createView(ResizeHandlerContainer, {
+                this.resizeHandler = this.createView(ResizeHandlerContainer, {
                     grid: this.grid,
                     model: this.model,
                     height: this.$el.height()
                 });
-                this.$el.append(resizeHandler.render().el);
+                this.$el.append(this.resizeHandler.render().el);
             }
 
             this._attachHandler();

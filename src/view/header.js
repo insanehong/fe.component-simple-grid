@@ -16,6 +16,9 @@ var Header = ne.util.defineClass(Base.View, /**@lends Header.prototype */{
     init: function (attributes){
         Base.View.prototype.init.apply(this, arguments);
         this.model.on('change', this._onModelChange, this);
+        this.setOwnProperties({
+            resizeHandler: null
+        });
     },
     _template: {
         table: '' +
@@ -114,12 +117,12 @@ var Header = ne.util.defineClass(Base.View, /**@lends Header.prototype */{
         }
         //resize 를 사용한다면 resize handler 를 추가한다.
         if (this.grid.option('useColumnResize')) {
-            resizeHandler = this.createView(ResizeHandlerContainer, {
+            this.resizeHandler = this.createView(ResizeHandlerContainer, {
                 grid: this.grid,
                 model: this.model,
                 height: height
             });
-            this.$el.append(resizeHandler.render().el);
+            this.$el.append(this.resizeHandler.render().el);
         }
         if (!this.grid.option('hasHeader')) {
             this.$el.css({
