@@ -141,6 +141,6 @@ module.exports = function(config) {
         singleRun: false
     };
 
-    setConfig(configDefault, true);
+    setConfig(configDefault, false);
     config.set(configDefault);
 };
