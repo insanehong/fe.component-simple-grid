@@ -188,15 +188,24 @@
             this._initializeView();
             this.render();
             this._initializeCustomEvent();
-            this._initializeStyleSheet();
             return this;
         },
+
+        /**
+         * Grid 에 mouse over 시 resizeHandler 가 fade in 된다.
+         * @private
+         */
         _onMouseOver: function() {
             if (this.option('useColumnResize') && this.option('useColumnResizeHandlerFade')) {
                 clearTimeout(this.timeoutIdForFade);
                 this.$el.find('.infinite_resize_handler').stop().fadeTo(300, 0.3);
             }
         },
+
+        /**
+         * Grid 에 mouse over 시 resizeHandler 가 fade out 된다.
+         * @private
+         */
         _onMouseOut: function() {
             if (this.option('useColumnResize') && this.option('useColumnResizeHandlerFade')) {
                 this.timeoutIdForFade = setTimeout($.proxy(function() {
@@ -206,27 +215,6 @@
         },
 
        /**
-        * webkit 에서 스크롤바 정상 노출되지 않는 현상 수정
-        * @private
-        */
-        _initializeStyleSheet: function() {
-           //var styleList = [
-           //     '.simple_grid {scrollbar-highlight-color:#f2f2f2;scrollbar-shadow-color:#f2f2f2;scrollbar-arrow-color:#8a8a8a;scrollbar-face-color:#d9d9d9;scrollbar-3dlight-color:#f2f2f2;scrollbar-darkshadow-color:#f2f2f2;scrollbar-track-color:#f2f2f2;}',
-           //     '.simple_grid ::-webkit-scrollbar{-webkit-appearance: none;width:17px;height:17px;background-color:#f2f2f2;}',
-           //     '.simple_grid ::-webkit-scrollbar-thumb{background-color:#d9d9d9;border:5px solid transparent;border-radius:7px;background-clip:content-box;}',
-           //     '.simple_grid ::-webkit-scrollbar-thumb:hover{background-color: #c1c1c1;}',
-           //     '.simple_grid ::-webkit-scrollbar-corner{background-color: #f2f2f2;}'
-           //];
-           ////var styleList = [
-           ////    '.infinite_container ::-webkit-scrollbar {display: none;}'
-           ////];
-           ////
-           //if (!$('#simple_grid_style').length) {
-           //     $('html > head').append($('<style id="simple_grid_style">' + styleList.join('\n') + '</style>'));
-           //}
-        },
-
-        /**
          * 커스텀 이벤트를 초기화 한다.
          * @private
          */
