@@ -99,7 +99,6 @@
          *      @param {number} [options.height]    grid 의 높이값. displayCount 보다 우선한다.
          *      @param {number} [options.useSelection=true]    selection 기능을 사용할 지 여부
          *      @param {number} [options.useColumnResize=true]    열 resize 기능을 사용할 지 여부
-         *      @param {number} [options.useColumnResizeHandlerFade=false]    열 resize 기능 사용시
          *      @param {number} [options.rowHeight=20] 한 행의 높이값. height 가 설정될 경우 무시된다.
          *      @param {number} [options.displayCount=15] 한 화면에 보여질 행 개수
          *      @param {boolean} [options.scrollX=true] 가로 스크롤 사용 여부
@@ -145,7 +144,6 @@
                     defaultColumnWidth: 50,
                     useSelection: true,
                     useColumnResize: true,
-                    useColumnResizeHandlerFade: false,
                     hasHeader: true,
                     minimumColumnWidth: 20,
                     className: {
@@ -178,8 +176,7 @@
                     keyboard: null
                 },
                 options: options,
-                timeoutIdForBlur: 0,
-                timeoutIdForFade: 0
+                timeoutIdForBlur: 0
             });
             if (!this.option('hasHeader')) {
                 this.option('headerHeight', 0);
@@ -189,29 +186,6 @@
             this.render();
             this._initializeCustomEvent();
             return this;
-        },
-
-        /**
-         * Grid 에 mouse over 시 resizeHandler 가 fade in 된다.
-         * @private
-         */
-        _onMouseOver: function() {
-            if (this.option('useColumnResize') && this.option('useColumnResizeHandlerFade')) {
-                clearTimeout(this.timeoutIdForFade);
-                this.$el.find('.infinite_resize_handler').stop().fadeTo(300, 0.3);
-            }
-        },
-
-        /**
-         * Grid 에 mouse over 시 resizeHandler 가 fade out 된다.
-         * @private
-         */
-        _onMouseOut: function() {
-            if (this.option('useColumnResize') && this.option('useColumnResizeHandlerFade')) {
-                this.timeoutIdForFade = setTimeout($.proxy(function() {
-                    this.$el.find('.infinite_resize_handler').stop().fadeTo(300, 0);
-                }, this), 10);
-            }
         },
 
        /**
