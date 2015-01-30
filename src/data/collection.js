@@ -110,7 +110,6 @@ var Collection = ne.util.defineClass(Base, /**@lends Collection.prototype */{
             return formattedList;
         },
 
-
         /**
          * 배열에서 index 에 해당하는 데이터를 반환한다.
          * @param {number} index
