@@ -79,7 +79,7 @@
         scrollingScalePerPage: 90,
 
         /**
-         * 1533917 is the max height of IE (66692*23 + 1)
+         * IE 랜더링 가능한 MaxHeight 값. 1533917 is the max height of IE (66692*23 + 1)
          * @type {Number}
          */
         ieMaxHeight: 1533917,
@@ -199,15 +199,14 @@
         },
 
         /**
-         * 스크롤 영역 focus 되었을 때 select 를 수행하는 핸들러
+         * focus 발생시 이벤트 핸들러
          */
         focus: function() {
             this.view.keyboard.$el.focus().select();
-            //this.view.container.selection.show();
         },
 
         /**
-         * 스크롤 영역 blur 시 select 해제 하는 핸들러
+         * blur 발생시 selection 영역 숨김처 한다.
          */
         blur: function() {
             this.view.container.selection.hide();
@@ -250,7 +249,7 @@
         },
 
         /**
-         * mousedown event handler
+         * 마우스 down 이벤트 핸들러
          * @private
          */
         _onMouseDown: function() {
@@ -264,7 +263,7 @@
         },
 
         /**
-         * mouseup event handler
+         * 마우스 up 이벤트 핸들러
          * @private
          */
         _onMouseUp: function() {
@@ -273,8 +272,8 @@
         },
 
         /**
-         * selection instance 를 반환한다.
-         * @return {Object}
+         * 선택영역 selection instance 를 반환한다. 내부 수행 로직에 사용된다.
+         * @return {Object} Selection 인스턴스
          */
         getSelectionInstance: function() {
             return this.view.container.selection;
@@ -322,7 +321,7 @@
         /**
          * scroll content 에 노출될 data list 를 append 한다.
          *
-         * @param {array} list
+         * @param {array} list append 할 데이터 list
          * @return {ne.component.SimpleGrid}
          */
         append: function(list) {
@@ -332,8 +331,7 @@
 
         /**
          * scroll content 에 노출될 data list 를 prepend 한다.
-         *
-         * @param {array} list
+         * @param {array} list prepend 할 데이터 list
          * @return {ne.component.SimpleGrid}
          */
         prepend: function(list) {
@@ -342,7 +340,7 @@
         },
 
         /**
-         * 노출된 데이터를 전부 초기화 한다.
+         * 노출된 데이터를 전부 제거 한다.
          * @return {ne.component.SimpleGrid}
          */
         clear: function() {
@@ -351,7 +349,7 @@
         },
 
         /**
-         * 현재 저장된 데이터 정보를 가져온다.
+         * 현재 Grid 에 저장된 데이터 정보를 가져온다.
          * @return {list|*|Collection.list}
          */
         getList: function() {
@@ -359,7 +357,7 @@
         },
 
         /**
-         * 스크롤을 랜더링한다.
+         * 랜더링한다.
          * @return {ne.component.SimpleGrid}
          */
         render: function() {
