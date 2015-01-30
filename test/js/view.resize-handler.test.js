@@ -9,7 +9,10 @@ describe('view.resize-handler', function() {
 
         loadFixtures('test/fixtures/empty.html');
 
-        $empty = $('#empty').width(1000);
+        $empty = $('#empty').width(1000).css('left', '0px');
+        $('body').css({
+            'padding': 0
+        });
         simpleGrid = new ne.component.SimpleGrid({
             $el: $empty,
             useColumnResize: true,
@@ -82,7 +85,7 @@ describe('view.resize-handler', function() {
             mouseEvent = {
                 pageX: 98,
                 pageY: 20,
-                target: handler.$el.find('.infinite_resize_handler:eq(0)'),
+                target: handler.$el.find('.infinite_resize_handler:eq(1)'),
                 preventDefault: function(){}
             };
             $handlerList = handler.$el.find('.infinite_resize_handler');
@@ -95,11 +98,11 @@ describe('view.resize-handler', function() {
         it('_onMouseMove', function() {
             mouseEvent.pageX = 300;
             handler._onMouseMove(mouseEvent);
-            expect($handlerList.eq(0).css('left')).toBe('292px');
+            expect($handlerList.eq(1).css('left')).toBe('292px');
 
             mouseEvent.pageX = 400;
             handler._onMouseMove(mouseEvent);
-            expect($handlerList.eq(0).css('left')).toBe('392px');
+            expect($handlerList.eq(1).css('left')).toBe('392px');
         });
     });
 });
