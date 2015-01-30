@@ -12,6 +12,10 @@
             'scroll': '_onScroll'
         },
         style: 'overflow-y: scroll; overflow-x: hidden; position: absolute; top: 0; right: 0; display: block;',
+        /**
+         * 생성자
+         * @param attributes
+         */
         init: function(attributes) {
             Base.View.prototype.init.apply(this, arguments);
             this.model.on({

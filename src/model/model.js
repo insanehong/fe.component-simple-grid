@@ -7,6 +7,10 @@
      * @constructor Model
      */
     var Model = ne.util.defineClass(Base, /**@lends Model.prototype */{
+        /**
+         * 생성자
+         * @param attributes
+         */
         init: function(attributes) {
             Base.prototype.init.apply(this, arguments);
             this._initializeVariables();

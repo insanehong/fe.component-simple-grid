@@ -30,6 +30,10 @@
         },
         tagName: 'textarea',
         style: 'position: absolute; width: 0; height: 0; top:0; left: -9999px;',
+        /**
+         * 생성자
+         * @param {Object} attributes
+         */
         init: function(attributes) {
             Base.View.prototype.init.apply(this, arguments);
         },

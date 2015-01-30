@@ -320,7 +320,6 @@
 
         /**
          * scroll content 에 노출될 data list 를 저장한다.
-         *
          * @param {array} list
          * @return {ne.component.SimpleGrid}
          * @example
@@ -382,7 +381,6 @@
 
         /**
          * 노출된 데이터를 전부 초기화 한다.
-         *
          * @return {ne.component.SimpleGrid}
          */
         clear: function() {
@@ -400,7 +398,6 @@
 
         /**
          * 스크롤을 랜더링한다.
-         *
          * @return {ne.component.SimpleGrid}
          */
         render: function() {
@@ -445,8 +442,7 @@
         },
 
         /**
-         * 설정된 옵션값을 가져오거나 변경한다..
-         *
+         * 설정된 옵션값을 가져오거나 변경한다.
          * @param {(number | string)} key
          * @param {*} [value]
          * @return {*}

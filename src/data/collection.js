@@ -2,11 +2,11 @@
  * @fileoverview 원본데이터 콜렉션 클래스
  * @author soonyoung.park@nhnent@nhnent.com (Soonyoung Park)
  */
-/**
- * 원본 데이터 collection
- * @constructor Collection
- */
-var Collection = ne.util.defineClass(Base, /**@lends Collection.prototype */{
+    /**
+     * 원본 데이터 collection
+     * @constructor Collection
+     */
+    var Collection = ne.util.defineClass(Base, /**@lends Collection.prototype */{
         init: function() {
             Base.prototype.init.apply(this, arguments);
             this.setOwnProperties({
@@ -87,7 +87,7 @@ var Collection = ne.util.defineClass(Base, /**@lends Collection.prototype */{
         /**
          * 배열을 collection 에 맞는 형태로 가공하여 map 에 저장하고, 가공된 배열을 반환한다.
          * @param {Array} list
-         * @return {Array}
+         * @return {Array}  사용할 수 있는 포멧의 데이터 리스트
          * @private
          */
         _getFormattedList: function(list) {
@@ -112,8 +112,8 @@ var Collection = ne.util.defineClass(Base, /**@lends Collection.prototype */{
 
         /**
          * 배열에서 index 에 해당하는 데이터를 반환한다.
-         * @param {number} index
-         * @return {*}
+         * @param {number} index 인덱스
+         * @return {*}  index 에 해당하는 데이터
          */
         at: function(index) {
             return this.list[index];
@@ -204,9 +204,20 @@ var Collection = ne.util.defineClass(Base, /**@lends Collection.prototype */{
                 prepended: list
             });
         },
+
+        /**
+         * key 에 해당하는 data 를 제거한다.
+         * @param {String|Array} id 삭제할 데이터의 key. 복수개일때 array 를 인자로 넘긴다.
+         */
         remove: function(id) {
             this.worker.enqueue(this._remove, arguments, this);
         },
+
+        /**
+         * 실제 데이터를 삭제한다.
+         * @param {String|Array} id id 삭제할 데이터의 key. 복수개일때 array 를 인자로 넘긴다.
+         * @private
+         */
         _remove: function(id) {
             var idList = ne.util.isArray(id) ? id : [id];
 

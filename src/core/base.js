@@ -5,6 +5,11 @@ ne.component = ne.component || {};
  * @fileoverview 기본 클래스 파일
  * @author soonyoung.park@nhnent@nhnent.com (Soonyoung Park)
  */
+    /**
+     * unique key 를 생성할 때 사용하는 key 값
+     * @type {number}
+     */
+    var uniqueKey = 0;
 
     /**
      * Base Class
@@ -19,19 +24,17 @@ ne.component = ne.component || {};
             }
         },
 
-        /**
-        * Create unique key
-        * @return {string}
+       /**
+        * 유일한 key 값을 생성한다.
+        * @return {number}
         * @private
         */
         getUniqueKey: function() {
-            var rand = String(parseInt(Math.random() * 10000000000, 10)),
-                uniqueKey = new Date().getTime() + rand;
-            return uniqueKey;
+            return ++uniqueKey;
         },
 
         /**
-         * set own properties
+         * 내부 프로퍼티를 설정한다.
          * @param {object} properties
          * @return {Base}
          * @private
@@ -46,7 +49,7 @@ ne.component = ne.component || {};
         /**
          * error 객체를 리턴한다.
          * @param {string} msg
-         * @return {error}
+         * @return {error} 에러 객체
          */
         error: function(msg) {
             var error = function() {
@@ -56,6 +59,7 @@ ne.component = ne.component || {};
             return new error();
         }
     });
+
     // 커스텀이벤트 믹스인
     ne.util.CustomEvents.mixin(Base);
 
@@ -68,6 +72,11 @@ ne.component = ne.component || {};
         className: '',
         eventHandler: {},
         style: '',
+
+        /**
+         * 생성자
+         * @param attributes
+         */
         init: function(attributes) {
             Base.prototype.init.apply(this, arguments);
 
@@ -220,9 +229,9 @@ ne.component = ne.component || {};
 
         /**
          * 행 개수와 한 행당 높이를 인자로 받아 테이블 body 의 전체 높이를 구한다.
-         * @param {number} rowCount
-         * @param {number} rowHeight
-         * @param {number} border
+         * @param {number} rowCount     행의 개수
+         * @param {number} rowHeight    한 행의 높이
+         * @param {number} border   테두리 값
          * @return {number}
          */
         getHeight: function(rowCount, rowHeight, border) {
@@ -233,8 +242,8 @@ ne.component = ne.component || {};
         /**
          *Table 의 높이와 행당 높이를 인자로 받아, table 에서 보여줄 수 있는 행 개수를 반환한다.
          *
-         * @param {number} height
-         * @param {number} rowHeight
+         * @param {number} height   테이블 높이
+         * @param {number} rowHeight    행의 높이
          * @return {number}
          */
         getDisplayRowCount: function(height, rowHeight) {
@@ -244,8 +253,8 @@ ne.component = ne.component || {};
         /**
          * Table 의 height 와 행 개수를 인자로 받아, 한 행당 높이를 구한다.
          *
-         * @param {number} rowCount
-         * @param {number} height
+         * @param {number} rowCount 행 개수
+         * @param {number} height   테이블 높이
          * @return {number}
          */
         getRowHeight: function(rowCount, height) {

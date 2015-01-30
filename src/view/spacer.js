@@ -11,6 +11,10 @@ var Spacer = ne.util.defineClass(Base.View, /**@lends Spacer.prototype */{
     eventHandler: {},
     className: 'infinite_spacer',
     style: 'display: block;	position: absolute;	top: 0;	right: 0; width: 16px;',
+    /**
+     * 생성자
+     * @param attributes
+     */
     init: function(attributes) {
         Base.View.prototype.init.apply(this, arguments);
     },

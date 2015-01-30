@@ -9,6 +9,10 @@
 var Header = ne.util.defineClass(Base.View, /**@lends Header.prototype */{
     className: 'infinite_header_container',
     style: 'overflow:hidden',
+    /**
+     * 생성자
+     * @param {Object} attributes
+     */
     init: function (attributes){
         Base.View.prototype.init.apply(this, arguments);
         this.model.on('change', this._onModelChange, this);

@@ -12,6 +12,12 @@ var ResizeHandlerContainer = ne.util.defineClass(Base.View, /**@lends ResizeHand
         'mousedown .infinite_resize_handler' : '_onMouseDown'
     },
     style: 'position:relative;width:0px;',
+
+    /**
+     * 생성자
+     * @param {Object} attributes
+     * @param   {number} attributes.height  핸들러의 높이값.
+     */
     init: function(attributes) {
         Base.View.prototype.init.apply(this, arguments);
         this.setOwnProperties({

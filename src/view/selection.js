@@ -13,6 +13,10 @@
         className: 'infinite_selection_layer',
         style: 'display:none;position:absolute;top:0;left:1px;width:0;height:0;border:dotted 1px red;' +
         'background:orange;opacity:0.2;filter:alpha(opacity=10)',
+        /**
+         * 생성자
+         * @param {Object} attributes
+         */
         init: function(attributes) {
             Base.View.prototype.init.apply(this, arguments);
             this.grid.view.keyboard.on({
@@ -110,7 +114,7 @@
          * @param {event} mouseUpEvent  마우스 이벤트 핸들러
          * @private
          */
-        _onMouseUp: function(mouseUpEvent) {
+        _onMouseUp: function() {
             this.detachMouseEvent();
         },
 
@@ -188,7 +192,7 @@
 
         /**
          * selection range 를 반환한다.
-         * @return {Array}
+         * @return {Array}  범위의 키값. [startKey, endKey]
          */
         getSelectionRange: function() {
             return this.rangeKey;
@@ -196,7 +200,7 @@
 
         /**
          * selection 된 시작과 끝 영역의 index 를 리턴한다.
-         * @return {Array}
+         * @return {Array} 범위의 인덱스값. [startIndex, endIndex]
          */
         getSelectionRangeIndex: function() {
             var collection = this.model.collection,

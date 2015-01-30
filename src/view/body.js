@@ -66,6 +66,7 @@
         /**
          * 생성자 함수
          * @param {object} attributes
+         * @param   {object} attributes.selection 셀렉션 view 인스턴스
          */
         init: function(attributes) {
             Base.View.prototype.init.apply(this, arguments);
