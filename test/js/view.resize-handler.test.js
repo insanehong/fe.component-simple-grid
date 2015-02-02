@@ -98,11 +98,11 @@ describe('view.resize-handler', function() {
         it('_onMouseMove', function() {
             mouseEvent.pageX = 300;
             handler._onMouseMove(mouseEvent);
-            expect($handlerList.eq(1).css('left')).toBe('292px');
+            expect($handlerList.eq(1).offset().left).toBe(300);
 
             mouseEvent.pageX = 400;
             handler._onMouseMove(mouseEvent);
-            expect($handlerList.eq(1).css('left')).toBe('392px');
+            expect($handlerList.eq(1).offset().left).toBe(400);
         });
     });
 });
