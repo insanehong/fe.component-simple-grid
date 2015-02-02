@@ -8,7 +8,7 @@
  */
 var Header = ne.util.defineClass(Base.View, /**@lends Header.prototype */{
     className: 'infinite_header_container',
-    style: 'overflow:hidden',
+    style: 'overflow:hidden;position: relative;',
     /**
      * 생성자
      * @param {Object} attributes

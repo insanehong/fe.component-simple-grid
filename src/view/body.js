@@ -11,6 +11,7 @@
             'mousedown': '_onMouseDown',
             'click': '_onClick'
         },
+        padding: 10,
         className: 'infinite_body',
         style: 'position: absolute; top: 0; white-space: nowrap;',
         _template: {
@@ -52,7 +53,8 @@
                 'columnname="<%=columnName%>" ' +
                 'style="' +
                 'text-align:<%=align%>;' +
-                'overflow:hidden;padding:0 10px;*padding:0 10px;border:0;white-space:nowrap;*white-space:pre;' +
+                'overflow:hidden;padding:0 <%=padding%>px;*padding:0 ' +
+                '<%=padding%>px;border:0;white-space:nowrap;*white-space:pre;' +
                 '" ' +
                 'class="' +
                 '<%=className%>' +
@@ -78,7 +80,8 @@
             }
 
             this.setOwnProperties({
-                resizeHandler: null
+                resizeHandler: null,
+                isIe7: !!(ne.util.browser.msie && ne.util.browser.version === 7)
             });
 
             this.grid.focusModel.on('select', this.select, this);
@@ -194,7 +197,11 @@
          */
         _changeColumnWidth: function(columnWidthList) {
             var $colList = this.$el.find('colgroup').find('col');
+
             ne.util.forEachArray(columnWidthList, function(width, index) {
+                if (this.isIe7) {
+                    width -= this.padding * 2;
+                }
                 $colList.eq(index).css('width', width + 'px');
             }, this);
         },
@@ -215,7 +222,11 @@
          */
         _getColGroupMarkup: function(columnWidthList) {
             var col = '';
+
             ne.util.forEachArray(columnWidthList, function(width) {
+                if (this.isIe7) {
+                    width -= this.padding * 2;
+                }
                 col += '<col style="width:' + width + 'px"></col>';
             }, this);
             return col;
@@ -256,6 +267,7 @@
                             className: className.td,
                             columnName: columnName,
                             align: columnModel['align'],
+                            padding: this.padding,
                             content: content,
                             attributes: attributes
                         });
