@@ -23,12 +23,12 @@ Component-SimpleGrid
 ## Documentation
 * **API** - <http://github.nhnent.com/pages/FE/Component-SimpleGrid/>
 * **Sample** - <http://github.nhnent.com/pages/FE/Component-SimpleGrid/sample/sample.html>
-* **Tutorial** - <https://github.nhnent.com/FE/tutorial/blob/master/Component-MouseGesture/MouseGestureTutorial.md>
-* **CI** - <http://fe.nhnent.com:8080/jenkins/job/Component-MouseGesture/>
+* **Tutorial** - 준비중
+* **CI** - <http://fe.nhnent.com:8080/jenkins/job/Component-SimpleGrid/>
 
 ## Download/Install
 * Bower: `bower~~~~`
-* Download: <http://github.nhnent.com/pages/FE/Component-MouseGesture/dist/>
+* Download: <http://github.nhnent.com/pages/FE/Component-SimpleGrid/dist/>
 
 
 ## History
