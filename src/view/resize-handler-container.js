@@ -94,6 +94,7 @@ var ResizeHandlerContainer = ne.util.defineClass(Base.View, /**@lends ResizeHand
                 $handler = $resizeHandleList.eq(index);
 
             curPos += width + border;
+            //핸들러를 가운데 위치 시키기 위해 핸들러 너비 절반의 올림값(4)만큼 좌로 이동한다.
             $handler.css('left', (curPos - 4) + 'px');
         }, this);
     },
@@ -200,7 +201,8 @@ var ResizeHandlerContainer = ne.util.defineClass(Base.View, /**@lends ResizeHand
  */
 var ResizeHandler = ne.util.defineClass(Base.View, /**@lends ResizeHandler.prototype */{
     className: 'infinite_resize_handler',
-    style: 'float:left; position:absolute; height:100%; opacity:0; cursor:col-resize;',
+    style: 'float:left; position:absolute; height:100%; opacity:0; filter:alpha(opacity=0); cursor:col-resize;',
+    handlerWidth: 7,
     init: function(attributes) {
         Base.View.prototype.init.apply(this, arguments);
         this.setOwnProperties({
@@ -227,9 +229,10 @@ var ResizeHandler = ne.util.defineClass(Base.View, /**@lends ResizeHandler.proto
             'background': color
         });
         if (this.isLast) {
-            this.$el.width(3);
+            //마지막 핸들러는 절반 이하의 크기를 가져야 하기 때문에 핸들러 크기의 절반값의 내림값을 설정한다.
+            this.$el.width(Math.floor(this.handlerWidth / 2));
         } else {
-            this.$el.width(7);
+            this.$el.width(this.handlerWidth);
         }
         this._attachHandler();
         return this;
