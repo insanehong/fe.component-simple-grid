@@ -1,3 +1,7 @@
+/**********
+ * ajax.js
+ **********/
+
 /**
  * @fileoverview
  * @author FE개발팀
@@ -49,7 +53,6 @@
     ajax.request = function(api, options) {
         // Ajax 요청을 할 API 설정
         var url = api;
-
         if (url) {
             // 랜덤 아이디 생성
             var randomId = ajax.util._getRandomId();
@@ -70,10 +73,12 @@
             });
 
             // 중복된 요청일 경우 요청 중단
-            var isMatchedURL, isExistJSON;
-            for (var x in this._ajaxRequestData) {
+            var isMatchedURL,
+                isExistJSON,
+                x;
+            for (x in this._ajaxRequestData) {
                 isMatchedURL = options.url === this._ajaxRequestData[x].url;
-                isExistJSON = $.compareJSON(this._ajaxRequestData[x].data, options.data);
+                isExistJSON = ne.util.compareJSON(this._ajaxRequestData[x].data, options.data);
                 if (isMatchedURL && isExistJSON) {
                     return false;
                 }
@@ -130,13 +135,11 @@
      */
     ajax._onAjaxSuccess = function(requestKey, responseData, status, jqXHR) {
         var requestData = this._ajaxRequestData[requestKey];
-
         if (requestData) {
             var result = true;
             if (requestData['_success'] && $.isFunction(requestData['_success'])) {
                 result = requestData['_success'](responseData, status, jqXHR);
             }
-
             if (result !== false && responseData && responseData.data) {
                 if (responseData.data.message) {
                     alert(responseData.data.message);
@@ -268,6 +271,10 @@
 
 })(window.ne);
 
+/**********
+ * browser.js
+ **********/
+
 /**
  * @fileoverview 클라이언트의 브라우저의 종류와 버전 검출을 위한 모듈
  * @author FE개발팀
@@ -362,6 +369,10 @@
     ne.util.browser = browser;
 
 })(window.ne);
+
+/**********
+ * collection.js
+ **********/
 
 /**
  * @fileoverview 객체나 배열을 다루기위한 펑션들이 정의 되어있는 모듈
@@ -565,14 +576,112 @@
         return arr;
     }
 
+    /**
+     * 파라메터로 전달된 객체나 어레이를 순회하며 콜백을 실행한 리턴값이 참일 경우의 모음을 만들어서 리턴한다.
+     *
+     * @param {*} obj 순회할 객체나 배열
+     * @param {Function} iteratee 데이터가 전달될 콜백함수
+     * @param {*} [context] 콜백함수의 컨텍스트
+     * @returns {*}
+     * @example
+     * filter([0,1,2,3], function(value) {
+     *     return (value % 2 === 0);
+     * });
+     *
+     * => [0, 2];
+     * filter({a : 1, b: 2, c: 3}, function(value) {
+     *     return (value % 2 !== 0);
+     * });
+     *
+     * => {a: 1, c: 3};
+     */
+    var filter = function(obj, iteratee, context) {
+        var result = ne.util.isArray(obj) ? [] : {},
+            value,
+            key;
+
+        if (!ne.util.isObject(obj) || !ne.util.isFunction(iteratee)) {
+            throw new Error('wrong parameter');
+        }
+
+        ne.util.forEach(obj, function() {
+            if (iteratee.apply(context || null, arguments)) {
+                value = arguments[0];
+                key = arguments[1];
+                if (ne.util.isArray(obj)) {
+                    result.push(value);
+                } else {
+                    result[key] = value;
+                }
+            }
+        }, context);
+
+        return result;
+    };
+
+    /**
+     * 배열 내의 값을 찾아서 인덱스를 반환한다. 찾고자 하는 값이 없으면 -1 반환.
+     * @param {*} value 배열 내에서 찾고자 하는 값
+     * @param {array} array 검색 대상 배열
+     * @param {number} fromIndex 검색이 시작될 배열 인덱스. 지정하지 않으면 기본은 0이고 전체 배열 검색.
+     *
+     * @return {number} targetValue가 발견된 array내에서의 index값
+     * @example
+     *
+     *   var arr = ['one', 'two', 'three', 'four'];
+     *   ne.util.inArray('one', arr, 3);
+     *      => return -1;
+     *
+     *   ne.util.inArray('one', arr);
+     *      => return 0
+     */
+    var inArray = function(value, array, fromIndex) {
+        if (!ne.util.isArray(array)) {
+            return -1;
+        }
+
+        if (Array.prototype.indexOf) {
+            return Array.prototype.indexOf.call(array, value, fromIndex);
+        }
+
+        var i,
+            index,
+            arrLen = array.length;
+
+        //fromIndex를 지정하되 array 길이보다 같거나 큰 숫자로 지정하면 오류이므로 -1을 리턴한다.
+        if (ne.util.isUndefined(fromIndex)) {
+            fromIndex = 0;
+        } else if (fromIndex >= arrLen) {
+            return -1;
+        }
+
+        //fromIndex값을 참고하여 배열을 순회할 시작index를 정한다.
+        index = (fromIndex > -1) ? fromIndex : 0;
+
+        //array에서 value 탐색하여 index반환
+        for (i = index; i < arrLen; i++) {
+            if (array[i] === value) {
+                return i;
+            }
+        }
+
+        return -1;
+    };
+
     ne.util.forEachOwnProperties = forEachOwnProperties;
     ne.util.forEachArray = forEachArray;
     ne.util.forEach = forEach;
     ne.util.toArray = toArray;
     ne.util.map = map;
     ne.util.reduce = reduce;
+    ne.util.filter = filter;
+    ne.util.inArray = inArray;
 
 })(window.ne);
+
+/**********
+ * customEvent.js
+ **********/
 
 /**
  * @fileoverview 옵저버 패턴을 이용하여 객체 간 커스텀 이벤트를 전달할 수 있는 기능을 제공하는 모듈
@@ -639,7 +748,7 @@
         /**
          * 인스턴스에 등록했던 이벤트 핸들러를 해제할 수 있다.
          * @param {(object|string)=} types 등록 해지를 원하는 이벤트 객체 또는 타입명. 아무 인자도 전달하지 않으면 모든 이벤트를 해제한다.
-         * @param {Function=} fn
+         * @param {Function=} fn 삭제할 핸들러, 핸들러를 전달하지 않으면 types 해당 이벤트가 모두 삭제된다.
          * @param {*=} context
          * @example
          * // zoom 이벤트만 해제
@@ -736,7 +845,7 @@
         /**
          * 실제로 구독을 해제하는 메서드
          * @param {(object|string)=} type 등록 해지를 원하는 핸들러명
-         * @param {function} fn
+         * @param {function} [fn]
          * @param {*} context
          * @private
          */
@@ -762,16 +871,20 @@
                     events[indexLenKey] -= 1;
                 }
 
+            } else if(!fn) {
+                events[type] = null;
             } else {
                 listeners = events[type];
 
                 if (listeners) {
-                    ne.util.forEach(listeners, function(listener, index) {
-                        if (ne.util.isExisty(listener) && (listener.fn === fn)) {
-                            listeners.splice(index, 1);
-                            return true;
-                        }
-                    });
+                    if(fn){
+                        ne.util.forEach(listeners, function(listener, index) {
+                            if (ne.util.isExisty(listener) && (listener.fn === fn)) {
+                                listeners.splice(index, 1);
+                                return true;
+                            }
+                        });
+                    }
                 }
             }
         },
@@ -950,6 +1063,10 @@
 
 })(window.ne);
 
+/**********
+ * defineClass.js
+ **********/
+
 /**
  * @fileoverview 클래스와 비슷한방식으로 생성자를 만들고 상속을 구현할 수 있는 메소드를 제공하는 모듈
  * @author FE개발팀
@@ -1031,6 +1148,10 @@
     ne.util.defineClass = defineClass;
 
 })(window.ne);
+
+/**********
+ * form.js
+ **********/
 
 /**
  * @fileoverview Form 엘리먼트 헨들링 메서드
@@ -1234,6 +1355,10 @@
     ne.util.setFormElementValue = setFormElementValue;
     ne.util.setCursorToEnd = setCursorToEnd;
 })(window.ne);
+/**********
+ * func.js
+ **********/
+
 /**
  * @fileoverview 함수관련 메서드 모음
  * @author FE개발팀
@@ -1275,6 +1400,10 @@
     ne.util.bind = bind;
 
 })(window.ne);
+
+/**********
+ * hashMap.js
+ **********/
 
 /**
  * @fileoverview Hash Map을 구현한 모듈이 정의 되어있다.
@@ -1372,6 +1501,18 @@
         var self = this;
 
         ne.util.forEachOwnProperties(obj, function(value, key) {
+            self.setKeyValue(key, value);
+        });
+    };
+
+    /**
+     * 해쉬맵을 인자로 받아 병합한다.
+     * @param {HashMap} hashMap
+     */
+    HashMap.prototype.merge = function(hashMap) {
+        var self = this;
+
+        hashMap.each(function(value, key) {
             self.setKeyValue(key, value);
         });
     };
@@ -1594,9 +1735,27 @@
         return founds;
     };
 
+    /**
+     * 내부의 값들을 순서에 상관없이 배열로 반환한다
+     * @returns {Array}
+     */
+    HashMap.prototype.toArray = function() {
+        var result = [];
+
+        this.each(function(v, i) {
+            result.push(v);
+        });
+
+        return result;
+    };
+
     ne.util.HashMap = HashMap;
 
 })(window.ne);
+
+/**********
+ * inheritance.js
+ **********/
 
 /**
  * @fileoverview 간단한 상속 시뮬레이션
@@ -1668,6 +1827,10 @@
 
 })(window.ne);
 
+/**********
+ * layer.js
+ **********/
+
 /**
  * @fileoverview
  * @author FE개발팀
@@ -1682,6 +1845,10 @@
         ne.util = window.ne.util = {};
     }
 })(window.ne);
+/**********
+ * object.js
+ **********/
+
 /**
  * @fileoverview
  * @author FE개발팀
@@ -1758,12 +1925,147 @@
         return keys;
     };
 
+
+    /**
+     *
+     * 여러개의 json객체들을 대상으로 그것들이 동일한지 비교하여 리턴한다.
+     * (출처) http://stackoverflow.com/questions/1068834/object-comparison-in-javascript
+     *
+     * @param {...object} object 비교할 객체 목록
+     * @return {boolean} 파라미터로 전달받은 json객체들의 동일 여부
+     * @example
+     *
+       var jsonObj1 = {name:'milk', price: 1000},
+           jsonObj2 = {name:'milk', price: 1000},
+           jsonObj3 = {name:'milk', price: 1000}
+
+       ne.util.compareJSON(jsonObj1, jsonObj2, jsonObj3);
+           => return true
+
+       var jsonObj4 = {name:'milk', price: 1000},
+           jsonObj5 = {name:'beer', price: 3000}
+
+       ne.util.compareJSON(jsonObj4, jsonObj5);
+          => return false
+     */
+    function compareJSON(object) {
+        var leftChain,
+            rightChain,
+            argsLen = arguments.length,
+            i;
+
+        function isSameObject(x, y) {
+            var p;
+
+            // remember that NaN === NaN returns false
+            // and isNaN(undefined) returns true
+            if (isNaN(x) &&
+                isNaN(y) &&
+                ne.util.isNumber(x) &&
+                ne.util.isNumber(y)) {
+                return true;
+            }
+
+            // Compare primitives and functions.
+            // Check if both arguments link to the same object.
+            // Especially useful on step when comparing prototypes
+            if (x === y) {
+                return true;
+            }
+
+            // Works in case when functions are created in constructor.
+            // Comparing dates is a common scenario. Another built-ins?
+            // We can even handle functions passed across iframes
+            if ((ne.util.isFunction(x) && ne.util.isFunction(y)) ||
+                (x instanceof Date && y instanceof Date) ||
+                (x instanceof RegExp && y instanceof RegExp) ||
+                (x instanceof String && y instanceof String) ||
+                (x instanceof Number && y instanceof Number)) {
+                return x.toString() === y.toString();
+            }
+
+            // At last checking prototypes as good a we can
+            if (!(x instanceof Object && y instanceof Object)) {
+                return false;
+            }
+
+            if (x.isPrototypeOf(y) ||
+                y.isPrototypeOf(x) ||
+                x.constructor !== y.constructor ||
+                x.prototype !== y.prototype) {
+                return false;
+            }
+
+            // check for infinitive linking loops
+            if (ne.util.inArray(x, leftChain) > -1 ||
+                ne.util.inArray(y, rightChain) > -1) {
+                return false;
+            }
+
+            // Quick checking of one object beeing a subset of another.
+            for (p in y) {
+                if (y.hasOwnProperty(p) !== x.hasOwnProperty(p)) {
+                    return false;
+                }
+                else if (typeof y[p] !== typeof x[p]) {
+                    return false;
+                }
+            }
+
+            //인풋 데이터 x의 오브젝트 키값으로 값을 순회하면서
+            //hasOwnProperty, typeof 체크를 해서 비교하고 x[prop]값과 y[prop] 가 같은 객체인지 판별한다.
+            for (p in x) {
+                if (y.hasOwnProperty(p) !== x.hasOwnProperty(p)) {
+                    return false;
+                }
+                else if (typeof y[p] !== typeof x[p]) {
+                    return false;
+                }
+
+                if (typeof(x[p]) === 'object' || typeof(x[p]) === 'function') {
+                    leftChain.push(x);
+                    rightChain.push(y);
+
+                    if (!isSameObject(x[p], y[p])) {
+                        return false;
+                    }
+
+                    leftChain.pop();
+                    rightChain.pop();
+                } else if (x[p] !== y[p]) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        if (argsLen < 1) {
+            return true;
+        }
+
+        for (i = 1; i < argsLen; i++) {
+            leftChain = [];
+            rightChain = [];
+
+            if (!isSameObject(arguments[0], arguments[i])) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     ne.util.extend = extend;
     ne.util.stamp = stamp;
     ne.util._resetLastId = resetLastId;
     ne.util.keys = Object.keys || keys;
-
+    ne.util.compareJSON = compareJSON;
 })(window.ne);
+
+/**********
+ * simulation.js
+ **********/
 
 /**
  * @fileoverview
@@ -1779,6 +2081,10 @@
         ne.util = window.ne.util = {};
     }
 })(window.ne);
+
+/**********
+ * string.js
+ **********/
 
 /**
  * @fileoverview 문자열 조작 모듈
@@ -1838,6 +2144,10 @@
     ne.util.encodeHTMLEntity = encodeHTMLEntity;
     ne.util.hasEncodableString = hasEncodableString;
 })(window.ne);
+
+/**********
+ * type.js
+ **********/
 
 /**
  * @fileoverview 타입체크 모듈
@@ -2088,14 +2398,18 @@
 
 })(window.ne);
 
+/**********
+ * window.js
+ **********/
+
 /**
- * @fileoverview 전역변수를 쉽게 사용하기 위한 모듈
+ * @fileoverview 팝업 윈도우 관리 모듈
  * @author FE개발팀
+ * @dependency browser.js, type.js, object.js, collection.js, func.js, window.js
  */
 
 (function(ne) {
     'use strict';
-    /* istanbul ignore if */
     if (!ne) {
         ne = window.ne = {};
     }
@@ -2103,123 +2417,309 @@
         ne.util = window.ne.util = {};
     }
 
-    /**
-     * 전역변수를 저장하기 위한 변수
-     * @type {object}
-     */
-    var settings = {};
-
+    var popup_id = 0;
 
     /**
-     * 설정했던 전역변수를 가져온다
-     * @param {string} path
+     * 팝업 컨트롤 클래스
+     * @constructor
+     * @exports Popup
+     * @class
      */
-    function get(path) {
-        if (!ne.util.isExisty(path)) {
-            return undefined;
-        }
+    function Popup() {
 
-        var pathList = path.split('.'),
-            i = 0,
-            len = pathList.length,
-            pathChunk,
-            parent = settings;
+        /**
+         * 팝업창 캐시용 객체 프로퍼티
+         * @type {object}
+         */
+        this.openedPopup = {};
 
-        for (; i < len; i++) {
-            pathChunk = pathList[i];
-            if (typeof parent === 'undefined') {
-                break;
-            }
+        /**
+         * IE7 에서 부모창과 함께 팝업이 닫힐 지 여부를 가리는 closeWithParent프로퍼티를 Window객체에 추가하면
+         * 오류가 발생하는 문제가 있어서, 이를 저장하기 위한 별개의 프로퍼티를 만듦.
+         * @type {object}
+         */
+        this.closeWithParentPopup = {};
 
-            parent = parent[pathChunk];
-        }
-
-        return parent;
+        /**
+         * IE11 팝업 POST 데이터 브릿지
+         * @type {string}
+         */
+        this.postDataBridgeUrl = '';
     }
 
-    /**
-     * 전역변수를 설정한다
-     *
-     * 이미 설정되어있는 변수를 설정하면 덮어쓴다.
-     *
-     * @param {(string|object)} path 변수를 저장할 path 또는 변경할 {path:value} 객체
-     * @param {*} obj 저장할 값
-     * @return {*} 단일 값 세팅 시는 세팅한 값을 반환한다 (반환 값은 참조형이기 때문에 주의를 요한다)
-     * @example
-     * // 단일 값 세팅
-     * ne.util.set('msg.loginerror', '로그인 오류가 발생했습니다');
-     *
-     * // 여러 값을 한번에 변경
-     * ne.util.set({
-     *     'msg.loginerror': '로그인 중 오류가 발생했습니다. 잠시 후 다시 시도하세요',
-     *     'msg.loginfail': '없는 아이디이거나 패스워드가 맞지 않습니다'
-     * });
-     */
-    function set(path, obj) {
-        if (typeof path !== 'string') {
-            ne.util.forEach(path, function(value, key) {
-                set(key, value);
-            });
-        } else if (typeof obj !== 'undefined') {
-            var pathList = path.split('.'),
-                i = 0,
-                len = pathList.length,
-                pathStr,
-                parent = settings;
-
-            for (; i < len; i++) {
-                pathStr = pathList[i];
-
-                if (i === len - 1) {
-                    return parent[pathStr] = obj;
-                }
-
-                if (typeof parent[pathStr] === 'undefined') {
-                    parent[pathStr] = {};
-                }
-
-                parent = parent[pathStr];
-            }
-        }
-    }
+    /**********
+     * public methods
+     **********/
 
     /**
-     * 전역변수 공간을 인자 객체로 재설정한다
-     * @param {object} obj
+     * 현재 윈도우가 관리하는 팝업 창 리스트를 반환합니다.
+     * @method getPopupList
+     * @param {String} [key] key에 해당하는 팝업을 반환한다
+     * @returns {Object} popup window list object
      */
-    function reset(obj) {
-        if (ne.util.isExisty(obj)) {
-
-            if (!ne.util.isObject(obj) || ne.util.isFunction(obj) || ne.util.isArray(obj)) {
-                throw new Error('variable: 전역변수 공간은 object 형태의 데이터로만 설정이 가능합니다.');
-            } else {
-                settings = obj;
-            }
-
+    Popup.prototype.getPopupList = function(key) {
+        var target;
+        if (ne.util.isExisty(key)) {
+            target = this.openedPopup[key];
         } else {
-            settings = {};
+            target = this.openedPopup;
         }
-    }
-
-    ne.util.variable = {
-        get: get,
-        set: set,
-        reset: reset
+        return target;
     };
 
-})(window.ne);
+    /**
+     * 팝업창을 여는 메서드
+     *
+     * IE11에서 POST를 사용해 팝업에 값을 전달할 땐 꼭 postDataBridgeUrl을 설정해야 한다
+     *
+     * 주의: 다른 도메인을 팝업으로 띄울 경우 보안 문제로 팝업 컨트롤 기능을 사용할 수 없다.
+     *
+     * @param {String} url 팝업 URL
+     * @param {object} options
+     *     @param {String} [options.popupName]
+     *     팝업창의 key를 설정할 수 있습니다.
+     *     이 key를 지정하면 같은 key로 팝업을 열려 할 때 이미 열려있는 경우에는 포커스를 주고, 없는 경우 같은 key로 팝업을 엽니다.
+     *
+     *     @param {String} [options.popupOptionStr=""]
+     *     팝업 윈도우의 기능을 설정할 수 있습니다. window.open() 메서드의 세 번째 인자를 그대로 전달하면 됩니다.
+     *     이 기능의 적용에는 브라우저마다 차이가 있습니다. http://www.w3schools.com/jsref/met_win_open.asp 를 참고하시기 바랍니다.
+     *
+     *     @param {Boolean} [options.closeWithParent=true]
+     *     팝업 윈도우를 연 윈도우가 닫힐 때 같이 닫힐 지 여부를 설정할 수 있습니다.
+     *
+     *     @param {Boolean} [options.useReload=false]
+     *     이미 열린 팝업 윈도우를 다시 열 때 새로고침 할 것인지를 설정할 수 있습니다. post 데이터를 전송하는 경우 일부 브라우저에서는 다시 전송 여
+     *     부를 묻는 메시지가 출력될 수 있습니다.
+     *
+     *     @param {string} [options.postDataBridgeUrl='']
+     *     IE11 에서 POST로 팝업에 데이터를 전송할 때 팝업이 아닌 새 탭으로 열리는 버그를 우회하기 위한 페이지의 url을 입력합니다.
+     *     참고: http://wiki.nhnent.com/pages/viewpage.action?pageId=240562844
+     *
+     *     @param {String} [options.method=get]
+     *     팝업 윈도우에 폼 데이터 자동 전송 기능 이용 시, 데이터 전달 방식을 지정할 수 있습니다.
+     *
+     *     @param {object} [options.param=null]
+     *     팝업 윈도우에 폼 데이터 자동 전송 기능 이용 시, 전달할 데이터를 객체로 넘겨주시면 됩니다.
+     */
+    Popup.prototype.openPopup = function(url, options) {
+        options = ne.util.extend({
+            popupName: 'popup_' + popup_id + '_' + (+new Date()),
+            popupOptionStr: '', // 팝업 옵션
+            useReload: true, // 팝업이 열린 상태에서 다시 열려고 할 때 새로고침 하는지 여부
+            closeWithParent: true, // 부모창 닫힐때 팝업 닫기 여부
+            method: 'get',
+            param: {}
+        }, options || {});
 
-/**
- * @fileoverview
- * @author FE개발팀
- */
+        options.method = options.method.toUpperCase();
 
-(function(ne) {
-    'use strict';
-    if (!ne) {
-        ne = window.ne = {};
-    }
-    if (!ne.util) {
-        ne.util = window.ne.util = {};
-    }
+        this.postDataBridgeUrl = options.postDataBridgeUrl || this.postDataBridgeUrl;
+
+        var popup,
+            formElement,
+            useIEPostBridge = options.method === 'POST' && options.param &&
+                ne.util.browser.msie && ne.util.browser.version === 11;
+
+        if (!ne.util.isExisty(url)) {
+            throw new Error('Popup#open() 팝업 URL이 입력되지 않았습니다');
+        }
+
+        popup_id += 1;
+
+        // 폼 전송 기능 이용 시 팝업 열기 전 폼을 생성하고 팝업이 열림과 동시에 폼을 전송한 후 폼을 제거한다.
+        if (options.param) {
+            if (options.method === 'GET') {
+                url = url + (/\?/.test(url) ? '&' : '?') + this._parameterize(options.param);
+            } else if (options.method === 'POST') {
+                if (!useIEPostBridge) {
+                    formElement = this.createForm(url, options.param, options.method, options.popupName);
+                    url = 'about:blank';
+                }
+            }
+        }
+
+        popup = this.openedPopup[options.popupName];
+
+        if (!ne.util.isExisty(popup)) {
+            this.openedPopup[options.popupName] = popup = this._open(useIEPostBridge, options.param,
+                url, options.popupName, options.popupOptionStr);
+
+        } else {
+            if (popup.closed) {
+                this.openedPopup[options.popupName] = popup = this._open(useIEPostBridge, options.param,
+                    url, options.popupName, options.popupOptionStr);
+
+            } else {
+                if (options.useReload) {
+                    popup.location.replace(url);
+                }
+                popup.focus();
+            }
+        }
+
+        this.closeWithParentPopup[options.popupName] = options.closeWithParent;
+
+        if (!popup || popup.closed || ne.util.isUndefined(popup.closed)) {
+            alert('브라우저에 팝업을 막는 기능이 활성화 상태이기 때문에 서비스 이용에 문제가 있을 수 있습니다. 해당 기능을 비활성화 해 주세요');
+        }
+
+        if (options.param && options.method === 'POST' && !useIEPostBridge) {
+            if (popup) {
+                formElement.submit();
+            }
+            if (formElement.parentNode) {
+                formElement.parentNode.removeChild(formElement);
+            }
+        }
+
+        window.onunload = ne.util.bind(this.closeAllPopup, this);
+    };
+
+    /**
+     * 팝업 윈도우를 닫습니다.
+     * @param {Boolean} [skipBeforeUnload]
+     * @param {Window} [popup] 닫을 윈도우 객체. 생략하면 현재 윈도우를 닫습니다
+     */
+    Popup.prototype.close = function(skipBeforeUnload, popup) {
+        skipBeforeUnload = ne.util.isExisty(skipBeforeUnload) ? skipBeforeUnload : false;
+
+        var target = popup || window;
+
+        if (skipBeforeUnload) {
+            window.onunload = null;
+        }
+
+        if (!target.closed) {
+            target.opener = window.location.href;
+            target.close();
+        }
+    };
+
+    /**
+     * 이 창에서 열린 모든 팝업을 닫습니다.
+     * @param {Boolean} closeWithParent true 면 openPopup 메서드 호출 시 부모창과 함께 닫기로 설정된 팝업들만 닫습니다.
+     */
+    Popup.prototype.closeAllPopup = function(closeWithParent) {
+        var hasArg = ne.util.isExisty(closeWithParent);
+
+        ne.util.forEachOwnProperties(this.openedPopup, function(popup, key) {
+            if ((hasArg && this.closeWithParentPopup[key]) || !hasArg) {
+                this.close(false, popup);
+            }
+        }, this);
+    };
+
+    /**
+     * 해당 팝업 윈도우를 활성화 시킨다.
+     * @param {String} popupName 활성화 시킬 팝업 윈도우 이름
+     */
+    Popup.prototype.focus = function(popupName) {
+        this.getPopupList(popupName).focus();
+    };
+
+    /**
+     * 브라우저의 query string을 파싱해 객체 형태로 반환
+     * @return {object}
+     * @private
+     */
+    Popup.prototype.parseQuery = function() {
+        var search,
+            pair,
+            param = {};
+
+        search = window.location.search.substr(1);
+        ne.util.forEachArray(search.split('&'), function(part) {
+            pair = part.split('=');
+            param[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+        });
+
+        return param;
+    };
+
+    /**
+     * 주어진 인자로 숨겨진 폼을 생성하여 문서에 추가하고 반환
+     * @param {string} action 폼 전송 URL
+     * @param {object} [data] 폼 전송 시 보내질 데이터
+     * @param {string} [method]
+     * @param {string} [target]
+     * @param {HTMLElement} [container]
+     * @returns {HTMLElement}
+     */
+    Popup.prototype.createForm = function(action, data, method, target, container) {
+        var form = document.createElement('form'),
+            input;
+
+        container = container || document.body;
+
+        form.method = method || 'POST';
+        form.action = action || '';
+        form.target = target || '';
+        form.style.display = 'none';
+
+        ne.util.forEachOwnProperties(data, function(value, key) {
+            input = document.createElement('input');
+            input.name = key;
+            input.type = 'hidden';
+            input.value = value;
+            form.appendChild(input);
+        });
+
+        container.appendChild(form);
+
+        return form;
+    };
+
+    /**********
+     * private methods
+     **********/
+
+    /**
+     * 객체를 쿼리스트링 형태로 변환
+     * @param {object} object
+     * @returns {string}
+     * @private
+     */
+    Popup.prototype._parameterize = function(object) {
+        var query = [];
+
+        ne.util.forEachOwnProperties(object, function(value, key) {
+            query.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+        });
+
+        return query.join('&');
+    };
+
+    /**
+     * 실제 팝업을 여는 메서드
+     * @param {Boolean} useIEPostBridge IE11에서 팝업에 포스트 데이터를 전달할 때 우회 기능 사용 여부
+     * @param {object} param 팝업에 전달할 데이터
+     * @param {String} url 팝업 URL
+     * @param {String} popupName 팝업 이름
+     * @param {String} optionStr 팝업 기능 설정용 value ex) 'width=640,height=320,scrollbars=yes'
+     * @returns {Window}
+     * @private
+     */
+    Popup.prototype._open = function(useIEPostBridge, param, url, popupName, optionStr) {
+        var popup;
+
+        if (useIEPostBridge) {
+            url = this.postDataBridgeUrl + '?storageKey=' + encodeURIComponent(popupName) +
+            '&redirectUrl=' + encodeURIComponent(url);
+            if (!window.localStorage) {
+                alert('IE11브라우저의 문제로 인해 이 기능은 브라우저의 LocalStorage 기능을 활성화 하셔야 이용하실 수 있습니다');
+            } else {
+                localStorage.removeItem(popupName);
+                localStorage.setItem(popupName, JSON.stringify(param));
+
+                popup = window.open(url, popupName, optionStr);
+            }
+        } else {
+            popup = window.open(url, popupName, optionStr);
+        }
+
+        return popup;
+    };
+
+    ne.util.popup = new Popup();
+
 })(window.ne);

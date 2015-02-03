@@ -9,7 +9,7 @@ describe('view.container', function() {
         loadFixtures('test/fixtures/empty.html');
 
         $empty = $('#empty');
-        simpleGrid = new ne.Component.SimpleGrid({
+        simpleGrid = new ne.component.SimpleGrid({
             $el: $empty,
             columnModelList: [
                 {
@@ -53,7 +53,7 @@ describe('view.container', function() {
         });
         describe('css를 옵션값에 맞추어 잘 설정하는지 확인한다.', function() {
             it('scroll 값이 true 라면 스크롤을 보인다', function() {
-                simpleGrid = new ne.Component.SimpleGrid({
+                simpleGrid = new ne.component.SimpleGrid({
                     $el: $empty,
                     scrollX: true,
                     scrollY: true
@@ -63,7 +63,7 @@ describe('view.container', function() {
                 expect(container.$el.css('overflow-y')).toBe('scroll');
             });
             it('scroll 값이 false 라면 스크롤을 감춘다', function() {
-                simpleGrid = new ne.Component.SimpleGrid({
+                simpleGrid = new ne.component.SimpleGrid({
                     $el: $empty,
                     scrollX: false,
                     scrollY: false
@@ -73,13 +73,13 @@ describe('view.container', function() {
                 expect(container.$el.css('overflow-y')).toBe('hidden');
             });
             it('scrollX 값에 따라 height 을 조금더 조정한다.', function() {
-                simpleGrid = new ne.Component.SimpleGrid({
+                simpleGrid = new ne.component.SimpleGrid({
                     $el: $empty,
                     scrollX: false
                 });
                 container = simpleGrid.view.container;
                 expect(container.$el.height()).toBe(211);
-                simpleGrid = new ne.Component.SimpleGrid({
+                simpleGrid = new ne.component.SimpleGrid({
                     $el: $empty,
                     scrollX: true
                 });
