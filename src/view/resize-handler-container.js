@@ -87,11 +87,13 @@ var ResizeHandlerContainer = ne.util.defineClass(Base.View, /**@lends ResizeHand
             $resizeHandleList = this.$el.find('.infinite_resize_handler'),
             border = this.grid.option('border'),
             $colList = this.grid.view.header.$el.find('th'),
-            curPos = 0;
+            curPos = 0,
+            width,
+            $handler;
 
         ne.util.forEachArray($resizeHandleList, function(item, index) {
-            var width = $colList.eq(index).width() || columnWidthList[index],
-                $handler = $resizeHandleList.eq(index);
+            width = $colList.eq(index).width() || columnWidthList[index];
+            $handler = $resizeHandleList.eq(index);
 
             curPos += width + border;
             //핸들러를 가운데 위치 시키기 위해 핸들러 너비 절반의 올림값(4)만큼 좌로 이동한다.
