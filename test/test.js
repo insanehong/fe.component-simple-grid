@@ -1,4 +1,4 @@
-var infinite1 = new ne.Component.SimpleGrid({
+var infinite1 = new ne.component.SimpleGrid({
     $el: $('#simpleGrid'),
     rowHeight: 25,    //line 당 pixel
     height: 100,
@@ -61,7 +61,7 @@ infinite1.on('click', function(customEvent) {
 
 
 
-var infinite2 = new ne.Component.SimpleGrid({
+var infinite2 = new ne.component.SimpleGrid({
     $el: $('#simpleGrid2'),
     rowHeight: 30,    //line 당 pixel
     displayCount: 20,  //영역에 보여줄 line 갯수

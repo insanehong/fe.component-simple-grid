@@ -1,40 +1,38 @@
-## 개발 날짜
-2014-12-01
+Component-SimpleGrid
+======================
+심플그리드 컴포넌트<br>
+[[그리드 컴포넌트]](https://github.nhnent.com/FE/Application-Grid/)의 경량화 버전으로<br>
+그리드 형태의 데이터를 보여주기 위한 컴포넌트입니다. (그리드내 데이터 직접 편집은 지원하지 않음) <br>
+대용량 데이터을 보여줄 수 있도록 그리드 영역에 무한 스크롤(세로방향)을 제공하며<br>
+마우스 드래그로 열너비를 조정할 수 있습니다.
 
-## 담당자
-FE 개발팀 박순영 <soonyoung.park@nhnent.com>
+## Feature
+* 대용량 데이터 랜더링 지원
+* 단일 또는 복수의 행 추가/삭제 기능 지원
+* 그리드 셀과 테두리의 색상 지정 기능 지원
+* 열 너비 조정 기능 제공
+* 열 병합 기능 제공 (행 병합은 지원하지 않음)
+* 키보드의 Ctrl + C 입력을 통해 전체 또는 일부 내용을 엑셀에 붙여넣기 가능한 형태로 복사 할 수 있는 기능 제공
+* 가로/세로 스크롤 노출 여부 설정 가능
+* 한 행의 높이 또는 전체 높이 설정 가능
+* 그리드에서 발생하는 click 이벤트를 제어할 수 있는 인터페이스 제공
 
-## 설명
-- 무한 스크롤이 가능한 간단한 테이블 형태의 그리드.
+## Documentation
+* **API** - https://github.nhnent.com/pages/FE/Component-SimpleGrid/
+* **Sample** - https://github.nhnent.com/pages/FE/Component-SimpleGrid/sample/sample.html
+* **Tutorial** - 준비중
+* **CI** - http://fe.nhnent.com:8080/jenkins/job/Component-SimpleGrid/
 
-## 기능 정의
-- setList 메서드를 통해 스크롤 박스 내부에 출력할 데이터 테이블을 설정할 수 있다.
-- append, prepend 메서드를 통해 현재 스크롤 박스 컨텐츠에 데이터 행을 추가할 수 있다.
-- clear 메서드를 통해 현재 설정된 데이터를 제거할 수 있다.
-- getList 메서드를 통해 현재 설정된 데이터셋을 조회할 수 있다.
-- 생성자의 옵션 freeze 를 통해 append, prepend 시 현재 스크롤 위치 유지 여부를 설정할 수 있다.
-- 생성자의 옵션 scrollX, scrollY 값으로 가로, 세로 스크롤의 노출 유무를 설정할 수 있다.
-- color 옵션을 통해 테이블 헤더, 몸체, 테두리 영역의 색을 지정할 수 있다.
-- border 옵션을 통해 테이블 테두리 두께를 지정할 수 있다.
-- 데이터에 _colSpanBy 필드에 대표로 출력할 columnName 을 지정하여 colSpan 할 수 있다.
-- 생성한 컴포넌트 인스턴스가 발행하는 커스텀 이벤트 "click" 에 바인딩 하여 click 이벤트를 처리할 수 있다.
-- 생성자의 옵션 keyEventBubble 을 사용하여 스크롤 박스에서 처리해야하는 keyEvent 에 대한 버블링을 취소할 수 있다.
-- 사용자 액션(셀렉션 영역 선택 중, 마우스 드래그를 사용하여 스크롤 중)이
-진행중일 때 입력된 데이터 변경 명령(setList/prepend/append/clear)수행은 별도의 Queue에 저장하였다가
-사용자 액션이 끝난 후 한번에 수행된다.
+## Download/Install
+* Bower: `bower install git+http://3c672057a1ac16c4e6f1baaba73e24d5270ef453:x-oauth-basic@github.nhnent.com/FE/Component-SimpleGrid.git#dist`
+* Download: <https://github.nhnent.com/pages/FE/Component-SimpleGrid/dist/>
 
 
-## 주의
-- 한 행의 높이는 반드시 고정값이어야 한다.
+## History
+| Version | Description | Date | Developer |
+| ---- | ---- | ---- | ---- |
+| v0.2 | 열조정 기능 추가 | 2015.01 | FE개발팀 박순영 <soonyoung.park@nhnent.com> |
+| v0.1 | 최초개발 | 2014.12 | FE개발팀 박순영 <soonyoung.park@nhnent.com> |
 
-## 샘플 페이지
-http://fetech.nhnent.com/svnrun/fetech/components/SimpleGrid/sample/sample.concat.html
 
-## 다운로드
-http://fetech.nhnent.com/svnrun/fetech/components/SimpleGrid/release/Component-SimpleGrid.zip
-  
-## API 문서
-http://fetech.nhnent.com/svnrun/fetech/components/SimpleGrid/doc/index.html
-
-## 적용된 페이지
 

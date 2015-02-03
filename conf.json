@@ -8,6 +8,7 @@
             "src/model/focus.js",
             "src/view/body.js",
             "src/view/container.js",
+            "src/view/resize-handler-container.js",
             "src/view/header.js",
             "src/view/keyboard.js",
             "src/view/selection.js",

@@ -4,7 +4,7 @@ module.exports = function(grunt) {
     // All upfront config goes in a massive nested object.
     grunt.initConfig({
         // You can set arbitrary key-value pairs.
-        distFolder: 'dist',
+        distFolder: 'doc/dist',
         // You can also set the value of a key as parsed JSON.
         // Allows us to reference properties we declared in package.json.
         pkg: grunt.file.readJSON('package.json'),
@@ -18,7 +18,7 @@ module.exports = function(grunt) {
             },
             // 'dist' is what is called a "target."
             // It's a way of specifying different sub-tasks or modes.
-            dist: {
+            normal: {
                 // The files to concatenate:
                 // Notice the wildcard, which is automatically expanded.
                 src: [
@@ -36,12 +36,35 @@ module.exports = function(grunt) {
                 dest: '<%= distFolder %>/Component-SimpleGrid.js'
                 // You can reference any grunt config property you want.
                 // Ex: '<%= concat.options.separator %>' instead of ';'
+            },
+            core: {
+                // The files to concatenate:
+                // Notice the wildcard, which is automatically expanded.
+                src: [
+                    'src/core/*.js',
+                    'src/data/*.js',
+                    'src/model/*.js',
+                    'src/view/*.js',
+                    'src/*.js'
+                ],
+                // The destination file:
+                // Notice the angle-bracketed ERB-like templating,
+                // which allows you to reference other properties.
+                // This is equivalent to 'dist/main.js'.
+                dest: '<%= distFolder %>/Component-SimpleGrid.core.js'
+                // You can reference any grunt config property you want.
+                // Ex: '<%= concat.options.separator %>' instead of ';'
             }
         },
         uglify: {
-            my_target: {
+            normal: {
                 files: {
                     '<%= distFolder %>/Component-SimpleGrid.min.js' : '<%= distFolder %>/Component-SimpleGrid.js'
+                }
+            },
+            core: {
+                files: {
+                    '<%= distFolder %>/Component-SimpleGrid.core.min.js' : '<%= distFolder %>/Component-SimpleGrid.core.js'
                 }
             }
         },
@@ -66,8 +89,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-copy');
-    //grunt.loadNpmTasks('grunt-zip');
+    grunt.loadNpmTasks('grunt-zip');
 
     // Register our own custom task alias.
-    grunt.registerTask('build', ['concat', 'uglify', 'copy']);
+    grunt.registerTask('build', ['concat', 'uglify', 'copy', 'zip']);
 };

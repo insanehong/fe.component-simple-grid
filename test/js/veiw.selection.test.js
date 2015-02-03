@@ -9,7 +9,7 @@ describe('view.selection', function() {
         loadFixtures('test/fixtures/empty.html');
 
         $empty = $('#empty');
-        simpleGrid = new ne.Component.SimpleGrid({
+        simpleGrid = new ne.component.SimpleGrid({
             useSelection: true,
             $el: $empty,
             columnModelList: [
@@ -19,7 +19,7 @@ describe('view.selection', function() {
                     width: 700,
                     align: 'center',
                     formatter: function(value, rowData) {
-                        return '<input type="button" class="test_click" value="' + value + '"/>';
+                        return '<img src="' + value + '"/>';
                     }
                 },
                 {

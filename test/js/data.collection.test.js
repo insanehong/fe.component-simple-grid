@@ -190,6 +190,40 @@ describe('data.collection 테스트', function() {
                 expect(instance.length).toBe(5);
             });
         });
+
+        describe('remove', function() {
+            beforeEach(function() {
+                instance.set([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+            });
+            it('단일 remove 테스트한다..', function() {
+                instance.remove(1);
+                expect(instance.at(0).data).toBe(0);
+                expect(instance.at(1).data).toBe(2);
+                expect(instance.at(2).data).toBe(3);
+                expect(instance.at(3).data).toBe(4);
+                expect(instance.at(4).data).toBe(5);
+                expect(instance.at(5).data).toBe(6);
+                expect(instance.at(6).data).toBe(7);
+                expect(instance.at(7).data).toBe(8);
+                expect(instance.at(8).data).toBe(9);
+                expect(instance.at(9).data).toBe(10);
+                expect(instance.at(10)).toBeUndefined();
+                expect(instance.length).toBe(10);
+            });
+            it('다중 remove 테스트한다..', function() {
+                instance.remove([2, 4, 6, 8]);
+                expect(instance.at(0).data).toBe(0);
+                expect(instance.at(1).data).toBe(1);
+                expect(instance.at(2).data).toBe(3);
+                expect(instance.at(3).data).toBe(5);
+                expect(instance.at(4).data).toBe(7);
+                expect(instance.at(5).data).toBe(9);
+                expect(instance.at(6).data).toBe(10);
+                expect(instance.at(7)).toBeUndefined();
+                expect(instance.length).toBe(7);
+            });
+
+        });
         describe('clear', function() {
             it('데이터를 제거하고 내부 변수를 초기화한다.', function() {
                 instance.clear();
