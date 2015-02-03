@@ -1,6 +1,6 @@
 /**
  * @fileoverview 테이블 헤더의 우측 영역(Scroll) 에 자리하는 Spacer View
- * @author soonyoung.park@nhnent@nhnent.com (Soonyoung Park)
+ * @author FE개발팀 박순영 <soonyoung.park@nhnent.com>
  */
 /**
  * Spacer View

@@ -1,6 +1,6 @@
 /**
  * @fileoverview 리사이즈 핸들러
- * @author soonyoung.park@nhnent@nhnent.com (Soonyoung Park)
+ * @author FE개발팀 박순영 <soonyoung.park@nhnent.com>
  */
 /**
  * ResizeHandlerContainer
@@ -16,7 +16,7 @@ var ResizeHandlerContainer = ne.util.defineClass(Base.View, /**@lends ResizeHand
     /**
      * 생성자
      * @param {Object} attributes
-     * @param   {number} attributes.height  핸들러의 높이값.
+     *      @param {number} attributes.height  핸들러의 높이값.
      */
     init: function(attributes) {
         Base.View.prototype.init.apply(this, arguments);
@@ -53,14 +53,15 @@ var ResizeHandlerContainer = ne.util.defineClass(Base.View, /**@lends ResizeHand
      */
     render: function() {
         var columnModelList = this.grid.option('columnModelList'),
-            length = columnModelList.length;
+            length = columnModelList.length,
+            handler;
 
         this._detachHandler();
         this.destroyChildren();
         this.$el.empty();
 
         ne.util.forEachArray(columnModelList, function(columnModel, index) {
-            var handler = this.createView(ResizeHandler, {
+            handler = this.createView(ResizeHandler, {
                 grid: this.grid,
                 index: index,
                 columnName: columnModel.columnName,
@@ -78,7 +79,7 @@ var ResizeHandlerContainer = ne.util.defineClass(Base.View, /**@lends ResizeHand
     },
 
     /**
-     * 생성된 핸들러의 위치를 설정한다.
+     * 생성된 핸들러의 위치를 갱신한다.
      * @private
      */
     _refreshHandlerPosition: function() {

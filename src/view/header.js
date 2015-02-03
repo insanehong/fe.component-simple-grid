@@ -1,6 +1,6 @@
 /**
  * @fileoverview Header View
- * @author soonyoung.park@nhnent@nhnent.com (Soonyoung Park)
+ * @author FE개발팀 박순영 <soonyoung.park@nhnent.com>
  */
 /**
  * Header View
