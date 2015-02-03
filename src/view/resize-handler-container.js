@@ -36,7 +36,6 @@ var ResizeHandlerContainer = ne.util.defineClass(Base.View, /**@lends ResizeHand
 
     /**
      * model 값이 변경되었을때 view 에 반영한다.
-     *
      * @param {{key: key, value: value}} changeEvent model 에서 전달하는 change 이벤트
      * @private
      */
