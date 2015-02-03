@@ -21,13 +21,13 @@ Component-SimpleGrid
 사용자 액션이 끝난 후 한번에 수행된다.
 
 ## Documentation
-* **API** - <http://github.nhnent.com/pages/FE/Component-SimpleGrid/>
-* **Sample** - <http://github.nhnent.com/pages/FE/Component-SimpleGrid/sample/sample.html>
+* **API** - http://github.nhnent.com/pages/FE/Component-SimpleGrid/
+* **Sample** - http://github.nhnent.com/pages/FE/Component-SimpleGrid/sample/sample.html
 * **Tutorial** - 준비중
-* **CI** - <http://fe.nhnent.com:8080/jenkins/job/Component-SimpleGrid/>
+* **CI** - http://fe.nhnent.com:8080/jenkins/job/Component-SimpleGrid/
 
 ## Download/Install
-* Bower: `bower~~~~`
+* Bower: `bower install git+http://3c672057a1ac16c4e6f1baaba73e24d5270ef453:x-oauth-basic@github.nhnent.com/FE/Component-SimpleGrid.git#dist`
 * Download: <http://github.nhnent.com/pages/FE/Component-SimpleGrid/dist/>
 
 

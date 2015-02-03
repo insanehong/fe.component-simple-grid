@@ -89,8 +89,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-copy');
-    //grunt.loadNpmTasks('grunt-zip');
+    grunt.loadNpmTasks('grunt-zip');
 
     // Register our own custom task alias.
-    grunt.registerTask('build', ['concat', 'uglify', 'copy']);
+    grunt.registerTask('build', ['concat', 'uglify', 'copy', 'zip']);
 };
