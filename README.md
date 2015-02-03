@@ -34,7 +34,7 @@ Component-SimpleGrid
 ## History
 | Version | Description | Date | Developer |
 | ---- | ---- | ---- | ---- |
-| v0.2 | 열조정 기능 추가 | 2014.01 | FE개발팀 박순영 <soonyoung.park@nhnent.com> |
+| v0.2 | 열조정 기능 추가 | 2015.01 | FE개발팀 박순영 <soonyoung.park@nhnent.com> |
 | v0.1 | 최초개발 | 2014.12 | FE개발팀 박순영 <soonyoung.park@nhnent.com> |
 
 
