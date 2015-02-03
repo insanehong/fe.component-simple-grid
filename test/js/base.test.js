@@ -16,7 +16,7 @@ describe('Base 테스트', function() {
             it('반드시 unique 한 key 를 반환해야 한다.', function() {
                 var i = 0,
                     next,
-                    len = 100000,
+                    len = 1000,
                     keyList = [],
                     sortedKeyList;
                 for (; i < len; i++) {

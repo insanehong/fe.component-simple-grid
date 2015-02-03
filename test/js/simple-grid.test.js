@@ -18,7 +18,7 @@ describe('view.virtual-scrollbar', function() {
         loadFixtures('test/fixtures/empty.html');
 
         $empty = $('#empty');
-        simpleGrid = new ne.Component.SimpleGrid({
+        simpleGrid = new ne.component.SimpleGrid({
             $el: $empty,
             columnModelList: [
                 {
@@ -96,7 +96,7 @@ describe('view.virtual-scrollbar', function() {
         });
     });
     describe('append', function() {
-        it('model 의 collection 의 append 를 호출한다..', function() {
+        it('model 의 collection 의 append 를 호출한다.', function() {
             var append = simpleGrid.model.collection.append = jasmine.createSpy('append');
             simpleGrid.append([1, 2, 3, 4]);
             expect(append).toHaveBeenCalled();
@@ -109,6 +109,15 @@ describe('view.virtual-scrollbar', function() {
             expect(prepend).toHaveBeenCalled();
         });
     });
+    describe('remove', function() {
+        it('model 의 collection 의 remove 를 호출한다.', function() {
+            var remove = simpleGrid.model.collection.remove = jasmine.createSpy('remove');
+            simpleGrid.remove([1, 2, 3, 4]);
+            expect(remove).toHaveBeenCalled();
+        });
+    });
+
+
     describe('option', function() {
         it('인자를 두개 넘기면 set 으로, 한개 넘기면 get 으로 동작한다.', function() {
             simpleGrid.option('testVal', 1);

@@ -116,8 +116,22 @@ module.exports = function(config) {
             suite: ''
         },
         coverageReporter: {
-            type: 'html',
-            dir: 'report/coverage/'
+            dir : 'report/coverage/',
+            reporters: [
+                {
+                    type: 'html',
+                    subdir: function(browser) {
+                        return 'report-html/' + browser;
+                    }
+                },
+                {
+                    type: 'cobertura',
+                    subdir: function(browser) {
+                        return 'report-cobertura/' + browser;
+                    },
+                    file: 'cobertura.txt'
+                }
+            ]
         },
 
         // web server port
@@ -141,6 +155,6 @@ module.exports = function(config) {
         singleRun: false
     };
 
-    setConfig(configDefault, true);
+    setConfig(configDefault, false);
     config.set(configDefault);
 };

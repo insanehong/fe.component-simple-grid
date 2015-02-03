@@ -7,6 +7,8 @@ describe('model 테스트', function() {
             option: function(key) {
                 return this.options[key];
             },
+            ieMaxHeight: 1533917,
+            scrollBarSize: 17,
             options: {
                 border: 1,
                 columnModelList: [
@@ -48,6 +50,26 @@ describe('model 테스트', function() {
             grid: grid
         });
     });
+    describe('_setHeight', function() {
+        describe('option 에 height 가 설정되어 있을 경우 값을 잘 반영하는지 확인한다.', function() {
+            beforeEach(function() {
+                grid.options.height = 300;
+            });
+            it('설정한 height 값으로 설정되는지 확인한다.', function() {
+                model._setHeight();
+                expect(model.height).toBe(300);
+            });
+            it('scrollX가 적용되었을 경우 scrollX 값만큼 뺀 값으로 설정한다.', function() {
+                grid.options.scrollX = true;
+                model._setHeight();
+                expect(model.height).toBe(300 - grid.scrollBarSize);
+            });
+        });
+
+    });
+    describe('setColumnWidth', function() {
+
+    });
     describe('_getMaxCollectionLength', function() {
         var isIe;
         beforeEach(function() {
@@ -63,7 +85,7 @@ describe('model 테스트', function() {
         it('IE 일 경우 rowHeight 로 나눈 값을 반환한다.', function() {
             ne.util.browser.msie = true;
             model.rowHeight = 20;
-            expect(model._getMaxCollectionLength()).toBe(73042);
+            expect(model._getMaxCollectionLength()).toBe(73043);
         });
     });
     describe('_onChange', function() {

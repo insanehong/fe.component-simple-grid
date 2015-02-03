@@ -1,6 +1,6 @@
 /**
  * @fileoverview 테이블 헤더의 우측 영역(Scroll) 에 자리하는 Spacer View
- * @author soonyoung.park@nhnent@nhnent.com (Soonyoung Park)
+ * @author FE개발팀 박순영 <soonyoung.park@nhnent.com>
  */
 /**
  * Spacer View
@@ -11,9 +11,14 @@ var Spacer = ne.util.defineClass(Base.View, /**@lends Spacer.prototype */{
     eventHandler: {},
     className: 'infinite_spacer',
     style: 'display: block;	position: absolute;	top: 0;	right: 0; width: 16px;',
+    /**
+     * 생성자
+     * @param attributes
+     */
     init: function(attributes) {
         Base.View.prototype.init.apply(this, arguments);
     },
+
     /**
      * 렌더링 한다.
      * @return {Spacer}
