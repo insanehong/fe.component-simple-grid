@@ -1,4 +1,8 @@
 /**
+ * @fileoverview SimpleGrid 컴포넌트 본체
+ * @author FE개발팀 박순영 <soonyoung.park@nhnent.com>
+ */
+/**
  * Simple Grid
  * @constructor
  * @example
