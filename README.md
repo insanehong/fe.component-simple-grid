@@ -19,7 +19,7 @@ Component-SimpleGrid
 
 ## Documentation
 * **API** - https://github.nhnent.com/pages/FE/Component-SimpleGrid/
-* **Sample** - https://github.nhnent.com/pages/FE/Component-SimpleGrid/sample/sample.html
+* **Sample** - https://github.nhnent.com/pages/FE/Component-SimpleGrid/sample/
 * **Tutorial** - 준비중
 * **CI** - http://fe.nhnent.com:8080/jenkins/job/Component-SimpleGrid/
 
