@@ -26,7 +26,10 @@ node_modules
 
 # Bower Components
 bower_components
-# lib
+lib
+
+#JSDOC
+doc
 
 # IDEA
 .idea
