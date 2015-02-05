@@ -1,4 +1,4 @@
-/*!SimpleGrid v0.0.0 | NHN Entertainment*/
+/*!SimpleGrid v1.0.0 | NHN Entertainment*/
 (function() {
 ne = window.ne || {};
 ne.component = ne.component || {};
