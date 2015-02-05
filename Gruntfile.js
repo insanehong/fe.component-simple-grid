@@ -13,7 +13,8 @@ module.exports = function(grunt) {
         concat: {
             // Specify some options, usually specific to each plugin.
             options: {
-                banner: '(function() {\n',
+                banner: '/*!SimpleGrid v<%=pkg.version%> | NHN Entertainment*/\n' +
+                '(function() {\n',
                 footer: '\n})();'
             },
             // 'dist' is what is called a "target."
@@ -60,18 +61,30 @@ module.exports = function(grunt) {
             normal: {
                 files: {
                     '<%= distFolder %>/Component-SimpleGrid.min.js' : '<%= distFolder %>/Component-SimpleGrid.js'
+                },
+                options: {
+                    banner: '/*!SimpleGrid v<%=pkg.version%> | NHN Entertainment*/',
+                    preserveComments: false,
+                    sourceMap: true,
+                    sourceMapName: "<%= distFolder %>/Component-SimpleGrid.min.map"
                 }
             },
             core: {
                 files: {
                     '<%= distFolder %>/Component-SimpleGrid.core.min.js' : '<%= distFolder %>/Component-SimpleGrid.core.js'
+                },
+                options: {
+                    banner: '/*!SimpleGrid v<%=pkg.version%> | NHN Entertainment*/',
+                    preserveComments: false,
+                    sourceMap: true,
+                    sourceMapName: "<%= distFolder %>/Component-SimpleGrid.core.min.map"
                 }
             }
         },
         copy: {
             main: {
                 files: [
-                    {expand: true, flatten: true, src: ['src/css/*'], dest: '<%= distFolder %>/', filter: 'isFile'}
+                    {expand: true, flatten: true, src: ['<%= distFolder %>/*.js', '<%= distFolder %>/*.map'], dest: '', filter: 'isFile'}
                 ]
             }
         },
