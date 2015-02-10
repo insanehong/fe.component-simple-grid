@@ -107,7 +107,8 @@ var VirtualScrollBar = ne.util.defineClass(Base.View, /**@lends VirtualScrollBar
      */
     render: function() {
         this._detachHandler();
-        var right = (this.grid.option('border') === 0) ? 1 : 0,
+        var width = this.grid.scrollBarSize + 1,
+            right = (this.grid.option('border') === 0) ? 1 : 0,
             content = this.createView(VirtualScrollBar.Content, {
                 grid: this.grid
             }),
@@ -124,7 +125,7 @@ var VirtualScrollBar = ne.util.defineClass(Base.View, /**@lends VirtualScrollBar
             height: this.model.height,
             top: top,
             right: right,
-            width: this.grid.scrollBarSize + 'px'
+            width: width + 'px'
         });
         this.$el.empty();
         this.$el.html(content.render().el);
