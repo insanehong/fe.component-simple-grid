@@ -9,6 +9,7 @@
     "ignore": [
       "**/.*",
       ".*",
+      "*.zip",
       "src",
       "bin",
       "node_modules",
