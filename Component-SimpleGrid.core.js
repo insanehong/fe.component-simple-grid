@@ -1414,10 +1414,9 @@ var Body = ne.util.defineClass(Base.View, /**@lends Body.prototype */{
             color = this.grid.option('color'),
             border = this.grid.option('border'),
             selectList = this.grid.focusModel.getSelectList(),
-            className = this.grid.option('className'),
-            resizeHandler;
+            className = this.grid.option('className');
 
-        this.$el.html(Util.template(this._template.table, {
+        this.$el.empty().prepend(Util.template(this._template.table, {
             className: className.table,
             border: border,
             color: border ? color['border'] : '',
