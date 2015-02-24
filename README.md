@@ -18,19 +18,20 @@ Component-SimpleGrid
 * 그리드에서 발생하는 click 이벤트를 제어할 수 있는 인터페이스 제공
 
 ## Documentation
-* **API** - https://github.nhnent.com/pages/FE/Component-SimpleGrid/
-* **Sample** - https://github.nhnent.com/pages/FE/Component-SimpleGrid/sample/
+* **API** - https://github.nhnent.com/pages/fe/component-simple-grid/
+* **Sample** - https://github.nhnent.com/pages/fe/component-simple-grid/sample/
 * **Tutorial** - 준비중
-* **CI** - http://fe.nhnent.com:8080/jenkins/job/Component-SimpleGrid/
+* **CI** - http://fe.nhnent.com:8080/jenkins/job/component-simple-grid/
 
 ## Download/Install
-* Bower: `bower install git+http://3c672057a1ac16c4e6f1baaba73e24d5270ef453:x-oauth-basic@github.nhnent.com/FE/Component-SimpleGrid.git#dist`
-* Download: <https://github.nhnent.com/pages/FE/Component-SimpleGrid/dist/>
+* Bower: `bower install git+http://3c672057a1ac16c4e6f1baaba73e24d5270ef453:x-oauth-basic@github.nhnent.com/fe/component-simple-grid.git#1.0.0a`
+* Download: <https://github.nhnent.com/pages/fe/component-simple-grid/dist/>
 
 
 ## History
 | Version | Description | Date | Developer |
 | ---- | ---- | ---- | ---- |
+| v1.0.0a | IE 스크롤바 조정 불가능한 오류 수정 | 2015.02 | FE개발팀 박순영 <soonyoung.park@nhnent.com> |
 | v1.0.0 | 티켓링크 적용 | 2015.02 | FE개발팀 박순영 <soonyoung.park@nhnent.com> |
 | v0.2.0 | 열조정 기능 추가 | 2015.01 | FE개발팀 박순영 <soonyoung.park@nhnent.com> |
 | v0.1.0 | 최초개발 | 2014.12 | FE개발팀 박순영 <soonyoung.park@nhnent.com> |

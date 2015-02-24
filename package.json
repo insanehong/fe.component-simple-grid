@@ -1,7 +1,7 @@
 {
-  "name": "Component-SimpleGrid",
-  "version": "1.0.0",
-  "description": "SimpleGrid",
+  "name": "component-simple-grid",
+  "version": "1.0.0a",
+  "description": "simple-grid",
   "main": "Gruntfile.js",
   "directories": {
     "test": "test"

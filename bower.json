@@ -1,10 +1,10 @@
 {
-    "name": "Component-SimpleGrid",
-    "version": "1.0.0",
+    "name": "component-simple-grid",
+    "version": "1.0.0a",
     "authors": [
         "Soonyoung Park <soonyoung.park@nhnent.com>"
     ],
-    "license": "MIT",
+    "license": "",
     "private": true,
     "ignore": [
       "**/.*",
