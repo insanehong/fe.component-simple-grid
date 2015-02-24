@@ -23,6 +23,7 @@ describe('view.keyboard', function() {
         loadFixtures('test/fixtures/empty.html');
 
         $empty = $('#empty');
+        $empty.width(100);
         simpleGrid = new ne.component.SimpleGrid({
             $el: $empty,
             useSelection: true,
