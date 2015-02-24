@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: view/virtual-scrollbar.js</title>
+    <link type="text/css" rel="stylesheet" href="styles/prettify-jsdoc.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-fe2.css">
+</head>
+<body>
+
+<div id="wrap">
+
+    <div class="header">
+
+        <div class="container-fluid">
+            <h3><a href="index.html">API Documentation</a> <small>FE개발팀</small></h3>
+        </div>
+
+    </div>
+
+    <div class="body">
+        <div id="navigation" class="navigation"><h3>Classes</h3><ul class="list classes"><li class="item" id="Base"><span class="title"><a href="Base.html">Base</a></span><ul class="sublist methods Base"><span class="subtitle">Methods</span><li><a href="Base.html#error">error</a></li></ul></li><li class="item" id="Base.View"><span class="title"><span class="p-item">Base.</span><a href="Base.View.html">View</a></span><span class="icon blue static">static</span><ul class="sublist methods Base.View"><span class="subtitle">Methods</span><li><a href="Base.View.html#createView">createView</a></li><li><a href="Base.View.html#destroy">destroy</a></li><li><a href="Base.View.html#destroyChildren">destroyChildren</a></li><li><a href="Base.View.html#init">init</a></li></ul></li><li class="item" id="Body"><span class="title"><a href="Body.html">Body</a></span><ul class="sublist methods Body"><span class="subtitle">Methods</span><li><a href="Body.html#init">init</a></li><li><a href="Body.html#render">render</a></li><li><a href="Body.html#select">select</a></li><li><a href="Body.html#unselect">unselect</a></li></ul></li><li class="item" id="Collection"><span class="title"><a href="Collection.html">Collection</a></span><ul class="sublist methods Collection"><span class="subtitle">Methods</span><li><a href="Collection.html#append">append</a></li><li><a href="Collection.html#at">at</a></li><li><a href="Collection.html#clear">clear</a></li><li><a href="Collection.html#get">get</a></li><li><a href="Collection.html#indexOf">indexOf</a></li><li><a href="Collection.html#lock">lock</a></li><li><a href="Collection.html#prepend">prepend</a></li><li><a href="Collection.html#remove">remove</a></li><li><a href="Collection.html#set">set</a></li><li><a href="Collection.html#unlock">unlock</a></li></ul></li><li class="item" id="Container"><span class="title"><a href="Container.html">Container</a></span><ul class="sublist methods Container"><span class="subtitle">Methods</span><li><a href="Container.html#render">render</a></li></ul></li><li class="item" id="Focus"><span class="title"><a href="Focus.html">Focus</a></span><ul class="sublist methods Focus"><span class="subtitle">Methods</span><li><a href="Focus.html#getSelectList">getSelectList</a></li><li><a href="Focus.html#init">init</a></li><li><a href="Focus.html#select">select</a></li><li><a href="Focus.html#unselect">unselect</a></li></ul></li><li class="item" id="Header"><span class="title"><a href="Header.html">Header</a></span><ul class="sublist methods Header"><span class="subtitle">Methods</span><li><a href="Header.html#init">init</a></li><li><a href="Header.html#render">render</a></li></ul></li><li class="item" id="Keyboard"><span class="title"><a href="Keyboard.html">Keyboard</a></span><ul class="sublist methods Keyboard"><span class="subtitle">Methods</span><li><a href="Keyboard.html#init">init</a></li><li><a href="Keyboard.html#render">render</a></li><li><a href="Keyboard.html#scrollHorizontal">scrollHorizontal</a></li><li><a href="Keyboard.html#scrollVertical">scrollVertical</a></li></ul></li><li class="item" id="Model"><span class="title"><a href="Model.html">Model</a></span><ul class="sublist methods Model"><span class="subtitle">Methods</span><li><a href="Model.html#getMaxScrollTop">getMaxScrollTop</a></li><li><a href="Model.html#init">init</a></li><li><a href="Model.html#set">set</a></li><li><a href="Model.html#setColumnWidth">setColumnWidth</a></li></ul></li><li class="item" id="ne.component.SimpleGrid"><span class="title"><span class="p-item">ne.component.</span><a href="ne.component.SimpleGrid.html">SimpleGrid</a></span><span class="icon blue static">static</span><ul class="sublist members ne.component.SimpleGrid"><span class="subtitle">Members</span><li><a href="ne.component.SimpleGrid.html#ieMaxHeight">ieMaxHeight</a></li><li><a href="ne.component.SimpleGrid.html#scrollBarSize">scrollBarSize</a></li><li><a href="ne.component.SimpleGrid.html#scrollingScale">scrollingScale</a></li><li><a href="ne.component.SimpleGrid.html#scrollingScalePerPage">scrollingScalePerPage</a></li></ul><ul class="sublist division ne.component.SimpleGrid"><li></li></ul><ul class="sublist methods ne.component.SimpleGrid"><span class="subtitle">Methods</span><li><a href="ne.component.SimpleGrid.html#.getInstanceById">getInstanceById</a></li><li><a href="ne.component.SimpleGrid.html#append">append</a></li><li><a href="ne.component.SimpleGrid.html#blur">blur</a></li><li><a href="ne.component.SimpleGrid.html#clear">clear</a></li><li><a href="ne.component.SimpleGrid.html#focus">focus</a></li><li><a href="ne.component.SimpleGrid.html#getList">getList</a></li><li><a href="ne.component.SimpleGrid.html#getSelectionInstance">getSelectionInstance</a></li><li><a href="ne.component.SimpleGrid.html#init">init</a></li><li><a href="ne.component.SimpleGrid.html#option">option</a></li><li><a href="ne.component.SimpleGrid.html#prepend">prepend</a></li><li><a href="ne.component.SimpleGrid.html#remove">remove</a></li><li><a href="ne.component.SimpleGrid.html#render">render</a></li><li><a href="ne.component.SimpleGrid.html#setList">setList</a></li><li><a href="ne.component.SimpleGrid.html#updateLayoutData">updateLayoutData</a></li></ul></li><li class="item" id="ResizeHandler"><span class="title"><a href="ResizeHandler.html">ResizeHandler</a></span><ul class="sublist methods ResizeHandler"><span class="subtitle">Methods</span><li><a href="ResizeHandler.html#render">render</a></li></ul></li><li class="item" id="ResizeHandlerContainer"><span class="title"><a href="ResizeHandlerContainer.html">ResizeHandlerContainer</a></span><ul class="sublist methods ResizeHandlerContainer"><span class="subtitle">Methods</span><li><a href="ResizeHandlerContainer.html#init">init</a></li><li><a href="ResizeHandlerContainer.html#render">render</a></li></ul></li><li class="item" id="Selection"><span class="title"><a href="Selection.html">Selection</a></span><ul class="sublist methods Selection"><span class="subtitle">Methods</span><li><a href="Selection.html#attachMouseEvent">attachMouseEvent</a></li><li><a href="Selection.html#destroy">destroy</a></li><li><a href="Selection.html#detachMouseEvent">detachMouseEvent</a></li><li><a href="Selection.html#draw">draw</a></li><li><a href="Selection.html#getKey">getKey</a></li><li><a href="Selection.html#getSelectionData">getSelectionData</a></li><li><a href="Selection.html#getSelectionLength">getSelectionLength</a></li><li><a href="Selection.html#getSelectionRange">getSelectionRange</a></li><li><a href="Selection.html#getSelectionRangeIndex">getSelectionRangeIndex</a></li><li><a href="Selection.html#hasSelection">hasSelection</a></li><li><a href="Selection.html#hide">hide</a></li><li><a href="Selection.html#init">init</a></li><li><a href="Selection.html#overflowStatus">overflowStatus</a></li><li><a href="Selection.html#render">render</a></li><li><a href="Selection.html#selectAll">selectAll</a></li><li><a href="Selection.html#show">show</a></li><li><a href="Selection.html#startSelection">startSelection</a></li><li><a href="Selection.html#stopSelection">stopSelection</a></li><li><a href="Selection.html#updateSelection">updateSelection</a></li></ul></li><li class="item" id="Spacer"><span class="title"><a href="Spacer.html">Spacer</a></span><ul class="sublist methods Spacer"><span class="subtitle">Methods</span><li><a href="Spacer.html#init">init</a></li><li><a href="Spacer.html#render">render</a></li></ul></li><li class="item" id="VirtualScrollBar"><span class="title"><a href="VirtualScrollBar.html">VirtualScrollBar</a></span><ul class="sublist methods VirtualScrollBar"><span class="subtitle">Methods</span><li><a href="VirtualScrollBar.html#init">init</a></li><li><a href="VirtualScrollBar.html#render">render</a></li></ul></li><li class="item" id="VirtualScrollBar.Content"><span class="title"><span class="p-item">VirtualScrollBar.</span><a href="VirtualScrollBar.Content.html">Content</a></span><span class="icon blue static">static</span></li><li class="item" id="Worker"><span class="title"><a href="Worker.html">Worker</a></span><ul class="sublist methods Worker"><span class="subtitle">Methods</span><li><a href="Worker.html#dequeue">dequeue</a></li><li><a href="Worker.html#enqueue">enqueue</a></li><li><a href="Worker.html#lock">lock</a></li><li><a href="Worker.html#runQueue">runQueue</a></li><li><a href="Worker.html#unlock">unlock</a></li></ul></li></ul><h3>Global</h3><ul class="list globals"><li class="item" id="uniqueKey"><span class="title"><a href="global.html#uniqueKey">uniqueKey</a></span></li><li class="item" id="Util"><span class="title"><a href="global.html#Util">Util</a></span><ul class="sublist methods Util"><span class="subtitle">Methods</span><li><a href="global.html#Util#.getDisplayRowCount">getDisplayRowCount</a></li><li><a href="global.html#Util#.getHeight">getHeight</a></li><li><a href="global.html#Util#.getRowHeight">getRowHeight</a></li><li><a href="global.html#Util#.stripTags">stripTags</a></li><li><a href="global.html#Util#.template">template</a></li></ul></li></ul></div>
+        <div id="main" class="main">
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @fileoverview 가상 스크롤바
+ * @author FE개발팀 박순영 &lt;soonyoung.park@nhnent.com>
+ */
+/**
+ * VirtualScrollBar
+ * @constructor VirtualScrollBar
+ */
+var VirtualScrollBar = ne.util.defineClass(Base.View, /**@lends VirtualScrollBar.prototype */{
+    className: 'infinite_virtial_scrollbar',
+    eventHandler: {
+        'scroll': '_onScroll'
+    },
+    style: 'overflow-y: scroll; overflow-x: hidden; position: absolute; top: 0; right: 0; display: block;',
+    /**
+     * 생성자
+     * @param attributes
+     */
+    init: function(attributes) {
+        Base.View.prototype.init.apply(this, arguments);
+        this.model.on({
+            'change': this._onModelChange
+        }, this);
+        this.setOwnProperties({
+            timeoutIdForLock: 0,
+            isScrollHandlerFocused: false
+        });
+    },
+
+    /**
+     * 마우스다운 event handler
+     * @private
+     */
+    _onMouseDown: function() {
+        this.model.collection.lock();
+        this.grid.updateLayoutData();
+        this.isScrollHandlerFocused = true;
+        this._updateUnlockTimeout();
+    },
+
+    /**
+     * 스크롤 핸들러로 스크롤 했을 때, unlock timer 를 업데이트 한다.
+     * @private
+     */
+    _updateUnlockTimeout: function() {
+        if (this.isScrollHandlerFocused) {
+            clearTimeout(this.timeoutIdForLock);
+            this.model.collection.lock();
+            this.timeoutIdForLock = setTimeout($.proxy(function() {
+                this.isScrollHandlerFocused = false;
+                this.model.collection.unlock();
+            }, this), 1000);
+        }
+    },
+
+    /**
+     * scroll event handler
+     * @param {event} scrollEvent 스크롤 이벤트
+     * @private
+     */
+    _onScroll: function(scrollEvent) {
+        this.model.set('scrollTop', $(scrollEvent.target).scrollTop());
+        this._updateUnlockTimeout();
+        this.isScrollHandlerFocused = true;
+    },
+
+    /**
+     * model 값이 변경되었을때 view 에 반영한다.
+     *
+     * @param {{key: key, value: value}} changeEvent model 에서 전달하는 change 이벤트
+     * @private
+     */
+    _onModelChange: function(changeEvent) {
+        var key = changeEvent.key,
+            value = changeEvent.value;
+        if (key === 'scrollTop') {
+            this.isScrollHandlerFocused = false;
+            this._onScrollTopChange(value);
+        } else if (key === 'headerHeight') {
+            this.$el.css('top', value + 'px');
+        } else {
+            this._setContentHeight();
+        }
+    },
+
+    /**
+     * scrollTop 값을 동기화한다.
+     * @param {number} scrollTop    scrollTop 값
+     * @private
+     */
+    _onScrollTopChange: function(scrollTop) {
+        this.el.scrollTop = scrollTop;
+    },
+
+    /**
+     * 현재 랜더링을 기준으로 max scroll top 을 확인한다.
+     * @return {number} 계산된 max scroll top 값
+     * @private
+     */
+    _getMaxScrollTop: function() {
+        return this.$el.find('.infinite_content').height() - this.$el.innerHeight();
+    },
+
+    /**
+     * 렌더링 한다.
+     * @return {VirtualScrollBar}
+     */
+    render: function() {
+        this._detachHandler();
+        var width = this.grid.scrollBarSize + 1,
+            right = (this.grid.option('border') === 0) ? 1 : 0,
+            content = this.createView(VirtualScrollBar.Content, {
+                grid: this.grid
+            }),
+            border = this.grid.option('border'),
+            top;
+        if (this.grid.option('hasHeader')) {
+            top = this.grid.option('headerHeight') + ((border * 2) || 2);
+        } else {
+            top = 1;
+        }
+
+        this.$el.css({
+            //height: this.grid.option('scrollX') ? this.model.height + this.grid.scrollBarSize : this.model.height,
+            height: this.model.height,
+            top: top,
+            right: right,
+            width: width + 'px'
+        });
+        this.$el.empty();
+        this.$el.html(content.render().el);
+
+        this._setContentHeight();
+        this._attachHandler();
+        return this;
+    },
+
+    /**
+     * virtual scroll bar 의 높이를 계산하여 지정한다.
+     * @private
+     */
+    _setContentHeight: function() {
+        var border = this.grid.option('border'),
+            rowHeight = this.grid.option('rowHeight'),
+            rowCount = this.model.collection.length,
+            height = Util.getHeight(rowCount, rowHeight, border),
+            maxTop;
+        //
+        //if (this.grid.option('scrollX')) {
+        //    height += this.grid.scrollBarSize;
+        //}
+
+        this.$el.find('.infinite_content').height(height);
+        maxTop = this.model.getMaxScrollTop();
+        this.model.set('maxScrollTop', maxTop);
+    },
+
+    /**
+     * 가상 스크롤바의 content 영역의 높이를 가져온다.
+     * @return {number} content 의 height 값
+     * @private
+     */
+    _getContentHeight: function() {
+        return this.$el.find('.infinite_content').height();
+    }
+});
+/**
+ * VirtualScrollBar.Content
+ * @constructor VirtualScrollBar.Content
+ */
+VirtualScrollBar.Content = ne.util.defineClass(Base.View, /**@lends VirtualScrollBar.Content.prototype */{
+    className: 'infinite_content',
+    style: 'width: 1px; display: block; background: transparent;',
+    init: function(attributes) {
+        Base.View.prototype.init.apply(this, arguments);
+    },
+    render: function() {
+        return this;
+    }
+});
+</code></pre>
+        </article>
+    </section>
+
+
+
+</div>
+        <div class="clearfix"></div>
+    </div>
+
+</div>
+<script>
+(function() {
+// 영역 height 설정
+var height = (window.innerHeight || document.documentElement.clientHeight || document.getElementByTagName('body')[0].clientHeight) - 50;
+var navigation = document.getElementById('navigation');
+var main = document.getElementById('main');
+navigation.style.height = height + 'px';
+main.style.height = height + 'px';
+
+// IE 7,8을 위한 getElementsByClassName 구현
+var getElementsByClassName = function(className, parentElement) {
+	if(document.getElementsByClassName) {
+		return (parentElement || document).getElementsByClassName(className);
+	}
+
+    var regEx = new RegExp('(^| )'+className+'( |$)');
+	var nodes = new Array();
+    var elements = (parentElement || document.body).getElementsByTagName("*");
+    for(var i = 0, len = elements.length; i < len ; i++) {
+        if(regEx.test(elements[i].className)) {
+			nodes.push(elements[i]);
+		}
+	}
+	elements = null;
+    return nodes;
+}
+
+// url 파싱후 해당 카테고리만 display:block 처리
+var url = location.href;
+var path = url.lastIndexOf('/');
+var fileName = url.substring(path+1);
+var fullName = fileName.split('.');
+fullName.length -= 1;
+fullName = fullName.join('.');
+fullName = fullName.split('-');
+fullName = fullName[fullName.length - 1];
+var lnbList = getElementsByClassName(fullName);
+if(lnbList.length && lnbList.length > 0) {
+    for(var i = 0, len = lnbList.length; i < len; i++) {
+        lnbList[i].className += ' selected';
+    }
+}
+
+var title = document.getElementById(fullName);
+if(title) {
+    title.className += ' selected';
+    title.innerHTML = '<span class="arrow">▶</span>' + title.innerHTML;
+
+    var static = getElementsByClassName('static', title);
+    if(static) {
+        static[0].className += ' selected';
+    }
+}
+})();
+</script>
+<script type="text/javascript" src="scripts/prettify/prettify.js"></script>
+<script type="text/javascript" src="scripts/prettify/lang-css.js"></script>
+<script type="text/javascript">prettyPrint();</script>
+<script type="text/javascript" src="scripts/linenumber.js"></script>
+</body>
+</html>

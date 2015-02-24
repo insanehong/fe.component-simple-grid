@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: core/base.js</title>
+    <link type="text/css" rel="stylesheet" href="styles/prettify-jsdoc.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-fe2.css">
+</head>
+<body>
+
+<div id="wrap">
+
+    <div class="header">
+
+        <div class="container-fluid">
+            <h3><a href="index.html">API Documentation</a> <small>FE개발팀</small></h3>
+        </div>
+
+    </div>
+
+    <div class="body">
+        <div id="navigation" class="navigation"><h3>Classes</h3><ul class="list classes"><li class="item" id="Base"><span class="title"><a href="Base.html">Base</a></span><ul class="sublist methods Base"><span class="subtitle">Methods</span><li><a href="Base.html#error">error</a></li></ul></li><li class="item" id="Base.View"><span class="title"><span class="p-item">Base.</span><a href="Base.View.html">View</a></span><span class="icon blue static">static</span><ul class="sublist methods Base.View"><span class="subtitle">Methods</span><li><a href="Base.View.html#createView">createView</a></li><li><a href="Base.View.html#destroy">destroy</a></li><li><a href="Base.View.html#destroyChildren">destroyChildren</a></li><li><a href="Base.View.html#init">init</a></li></ul></li><li class="item" id="Body"><span class="title"><a href="Body.html">Body</a></span><ul class="sublist methods Body"><span class="subtitle">Methods</span><li><a href="Body.html#init">init</a></li><li><a href="Body.html#render">render</a></li><li><a href="Body.html#select">select</a></li><li><a href="Body.html#unselect">unselect</a></li></ul></li><li class="item" id="Collection"><span class="title"><a href="Collection.html">Collection</a></span><ul class="sublist methods Collection"><span class="subtitle">Methods</span><li><a href="Collection.html#append">append</a></li><li><a href="Collection.html#at">at</a></li><li><a href="Collection.html#clear">clear</a></li><li><a href="Collection.html#get">get</a></li><li><a href="Collection.html#indexOf">indexOf</a></li><li><a href="Collection.html#lock">lock</a></li><li><a href="Collection.html#prepend">prepend</a></li><li><a href="Collection.html#remove">remove</a></li><li><a href="Collection.html#set">set</a></li><li><a href="Collection.html#unlock">unlock</a></li></ul></li><li class="item" id="Container"><span class="title"><a href="Container.html">Container</a></span><ul class="sublist methods Container"><span class="subtitle">Methods</span><li><a href="Container.html#render">render</a></li></ul></li><li class="item" id="Focus"><span class="title"><a href="Focus.html">Focus</a></span><ul class="sublist methods Focus"><span class="subtitle">Methods</span><li><a href="Focus.html#getSelectList">getSelectList</a></li><li><a href="Focus.html#init">init</a></li><li><a href="Focus.html#select">select</a></li><li><a href="Focus.html#unselect">unselect</a></li></ul></li><li class="item" id="Header"><span class="title"><a href="Header.html">Header</a></span><ul class="sublist methods Header"><span class="subtitle">Methods</span><li><a href="Header.html#init">init</a></li><li><a href="Header.html#render">render</a></li></ul></li><li class="item" id="Keyboard"><span class="title"><a href="Keyboard.html">Keyboard</a></span><ul class="sublist methods Keyboard"><span class="subtitle">Methods</span><li><a href="Keyboard.html#init">init</a></li><li><a href="Keyboard.html#render">render</a></li><li><a href="Keyboard.html#scrollHorizontal">scrollHorizontal</a></li><li><a href="Keyboard.html#scrollVertical">scrollVertical</a></li></ul></li><li class="item" id="Model"><span class="title"><a href="Model.html">Model</a></span><ul class="sublist methods Model"><span class="subtitle">Methods</span><li><a href="Model.html#getMaxScrollTop">getMaxScrollTop</a></li><li><a href="Model.html#init">init</a></li><li><a href="Model.html#set">set</a></li><li><a href="Model.html#setColumnWidth">setColumnWidth</a></li></ul></li><li class="item" id="ne.component.SimpleGrid"><span class="title"><span class="p-item">ne.component.</span><a href="ne.component.SimpleGrid.html">SimpleGrid</a></span><span class="icon blue static">static</span><ul class="sublist members ne.component.SimpleGrid"><span class="subtitle">Members</span><li><a href="ne.component.SimpleGrid.html#ieMaxHeight">ieMaxHeight</a></li><li><a href="ne.component.SimpleGrid.html#scrollBarSize">scrollBarSize</a></li><li><a href="ne.component.SimpleGrid.html#scrollingScale">scrollingScale</a></li><li><a href="ne.component.SimpleGrid.html#scrollingScalePerPage">scrollingScalePerPage</a></li></ul><ul class="sublist division ne.component.SimpleGrid"><li></li></ul><ul class="sublist methods ne.component.SimpleGrid"><span class="subtitle">Methods</span><li><a href="ne.component.SimpleGrid.html#.getInstanceById">getInstanceById</a></li><li><a href="ne.component.SimpleGrid.html#append">append</a></li><li><a href="ne.component.SimpleGrid.html#blur">blur</a></li><li><a href="ne.component.SimpleGrid.html#clear">clear</a></li><li><a href="ne.component.SimpleGrid.html#focus">focus</a></li><li><a href="ne.component.SimpleGrid.html#getList">getList</a></li><li><a href="ne.component.SimpleGrid.html#getSelectionInstance">getSelectionInstance</a></li><li><a href="ne.component.SimpleGrid.html#init">init</a></li><li><a href="ne.component.SimpleGrid.html#option">option</a></li><li><a href="ne.component.SimpleGrid.html#prepend">prepend</a></li><li><a href="ne.component.SimpleGrid.html#remove">remove</a></li><li><a href="ne.component.SimpleGrid.html#render">render</a></li><li><a href="ne.component.SimpleGrid.html#setList">setList</a></li><li><a href="ne.component.SimpleGrid.html#updateLayoutData">updateLayoutData</a></li></ul></li><li class="item" id="ResizeHandler"><span class="title"><a href="ResizeHandler.html">ResizeHandler</a></span><ul class="sublist methods ResizeHandler"><span class="subtitle">Methods</span><li><a href="ResizeHandler.html#render">render</a></li></ul></li><li class="item" id="ResizeHandlerContainer"><span class="title"><a href="ResizeHandlerContainer.html">ResizeHandlerContainer</a></span><ul class="sublist methods ResizeHandlerContainer"><span class="subtitle">Methods</span><li><a href="ResizeHandlerContainer.html#init">init</a></li><li><a href="ResizeHandlerContainer.html#render">render</a></li></ul></li><li class="item" id="Selection"><span class="title"><a href="Selection.html">Selection</a></span><ul class="sublist methods Selection"><span class="subtitle">Methods</span><li><a href="Selection.html#attachMouseEvent">attachMouseEvent</a></li><li><a href="Selection.html#destroy">destroy</a></li><li><a href="Selection.html#detachMouseEvent">detachMouseEvent</a></li><li><a href="Selection.html#draw">draw</a></li><li><a href="Selection.html#getKey">getKey</a></li><li><a href="Selection.html#getSelectionData">getSelectionData</a></li><li><a href="Selection.html#getSelectionLength">getSelectionLength</a></li><li><a href="Selection.html#getSelectionRange">getSelectionRange</a></li><li><a href="Selection.html#getSelectionRangeIndex">getSelectionRangeIndex</a></li><li><a href="Selection.html#hasSelection">hasSelection</a></li><li><a href="Selection.html#hide">hide</a></li><li><a href="Selection.html#init">init</a></li><li><a href="Selection.html#overflowStatus">overflowStatus</a></li><li><a href="Selection.html#render">render</a></li><li><a href="Selection.html#selectAll">selectAll</a></li><li><a href="Selection.html#show">show</a></li><li><a href="Selection.html#startSelection">startSelection</a></li><li><a href="Selection.html#stopSelection">stopSelection</a></li><li><a href="Selection.html#updateSelection">updateSelection</a></li></ul></li><li class="item" id="Spacer"><span class="title"><a href="Spacer.html">Spacer</a></span><ul class="sublist methods Spacer"><span class="subtitle">Methods</span><li><a href="Spacer.html#init">init</a></li><li><a href="Spacer.html#render">render</a></li></ul></li><li class="item" id="VirtualScrollBar"><span class="title"><a href="VirtualScrollBar.html">VirtualScrollBar</a></span><ul class="sublist methods VirtualScrollBar"><span class="subtitle">Methods</span><li><a href="VirtualScrollBar.html#init">init</a></li><li><a href="VirtualScrollBar.html#render">render</a></li></ul></li><li class="item" id="VirtualScrollBar.Content"><span class="title"><span class="p-item">VirtualScrollBar.</span><a href="VirtualScrollBar.Content.html">Content</a></span><span class="icon blue static">static</span></li><li class="item" id="Worker"><span class="title"><a href="Worker.html">Worker</a></span><ul class="sublist methods Worker"><span class="subtitle">Methods</span><li><a href="Worker.html#dequeue">dequeue</a></li><li><a href="Worker.html#enqueue">enqueue</a></li><li><a href="Worker.html#lock">lock</a></li><li><a href="Worker.html#runQueue">runQueue</a></li><li><a href="Worker.html#unlock">unlock</a></li></ul></li></ul><h3>Global</h3><ul class="list globals"><li class="item" id="uniqueKey"><span class="title"><a href="global.html#uniqueKey">uniqueKey</a></span></li><li class="item" id="Util"><span class="title"><a href="global.html#Util">Util</a></span><ul class="sublist methods Util"><span class="subtitle">Methods</span><li><a href="global.html#Util#.getDisplayRowCount">getDisplayRowCount</a></li><li><a href="global.html#Util#.getHeight">getHeight</a></li><li><a href="global.html#Util#.getRowHeight">getRowHeight</a></li><li><a href="global.html#Util#.stripTags">stripTags</a></li><li><a href="global.html#Util#.template">template</a></li></ul></li></ul></div>
+        <div id="main" class="main">
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>ne = window.ne || {};
+ne.component = ne.component || {};
+
+/**
+ * @fileoverview 기본 클래스 파일
+ * @author FE개발팀 박순영 &lt;soonyoung.park@nhnent.com>
+ */
+/**
+ * unique key 를 생성할 때 사용하는 key 값
+ * @type {number}
+ */
+var uniqueKey = 0;
+
+/**
+ * Base Class
+ * @constructor Base
+ */
+var Base = ne.util.defineClass(/**@lends Base.prototype */{
+    init: function(options) {
+        if (options &amp;&amp; options.grid) {
+            this.setOwnProperties({
+                grid: options.grid
+            });
+        }
+    },
+
+   /**
+    * 유일한 key 값을 생성한다.
+    * @return {number}
+    * @private
+    */
+    getUniqueKey: function() {
+        return ++uniqueKey;
+    },
+
+    /**
+     * 내부 프로퍼티를 설정한다.
+     * @param {object} properties
+     * @return {Base}
+     * @private
+     */
+    setOwnProperties: function(properties) {
+        ne.util.forEach(properties, function(value, name) {
+            this[name] = value;
+        }, this);
+        return this;
+    },
+
+    /**
+     * error 객체를 리턴한다.
+     * @param {string} msg
+     * @return {error} 에러 객체
+     */
+    error: function(msg) {
+        var error = function() {
+            this.message = msg;
+        };
+        error.prototype = new Error();
+        return new error();
+    }
+});
+
+// 커스텀이벤트 믹스인
+ne.util.CustomEvents.mixin(Base);
+
+/**
+ * View base class
+ * @constructor Base.View
+ */
+Base.View = ne.util.defineClass(Base, /**@lends Base.View.prototype */{
+    tagName: 'div',
+    className: '',
+    eventHandler: {},
+    style: '',
+
+    /**
+     * 생성자
+     * @param attributes
+     */
+    init: function(attributes) {
+        Base.prototype.init.apply(this, arguments);
+
+        var eventHandler = {},
+            $el = attributes &amp;&amp; attributes.$el || $('&lt;' + this.tagName + '>');
+
+        $el.addClass(this.className);
+
+        ne.util.forEach(this.eventHandler, function(methodName, eventName) {
+            eventHandler[eventName] = $.proxy(this[methodName], this);
+        }, this);
+
+        this._attachHandler($el);
+
+        if (attributes &amp;&amp; attributes.model) {
+            this.setOwnProperties({
+                model: attributes.model
+            });
+        }
+        this.setOwnProperties({
+            _viewList: [],
+            _eventHandler: eventHandler,
+            $el: $el,
+            el: $el[0]
+        });
+        this._initializeStyle();
+    },
+
+    /**
+     * style 이 설정되어있다면 default style 을 적용한다.
+     * @private
+     */
+    _initializeStyle: function() {
+        if (this.style) {
+            this.$el.attr('style', this.style);
+        }
+    },
+
+    /**
+     * 이벤트 핸들러를 attach 또는 detach 한다.
+     * @param {jQuery} [$target     ] 이벤트 핸들러의 대상 $target
+     * @param {boolean} isAttach    attach 할 지 여부
+     * @private
+     */
+    _dispatchHandler: function($target, isAttach) {
+        $target = $target || this.$el;
+        if ($target.length) {
+            ne.util.forEach(this._eventHandler, function(handler, name) {
+                var tmp = name.split(' '),
+                    eventName = tmp[0],
+                    selector = tmp[1] || '';
+
+                if (selector) {
+                    $target = $target.find(selector);
+                }
+
+                $target.off(eventName);
+
+                if (isAttach) {
+                    $target.on(eventName, handler);
+                }
+            }, this);
+        }
+    },
+
+    /**
+     * event 를 attach 한다.
+     * @param {jQuery} [$target]
+     * @private
+     */
+    _attachHandler: function($target) {
+        /* istanbul ignore next: dispatchHandler 에서 테스트 함 */
+        this._dispatchHandler($target, true);
+    },
+
+    /**
+     * event 를 detach 한다.
+     * @param {jQuery} [$target]
+     * @private
+     */
+    _detachHandler: function($target) {
+        /* istanbul ignore next: dispatchHandler 에서 테스트 함 */
+        this._dispatchHandler($target);
+    },
+
+     /**
+     * create view
+     * @param {function} constructor
+     * @param {object} params
+     * @return {object} instance
+     */
+    createView: function(constructor, params) {
+        var instance = new constructor(params);
+        if (!this.hasOwnProperty('_viewList')) {
+            this.setOwnProperties({
+                _viewList: []
+            });
+        }
+        this._viewList.push(instance);
+        return instance;
+    },
+
+    /**
+     * destroyChildren
+     */
+    destroyChildren: function() {
+        if (ne.util.isArray(this._viewList)) {
+            while (this._viewList.length !== 0) {
+                this._viewList.pop().destroy();
+            }
+        }
+    },
+
+    /**
+     * destroy
+     */
+    destroy: function() {
+        this.destroyChildren();
+        this._detachHandler(this.$el);
+        this.$el.empty().remove();
+    }
+});
+/**
+ * Utility 메서드 모음
+ * @type {{template: Function}}
+ */
+var Util = {
+    /**
+     * template 문자열을 치환하는 메서드
+     * @param {String} template String
+     * @param {Object} mapper
+     * @return {String}
+     * @example
+     var template = '&lt;div width="&lt;%=width%>" height="&lt;%=height%>">';
+     Util.template(template, {
+        width: 100,
+        height: 200
+     });
+
+     ->
+     '&lt;div width="100" height="200">';
+     */
+    template: function(template, mapper) {
+        template.replace(/&lt;%=[^%]+%>/g, '');
+        var replaced = template.replace(/&lt;%=([^%]+)%>/g, function(matchedString, name, index, fullString) {
+            return ne.util.isUndefined(mapper[name]) ? '' : mapper[name].toString();
+        });
+        return replaced;
+    },
+
+    /**
+     * 행 개수와 한 행당 높이를 인자로 받아 테이블 body 의 전체 높이를 구한다.
+     * @param {number} rowCount     행의 개수
+     * @param {number} rowHeight    한 행의 높이
+     * @param {number} border   테두리 값
+     * @return {number}
+     */
+    getHeight: function(rowCount, rowHeight, border) {
+        border = ne.util.isUndefined(border) ? 1 : border;
+        return rowCount === 0 ? rowCount : rowCount * (rowHeight + border) + border;
+    },
+
+    /**
+     *Table 의 높이와 행당 높이를 인자로 받아, table 에서 보여줄 수 있는 행 개수를 반환한다.
+     *
+     * @param {number} height   테이블 높이
+     * @param {number} rowHeight    행의 높이
+     * @return {number}
+     */
+    getDisplayRowCount: function(height, rowHeight) {
+        return Math.ceil((height - 1) / (rowHeight + 1));
+    },
+
+    /**
+     * Table 의 height 와 행 개수를 인자로 받아, 한 행당 높이를 구한다.
+     *
+     * @param {number} rowCount 행 개수
+     * @param {number} height   테이블 높이
+     * @return {number}
+     */
+    getRowHeight: function(rowCount, height) {
+        return rowCount === 0 ? 0 : Math.floor(((height - 1) / rowCount)) - 1;
+    },
+
+    /**
+     * Grid 에서 필요한 형태로 HTML tag 를 제거한다.
+     * @param {string} htmlString   html 마크업 문자열
+     * @return {String} HTML tag 에 해당하는 부분을 제거한 문자열
+     */
+    stripTags: function(htmlString) {
+        var matchResult;
+        htmlString = htmlString.replace(/[\n\r\t]/g, '');
+        if (ne.util.hasEncodableString(htmlString)) {
+            if (/&lt;img/i.test(htmlString)) {
+                matchResult = htmlString.match(/&lt;img[^>]*\ssrc=[\"']?([^>\"']+)[\"']?[^>]*>/i);
+                htmlString = matchResult ? matchResult[1] : '';
+            } else {
+                htmlString = htmlString.replace(/&lt;button.*?&lt;\/button>/gi, '');
+            }
+            htmlString = $.trim(ne.util.decodeHTMLEntity(htmlString.replace(/&lt;\/?(?:h[1-5]|[a-z]+(?:\:[a-z]+)?)[^>]*>/ig, '')));
+        }
+        return htmlString;
+    }
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+</div>
+        <div class="clearfix"></div>
+    </div>
+
+</div>
+<script>
+(function() {
+// 영역 height 설정
+var height = (window.innerHeight || document.documentElement.clientHeight || document.getElementByTagName('body')[0].clientHeight) - 50;
+var navigation = document.getElementById('navigation');
+var main = document.getElementById('main');
+navigation.style.height = height + 'px';
+main.style.height = height + 'px';
+
+// IE 7,8을 위한 getElementsByClassName 구현
+var getElementsByClassName = function(className, parentElement) {
+	if(document.getElementsByClassName) {
+		return (parentElement || document).getElementsByClassName(className);
+	}
+
+    var regEx = new RegExp('(^| )'+className+'( |$)');
+	var nodes = new Array();
+    var elements = (parentElement || document.body).getElementsByTagName("*");
+    for(var i = 0, len = elements.length; i < len ; i++) {
+        if(regEx.test(elements[i].className)) {
+			nodes.push(elements[i]);
+		}
+	}
+	elements = null;
+    return nodes;
+}
+
+// url 파싱후 해당 카테고리만 display:block 처리
+var url = location.href;
+var path = url.lastIndexOf('/');
+var fileName = url.substring(path+1);
+var fullName = fileName.split('.');
+fullName.length -= 1;
+fullName = fullName.join('.');
+fullName = fullName.split('-');
+fullName = fullName[fullName.length - 1];
+var lnbList = getElementsByClassName(fullName);
+if(lnbList.length && lnbList.length > 0) {
+    for(var i = 0, len = lnbList.length; i < len; i++) {
+        lnbList[i].className += ' selected';
+    }
+}
+
+var title = document.getElementById(fullName);
+if(title) {
+    title.className += ' selected';
+    title.innerHTML = '<span class="arrow">▶</span>' + title.innerHTML;
+
+    var static = getElementsByClassName('static', title);
+    if(static) {
+        static[0].className += ' selected';
+    }
+}
+})();
+</script>
+<script type="text/javascript" src="scripts/prettify/prettify.js"></script>
+<script type="text/javascript" src="scripts/prettify/lang-css.js"></script>
+<script type="text/javascript">prettyPrint();</script>
+<script type="text/javascript" src="scripts/linenumber.js"></script>
+</body>
+</html>

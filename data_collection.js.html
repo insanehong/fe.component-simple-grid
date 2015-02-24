@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: data/collection.js</title>
+    <link type="text/css" rel="stylesheet" href="styles/prettify-jsdoc.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-fe2.css">
+</head>
+<body>
+
+<div id="wrap">
+
+    <div class="header">
+
+        <div class="container-fluid">
+            <h3><a href="index.html">API Documentation</a> <small>FE개발팀</small></h3>
+        </div>
+
+    </div>
+
+    <div class="body">
+        <div id="navigation" class="navigation"><h3>Classes</h3><ul class="list classes"><li class="item" id="Base"><span class="title"><a href="Base.html">Base</a></span><ul class="sublist methods Base"><span class="subtitle">Methods</span><li><a href="Base.html#error">error</a></li></ul></li><li class="item" id="Base.View"><span class="title"><span class="p-item">Base.</span><a href="Base.View.html">View</a></span><span class="icon blue static">static</span><ul class="sublist methods Base.View"><span class="subtitle">Methods</span><li><a href="Base.View.html#createView">createView</a></li><li><a href="Base.View.html#destroy">destroy</a></li><li><a href="Base.View.html#destroyChildren">destroyChildren</a></li><li><a href="Base.View.html#init">init</a></li></ul></li><li class="item" id="Body"><span class="title"><a href="Body.html">Body</a></span><ul class="sublist methods Body"><span class="subtitle">Methods</span><li><a href="Body.html#init">init</a></li><li><a href="Body.html#render">render</a></li><li><a href="Body.html#select">select</a></li><li><a href="Body.html#unselect">unselect</a></li></ul></li><li class="item" id="Collection"><span class="title"><a href="Collection.html">Collection</a></span><ul class="sublist methods Collection"><span class="subtitle">Methods</span><li><a href="Collection.html#append">append</a></li><li><a href="Collection.html#at">at</a></li><li><a href="Collection.html#clear">clear</a></li><li><a href="Collection.html#get">get</a></li><li><a href="Collection.html#indexOf">indexOf</a></li><li><a href="Collection.html#lock">lock</a></li><li><a href="Collection.html#prepend">prepend</a></li><li><a href="Collection.html#remove">remove</a></li><li><a href="Collection.html#set">set</a></li><li><a href="Collection.html#unlock">unlock</a></li></ul></li><li class="item" id="Container"><span class="title"><a href="Container.html">Container</a></span><ul class="sublist methods Container"><span class="subtitle">Methods</span><li><a href="Container.html#render">render</a></li></ul></li><li class="item" id="Focus"><span class="title"><a href="Focus.html">Focus</a></span><ul class="sublist methods Focus"><span class="subtitle">Methods</span><li><a href="Focus.html#getSelectList">getSelectList</a></li><li><a href="Focus.html#init">init</a></li><li><a href="Focus.html#select">select</a></li><li><a href="Focus.html#unselect">unselect</a></li></ul></li><li class="item" id="Header"><span class="title"><a href="Header.html">Header</a></span><ul class="sublist methods Header"><span class="subtitle">Methods</span><li><a href="Header.html#init">init</a></li><li><a href="Header.html#render">render</a></li></ul></li><li class="item" id="Keyboard"><span class="title"><a href="Keyboard.html">Keyboard</a></span><ul class="sublist methods Keyboard"><span class="subtitle">Methods</span><li><a href="Keyboard.html#init">init</a></li><li><a href="Keyboard.html#render">render</a></li><li><a href="Keyboard.html#scrollHorizontal">scrollHorizontal</a></li><li><a href="Keyboard.html#scrollVertical">scrollVertical</a></li></ul></li><li class="item" id="Model"><span class="title"><a href="Model.html">Model</a></span><ul class="sublist methods Model"><span class="subtitle">Methods</span><li><a href="Model.html#getMaxScrollTop">getMaxScrollTop</a></li><li><a href="Model.html#init">init</a></li><li><a href="Model.html#set">set</a></li><li><a href="Model.html#setColumnWidth">setColumnWidth</a></li></ul></li><li class="item" id="ne.component.SimpleGrid"><span class="title"><span class="p-item">ne.component.</span><a href="ne.component.SimpleGrid.html">SimpleGrid</a></span><span class="icon blue static">static</span><ul class="sublist members ne.component.SimpleGrid"><span class="subtitle">Members</span><li><a href="ne.component.SimpleGrid.html#ieMaxHeight">ieMaxHeight</a></li><li><a href="ne.component.SimpleGrid.html#scrollBarSize">scrollBarSize</a></li><li><a href="ne.component.SimpleGrid.html#scrollingScale">scrollingScale</a></li><li><a href="ne.component.SimpleGrid.html#scrollingScalePerPage">scrollingScalePerPage</a></li></ul><ul class="sublist division ne.component.SimpleGrid"><li></li></ul><ul class="sublist methods ne.component.SimpleGrid"><span class="subtitle">Methods</span><li><a href="ne.component.SimpleGrid.html#.getInstanceById">getInstanceById</a></li><li><a href="ne.component.SimpleGrid.html#append">append</a></li><li><a href="ne.component.SimpleGrid.html#blur">blur</a></li><li><a href="ne.component.SimpleGrid.html#clear">clear</a></li><li><a href="ne.component.SimpleGrid.html#focus">focus</a></li><li><a href="ne.component.SimpleGrid.html#getList">getList</a></li><li><a href="ne.component.SimpleGrid.html#getSelectionInstance">getSelectionInstance</a></li><li><a href="ne.component.SimpleGrid.html#init">init</a></li><li><a href="ne.component.SimpleGrid.html#option">option</a></li><li><a href="ne.component.SimpleGrid.html#prepend">prepend</a></li><li><a href="ne.component.SimpleGrid.html#remove">remove</a></li><li><a href="ne.component.SimpleGrid.html#render">render</a></li><li><a href="ne.component.SimpleGrid.html#setList">setList</a></li><li><a href="ne.component.SimpleGrid.html#updateLayoutData">updateLayoutData</a></li></ul></li><li class="item" id="ResizeHandler"><span class="title"><a href="ResizeHandler.html">ResizeHandler</a></span><ul class="sublist methods ResizeHandler"><span class="subtitle">Methods</span><li><a href="ResizeHandler.html#render">render</a></li></ul></li><li class="item" id="ResizeHandlerContainer"><span class="title"><a href="ResizeHandlerContainer.html">ResizeHandlerContainer</a></span><ul class="sublist methods ResizeHandlerContainer"><span class="subtitle">Methods</span><li><a href="ResizeHandlerContainer.html#init">init</a></li><li><a href="ResizeHandlerContainer.html#render">render</a></li></ul></li><li class="item" id="Selection"><span class="title"><a href="Selection.html">Selection</a></span><ul class="sublist methods Selection"><span class="subtitle">Methods</span><li><a href="Selection.html#attachMouseEvent">attachMouseEvent</a></li><li><a href="Selection.html#destroy">destroy</a></li><li><a href="Selection.html#detachMouseEvent">detachMouseEvent</a></li><li><a href="Selection.html#draw">draw</a></li><li><a href="Selection.html#getKey">getKey</a></li><li><a href="Selection.html#getSelectionData">getSelectionData</a></li><li><a href="Selection.html#getSelectionLength">getSelectionLength</a></li><li><a href="Selection.html#getSelectionRange">getSelectionRange</a></li><li><a href="Selection.html#getSelectionRangeIndex">getSelectionRangeIndex</a></li><li><a href="Selection.html#hasSelection">hasSelection</a></li><li><a href="Selection.html#hide">hide</a></li><li><a href="Selection.html#init">init</a></li><li><a href="Selection.html#overflowStatus">overflowStatus</a></li><li><a href="Selection.html#render">render</a></li><li><a href="Selection.html#selectAll">selectAll</a></li><li><a href="Selection.html#show">show</a></li><li><a href="Selection.html#startSelection">startSelection</a></li><li><a href="Selection.html#stopSelection">stopSelection</a></li><li><a href="Selection.html#updateSelection">updateSelection</a></li></ul></li><li class="item" id="Spacer"><span class="title"><a href="Spacer.html">Spacer</a></span><ul class="sublist methods Spacer"><span class="subtitle">Methods</span><li><a href="Spacer.html#init">init</a></li><li><a href="Spacer.html#render">render</a></li></ul></li><li class="item" id="VirtualScrollBar"><span class="title"><a href="VirtualScrollBar.html">VirtualScrollBar</a></span><ul class="sublist methods VirtualScrollBar"><span class="subtitle">Methods</span><li><a href="VirtualScrollBar.html#init">init</a></li><li><a href="VirtualScrollBar.html#render">render</a></li></ul></li><li class="item" id="VirtualScrollBar.Content"><span class="title"><span class="p-item">VirtualScrollBar.</span><a href="VirtualScrollBar.Content.html">Content</a></span><span class="icon blue static">static</span></li><li class="item" id="Worker"><span class="title"><a href="Worker.html">Worker</a></span><ul class="sublist methods Worker"><span class="subtitle">Methods</span><li><a href="Worker.html#dequeue">dequeue</a></li><li><a href="Worker.html#enqueue">enqueue</a></li><li><a href="Worker.html#lock">lock</a></li><li><a href="Worker.html#runQueue">runQueue</a></li><li><a href="Worker.html#unlock">unlock</a></li></ul></li></ul><h3>Global</h3><ul class="list globals"><li class="item" id="uniqueKey"><span class="title"><a href="global.html#uniqueKey">uniqueKey</a></span></li><li class="item" id="Util"><span class="title"><a href="global.html#Util">Util</a></span><ul class="sublist methods Util"><span class="subtitle">Methods</span><li><a href="global.html#Util#.getDisplayRowCount">getDisplayRowCount</a></li><li><a href="global.html#Util#.getHeight">getHeight</a></li><li><a href="global.html#Util#.getRowHeight">getRowHeight</a></li><li><a href="global.html#Util#.stripTags">stripTags</a></li><li><a href="global.html#Util#.template">template</a></li></ul></li></ul></div>
+        <div id="main" class="main">
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @fileoverview 원본데이터 콜렉션 클래스
+ * @author FE개발팀 박순영 &lt;soonyoung.park@nhnent.com>
+ */
+/**
+ * 원본 데이터 collection
+ * @constructor Collection
+ */
+var Collection = ne.util.defineClass(Base, /**@lends Collection.prototype */{
+    init: function() {
+        Base.prototype.init.apply(this, arguments);
+        this.setOwnProperties({
+            maxLength: 0,
+            list: [],
+            map: {},
+            length: 0,
+            idx: 0,
+            worker: new Worker()
+        });
+
+        this.on('change', this._onChange, this);
+    },
+
+    /**
+     * 사용자 action 이 발생했을 때에 데이터 상태보존을 위해 lock 한다.
+     */
+    lock: function() {
+       this.worker.lock();
+    },
+
+    /**
+     * 사용자 action 이 종료되면 lock 을 해제하고 적재된 명령을 한번에 수행한다.
+     */
+    unlock: function() {
+        this.worker.unlock();
+    },
+
+    /**
+     * 데이터가 set 을 사용하여 변경되었을 때, 이벤트 핸들러
+     * @private
+     */
+    _onChange: function() {
+        this.length = this.list.length;
+    },
+
+    /**
+     * collection 값을 설정한다.
+     * @param {Array} list  콜랙션 list
+     */
+    set: function(list) {
+        this.worker.enqueue(this._set, arguments, this);
+    },
+
+    /**
+     * set enqueue 할 내부 함수
+     * @param {Array} list  콜랙션 list
+     * @private
+     */
+    _set: function(list) {
+        this.list = this._getFormattedList(list);
+        if (this.maxLength > 0 &amp;&amp; this.list.length > this.maxLength) {
+            this._removeMap(0, this.list.length - this.maxLength);
+            this.list = this.list.slice(this.list.length - this.maxLength, this.list.length);
+        }
+        this.invoke('change', {
+            'type': 'set',
+            'list': list
+        });
+    },
+
+    /**
+     * 사용하지 않는 Map 을 제거한다.
+     * @param {number} start    제거 시작 index
+     * @param {number} end      제거 끝 index
+     * @private
+     */
+    _removeMap: function(start, end) {
+        var i,
+            id;
+        for (i = start; i &lt; end; i++) {
+            id = this.list[i].id;
+            this.map[id] = undefined;
+            delete this.map[id];
+        }
+    },
+
+    /**
+     * 배열을 collection 에 맞는 형태로 가공하여 map 에 저장하고, 가공된 배열을 반환한다.
+     * @param {Array} list
+     * @return {Array}  사용할 수 있는 포멧의 데이터 리스트
+     * @private
+     */
+    _getFormattedList: function(list) {
+        var obj,
+            id,
+            idAttribute = this.grid.option('idAttribute'),
+            formattedList = [],
+            hasIdAttribute = !!idAttribute;
+
+        ne.util.forEachArray(list, function(data) {
+            id = hasIdAttribute ? data[idAttribute] : this.idx++;
+            obj = {
+                //id: this._getId(data),
+                id: id,
+                data: data
+            };
+            formattedList.push(obj);
+            this.map[obj.id] = obj;
+        }, this);
+        return formattedList;
+    },
+
+    /**
+     * 배열에서 index 에 해당하는 데이터를 반환한다.
+     * @param {number} index 인덱스
+     * @return {*}  index 에 해당하는 데이터
+     */
+    at: function(index) {
+        return this.list[index];
+    },
+
+    /**
+     * 맵에서 id 에 해당하는 데이터를 반환한다.
+     * @param {(number|string)} id
+     * @return {*}
+     */
+    get: function(id) {
+        return this.map[id];
+    },
+
+    /**
+     * 데이터를 입력받아 데이터가 존재하는 index 를 반환한다.
+     * @param {object} obj
+     * @return {number}
+     */
+    indexOf: function(obj) {
+        var index = -1;
+        if (!(obj &amp;&amp; obj.id !== undefined)) {
+            return -1;
+        } else {
+
+            ne.util.forEachArray(this.list, function(data, i) {
+                if (data &amp;&amp; data.id.toString() === obj.id.toString()) {
+                    index = i;
+                    return false;
+                }
+            }, this);
+            return index;
+        }
+
+    },
+
+    /**
+     * collection 에 data Array 를  append 한다.
+     * @param {Array} list
+     */
+    append: function(list) {
+        this.worker.enqueue(this._append, arguments, this);
+    },
+
+    /**
+     * append enqueue 할 내부 함수
+     * @param {Array} list
+     * @private
+     */
+    _append: function(list) {
+        list = this._getFormattedList(list);
+        this.list = this.list.concat(list);
+        if (this.maxLength > 0 &amp;&amp; this.list.length > this.maxLength) {
+            this._removeMap(0, this.list.length - this.maxLength);
+            this.list = this.list.slice(this.list.length - this.maxLength, this.list.length);
+        }
+        this.invoke('change', {
+            type: 'append',
+            list: this.list,
+            appended: list
+        });
+    },
+
+    /**
+     * collection 에 data Array 를  prepend 한다.
+     * @param {Array} list
+     */
+    prepend: function(list) {
+        this.worker.enqueue(this._prepend, arguments, this);
+    },
+
+    /**
+     * prepend enqueue 할 내부 함수
+     * @param {Array} list
+     * @private
+     */
+    _prepend: function(list) {
+        list = this._getFormattedList(list);
+        this.list = list.concat(this.list);
+        if (this.maxLength > 0 &amp;&amp; this.list.length > this.maxLength) {
+            this._removeMap(this.maxLength, this.list.length);
+            this.list = this.list.slice(0, this.maxLength);
+        }
+
+        this.invoke('change', {
+            type: 'prepend',
+            list: this.list,
+            prepended: list
+        });
+    },
+
+    /**
+     * key 에 해당하는 data 를 제거한다.
+     * @param {String|Array} id 삭제할 데이터의 key. 복수개일때 array 를 인자로 넘긴다.
+     */
+    remove: function(id) {
+        this.worker.enqueue(this._remove, arguments, this);
+    },
+
+    /**
+     * 실제 데이터를 삭제한다.
+     * @param {String|Array} id id 삭제할 데이터의 key. 복수개일때 array 를 인자로 넘긴다.
+     * @private
+     */
+    _remove: function(id) {
+        var idList = ne.util.isArray(id) ? id : [id];
+
+        ne.util.forEachArray(idList, function(id) {
+            var index = this.indexOf(this.get(id));
+            this.map[id] = undefined;
+            delete this.map[id];
+            this.list.splice(index, 1);
+        }, this);
+
+        this.invoke('change', {
+            type: 'remove',
+            list: this.list
+        });
+    },
+
+    /**
+     * collection 을 초기화한다.
+     */
+    clear: function() {
+        this.worker.enqueue(this._clear, arguments, this);
+    },
+
+    /**
+     * clear enqueue 할 내부 함수
+     * @private
+     */
+    _clear: function() {
+        this.list = [];
+        this.map = {};
+        this.invoke('change', {
+            type: 'clear',
+            list: this.list,
+            idx: 0
+        });
+    }
+});
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+</div>
+        <div class="clearfix"></div>
+    </div>
+
+</div>
+<script>
+(function() {
+// 영역 height 설정
+var height = (window.innerHeight || document.documentElement.clientHeight || document.getElementByTagName('body')[0].clientHeight) - 50;
+var navigation = document.getElementById('navigation');
+var main = document.getElementById('main');
+navigation.style.height = height + 'px';
+main.style.height = height + 'px';
+
+// IE 7,8을 위한 getElementsByClassName 구현
+var getElementsByClassName = function(className, parentElement) {
+	if(document.getElementsByClassName) {
+		return (parentElement || document).getElementsByClassName(className);
+	}
+
+    var regEx = new RegExp('(^| )'+className+'( |$)');
+	var nodes = new Array();
+    var elements = (parentElement || document.body).getElementsByTagName("*");
+    for(var i = 0, len = elements.length; i < len ; i++) {
+        if(regEx.test(elements[i].className)) {
+			nodes.push(elements[i]);
+		}
+	}
+	elements = null;
+    return nodes;
+}
+
+// url 파싱후 해당 카테고리만 display:block 처리
+var url = location.href;
+var path = url.lastIndexOf('/');
+var fileName = url.substring(path+1);
+var fullName = fileName.split('.');
+fullName.length -= 1;
+fullName = fullName.join('.');
+fullName = fullName.split('-');
+fullName = fullName[fullName.length - 1];
+var lnbList = getElementsByClassName(fullName);
+if(lnbList.length && lnbList.length > 0) {
+    for(var i = 0, len = lnbList.length; i < len; i++) {
+        lnbList[i].className += ' selected';
+    }
+}
+
+var title = document.getElementById(fullName);
+if(title) {
+    title.className += ' selected';
+    title.innerHTML = '<span class="arrow">▶</span>' + title.innerHTML;
+
+    var static = getElementsByClassName('static', title);
+    if(static) {
+        static[0].className += ' selected';
+    }
+}
+})();
+</script>
+<script type="text/javascript" src="scripts/prettify/prettify.js"></script>
+<script type="text/javascript" src="scripts/prettify/lang-css.js"></script>
+<script type="text/javascript">prettyPrint();</script>
+<script type="text/javascript" src="scripts/linenumber.js"></script>
+</body>
+</html>
