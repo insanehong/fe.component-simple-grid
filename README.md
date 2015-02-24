@@ -1,4 +1,4 @@
-Component-SimpleGrid
+SimpleGrid
 ======================
 심플그리드 컴포넌트<br>
 [[그리드 컴포넌트]](https://github.nhnent.com/FE/Application-Grid/)의 경량화 버전으로<br>
