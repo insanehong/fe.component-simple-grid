@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi=medium-dpi">
+<title>예제2</title>
+	<script type="text/javascript" src="./js/jquery.min.js"></script>
+	<script type="text/javascript" src="./js/Component-SimpleGrid.min.js"></script>
+	<script type="text/javascript" src="./data/dummy.js"></script>
+	<style>
+        .make_bold{
+            font-weight: bold;
+        }
+        .make_red{
+            background: red;
+        }
+        .make_blue{
+            background: blue;
+        }
+	</style>
+<!-- for ie script -->
+</head>
+<body>
+<div id="simpleGrid" style="width:800px;"></div>
+</body>
+<script type="text/javascript">
+    var simpleGrid = new ne.component.SimpleGrid({
+        $el: $('#simpleGrid'),
+        rowHeight: 30,    //line 당 pixel
+        displayCount: 20,  //영역에 보여줄 line 갯수
+        className: {
+            table: 'make_blue',
+            tr: 'make_red',
+            td: 'make_bold'
+        },
+        columnModelList: [
+            {
+                columnName: 'column1',
+                title: '컬럼1',
+                width: 70,
+                align: 'center'
+            },
+            {
+                columnName: 'column2',
+                title: '컬럼2',
+                width: 60,
+                formatter: function(value, rowData) {
+                    return '<input type="text" value="' + value + '"/>';
+                }
+            },
+            {
+                columnName: 'column3',
+                title: '컬럼3',
+                width: 70
+            }
+        ]
+    });
+    simpleGrid.setList([
+        {
+            column1: '첫째',
+            column2: '둘째',
+            column3: '셋째'
+        },
+        {
+            column1: '컬럼1 값으로 열병합',
+            column2: '둘째',
+            column3: '셋째',
+            _colSpanBy: 'column1'
+        },
+        {
+            column1: '첫째',
+            column2: '컬럼2 값으로 열병합',
+            column3: '셋째',
+            _colSpanBy: 'column2'
+        },
+        {
+            column1: '첫째',
+            column2: '둘째',
+            column3: '컬럼3 값으로 열병합',
+            _colSpanBy: 'column3'
+        },
+        {
+            column1: '첫째',
+            column2: '둘째',
+            column3: '셋째'
+        }
+    ]);
+</script>
+</html>
