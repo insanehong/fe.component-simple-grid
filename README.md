@@ -19,8 +19,7 @@ SimpleGrid
 
 ## Documentation
 * **API** - https://github.nhnent.com/pages/fe/component-simple-grid/
-* **Sample** - https://github.nhnent.com/pages/fe/component-simple-grid/sample/
-* **Tutorial** - 준비중
+* **Sample** - https://github.nhnent.com/pages/fe/component-simple-grid/tutorial-sample1.html
 * **CI** - http://fe.nhnent.com:8080/jenkins/job/component-simple-grid/
 
 ## Download/Install
