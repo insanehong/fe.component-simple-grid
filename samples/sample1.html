@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi=medium-dpi">
+<title>예제1</title>
+	<script type="text/javascript" src="./js/jquery.min.js"></script>
+	<script type="text/javascript" src="./js/Component-SimpleGrid.min.js"></script>
+	<script type="text/javascript" src="./data/dummy.js"></script>
+	<style>
+		.selected {background:red}
+	</style>
+<!-- for ie script -->
+</head>
+<body>
+    <div id="simpleGrid" style="width:800px;"></div>
+    <input type="button" value="prepend" id="prepend"/>
+    <input type="button" value="append" id="append"/>
+    <input type="button" value="clear" id="clear"/>
+</body>
+<script type="text/javascript">
+    var simpleGrid = new ne.component.SimpleGrid({
+        $el: $('#simpleGrid'),
+        rowHeight: 25,    //line 당 pixel
+        height: 230,       //높이 지정
+        headerHeight: 30,
+        scrollX: true,
+        scrollY: true,
+        freeze: true,    //Data Prepend 시 현재  scroll 된 위치를 유지할 것인지 여부
+        keyEventBubble: false,  //key 입력시 이벤트 버블링 할지 여부
+        defaultColumnWidth: 50,
+        color: {
+            border: '#EFEFEF',
+            th: '#F8F8F8',
+            td: '#FFFFFF',
+            selection: 'orange'
+        },
+        opacity: '0.2',
+        columnModelList: [
+            {
+                columnName: 'column1',
+                title: '컬럼1',
+                width: 300,
+                align: 'center',
+                formatter: function(value, rowData) {
+                    return '<input type="button" class="removeBtn" value="' + value + '"/>';
+                }
+            },
+            {
+                columnName: 'column2',
+                title: '컬럼1',
+                width: 400
+            },
+            {
+                columnName: 'column3',
+                title: '컬럼3',
+                width: 500
+            },
+            {
+                columnName: 'column4',
+                title: '컬럼4',
+                width: 600
+            },
+            {
+                columnName: 'column5',
+                title: '컬럼5',
+                width: 700
+            }
+        ]
+    });
+
+    //데이터 insert
+    simpleGrid.setList(dummyDataList);
+
+    //버튼 누를경우 삭제되도록 처리
+    simpleGrid.on('click', function(customEvent) {
+        if (customEvent.$target.hasClass('removeBtn')) {
+            alert('삭제 - ' + customEvent.$target.val());
+            simpleGrid.remove(customEvent.rowKey);
+        }
+    });
+
+    $('#append').on('click', function() {
+        simpleGrid.append([{
+            'column1': 'append',
+            'column2': 'append',
+            'column3': 'append',
+            'column4': 'append',
+            'column5': 'append'
+        },{
+            'column1': 'append',
+            'column2': 'append',
+            'column3': 'append',
+            'column4': 'append',
+            'column5': 'append'
+        }]);
+    });
+
+    $('#prepend').on('click', function() {
+        simpleGrid.prepend([{
+            'column1': 'prepend',
+            'column2': 'prepend',
+            'column3': 'prepend',
+            'column4': 'prepend',
+            'column5': 'prepend'
+        },{
+            'column1': 'prepend',
+            'column2': 'prepend',
+            'column3': 'prepend',
+            'column4': 'prepend',
+            'column5': 'prepend'
+        }]);
+    });
+
+    $('#clear').on('click', function() {
+        simpleGrid.clear();
+    });
+</script>
+</html>

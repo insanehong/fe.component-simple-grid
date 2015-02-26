@@ -1,7 +1,7 @@
 var infinite1 = new ne.component.SimpleGrid({
     $el: $('#simpleGrid'),
     rowHeight: 25,    //line 당 pixel
-    height: 100,
+    height: 300,
     displayCount: 20,  //영역에 보여줄 line 갯수
     headerHeight: 30,
     scrollX: true,
@@ -21,10 +21,7 @@ var infinite1 = new ne.component.SimpleGrid({
             columnName: 'column1',
             title: '컬럼1',
             width: 300,
-            align: 'center',
-            formatter: function(value, rowData) {
-                return '<input type="button" class="test_click" value="' + value + '"/>';
-            }
+            align: 'center'
         },
         {
             columnName: 'column2',
@@ -66,6 +63,7 @@ var infinite2 = new ne.component.SimpleGrid({
     rowHeight: 30,    //line 당 pixel
     displayCount: 20,  //영역에 보여줄 line 갯수
     headerHeight: 30,
+    height: 100,
     scrollX: true,
     scrollY: true,
     keyEventBubble: false,  //key 입력시 이벤트 버블링 할지 여부
@@ -79,7 +77,7 @@ var infinite2 = new ne.component.SimpleGrid({
         td: '#FFFFFF',
         selection: 'blue'
     },
-    border: 0,
+    border: 1,
     opacity: '0.5',
     columnModelList: [
         {

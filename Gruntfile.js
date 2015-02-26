@@ -5,6 +5,8 @@ module.exports = function(grunt) {
     grunt.initConfig({
         // You can set arbitrary key-value pairs.
         distFolder: 'doc/dist',
+        libFolder: 'lib',
+        sampleFolder: 'samples',
         // You can also set the value of a key as parsed JSON.
         // Allows us to reference properties we declared in package.json.
         pkg: grunt.file.readJSON('package.json'),
@@ -85,6 +87,12 @@ module.exports = function(grunt) {
             main: {
                 files: [
                     {expand: true, flatten: true, src: ['<%= distFolder %>/*'], dest: '', filter: 'isFile'}
+                ]
+            },
+            sample: {
+                files: [
+                    {expand: true, flatten: true, src: ['<%= distFolder %>/Component-SimpleGrid.min.js'], dest: '<%= sampleFolder %>/js', filter: 'isFile'},
+                    {expand: true, flatten: true, src: ['<%= libFolder %>/jquery/jquery.min.js'], dest: '<%= sampleFolder %>/js', filter: 'isFile'}
                 ]
             }
         },
