@@ -22,6 +22,10 @@ SimpleGrid
 * **Sample** - https://github.nhnent.com/pages/fe/component-simple-grid/tutorial-sample1.html
 * **CI** - http://fe.nhnent.com:8080/jenkins/job/component-simple-grid/
 
+## Dependency
+* jquery-1.8.3 - https://github.com/jquery/jquery/tree/1.8.3
+* code-snippet - https://github.nhnent.com/fe/share-code-snippet/tree/0.0.1
+
 ## Download/Install
 * Bower: `bower install git+http://3c672057a1ac16c4e6f1baaba73e24d5270ef453:x-oauth-basic@github.nhnent.com/fe/component-simple-grid.git#1.0.0a`
 * Download: <https://github.nhnent.com/pages/fe/component-simple-grid/dist/>
@@ -32,6 +36,7 @@ SimpleGrid
 ## History
 | Version | Description | Date | Developer |
 | ---- | ---- | ---- | ---- |
+| v1.0.0b | 배포 포멧에 맞추어 파일명 변경 | 2015.02 | FE개발팀 박순영 <soonyoung.park@nhnent.com> |
 | v1.0.0a | IE 스크롤바 조정 불가능한 오류 수정 | 2015.02 | FE개발팀 박순영 <soonyoung.park@nhnent.com> |
 | v1.0.0 | 티켓링크 적용 | 2015.02 | FE개발팀 박순영 <soonyoung.park@nhnent.com> |
 | v0.2.0 | 열조정 기능 추가 | 2015.01 | FE개발팀 박순영 <soonyoung.park@nhnent.com> |

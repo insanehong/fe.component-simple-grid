@@ -76,7 +76,7 @@ module.exports = function(config) {
         // list of files / patterns to load in the browser
         files: [
             // dependencies
-            {pattern: 'src/external/*.js', watched: false, served: true, included: true},
+            {pattern: 'lib/code-snippet/code-snippet.min.js', watched: false, served: true, included: true},
             {pattern: 'lib/jquery/jquery.min.js', watched: false, served: true, included: true},
             {pattern: 'node_modules/jasmine-jquery/lib/jasmine-jquery.js', watched: false, served: true, included: true},
             {pattern: 'test/js/data/*.js', watched: false, served: true, included: true},
