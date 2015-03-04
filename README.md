@@ -24,7 +24,7 @@ SimpleGrid
 
 ## Dependency
 * jquery-1.8.3 - https://github.com/jquery/jquery/tree/1.8.3
-* code-snippet - https://github.nhnent.com/fe/share-code-snippet/tree/0.0.1
+* code-snippet-1.0.0 - https://github.nhnent.com/fe/share-code-snippet/tree/1.0.0
 
 ## Download/Install
 * Bower: `bower install git+http://3c672057a1ac16c4e6f1baaba73e24d5270ef453:x-oauth-basic@github.nhnent.com/fe/component-simple-grid.git#1.0.0b`
