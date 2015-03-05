@@ -281,6 +281,14 @@ var Util = {
             htmlString = $.trim(ne.util.decodeHTMLEntity(htmlString.replace(/<\/?(?:h[1-5]|[a-z]+(?:\:[a-z]+)?)[^>]*>/ig, '')));
         }
         return htmlString;
+    },
+
+    /**
+     * mac os 인지 확인한다.
+     * @returns {boolean}
+     */
+    isMacOs: function() {
+        return navigator.userAgent.indexOf('Macintosh') > 0;
     }
 };
 
@@ -3026,8 +3034,10 @@ ne.component.SimpleGrid = ne.util.defineClass(Base.View, /**@lends ne.component.
         if (!this.option('hasHeader')) {
             this.option('headerHeight', 0);
         }
+        this._initializeStyleSheet();
         this._initializeModel();
         this._initializeView();
+
         this.render();
         this._initializeCustomEvent();
         return this;
@@ -3093,6 +3103,25 @@ ne.component.SimpleGrid = ne.util.defineClass(Base.View, /**@lends ne.component.
         });
     },
 
+    /**
+     * 디자인 style 태그를 붙인다.
+     * @private
+     */
+    _initializeStyleSheet: function() {
+        var styleList = [];
+        if (Util.isMacOs()) {
+            styleList = [
+                '.simple_grid {scrollbar-highlight-color:#f2f2f2;scrollbar-shadow-color:#f2f2f2;scrollbar-arrow-color:#8a8a8a;scrollbar-face-color:#d9d9d9;scrollbar-3dlight-color:#f2f2f2;scrollbar-darkshadow-color:#f2f2f2;scrollbar-track-color:#f2f2f2;}',
+                '.simple_grid ::-webkit-scrollbar{-webkit-appearance: none;width:17px;height:17px;background-color:#f2f2f2;}',
+                '.simple_grid ::-webkit-scrollbar-thumb{background-color:#d9d9d9;border:5px solid transparent;border-radius:7px;background-clip:content-box;}',
+                '.simple_grid ::-webkit-scrollbar-thumb:hover{background-color: #c1c1c1;}',
+                '.simple_grid ::-webkit-scrollbar-corner{background-color: #f2f2f2;}'
+            ];
+        }
+        if (!$('#simple_grid_style').length) {
+            $('html > head').append($('<style id="simple_grid_style">\n' + styleList.join('\n') + '</style>'));
+        }
+    },
     /**
      * 마우스 down 이벤트 핸들러
      * @private

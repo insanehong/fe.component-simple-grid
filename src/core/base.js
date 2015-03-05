@@ -279,5 +279,13 @@ var Util = {
             htmlString = $.trim(ne.util.decodeHTMLEntity(htmlString.replace(/<\/?(?:h[1-5]|[a-z]+(?:\:[a-z]+)?)[^>]*>/ig, '')));
         }
         return htmlString;
+    },
+
+    /**
+     * mac os 인지 확인한다.
+     * @returns {boolean}
+     */
+    isMacOs: function() {
+        return navigator.userAgent.indexOf('Macintosh') > 0;
     }
 };
