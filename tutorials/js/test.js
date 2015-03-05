@@ -3,7 +3,7 @@
 
 
 
-
+"use strict";
 
 var infinite2 = new ne.component.SimpleGrid({
     $el: $('#simpleGrid2'),
