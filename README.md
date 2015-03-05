@@ -28,7 +28,7 @@ SimpleGrid
 
 ## Download/Install
 * Bower: `bower install git+http://3c672057a1ac16c4e6f1baaba73e24d5270ef453:x-oauth-basic@github.nhnent.com/fe/component-simple-grid.git#1.0.0b`
-* Download: <https://github.nhnent.com/pages/fe/component-simple-grid/dist/>
+* Download: <https://github.nhnent.com/fe/component-simple-grid>
 
 ## History
 | Version | Description | Date | Developer |
