@@ -17,6 +17,9 @@ SimpleGrid
 * 한 행의 높이 또는 전체 높이 설정 가능
 * 그리드에서 발생하는 click 이벤트를 제어할 수 있는 인터페이스 제공
 
+## Sample Image
+![simple-grid](https://github.nhnent.com/github-enterprise-assets/0000/0089/0000/0250/961bbab4-c399-11e4-845a-073c38599ddb.png)
+
 ## Documentation
 * **API** - https://github.nhnent.com/pages/fe/component-simple-grid/
 * **Sample** - https://github.nhnent.com/pages/fe/component-simple-grid/tutorial-sample1.html
