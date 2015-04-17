@@ -21,8 +21,8 @@ SimpleGrid
 ![simple-grid](https://github.nhnent.com/github-enterprise-assets/0000/0089/0000/0250/961bbab4-c399-11e4-845a-073c38599ddb.png)
 
 ## Documentation
-* **API** - https://github.nhnent.com/pages/fe/component-simple-grid/
-* **Sample** - https://github.nhnent.com/pages/fe/component-simple-grid/tutorial-sample1.html
+* **API** - https://github.nhnent.com/pages/fe/component-simple-grid/1.0.0/
+* **Sample** - https://github.nhnent.com/pages/fe/component-simple-grid/1.0.0/tutorial-sample1.html
 * **CI** - http://fe.nhnent.com:8080/jenkins/job/component-simple-grid/
 
 ## Dependency
@@ -38,7 +38,7 @@ SimpleGrid
 | ---- | ---- | ---- | ---- |
 | 1.0.0b | 배포 포멧에 맞추어 파일명 변경 | 2015.03 | FE개발팀 박순영 <soonyoung.park@nhnent.com> |
 | 1.0.0a | IE 스크롤바 조정 불가능한 오류 수정 | 2015.02 | FE개발팀 박순영 <soonyoung.park@nhnent.com> |
-| 1.0.0 | 티켓링크 적용 | 2015.02 | FE개발팀 박순영 <soonyoung.park@nhnent.com> |
+| <a href="https://github.nhnent.com/pages/fe/component-simple-grid/1.0.0/">1.0.0</a> | 티켓링크 적용 | 2015.02 | FE개발팀 박순영 <soonyoung.park@nhnent.com> |
 | 0.2.0 | 열조정 기능 추가 | 2015.01 | FE개발팀 박순영 <soonyoung.park@nhnent.com> |
 | 0.1.0 | 최초개발 | 2014.12 | FE개발팀 박순영 <soonyoung.park@nhnent.com> |
 
