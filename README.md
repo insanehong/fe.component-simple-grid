@@ -30,6 +30,12 @@ SimpleGrid
 * jquery-1.8.3 - https://github.com/jquery/jquery/tree/1.8.3
 * code-snippet-1.0.0 - https://github.nhnent.com/fe/share-code-snippet/tree/1.0.0
 
+## Test environment
+* browser : 
+   * IE7~11
+   * Chrome
+   * Firefox
+
 ## Download/Install
 * Bower:
    * 최신버전 :  `bower install git+http://3c672057a1ac16c4e6f1baaba73e24d5270ef453:x-oauth-basic@github.nhnent.com/fe/component-simple-grid.git#master`
