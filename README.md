@@ -31,7 +31,9 @@ SimpleGrid
 * code-snippet-1.0.0 - https://github.nhnent.com/fe/share-code-snippet/tree/1.0.0
 
 ## Download/Install
-* Bower: `bower install git+http://3c672057a1ac16c4e6f1baaba73e24d5270ef453:x-oauth-basic@github.nhnent.com/fe/component-simple-grid.git#master`
+* Bower:
+   * 최신버전 :  `bower install git+http://3c672057a1ac16c4e6f1baaba73e24d5270ef453:x-oauth-basic@github.nhnent.com/fe/component-simple-grid.git#master`
+   * 특정버전 :  `bower install git+http://3c672057a1ac16c4e6f1baaba73e24d5270ef453:x-oauth-basic@github.nhnent.com/fe/component-simple-grid.git[#tag]`
 * Download: https://github.nhnent.com/fe/component-simple-grid
 
 ## History
