@@ -28,7 +28,7 @@ SimpleGrid
 
 ## Dependency
 * jquery-1.8.3 - https://github.com/jquery/jquery/tree/1.8.3
-* code-snippet-1.0.0 - https://github.nhnent.com/fe/share-code-snippet/tree/1.0.0
+* code-snippet-1.0.0 - https://github.nhnent.com/fe/code-snippet/tree/1.0.0
 
 ## Test environment
 * browser : 
