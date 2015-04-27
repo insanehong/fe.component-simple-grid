@@ -24,7 +24,7 @@ Component-SimpleGrid
 * **CI** - http://fe.nhnent.com:8080/jenkins/job/Component-SimpleGrid/
 
 ## Download/Install
-* Bower: `bower install git+http://3c672057a1ac16c4e6f1baaba73e24d5270ef453:x-oauth-basic@github.nhnent.com/FE/Component-SimpleGrid.git#dist`
+* Bower: `bower install git+http://70327b4564c7a80eb61724056876b960290946dd:x-oauth-basic@github.nhnent.com/FE/Component-SimpleGrid.git#dist`
 * Download: <https://github.nhnent.com/pages/FE/Component-SimpleGrid/dist/>
 
 
