@@ -1,7 +1,7 @@
 SimpleGrid
 ======================
 심플그리드 컴포넌트<br>
-[[그리드 컴포넌트]](https://github.nhnent.com/fe/application-grid/)의 경량화 버전으로<br>
+그리드 어플리케이션의 경량화 버전으로<br>
 그리드 형태의 데이터를 보여주기 위한 컴포넌트입니다. (그리드내 데이터 직접 편집은 지원하지 않음) <br>
 대용량 데이터을 보여줄 수 있도록 그리드 영역에 무한 스크롤(세로방향)을 제공하며<br>
 마우스 드래그로 열너비를 조정할 수 있습니다.
@@ -18,13 +18,12 @@ SimpleGrid
 * 그리드에서 발생하는 click 이벤트를 제어할 수 있는 인터페이스 제공
 
 ## Sample Image
-![simple-grid](https://github.nhnent.com/github-enterprise-assets/0000/0089/0000/0250/961bbab4-c399-11e4-845a-073c38599ddb.png)
+![simple-grid](https://nhnent.com.io/fe.component-simple-grid/sampleimg.png)
 
 ## Documentation
-* **API** - https://github.nhnent.com/pages/fe/component-simple-grid/1.0.0/
-* **Sample** - https://github.nhnent.com/pages/fe/component-simple-grid/1.0.0/tutorial-sample1.html
-* **Tutorial** - https://github.nhnent.com/fe/component-simple-grid/wiki/%EC%8B%AC%ED%94%8C%EA%B7%B8%EB%A6%AC%EB%93%9C-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8-%EC%A0%81%EC%9A%A9%EB%B0%A9%EB%B2%95
-* **CI** - http://fe.nhnent.com:8080/jenkins/job/component-simple-grid/
+* **API** - https://nhnent.github.io/fe.component-simple-grid/1.0.0/
+* **Sample** - https://nhnent.github.io/fe.component-simple-grid/1.0.0/tutorial-sample1.html
+* **Tutorial** - https://goo.gl/df2QaP
 
 ## Dependency
 * jquery-1.8.3 - https://github.com/jquery/jquery/tree/1.8.3
@@ -38,8 +37,8 @@ SimpleGrid
 
 ## Download/Install
 * Bower:
-   * 최신버전 :  `bower install git+http://70327b4564c7a80eb61724056876b960290946dd:x-oauth-basic@github.nhnent.com/fe/component-simple-grid.git#master`
-   * 특정버전 :  `bower install git+http://70327b4564c7a80eb61724056876b960290946dd:x-oauth-basic@github.nhnent.com/fe/component-simple-grid.git[#tag]`
+   * 최신버전 :  `bower install ne-component-simple-grid.git#master`
+   * 특정버전 :  `bower install ne-component-simple-grid.git[#tag]`
 * Download: https://github.nhnent.com/fe/component-simple-grid
 
 ## History
