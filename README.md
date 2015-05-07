@@ -1,7 +1,7 @@
-Component-SimpleGrid
+SimpleGrid
 ======================
 심플그리드 컴포넌트<br>
-[[그리드 컴포넌트]](https://github.nhnent.com/FE/Application-Grid/)의 경량화 버전으로<br>
+그리드 어플리케이션의 경량화 버전으로<br>
 그리드 형태의 데이터를 보여주기 위한 컴포넌트입니다. (그리드내 데이터 직접 편집은 지원하지 않음) <br>
 대용량 데이터을 보여줄 수 있도록 그리드 영역에 무한 스크롤(세로방향)을 제공하며<br>
 마우스 드래그로 열너비를 조정할 수 있습니다.
@@ -17,23 +17,35 @@ Component-SimpleGrid
 * 한 행의 높이 또는 전체 높이 설정 가능
 * 그리드에서 발생하는 click 이벤트를 제어할 수 있는 인터페이스 제공
 
+## Sample Image
+![simple-grid](https://nhnent.com.io/fe.component-simple-grid/sampleimg.png)
+
 ## Documentation
-* **API** - https://github.nhnent.com/pages/FE/Component-SimpleGrid/
-* **Sample** - https://github.nhnent.com/pages/FE/Component-SimpleGrid/sample/
-* **Tutorial** - 준비중
-* **CI** - http://fe.nhnent.com:8080/jenkins/job/Component-SimpleGrid/
+* **API** - https://nhnent.github.io/fe.component-simple-grid/1.0.0/
+* **Sample** - https://nhnent.github.io/fe.component-simple-grid/1.0.0/tutorial-sample1.html
+* **Tutorial** - https://goo.gl/df2QaP
+
+## Dependency
+* jquery-1.8.3 - https://github.com/jquery/jquery/tree/1.8.3
+* code-snippet-1.0.0 - https://github.nhnent.com/fe/code-snippet/tree/1.0.0
+
+## Test environment
+* browser : 
+   * IE7~11
+   * Chrome
+   * Firefox
 
 ## Download/Install
-* Bower: `bower install git+http://70327b4564c7a80eb61724056876b960290946dd:x-oauth-basic@github.nhnent.com/FE/Component-SimpleGrid.git#dist`
-* Download: <https://github.nhnent.com/pages/FE/Component-SimpleGrid/dist/>
-
+* Bower:
+   * 최신버전 :  `bower install ne-component-simple-grid.git#master`
+   * 특정버전 :  `bower install ne-component-simple-grid.git[#tag]`
+* Download: https://github.nhnent.com/fe/component-simple-grid
 
 ## History
 | Version | Description | Date | Developer |
 | ---- | ---- | ---- | ---- |
-| v1.0.0 | 티켓링크 적용 | 2015.02 | FE개발팀 박순영 <soonyoung.park@nhnent.com> |
-| v0.2.0 | 열조정 기능 추가 | 2015.01 | FE개발팀 박순영 <soonyoung.park@nhnent.com> |
-| v0.1.0 | 최초개발 | 2014.12 | FE개발팀 박순영 <soonyoung.park@nhnent.com> |
-
+| <a href="https://github.nhnent.com/pages/fe/component-simple-grid/1.0.0/">1.0.0</a> | 티켓링크 적용 | 2015.02 | FE개발팀 박순영 <soonyoung.park@nhnent.com> |
+| 0.2.0 | 열조정 기능 추가 | 2015.01 | FE개발팀 박순영 <soonyoung.park@nhnent.com> |
+| 0.1.0 | 최초개발 | 2014.12 | FE개발팀 박순영 <soonyoung.park@nhnent.com> |
 
 
