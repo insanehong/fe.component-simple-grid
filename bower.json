@@ -1,11 +1,10 @@
 {
-    "name": "component-simple-grid",
+    "name": "ne-component-simple-grid",
     "version": "1.0.0b",
     "authors": [
         "Soonyoung Park <soonyoung.park@nhnent.com>"
     ],
     "license": "",
-    "private": true,
     "ignore": [
       "**/.*",
       ".*",
