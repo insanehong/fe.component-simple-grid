@@ -18,7 +18,7 @@ SimpleGrid
 * 그리드에서 발생하는 click 이벤트를 제어할 수 있는 인터페이스 제공
 
 ## Sample Image
-![simple-grid](https://nhnent.com.io/fe.component-simple-grid/sampleimg.png)
+![simple-grid](http://nhnent.github.io/fe.component-simple-grid/sampleimg.png)
 
 ## Documentation
 * **API** - https://nhnent.github.io/fe.component-simple-grid/1.0.0/
