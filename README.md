@@ -37,8 +37,8 @@ SimpleGrid
 
 ## Download/Install
 * Bower:
-   * 최신버전 :  `bower install ne-component-simple-grid.git#master`
-   * 특정버전 :  `bower install ne-component-simple-grid.git[#tag]`
+   * 최신버전 :  `bower install ne-component-simple-grid#master`
+   * 특정버전 :  `bower install ne-component-simple-grid[#tag]`
 * Download: https://github.nhnent.com/fe/component-simple-grid
 
 ## History
