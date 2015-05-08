@@ -23,7 +23,7 @@ SimpleGrid
 ## Documentation
 * **API** - https://nhnent.github.io/fe.component-simple-grid/1.0.0/
 * **Sample** - https://nhnent.github.io/fe.component-simple-grid/1.0.0/tutorial-sample1.html
-* **Tutorial** - https://goo.gl/df2QaP
+* **Tutorial** - https://github.com/nhnent/fe.component-simple-grid/wiki/심플그리드-컴포넌트-적용방법
 
 ## Dependency
 * jquery-1.8.3 - https://github.com/jquery/jquery/tree/1.8.3
