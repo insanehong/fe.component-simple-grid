@@ -5,7 +5,7 @@
         "Soonyoung Park <soonyoung.park@nhnent.com>"
     ],
     "main": "simple-grid.js",
-    "license": "",
+    "license": "MIT",
     "ignore": [
       "**/.*",
       ".*",
