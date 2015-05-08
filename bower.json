@@ -4,6 +4,7 @@
     "authors": [
         "Soonyoung Park <soonyoung.park@nhnent.com>"
     ],
+    "main": "Component-SimpleGrid.js",
     "license": "MIT",
     "private": true,
     "ignore": [
