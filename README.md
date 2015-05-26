@@ -14,7 +14,7 @@ Simple Grid
 * 그리드에서 발생하는 click 이벤트를 제어할 수 있는 인터페이스 제공
 
 ## Documentation
-* API : https://github.nhnent.com/pages/fe/component-simple-grid/1.0.0b
+* API : https://github.nhnent.com/pages/fe/component-simple-grid/1.0.0
 * Tutorial : https://github.nhnent.com/fe/component-simple-grid/wiki/심플그리드-컴포넌트-적용방법
 * CI : http://fe.nhnent.com:8080/jenkins/job/component-simple-grid/
 
@@ -44,6 +44,6 @@ Simple Grid
 | ---- | ---- | ---- | ---- |
 | 1.0.0b | 배포 포멧에 맞추어 파일명 변경 | 2015.03 | 박순영 <soonyoung.park@nhnent.com> |
 | 1.0.0a | IE 스크롤바 조정 불가능한 오류 수정 | 2015.02 | 박순영 <soonyoung.park@nhnent.com> |
-| <a href="https://github.nhnent.com/pages/fe/component-simple-grid/1.0.0b">1.0.0</a> | 티켓링크 적용 | 2015.02 | 박순영 <soonyoung.park@nhnent.com> |
+| <a href="https://github.nhnent.com/pages/fe/component-simple-grid/1.0.0">1.0.0</a> | 티켓링크 적용 | 2015.02 | 박순영 <soonyoung.park@nhnent.com> |
 | 0.2.0 | 열조정 기능 추가 | 2015.01 | 박순영 <soonyoung.park@nhnent.com> |
 | 0.1.0 | 최초개발 | 2014.12 | 박순영 <soonyoung.park@nhnent.com> |
