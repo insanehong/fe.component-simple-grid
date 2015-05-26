@@ -1,7 +1,6 @@
 /*!simple-grid v1.0.0b | NHN Entertainment*/
 (function() {
-ne = window.ne || {};
-ne.component = ne.component || {};
+ne.util.defineNamespace('ne.component');
 
 /**
  * @fileoverview 기본 클래스 파일
