@@ -15,12 +15,12 @@ Simple Grid
 
 ## Documentation
 * API : https://github.nhnent.com/pages/fe/component-simple-grid/1.0.0b
-* Tutorial : https://github.nhnent.com/fe/component-simple-grid/wiki/심플-그리드-컴포넌트-적용방법
+* Tutorial : https://github.nhnent.com/fe/component-simple-grid/wiki/심플그리드-컴포넌트-적용방법
 * CI : http://fe.nhnent.com:8080/jenkins/job/component-simple-grid/
 
 ## Sample Image
 * 샘플1<br>
-![simple-grid](https://github.nhnent.com/github-enterprise-assets/0000/0089/0000/0250/961bbab4-c399-11e4-845a-073c38599ddb.png)
+![961bbab4-c399-11e4-845a-073c38599ddb](https://cloud.githubusercontent.com/assets/11814228/7805310/c37c1bf6-03aa-11e5-926f-27d5c8a759ed.png)
 
 ## Dependency
 * jquery: v1.8.3

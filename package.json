@@ -64,7 +64,6 @@
     "karma-junit-reporter": "^0.2.2",
     "karma-webdriver-launcher": "git+https://github.com/everedifice/karma-webdriver-launcher.git"
   },
-  "tutorial": "심플-그리드",
   "history": {
     "1.0.0b": {
       "content": "배포 포멧에 맞추어 파일명 변경",
@@ -92,5 +91,6 @@
       "date": "2014.12",
       "author": "박순영 <soonyoung.park@nhnent.com>"
     }
-  }
+  },
+  "tutorial": "심플그리드"
 }
