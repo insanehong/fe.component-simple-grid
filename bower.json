@@ -1,30 +1,29 @@
 {
-    "name": "component-simple-grid",
-    "version": "1.0.0b",
-    "authors": [
-        "Soonyoung Park <soonyoung.park@nhnent.com>"
-    ],
-    "license": "",
-    "private": true,
-    "ignore": [
-      "**/.*",
-      ".*",
-      "*.zip",
-      "src",
-      "bin",
-      "node_modules",
-      "bower_components",
-      "test",
-      "data",
-      "bower.json",
-      "conf.json",
-      "Gruntfile.js",
-      "karma.conf.js",
-      "package.json",
-      "samples"
-    ],
-    "dependencies": {
-        "jquery": "~1.8.3",
-        "code-snippet": "git+http://70327b4564c7a80eb61724056876b960290946dd:x-oauth-basic@github.nhnent.com/fe/code-snippet.git#1.0.0"
-    }
+  "name": "component-simple-grid",
+  "version": "1.0.0b",
+  "authors": [
+    "박순영 <soonyoung.park@nhnent.com>"
+  ],
+  "license": "MIT",
+	"private" : true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "src",
+    "server",
+    "data.js",
+    "Gruntfile.js",
+    "conf.json",
+    "karma.conf.js",
+    "package.json",
+    ".gitignore",
+    "samples"
+  ],
+  "dependencies": {
+    "jquery" : "~1.8.3",
+	"code-snippet" : "~1.0.2"
+  }
 }
