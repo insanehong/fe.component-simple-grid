@@ -1,8 +1,8 @@
 {
   "name": "component-simple-grid",
-  "version": "1.0.0b",
+  "version": "1.0.1a",
   "authors": [
-    "박순영 <soonyoung.park@nhnent.com>"
+    "이제인 <jein.yi@nhnent.com>"
   ],
   "license": "MIT",
 	"private" : true,

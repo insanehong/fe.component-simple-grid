@@ -65,32 +65,38 @@
     "karma-webdriver-launcher": "git+https://github.com/everedifice/karma-webdriver-launcher.git"
   },
   "history": {
+    "1.0.1a": {
+      "content": "code-snippet 버전업, defnieNamespace 적용",
+      "date" : "2015.05",
+      "author": "이제인 <jein.yi@nhnent.com>"
+    },
     "1.0.0b": {
       "content": "배포 포멧에 맞추어 파일명 변경",
       "date" : "2015.03",
-      "author": "박순영 <soonyoung.park@nhnent.com>"
+      "author": "박순영"
     },
     "1.0.0a": {
       "content": "IE 스크롤바 조정 불가능한 오류 수정",
       "date" : "2015.02",
-      "author": "박순영 <soonyoung.park@nhnent.com>"
+      "author": "박순영"
     },
     "1.0.0": {
       "content": "티켓링크 적용",
       "date" : "2015.02",
-      "author": "박순영 <soonyoung.park@nhnent.com>",
+      "author": "박순영",
       "hasAPI": true
     },
     "0.2.0" : {
       "content": "열조정 기능 추가",
       "date": "2015.01",
-      "author": "박순영 <soonyoung.park@nhnent.com>"
+      "author": "박순영"
     },
     "0.1.0": {
       "content": "최초개발",
       "date": "2014.12",
-      "author": "박순영 <soonyoung.park@nhnent.com>"
+      "author": "박순영"
     }
   },
-  "tutorial": "심플그리드"
+  "tutorial": "심플그리드",
+  "samplePage": "sample1.html"
 }

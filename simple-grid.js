@@ -1,7 +1,5 @@
 /*!simple-grid v1.0.0b | NHN Entertainment*/
 (function() {
-ne.util.defineNamespace('ne.component');
-
 /**
  * @fileoverview 기본 클래스 파일
  * @author FE개발팀 박순영 <soonyoung.park@nhnent.com>
@@ -2850,6 +2848,7 @@ VirtualScrollBar.Content = ne.util.defineClass(Base.View, /**@lends VirtualScrol
  * @fileoverview SimpleGrid 컴포넌트 본체
  * @author FE개발팀 박순영 <soonyoung.park@nhnent.com>
  */
+ne.util.defineNamespace('ne.component');
 /**
  * Simple Grid
  * @constructor
@@ -2878,7 +2877,7 @@ VirtualScrollBar.Content = ne.util.defineClass(Base.View, /**@lends VirtualScrol
         },
         border: 0,
         opacity: '0.5',
-        columnModelList: [
+        columnModelList: [v
             {
                 columnName: 'column1',
                 title: '컬럼1',

@@ -1,5 +1,3 @@
-ne.util.defineNamespace('ne.component');
-
 /**
  * @fileoverview 기본 클래스 파일
  * @author FE개발팀 박순영 <soonyoung.park@nhnent.com>

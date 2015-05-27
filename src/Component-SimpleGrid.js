@@ -2,6 +2,7 @@
  * @fileoverview SimpleGrid 컴포넌트 본체
  * @author FE개발팀 박순영 <soonyoung.park@nhnent.com>
  */
+ne.util.defineNamespace('ne.component');
 /**
  * Simple Grid
  * @constructor
@@ -30,7 +31,7 @@
         },
         border: 0,
         opacity: '0.5',
-        columnModelList: [
+        columnModelList: [v
             {
                 columnName: 'column1',
                 title: '컬럼1',
