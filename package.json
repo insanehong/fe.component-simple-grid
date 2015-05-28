@@ -14,7 +14,7 @@
     "그리드에서 발생하는 click 이벤트를 제어할 수 있는 인터페이스 제공"
   ],
   "sample": {
-    "샘플1" : "![961bbab4-c399-11e4-845a-073c38599ddb](https://cloud.githubusercontent.com/assets/11814228/7805310/c37c1bf6-03aa-11e5-926f-27d5c8a759ed.png)"
+    "샘플1": "![961bbab4-c399-11e4-845a-073c38599ddb](https://cloud.githubusercontent.com/assets/11814228/7805310/c37c1bf6-03aa-11e5-926f-27d5c8a759ed.png)"
   },
   "main": "Gruntfile.js",
   "directories": {
@@ -40,13 +40,17 @@
   "author": "",
   "license": "BSD",
   "devDependencies": {
+    "almond": "^0.3.0",
+    "fedoc-template": "git+http://14bfd38a036366f7ca90355d202038126127bd01:x-oauth-basic@github.nhnent.com/fe/share-fedoc-template.git",
     "grunt": "^0.4.5",
     "grunt-contrib-concat": "^0.5.0",
+    "grunt-contrib-connect": "^0.8.0",
     "grunt-contrib-copy": "^0.6.0",
     "grunt-contrib-uglify": "^0.6.0",
+    "grunt-contrib-watch": "^0.6.1",
     "grunt-zip": "^0.16.0",
-    "fedoc-template": "git+http://14bfd38a036366f7ca90355d202038126127bd01:x-oauth-basic@github.nhnent.com/fe/share-fedoc-template.git",
     "jasmine-jquery": "^2.0.5",
+    "jsdoc": "git+https://github.com/jsdoc3/jsdoc.git",
     "karma": "^0.12.24",
     "karma-chrome-launcher": "^0.1.5",
     "karma-coverage": "^0.2.6",
@@ -54,39 +58,36 @@
     "karma-htmlfile-reporter": "^0.1.2",
     "karma-ie-launcher": "^0.1.5",
     "karma-jasmine": "^0.2.2",
-    "grunt-contrib-connect": "^0.8.0",
-    "grunt-contrib-watch": "^0.6.1",
-    "jsdoc": "git+https://github.com/jsdoc3/jsdoc.git",
+    "karma-junit-reporter": "^0.2.2",
     "karma-phantomjs-launcher": "^0.1.4",
     "karma-requirejs": "^0.2.2",
-    "requirejs": "^2.1.14",
-    "almond": "^0.3.0",
-    "karma-junit-reporter": "^0.2.2",
-    "karma-webdriver-launcher": "git+https://github.com/everedifice/karma-webdriver-launcher.git"
+    "karma-webdriver-launcher": "git+https://github.com/everedifice/karma-webdriver-launcher.git",
+    "readme-builder": "git+https://github.com/jein-yi/readme-builder.git",
+    "requirejs": "^2.1.14"
   },
   "history": {
     "1.0.1a": {
       "content": "code-snippet 버전업, defnieNamespace 적용",
-      "date" : "2015.05",
+      "date": "2015.05",
       "author": "이제인 <jein.yi@nhnent.com>"
     },
     "1.0.0b": {
       "content": "배포 포멧에 맞추어 파일명 변경",
-      "date" : "2015.03",
+      "date": "2015.03",
       "author": "박순영"
     },
     "1.0.0a": {
       "content": "IE 스크롤바 조정 불가능한 오류 수정",
-      "date" : "2015.02",
+      "date": "2015.02",
       "author": "박순영"
     },
     "1.0.0": {
       "content": "티켓링크 적용",
-      "date" : "2015.02",
+      "date": "2015.02",
       "author": "박순영",
       "hasAPI": true
     },
-    "0.2.0" : {
+    "0.2.0": {
       "content": "열조정 기능 추가",
       "date": "2015.01",
       "author": "박순영"

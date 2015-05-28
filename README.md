@@ -1,6 +1,6 @@
 Simple Grid
 ===============
-[[그리드 컴포넌트]](https://github.com/nhnent/fe.application-grid/)의 경량화 버전으로<br>  그리드 형태의 데이터를 보여주기 위한 컴포넌트입니다. (그리드내 데이터 직접 편집은 지원하지 않음) <br>  대용량 데이터을 보여줄 수 있도록 그리드 영역에 무한 스크롤(세로방향)을 제공하며<br>마우스 드래그로 열너비를 조정할 수 있습니다.
+[[그리드 컴포넌트]](https://github.nhnent.com/fe/application-grid/)의 경량화 버전으로<br>  그리드 형태의 데이터를 보여주기 위한 컴포넌트입니다. (그리드내 데이터 직접 편집은 지원하지 않음) <br>  대용량 데이터을 보여줄 수 있도록 그리드 영역에 무한 스크롤(세로방향)을 제공하며<br>마우스 드래그로 열너비를 조정할 수 있습니다.
 
 ## Feature
 * 대용량 데이터 랜더링 지원
@@ -14,9 +14,9 @@ Simple Grid
 * 그리드에서 발생하는 click 이벤트를 제어할 수 있는 인터페이스 제공
 
 ## Documentation
-* **API** : https://github.io/nhnent/fe/component-simple-grid/1.0.0
+* **API** : https://nhnent.github.io/fe.component-simple-grid/1.0.0
 * **Tutorial** : https://github.com/nhnent/fe.component-simple-grid/wiki/심플그리드-컴포넌트-적용방법
-* **Sample** - https://github.io/nhnent/fe/component-simple-grid/1.0.0/tutorial-sample1.html
+* **Sample** - https://nhnent.github.io/fe.component-simple-grid/1.0.0/tutorial-sample1.html
 
 
 ## Sample Image
