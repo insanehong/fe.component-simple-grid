@@ -13,6 +13,7 @@ Simple Grid
 * 한 행의 높이 또는 전체 높이 설정 가능
 * 그리드에서 발생하는 click 이벤트를 제어할 수 있는 인터페이스 제공
 
+
 ## Documentation
 * **API** : https://nhnent.github.io/fe.component-simple-grid/1.0.0
 * **Tutorial** : https://github.com/nhnent/fe.component-simple-grid/wiki/심플그리드-컴포넌트-적용방법
