@@ -13,12 +13,11 @@ Simple Grid
 * 한 행의 높이 또는 전체 높이 설정 가능
 * 그리드에서 발생하는 click 이벤트를 제어할 수 있는 인터페이스 제공
 
-
 ## Documentation
-* **API** : https://nhnent.github.io/fe.component-simple-grid/1.0.0
-* **Tutorial** : https://github.com/nhnent/fe.component-simple-grid/wiki/심플그리드-컴포넌트-적용방법
-* **Sample** - https://nhnent.github.io/fe.component-simple-grid/1.0.0/tutorial-sample1.html
-
+* **API** : https://github.nhnent.com/pages/fe/component-simple-grid/1.0.0
+* **Tutorial** : https://github.nhnent.com/fe/component-simple-grid/wiki/심플그리드-컴포넌트-적용방법
+* **Sample** - https://github.nhnent.com/pages/fe/component-simple-grid/1.0.0/tutorial-sample1.html
+* **CI** : http://fe.nhnent.com:8080/jenkins/job/component-simple-grid/
 
 ## Sample Image
 * 샘플1<br>
@@ -37,9 +36,9 @@ Simple Grid
 
 ## Download/Install
 * Bower:
-   * 최신버전 : `bower install ne-component-simple-grid#master`
-   * 특정버전 : `bower install ne-component-simple-grid[#tag]`
-* Download: https://github.com/nhnent/fe.component-simple-grid
+   * 최신버전 : `bower install "git+http://70327b4564c7a80eb61724056876b960290946dd:x-oauth-basic@github.nhnent.com/fe/component-simple-grid.git#master"`
+   * 특정버전 : `bower install "git+http://70327b4564c7a80eb61724056876b960290946dd:x-oauth-basic@github.nhnent.com/fe/component-simple-grid.git[#tag]"`
+* Download: https://github.nhnent.com/fe/component-simple-grid
 
 ## History
 | Version | Description | Date | Developer |
