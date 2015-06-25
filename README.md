@@ -49,3 +49,6 @@ Simple Grid
 | <a href="https://github.nhnent.com/pages/fe/component-simple-grid/1.0.0">1.0.0</a> | 티켓링크 적용 | 2015.02 | FE개발팀 박순영 |
 | 0.2.0 | 열조정 기능 추가 | 2015.01 | FE개발팀 박순영 |
 | 0.1.0 | 최초개발 | 2014.12 | FE개발팀 박순영 |
+
+## LICENSE
+[MIT 라이선스](LICENSE)로 자유롭게 사용할 수 있습니다.
