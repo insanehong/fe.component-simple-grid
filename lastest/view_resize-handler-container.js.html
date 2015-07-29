@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: view/resize-handler-container.js</title>
+    <link type="text/css" rel="stylesheet" href="styles/prettify-jsdoc.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-fe2.css">
+</head>
+<body>
+
+<div id="wrap">
+
+    <div class="header">
+
+        <div class="container-fluid">
+            <h3><a href="index.html">API Documentation</a> <small>FE개발팀</small></h3>
+        </div>
+
+    </div>
+
+    <div class="body">
+        <div id="navigation" class="navigation"><h3>Samples</h3><ul class="list samples"><li class="item"><a href="tutorial-sample1.html">기본 예제</a></li><li class="item"><a href="tutorial-sample2.html">헤더와 보더가 없는 예제</a></li><li class="item"><a href="tutorial-sample3.html">열병합 예제</a></li><li class="item"><a href="tutorial-sample4.html">디자인 클래스 적용 예제</a></li></ul><h3>Classes</h3><ul class="list classes"><li class="item" id="Base"><span class="title"><a href="Base.html">Base</a></span><ul class="sublist methods Base"><span class="subtitle">Methods</span><li><a href="Base.html#error">error</a></li></ul></li><li class="item" id="Base.View"><span class="title"><span class="p-item">Base.</span><a href="Base.View.html">View</a></span><span class="icon blue static">static</span><ul class="sublist methods Base.View"><span class="subtitle">Methods</span><li><a href="Base.View.html#createView">createView</a></li><li><a href="Base.View.html#destroy">destroy</a></li><li><a href="Base.View.html#destroyChildren">destroyChildren</a></li><li><a href="Base.View.html#init">init</a></li></ul></li><li class="item" id="Body"><span class="title"><a href="Body.html">Body</a></span><ul class="sublist methods Body"><span class="subtitle">Methods</span><li><a href="Body.html#init">init</a></li><li><a href="Body.html#render">render</a></li><li><a href="Body.html#select">select</a></li><li><a href="Body.html#unselect">unselect</a></li></ul></li><li class="item" id="Collection"><span class="title"><a href="Collection.html">Collection</a></span><ul class="sublist methods Collection"><span class="subtitle">Methods</span><li><a href="Collection.html#append">append</a></li><li><a href="Collection.html#at">at</a></li><li><a href="Collection.html#clear">clear</a></li><li><a href="Collection.html#get">get</a></li><li><a href="Collection.html#indexOf">indexOf</a></li><li><a href="Collection.html#lock">lock</a></li><li><a href="Collection.html#prepend">prepend</a></li><li><a href="Collection.html#remove">remove</a></li><li><a href="Collection.html#set">set</a></li><li><a href="Collection.html#unlock">unlock</a></li></ul></li><li class="item" id="Container"><span class="title"><a href="Container.html">Container</a></span><ul class="sublist methods Container"><span class="subtitle">Methods</span><li><a href="Container.html#render">render</a></li></ul></li><li class="item" id="Focus"><span class="title"><a href="Focus.html">Focus</a></span><ul class="sublist methods Focus"><span class="subtitle">Methods</span><li><a href="Focus.html#getSelectList">getSelectList</a></li><li><a href="Focus.html#init">init</a></li><li><a href="Focus.html#select">select</a></li><li><a href="Focus.html#unselect">unselect</a></li></ul></li><li class="item" id="Header"><span class="title"><a href="Header.html">Header</a></span><ul class="sublist methods Header"><span class="subtitle">Methods</span><li><a href="Header.html#init">init</a></li><li><a href="Header.html#render">render</a></li></ul></li><li class="item" id="Keyboard"><span class="title"><a href="Keyboard.html">Keyboard</a></span><ul class="sublist methods Keyboard"><span class="subtitle">Methods</span><li><a href="Keyboard.html#init">init</a></li><li><a href="Keyboard.html#render">render</a></li><li><a href="Keyboard.html#scrollHorizontal">scrollHorizontal</a></li><li><a href="Keyboard.html#scrollVertical">scrollVertical</a></li></ul></li><li class="item" id="Model"><span class="title"><a href="Model.html">Model</a></span><ul class="sublist methods Model"><span class="subtitle">Methods</span><li><a href="Model.html#getMaxScrollTop">getMaxScrollTop</a></li><li><a href="Model.html#init">init</a></li><li><a href="Model.html#set">set</a></li><li><a href="Model.html#setColumnWidth">setColumnWidth</a></li></ul></li><li class="item" id="ne.component.SimpleGrid"><span class="title"><span class="p-item">ne.component.</span><a href="ne.component.SimpleGrid.html">SimpleGrid</a></span><span class="icon blue static">static</span><ul class="sublist members ne.component.SimpleGrid"><span class="subtitle">Members</span><li><a href="ne.component.SimpleGrid.html#ieMaxHeight">ieMaxHeight</a></li><li><a href="ne.component.SimpleGrid.html#scrollBarSize">scrollBarSize</a></li><li><a href="ne.component.SimpleGrid.html#scrollingScale">scrollingScale</a></li><li><a href="ne.component.SimpleGrid.html#scrollingScalePerPage">scrollingScalePerPage</a></li></ul><ul class="sublist division ne.component.SimpleGrid"><li></li></ul><ul class="sublist methods ne.component.SimpleGrid"><span class="subtitle">Methods</span><li><a href="ne.component.SimpleGrid.html#.getInstanceById">getInstanceById</a></li><li><a href="ne.component.SimpleGrid.html#append">append</a></li><li><a href="ne.component.SimpleGrid.html#blur">blur</a></li><li><a href="ne.component.SimpleGrid.html#clear">clear</a></li><li><a href="ne.component.SimpleGrid.html#focus">focus</a></li><li><a href="ne.component.SimpleGrid.html#getList">getList</a></li><li><a href="ne.component.SimpleGrid.html#getSelectionInstance">getSelectionInstance</a></li><li><a href="ne.component.SimpleGrid.html#init">init</a></li><li><a href="ne.component.SimpleGrid.html#option">option</a></li><li><a href="ne.component.SimpleGrid.html#prepend">prepend</a></li><li><a href="ne.component.SimpleGrid.html#remove">remove</a></li><li><a href="ne.component.SimpleGrid.html#render">render</a></li><li><a href="ne.component.SimpleGrid.html#setList">setList</a></li><li><a href="ne.component.SimpleGrid.html#updateLayoutData">updateLayoutData</a></li></ul></li><li class="item" id="ResizeHandler"><span class="title"><a href="ResizeHandler.html">ResizeHandler</a></span><ul class="sublist methods ResizeHandler"><span class="subtitle">Methods</span><li><a href="ResizeHandler.html#render">render</a></li></ul></li><li class="item" id="ResizeHandlerContainer"><span class="title"><a href="ResizeHandlerContainer.html">ResizeHandlerContainer</a></span><ul class="sublist methods ResizeHandlerContainer"><span class="subtitle">Methods</span><li><a href="ResizeHandlerContainer.html#init">init</a></li><li><a href="ResizeHandlerContainer.html#render">render</a></li></ul></li><li class="item" id="Selection"><span class="title"><a href="Selection.html">Selection</a></span><ul class="sublist methods Selection"><span class="subtitle">Methods</span><li><a href="Selection.html#attachMouseEvent">attachMouseEvent</a></li><li><a href="Selection.html#destroy">destroy</a></li><li><a href="Selection.html#detachMouseEvent">detachMouseEvent</a></li><li><a href="Selection.html#draw">draw</a></li><li><a href="Selection.html#getKey">getKey</a></li><li><a href="Selection.html#getSelectionData">getSelectionData</a></li><li><a href="Selection.html#getSelectionLength">getSelectionLength</a></li><li><a href="Selection.html#getSelectionRange">getSelectionRange</a></li><li><a href="Selection.html#getSelectionRangeIndex">getSelectionRangeIndex</a></li><li><a href="Selection.html#hasSelection">hasSelection</a></li><li><a href="Selection.html#hide">hide</a></li><li><a href="Selection.html#init">init</a></li><li><a href="Selection.html#overflowStatus">overflowStatus</a></li><li><a href="Selection.html#render">render</a></li><li><a href="Selection.html#selectAll">selectAll</a></li><li><a href="Selection.html#show">show</a></li><li><a href="Selection.html#startSelection">startSelection</a></li><li><a href="Selection.html#stopSelection">stopSelection</a></li><li><a href="Selection.html#updateSelection">updateSelection</a></li></ul></li><li class="item" id="Spacer"><span class="title"><a href="Spacer.html">Spacer</a></span><ul class="sublist methods Spacer"><span class="subtitle">Methods</span><li><a href="Spacer.html#init">init</a></li><li><a href="Spacer.html#render">render</a></li></ul></li><li class="item" id="VirtualScrollBar"><span class="title"><a href="VirtualScrollBar.html">VirtualScrollBar</a></span><ul class="sublist methods VirtualScrollBar"><span class="subtitle">Methods</span><li><a href="VirtualScrollBar.html#init">init</a></li><li><a href="VirtualScrollBar.html#render">render</a></li></ul></li><li class="item" id="VirtualScrollBar.Content"><span class="title"><span class="p-item">VirtualScrollBar.</span><a href="VirtualScrollBar.Content.html">Content</a></span><span class="icon blue static">static</span></li><li class="item" id="Worker"><span class="title"><a href="Worker.html">Worker</a></span><ul class="sublist methods Worker"><span class="subtitle">Methods</span><li><a href="Worker.html#dequeue">dequeue</a></li><li><a href="Worker.html#enqueue">enqueue</a></li><li><a href="Worker.html#lock">lock</a></li><li><a href="Worker.html#runQueue">runQueue</a></li><li><a href="Worker.html#unlock">unlock</a></li></ul></li></ul><h3>Global</h3><ul class="list globals"><li class="item" id="uniqueKey"><span class="title"><a href="global.html#uniqueKey">uniqueKey</a></span></li><li class="item" id="Util"><span class="title"><a href="global.html#Util">Util</a></span><ul class="sublist methods Util"><span class="subtitle">Methods</span><li><a href="global.html#Util#.getDisplayRowCount">getDisplayRowCount</a></li><li><a href="global.html#Util#.getHeight">getHeight</a></li><li><a href="global.html#Util#.getRowHeight">getRowHeight</a></li><li><a href="global.html#Util#.isMacOs">isMacOs</a></li><li><a href="global.html#Util#.stripTags">stripTags</a></li><li><a href="global.html#Util#.template">template</a></li></ul></li></ul></div>
+        <div id="main" class="main">
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @fileoverview 리사이즈 핸들러
+ * @author FE개발팀 박순영 &lt;soonyoung.park@nhnent.com>
+ */
+/**
+ * ResizeHandlerContainer
+ * @constructor ResizeHandlerContainer
+ */
+var ResizeHandlerContainer = ne.util.defineClass(Base.View, /**@lends ResizeHandlerContainer.prototype */{
+    className: 'infinite_resize_handler_container',
+    eventHandler: {
+        'mousedown .infinite_resize_handler' : '_onMouseDown'
+    },
+    style: 'position:relative;width:0px;',
+
+    /**
+     * 생성자
+     * @param {Object} attributes
+     *      @param {number} attributes.height  핸들러의 높이값.
+     */
+    init: function(attributes) {
+        Base.View.prototype.init.apply(this, arguments);
+        this.setOwnProperties({
+            height: attributes.height,
+            isResizing: false,     //현재 resize 발생 상황인지
+            $target: null,         //이벤트가 발생한 target resize handler
+            differenceLeft: 0,
+            initialWidth: 0,
+            initialOffsetLeft: 0,
+            initialLeft: 0,
+            useSelectionStatus: null
+        });
+        this.height = attributes.height;
+        this.model.on('change', this._onModelChange, this);
+    },
+
+    /**
+     * model 값이 변경되었을때 view 에 반영한다.
+     * @param {{key: key, value: value}} changeEvent model 에서 전달하는 change 이벤트
+     * @private
+     */
+    _onModelChange: function(changeEvent) {
+        var key = changeEvent.key;
+
+        if (key === 'columnWidthList') {
+            this._refreshHandlerPosition();
+        }
+    },
+
+    /**
+     * 렌더링 한다.
+     * @return {ResizeHandlerContainer}
+     */
+    render: function() {
+        var columnModelList = this.grid.option('columnModelList'),
+            length = columnModelList.length,
+            handler;
+
+        this._detachHandler();
+        this.destroyChildren();
+        this.$el.empty();
+
+        ne.util.forEachArray(columnModelList, function(columnModel, index) {
+            handler = this.createView(ResizeHandler, {
+                grid: this.grid,
+                index: index,
+                columnName: columnModel.columnName,
+                isLast: index === length - 1
+            });
+            this.$el.append(handler.render().el);
+        }, this);
+        this.$el.css({
+            height: this.height + 'px',
+            marginTop: -this.height + 'px'
+        });
+        this._attachHandler();
+        this._refreshHandlerPosition();
+        return this;
+    },
+
+    /**
+     * 생성된 핸들러의 위치를 갱신한다.
+     * @private
+     */
+    _refreshHandlerPosition: function() {
+        var columnWidthList = this.model.columnWidthList,
+            $resizeHandleList = this.$el.find('.infinite_resize_handler'),
+            border = this.grid.option('border'),
+            $colList = this.grid.view.header.$el.find('th'),
+            curPos = 0,
+            width,
+            $handler;
+
+        ne.util.forEachArray($resizeHandleList, function(item, index) {
+            width = $colList.eq(index).width() || columnWidthList[index];
+            $handler = $resizeHandleList.eq(index);
+
+            curPos += width + border;
+            //핸들러를 가운데 위치 시키기 위해 핸들러 너비 절반의 올림값(4)만큼 좌로 이동한다.
+            $handler.css('left', (curPos - 4) + 'px');
+        }, this);
+    },
+
+    /**
+     * mousedown 이벤트 핸들러
+     * @param {event} mouseDownEvent    마우스 이벤트 객체
+     * @private
+     */
+    _onMouseDown: function(mouseDownEvent) {
+        this.useSelectionStatus = this.grid.option('useSelection');
+        this.grid.option('useSelection', false);
+        this._startResizing(mouseDownEvent);
+    },
+
+    /**
+     * mouseup 이벤트 핸들러
+     * @private
+     */
+    _onMouseUp: function() {
+        this.grid.option('useSelection', this.useSelectionStatus);
+        this._stopResizing();
+    },
+
+    /**
+     * mousemove 이벤트 핸들러
+     * @param {event} mouseMoveEvent    마우스 이벤트 객체
+     * @private
+     */
+    _onMouseMove: function(mouseMoveEvent) {
+        /* istanbul ignore else */
+        if (this._isResizing()) {
+            mouseMoveEvent.preventDefault();
+
+            var left = mouseMoveEvent.pageX - this.initialOffsetLeft,
+                width = this._calculateWidth(mouseMoveEvent.pageX),
+                index = parseInt(this.$target.attr('columnindex'), 10);
+
+            this.$target.css('left', left + 'px');
+            this.model.setColumnWidth(index, width);
+        }
+    },
+
+    /**
+     * 너비를 계산한다.
+     * @param {number} pageX    마우스의 x 좌표
+     * @return {number} x좌표를 기준으로 계산한 width 값
+     * @private
+     */
+    _calculateWidth: function(pageX) {
+        var difference = pageX - this.initialOffsetLeft - this.initialLeft;
+        return this.initialWidth + difference;
+    },
+
+    /**
+     * 현재 mouse move resizing 중인지 상태 flag 반환
+     * @return {boolean}    현재 resize 중인지 여부
+     * @private
+     */
+    _isResizing: function() {
+        return !!this.isResizing;
+    },
+
+    /**
+     * resize start 세팅
+     * @param {event} mouseDownEvent 마우스 이벤트
+     * @private
+     */
+    _startResizing: function(mouseDownEvent) {
+        var columnWidthList = this.model.columnWidthList,
+            $target = $(mouseDownEvent.target);
+
+        this.isResizing = true;
+        this.$target = $target;
+        this.initialLeft = parseInt($target.css('left').replace('px', ''), 10);
+        this.initialOffsetLeft = this.$el.offset().left;
+        this.initialWidth = columnWidthList[$target.attr('columnindex')];
+        $('body')
+            .bind('mousemove', $.proxy(this._onMouseMove, this))
+            .bind('mouseup', $.proxy(this._onMouseUp, this))
+            .css('cursor', 'col-resize');
+    },
+
+    /**
+     * resize stop 세팅
+     * @private
+     */
+    _stopResizing: function() {
+        this.isResizing = false;
+        this.$target = null;
+        this.initialLeft = 0;
+        this.initialOffsetLeft = 0;
+        this.initialWidth = 0;
+        $('body')
+            .unbind('mousemove', $.proxy(this._onMouseMove, this))
+            .unbind('mouseup', $.proxy(this._onMouseUp, this))
+            .css('cursor', 'default');
+    }
+});
+
+/**
+ * ResizeHandler
+ * @constructor ResizeHandler
+ */
+var ResizeHandler = ne.util.defineClass(Base.View, /**@lends ResizeHandler.prototype */{
+    className: 'infinite_resize_handler',
+    style: 'float:left; position:absolute; height:100%; opacity:0; filter:alpha(opacity=0); cursor:col-resize;',
+    handlerWidth: 7,
+    init: function(attributes) {
+        Base.View.prototype.init.apply(this, arguments);
+        this.setOwnProperties({
+            columnName: attributes.columnName,
+            index: attributes.index,
+            isLast: attributes.isLast
+        });
+    },
+
+    /**
+     * 랜더링한다
+     * @returns {ResizeHandler}
+     */
+    render: function() {
+        var color = this.grid.option('color').border;
+        this._detachHandler();
+        this.destroyChildren();
+        this.$el.empty();
+        this.$el.attr({
+            'columnindex': this.index,
+            'columnname': this.columnName,
+            'title': '마우스 드래그를 통해 컬럼의 넓이를 변경할 수 있습니다.'
+        }).css({
+            'background': color
+        });
+        if (this.isLast) {
+            //마지막 핸들러는 절반 이하의 크기를 가져야 하기 때문에 핸들러 크기의 절반값의 내림값을 설정한다.
+            this.$el.width(Math.floor(this.handlerWidth / 2));
+        } else {
+            this.$el.width(this.handlerWidth);
+        }
+        this._attachHandler();
+        return this;
+    }
+});
+</code></pre>
+        </article>
+    </section>
+
+
+
+</div>
+        <div class="clearfix"></div>
+    </div>
+
+</div>
+<script>
+(function() {
+// 영역 height 설정
+var height = (window.innerHeight || document.documentElement.clientHeight || document.getElementByTagName('body')[0].clientHeight) - 50;
+var navigation = document.getElementById('navigation');
+var main = document.getElementById('main');
+navigation.style.height = height + 'px';
+main.style.height = height + 'px';
+
+// IE 7,8을 위한 getElementsByClassName 구현
+var getElementsByClassName = function(className, parentElement) {
+	if(document.getElementsByClassName) {
+		return (parentElement || document).getElementsByClassName(className);
+	}
+
+    var regEx = new RegExp('(^| )'+className+'( |$)');
+	var nodes = new Array();
+    var elements = (parentElement || document.body).getElementsByTagName("*");
+    for(var i = 0, len = elements.length; i < len ; i++) {
+        if(regEx.test(elements[i].className)) {
+			nodes.push(elements[i]);
+		}
+	}
+	elements = null;
+    return nodes;
+}
+
+// url 파싱후 해당 카테고리만 display:block 처리
+var url = location.href;
+var path = url.lastIndexOf('/');
+var fileName = url.substring(path+1);
+var fullName = fileName.split('.');
+fullName.length -= 1;
+fullName = fullName.join('.');
+fullName = fullName.split('-');
+fullName = fullName[fullName.length - 1];
+var lnbList = getElementsByClassName(fullName);
+if(lnbList.length && lnbList.length > 0) {
+    for(var i = 0, len = lnbList.length; i < len; i++) {
+        lnbList[i].className += ' selected';
+    }
+}
+
+var title = document.getElementById(fullName);
+if(title) {
+    title.className += ' selected';
+    title.innerHTML = '<span class="arrow">▶</span>' + title.innerHTML;
+
+    var static = getElementsByClassName('static', title);
+    if(static) {
+        static[0].className += ' selected';
+    }
+}
+})();
+</script>
+<script type="text/javascript" src="scripts/prettify/prettify.js"></script>
+<script type="text/javascript" src="scripts/prettify/lang-css.js"></script>
+<script type="text/javascript">prettyPrint();</script>
+<script type="text/javascript" src="scripts/linenumber.js"></script>
+</body>
+</html>
